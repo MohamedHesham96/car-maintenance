@@ -1,61 +1,49 @@
 package com.blue.soft.store.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
-/**
- * The persistent class for the company database table.
- * 
- */
 @Entity
-@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c")
-public class Company implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Company {
 
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 
-	private int drawee;
-
-	private int id;
-
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "drawee")
+	private int drawee;
 
 	public Company() {
 	}
 
-	public Date getDate() {
-		return this.date;
+	public String getId() {
+		return id;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getDrawee() {
-		return this.drawee;
-	}
-
-	public void setDrawee(int drawee) {
-		this.drawee = drawee;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getDrawee() {
+		return drawee;
+	}
+
+	public void setDrawee(int drawee) {
+		this.drawee = drawee;
 	}
 
 }

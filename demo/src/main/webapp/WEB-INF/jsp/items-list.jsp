@@ -27,24 +27,37 @@
 	<div style="text-align: center;" class="container">
 		<div dir="rtl" class="row">
 
-			<form:form class="">
+			<form:form modelAttribute="item" method="post" action="add-new-item">
 
 				<div class="form-group">
-					<label>اسم الصنف</label> <input type="email"
-						class="form-control text-center">
+					<label>الجهة</label>
+					<form:select class="form-control text-center" path="companyId">
+						<form:options items="${companiesList}" itemLabel="name" />
+					</form:select>
 				</div>
 
 				<div class="form-group">
-					<label>الكيمة</label> <input class="form-control text-center">
+					<label>اسم الصنف</label>
+					<form:input path="name" class="form-control text-center" />
 				</div>
 
 				<div class="form-group">
-					<label>سعر الشراء</label> <input class="form-control text-center">
+					<label>الكيمة</label>
+					<form:input path="quantity" class="form-control text-center" />
 				</div>
 
 				<div class="form-group">
-					<label>سعر البيع</label> <input class="form-control text-center">
+					<label>سعر الشراء</label>
+					<form:input path="buyPrice" class="form-control text-center" />
 				</div>
+
+				<div class="form-group">
+					<label>سعر البيع</label>
+					<form:input path="sellPrice" class="form-control text-center" />
+				</div>
+
+
+
 
 				<button type="submit" class="btn btn-primary w-100">اضافة
 					الصنف</button>
@@ -53,7 +66,7 @@
 
 
 			<div class="mr-4 col-8">
-				<table class="table table-hover">
+				<table class="table table-striped">
 
 					<thead>
 						<tr>
