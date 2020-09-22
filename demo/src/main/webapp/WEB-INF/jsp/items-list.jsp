@@ -42,7 +42,7 @@
 				</div>
 
 				<div class="form-group">
-					<label>الكيمة</label>
+					<label>الكمية</label>
 					<form:input path="quantity" class="form-control text-center" />
 				</div>
 
@@ -56,11 +56,9 @@
 					<form:input path="sellPrice" class="form-control text-center" />
 				</div>
 
+				<button type="submit" class="btn btn-primary btn-lg w-100">
 
-
-
-				<button type="submit" class="btn btn-primary w-100">اضافة
-					الصنف</button>
+					اضافة صنف</button>
 
 			</form:form>
 
