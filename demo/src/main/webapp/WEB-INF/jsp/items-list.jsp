@@ -58,7 +58,7 @@
 
 				<button type="submit" class="btn btn-primary btn-lg w-100">
 
-					اضافة صنف</button>
+					اضافة الصنف</button>
 
 			</form:form>
 
