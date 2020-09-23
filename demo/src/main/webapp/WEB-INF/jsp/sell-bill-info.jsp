@@ -36,9 +36,8 @@
 				<!-- 				</div> -->
 
 				<div class="form-group">
-					<label>التاريخ</label> 
-					
-					<input disabled="true" value="<%=LocalDate.now().toString()%>"
+					<label>التاريخ</label> <input disabled="true"
+						value="<%=LocalDate.now().toString()%>"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 

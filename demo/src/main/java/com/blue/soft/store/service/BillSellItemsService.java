@@ -18,4 +18,9 @@ public class BillSellItemsService {
 
 	}
 
+	public void deleteBillSellItem(String billSellItemId) {
+
+		billSellItemsRepository.deleteById(billSellItemId);
+
+	}
 }

@@ -160,4 +160,13 @@ public class BillSellController {
 
 	}
 
+	@RequestMapping("/delete-sellBillItem")
+	public String deleteSellBillItem(@RequestParam(name = "sellBillItemId") String sellBillItemId) {
+
+		billSellItemsService.deleteBillSellItem(sellBillItemId);
+
+		return "redirect:/show-add-sell-bill";
+
+	}
+
 }

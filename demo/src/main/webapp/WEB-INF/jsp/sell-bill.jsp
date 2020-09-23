@@ -102,6 +102,15 @@
 									<td>${itemTemp.sellPrice}</td>
 									<td>${itemTemp.sellPrice * itemTemp.quantity}</td>
 
+									<td><a
+										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
+										class="btn btn-danger btn-sm"
+										onclick="return confirm('هل انت متأكد من ألغاء الفاتورة ؟')">
+
+											X </a></td>
+
+
+
 								</tr>
 
 							</c:forEach>
