@@ -1,0 +1,32 @@
+package com.blue.soft.store.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.blue.soft.store.DAO.ClientRepository;
+import com.blue.soft.store.entity.Client;
+
+@Service
+public class clientService {
+
+	@Autowired
+	ClientRepository clientRepository;
+
+	public List<Client> getAllClients() {
+
+		return (List<Client>) clientRepository.findAll();
+	}
+
+	public void addNewClient(Client client) {
+
+		clientRepository.save(client);
+
+	}
+
+	public Client getClientById(String id) {
+
+		return clientRepository.findById(id).get();
+	}
+}
