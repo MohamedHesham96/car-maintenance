@@ -1,68 +1,65 @@
 package com.blue.soft.store.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-
-/**
- * The persistent class for the bill_sell_items database table.
- * 
- */
 @Entity
-@Table(name="bill_sell_items")
-@NamedQuery(name="BillSellItem.findAll", query="SELECT b FROM BillSellItem b")
-public class BillSellItem implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "bill_sell_items")
+public class BillSellItem {
 
-	@Column(name="bill_id")
-	private int billId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 
-	@Column(name="buy_price")
-	private int buyPrice;
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "item_id")
+	private Item item;
 
-	private int id;
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "Bill_id")
+	private BillSell billSell;
 
-	@Column(name="item_id")
-	private int itemId;
-
+	@Column(name = "quantity")
 	private int quantity;
 
-	@Column(name="sell_price")
-	private int sellPrice;
+	@Column(name = "buy_price")
+	private float buyPrice;
+
+	@Column(name = "sell_price")
+	private float sellPrice;
 
 	public BillSellItem() {
 	}
 
-	public int getBillId() {
-		return this.billId;
+	public float getBuyPrice() {
+		return buyPrice;
 	}
 
-	public void setBillId(int billId) {
-		this.billId = billId;
-	}
-
-	public int getBuyPrice() {
-		return this.buyPrice;
-	}
-
-	public void setBuyPrice(int buyPrice) {
+	public void setBuyPrice(float buyPrice) {
 		this.buyPrice = buyPrice;
 	}
 
-	public int getId() {
-		return this.id;
+	public float getSellPrice() {
+		return sellPrice;
 	}
 
-	public void setId(int id) {
+	public void setSellPrice(float sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
 		this.id = id;
-	}
-
-	public int getItemId() {
-		return this.itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
 	}
 
 	public int getQuantity() {
@@ -73,12 +70,20 @@ public class BillSellItem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public int getSellPrice() {
-		return this.sellPrice;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setSellPrice(int sellPrice) {
-		this.sellPrice = sellPrice;
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public BillSell getBillSell() {
+		return billSell;
+	}
+
+	public void setBillSell(BillSell billSell) {
+		this.billSell = billSell;
 	}
 
 }

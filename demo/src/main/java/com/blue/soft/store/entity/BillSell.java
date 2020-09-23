@@ -1,69 +1,98 @@
 package com.blue.soft.store.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "bill_sell")
 public class BillSell {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
+
 	@Column(name = "client_id")
-	private int clientId;
+	private String clientId;
 
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	@Column(name = "date")
+	private String date;
 
-	private int payed;
+	@Column(name = "late")
+	private boolean late;
 
-	private String type;
+	@Column(name = "saved")
+	private boolean saved;
 
 	// bi-directional many-to-many association to Item
-	@ManyToMany(mappedBy = "billSells")
-	private List<Item> items;
+	@OneToMany(mappedBy = "billSell", cascade = CascadeType.ALL)
+	private List<BillSellItem> billSellItems;
 
 	public BillSell() {
 	}
 
-	public int getClientId() {
+	public void addBillSellItem(BillSellItem billSellItem) {
+
+		billSellItems.add(billSellItem);
+	}
+
+	public List<BillSellItem> getBillSellItems() {
+		return billSellItems;
+	}
+
+	public void setBillSellItem(List<BillSellItem> billSellItems) {
+		this.billSellItems = billSellItems;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getClientId() {
 		return this.clientId;
 	}
 
-	public void setClientId(int clientId) {
+	public void setClientId(String clientId) {
 		this.clientId = clientId;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
-	public int getPayed() {
-		return this.payed;
+	public boolean isLate() {
+		return late;
 	}
 
-	public void setPayed(int payed) {
-		this.payed = payed;
+	public void setLate(boolean late) {
+		this.late = late;
 	}
 
-	public String getType() {
-		return this.type;
+	public boolean isSaved() {
+		return saved;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setSaved(boolean saved) {
+		this.saved = saved;
 	}
 
-	public List<Item> getItems() {
-		return this.items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setBillSellItems(List<BillSellItem> billSellItems) {
+		this.billSellItems = billSellItems;
 	}
 
 }
