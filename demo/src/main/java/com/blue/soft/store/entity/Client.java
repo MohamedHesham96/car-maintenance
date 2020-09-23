@@ -1,37 +1,25 @@
 package com.blue.soft.store.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
-/**
- * The persistent class for the client database table.
- * 
- */
 @Entity
-@NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
-public class Client implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Client {
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 
-	private int drawee;
-
-	private int id;
-
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "drawee")
+	private int drawee;
+
 	public Client() {
-	}
-
-	public Date getDate() {
-		return this.date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public int getDrawee() {
@@ -42,11 +30,11 @@ public class Client implements Serializable {
 		this.drawee = drawee;
 	}
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

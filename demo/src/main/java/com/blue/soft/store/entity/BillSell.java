@@ -5,18 +5,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
-/**
- * The persistent class for the bill_sell database table.
- * 
- */
 @Entity
-@Table(name="bill_sell")
-@NamedQuery(name="BillSell.findAll", query="SELECT b FROM BillSell b")
-public class BillSell  {
-	private static final long serialVersionUID = 1L;
+@Table(name = "bill_sell")
+public class BillSell {
 
-	@Column(name="client_id")
+	@Column(name = "client_id")
 	private int clientId;
 
 	@Temporal(TemporalType.DATE)
@@ -26,8 +19,8 @@ public class BillSell  {
 
 	private String type;
 
-	//bi-directional many-to-many association to Item
-	@ManyToMany(mappedBy="billSells")
+	// bi-directional many-to-many association to Item
+	@ManyToMany(mappedBy = "billSells")
 	private List<Item> items;
 
 	public BillSell() {

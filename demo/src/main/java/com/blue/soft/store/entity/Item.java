@@ -14,9 +14,6 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "company_id")
-	private String companyId;
-
 	@Column(name = "name")
 	private String name;
 
@@ -46,14 +43,6 @@ public class Item {
 
 	public void setBuyPrice(float buyPrice) {
 		this.buyPrice = buyPrice;
-	}
-
-	public String getCompanyId() {
-		return this.companyId;
-	}
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
 	}
 
 	public String getName() {

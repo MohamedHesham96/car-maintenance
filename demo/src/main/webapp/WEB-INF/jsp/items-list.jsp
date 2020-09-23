@@ -29,12 +29,12 @@
 
 			<form:form modelAttribute="item" method="post" action="add-new-item">
 
-				<div class="form-group">
-					<label>الجهة</label>
-					<form:select class="form-control text-center" path="companyId">
-						<form:options items="${companiesList}" itemLabel="name" />
-					</form:select>
-				</div>
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label>الجهة</label> -->
+				<%-- 					<form:select class="form-control text-center" path="companyId"> --%>
+				<%-- 						<form:options items="${companiesList}" itemLabel="name" /> --%>
+				<%-- 					</form:select> --%>
+				<!-- 				</div> -->
 
 				<div class="form-group">
 					<label>اسم الصنف</label>
