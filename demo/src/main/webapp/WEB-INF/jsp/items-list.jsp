@@ -164,40 +164,45 @@
 			</div>
 
 			<div class="mr-4 col-8">
-				<table class="table table-striped table-sm  table-bordered">
 
-					<thead>
-						<tr>
-							<th>الكود</th>
-							<th>الصنف</th>
-							<th>الكمية</th>
-							<th>سعر الشراء</th>
-							<th>سعر البيع</th>
-							<th></th>
-						</tr>
-					</thead>
+				<div style="position: relative; height: 425px; overflow: auto;">
 
-					<tbody>
-						<c:forEach var="itemTemp" items="${itemsList}">
+					<table class="table table-striped table-sm  table-bordered">
 
+						<thead>
 							<tr>
-								<th id="itemId${itemTemp.id}">${itemTemp.id}</th>
-								<td id="itemName${itemTemp.id}">${itemTemp.name}</td>
-								<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
-								<td id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
-								<td id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
-
-								<td>
-									<button type="button" class="btn btn-outline-secondary btn-sm"
-										onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
+								<th>الكود</th>
+								<th>الصنف</th>
+								<th>الكمية</th>
+								<th>سعر الشراء</th>
+								<th>سعر البيع</th>
+								<th></th>
 							</tr>
+						</thead>
 
-						</c:forEach>
+						<tbody>
+							<c:forEach var="itemTemp" items="${itemsList}">
 
-					</tbody>
-				</table>
+								<tr>
+									<th id="itemId${itemTemp.id}">${itemTemp.id}</th>
+									<td id="itemName${itemTemp.id}">${itemTemp.name}</td>
+									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
+									<td id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
+									<td id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
 
+									<td>
+										<button type="button" class="btn btn-outline-secondary btn-sm"
+											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
+									</td>
+								</tr>
+
+							</c:forEach>
+
+						</tbody>
+					</table>
+				</div>
 			</div>
+
 		</div>
 
 	</div>

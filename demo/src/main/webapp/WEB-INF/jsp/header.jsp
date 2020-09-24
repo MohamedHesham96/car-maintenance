@@ -20,7 +20,8 @@
 
 			<li class="nav-item active"><a class="nav-link"
 				href="companies-list">الموردين</a></li>
-			<li class="nav-item active"><a class="nav-link" href="#">الوحدات</a></li>
+			<li class="nav-item active"><a class="nav-link"
+				href="clients-list">الوحدات</a></li>
 			<li class="nav-item active"><a class="nav-link" href="#">التقرير</a></li>
 
 		</ul>

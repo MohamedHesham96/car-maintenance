@@ -29,4 +29,10 @@ public class clientService {
 
 		return clientRepository.findById(id).get();
 	}
+
+	public List<Client> searchForClient(String theClientName) {
+
+		return (List<Client>) clientRepository.findByNameContaining(theClientName);
+
+	}
 }

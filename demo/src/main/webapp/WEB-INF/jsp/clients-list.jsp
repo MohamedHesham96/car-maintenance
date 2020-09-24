@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الموردين</title>
+<title>كشف الوحدات</title>
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -30,35 +30,35 @@
 			<div>
 
 
-				<form method="get" action="search-for-company">
+				<form method="get" action="search-for-client">
 
 					<div class="form-group">
-						<label>اسم المورد</label> <input name="companyName"
+						<label>اسم الوحدة</label> <input name="clientName"
 							class="form-control text-center" />
 					</div>
 
 
 					<button type="submit" class="btn btn-success btn-lg w-100">
 
-						بحث عن مورد</button>
+						بحث عن وحدة</button>
 
 				</form>
 				<br>
 
 				<hr>
 
-				<form:form modelAttribute="company" method="post"
-					action="add-new-company">
+				<form:form modelAttribute="client" method="post"
+					action="add-new-client">
 
 					<div class="form-group">
-						<label>اسم المورد</label>
+						<label>اسم الوحدة</label>
 						<form:input path="name" class="form-control text-center" />
 					</div>
 
 
 					<button type="submit" class="btn btn-primary btn-lg w-100">
 
-						اضافة مورد</button>
+						اضافة وحدة</button>
 
 				</form:form>
 			</div>
@@ -68,18 +68,18 @@
 
 					<thead>
 						<tr>
-							<th>اسم المورد</th>
+							<th>اسم الوحدة</th>
 							<th>الدين</th>
 						</tr>
 					</thead>
 
 					<tbody>
-						<c:forEach var="companyTemp" items="${companiesList}">
+						<c:forEach var="clientTemp" items="${clientsList}">
 
 							<tr>
 
-								<td>${companyTemp.name}</td>
-								<td>${companyTemp.drawee}</td>
+								<td>${clientTemp.name}</td>
+								<td>${clientTemp.drawee}</td>
 
 							</tr>
 
