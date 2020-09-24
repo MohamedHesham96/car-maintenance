@@ -37,6 +37,21 @@ public class ItemController {
 		return "redirect:/items-list";
 	}
 
+	@RequestMapping("/update-item")
+	public String updateItem(@ModelAttribute(name = "item") Item item, Model theModel) {
+
+		Item oldItem = itemService.getItemById(item.getId());
+
+		oldItem.setName(item.getName());
+		oldItem.setQuantity(item.getQuantity());
+		oldItem.setBuyPrice(item.getBuyPrice());
+		oldItem.setSellPrice(item.getSellPrice());
+
+		itemService.addNewItem(item);
+
+		return "redirect:/items-list";
+	}
+
 //	@RequestMapping("/add-sell-bill-item")
 //	public String addNewItem(@ModelAttribute(name = "item") Item item, Model theModel) {
 //		

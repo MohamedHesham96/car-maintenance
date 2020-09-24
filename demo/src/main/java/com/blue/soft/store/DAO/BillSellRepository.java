@@ -6,7 +6,6 @@ import com.blue.soft.store.entity.BillSell;
 
 public interface BillSellRepository extends CrudRepository<BillSell, String> {
 
-//	public BillSell findTopByOrderByIdDesc();
-
 	public BillSell findTopByOrderByIdDesc();
+
 }

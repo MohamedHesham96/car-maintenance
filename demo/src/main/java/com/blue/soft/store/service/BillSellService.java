@@ -1,7 +1,5 @@
 package com.blue.soft.store.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +32,5 @@ public class BillSellService {
 
 		billSellRepository.deleteById(id);
 	}
+
 }

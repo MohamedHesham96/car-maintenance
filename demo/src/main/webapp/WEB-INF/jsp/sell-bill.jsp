@@ -82,7 +82,7 @@
 
 				<div style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped  table-bordered">
+					<table class="table table-striped table-sm  table-bordered">
 
 						<thead>
 							<tr>
@@ -104,10 +104,7 @@
 
 									<td><a
 										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
-										class="btn btn-danger btn-sm"
-										onclick="return confirm('هل انت متأكد من ألغاء الفاتورة ؟')">
-
-											X </a></td>
+										class="btn btn-outline-danger btn-sm"> ألغاء </a></td>
 
 
 
@@ -131,13 +128,16 @@
 
 						<a
 							href="delete-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
-							class="btn btn-danger"
+							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من ألغاء الفاتورة ؟')">
 
 							ألغاء </a>
 
 
-						<button class="btn btn-success">حفظ</button>
+						<a
+							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+							class="btn btn-success"> حفظ</a>
+
 
 						<button class="btn btn-primary">طباعة</button>
 					</form:form>
