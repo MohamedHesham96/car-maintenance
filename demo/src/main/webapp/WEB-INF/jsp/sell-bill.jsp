@@ -136,10 +136,15 @@
 
 						<a
 							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
-							class="btn btn-success"> حفظ</a>
+							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+							حفظ</a>
 
 
-						<button class="btn btn-primary">طباعة</button>
+						<button
+							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+
+							طباعة</button>
 					</form:form>
 
 				</div>

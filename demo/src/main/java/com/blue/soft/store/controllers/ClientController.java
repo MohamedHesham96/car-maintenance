@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blue.soft.store.entity.Client;
+import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.service.clientService;
 
@@ -28,6 +29,14 @@ public class ClientController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		return "clients-list";
+	}
+
+	@RequestMapping("/add-new-client")
+	public String addNewClient(@ModelAttribute(name = "client") Client theClient, Model theModel) {
+
+		clientService.addNewClient(theClient);
+
+		return "redirect:/clients-list";
 	}
 
 	@RequestMapping("/search-for-client")
