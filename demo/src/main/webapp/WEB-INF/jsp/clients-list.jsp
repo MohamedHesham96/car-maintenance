@@ -64,7 +64,7 @@
 			</div>
 
 			<div class="mr-4 col-8">
-				<table class="table table-striped table-sm  table-bordered">
+				<table class="table table-striped table-sm table-bordered shadow">
 
 					<thead>
 						<tr>

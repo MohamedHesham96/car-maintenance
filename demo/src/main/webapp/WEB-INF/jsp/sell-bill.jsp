@@ -31,19 +31,19 @@
 			<div>
 
 				<div class="form-group">
-					<label>رقم الفاتورة</label> <input disabled="true"
+					<label>رقم الفاتورة</label> <input disabled="disabled"
 						value="S - <%=session.getAttribute("billSellId")%>"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 
 				<div class="form-group">
-					<label>التاريخ</label> <input disabled="true"
+					<label>التاريخ</label> <input disabled="disabled"
 						value="<%=LocalDate.now().toString()%>"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 
 				<div class="form-group">
-					<label>الجهة</label> <input disabled="true"
+					<label>الجهة</label> <input disabled="disabled"
 						value="<%=session.getAttribute("clientName")%>"
 						class="form-control text-center btn-outline-primary" />
 				</div>
@@ -75,11 +75,11 @@
 
 			</div>
 
-			<div class="mr-4 col-8">
+			<div class="mr-4 col-8 ">
 
-				<div style="position: relative; height: 425px; overflow: auto;">
+				<div class="shadow" style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm  table-bordered">
+					<table class="table table-striped table-sm table-bordered">
 
 						<thead>
 							<tr>
@@ -111,8 +111,8 @@
 
 				</div>
 
-				<spam class="btn btn-outline-success float-right mt-sm-4">
-				اجمالي: ${total}</spam>
+				<span class="btn btn-outline-success float-right mt-sm-4">
+					اجمالي: ${total}</span>
 
 
 				<div class="float-left pt-sm-4">

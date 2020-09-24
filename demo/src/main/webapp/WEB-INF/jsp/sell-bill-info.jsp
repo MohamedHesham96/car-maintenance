@@ -24,6 +24,11 @@
 
 	<br>
 
+
+
+
+
+
 	<div style="text-align: center;" class="text-center container">
 		<div dir="rtl" class="row">
 
@@ -48,10 +53,14 @@
 					</form:select>
 				</div>
 
+
+
+
+
 				<div class="form-group">
 					<label>آجل</label>
 
-					<form:checkbox path="late" />
+					<form:checkbox cssClass="btn-success" path="late" />
 
 				</div>
 

@@ -81,7 +81,7 @@
 
 		<div dir="rtl" class="row mr-lg-4">
 			<div>
-				<div class="row w-110" id="add-form">
+				<div class="row" id="add-form">
 
 					<form:form modelAttribute="item" method="post"
 						action="add-new-item">
@@ -114,7 +114,7 @@
 
 				</div>
 
-				<div class="row w-110" style="display: none" id="update-form">
+				<div class="row" style="display: none" id="update-form">
 
 					<form:form modelAttribute="item" method="post" action="update-item">
 
