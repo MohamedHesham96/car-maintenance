@@ -116,9 +116,20 @@ public class BillSellController {
 
 		BillSell billSell = billSellService.getBillSellById(billId);
 
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+
+		float total = 0;
+
+		for (BillSellItem billSellItem : billSellItemsList) {
+
+			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+		}
+
+		theModel.addAttribute("total", total);
+
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSellItems", billSell.getBillSellItems());
+		theModel.addAttribute("billSellItems", billSellItemsList);
 
 		return "sell-bill";
 	}

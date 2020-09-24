@@ -120,10 +120,13 @@
 
 				</div>
 
+				<spam class="btn btn-outline-success float-right mt-sm-4">
+				اجمالي: ${total}</spam>
+
+
 				<div class="float-left pt-sm-4">
 
 					<form:form>
-
 
 
 						<a
@@ -141,10 +144,14 @@
 							حفظ</a>
 
 
-						<button
+						<a
+							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+							طباعة</a>
 
-							طباعة</button>
+
+
 					</form:form>
 
 				</div>
