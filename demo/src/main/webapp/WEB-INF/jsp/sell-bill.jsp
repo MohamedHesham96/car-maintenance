@@ -30,12 +30,9 @@
 
 			<div>
 
-
-
-
 				<div class="form-group">
 					<label>رقم الفاتورة</label> <input disabled="true"
-						value="<%=session.getAttribute("billSellId")%>"
+						value="S - <%=session.getAttribute("billSellId")%>"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 
@@ -105,18 +102,12 @@
 									<td><a
 										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
 										class="btn btn-outline-danger btn-sm"> ألغاء </a></td>
-
-
-
 								</tr>
 
 							</c:forEach>
 
 						</tbody>
 					</table>
-
-
-
 
 				</div>
 
@@ -128,12 +119,10 @@
 
 					<form:form>
 
-
 						<a
 							href="delete-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من ألغاء الفاتورة ؟')">
-
 							ألغاء </a>
 
 
@@ -149,8 +138,6 @@
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>
-
-
 
 					</form:form>
 
