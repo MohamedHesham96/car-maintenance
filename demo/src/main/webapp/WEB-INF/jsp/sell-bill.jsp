@@ -101,7 +101,7 @@
 
 									<td><a
 										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
-										class="btn btn-outline-danger btn-sm"> ألغاء </a></td>
+										class="btn btn-outline-danger btn-sm"> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>
@@ -122,8 +122,8 @@
 						<a
 							href="delete-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
 							class="btn btn-danger "
-							onclick="return confirm('هل انت متأكد من ألغاء الفاتورة ؟')">
-							ألغاء </a>
+							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
+							إلغاء </a>
 
 
 						<a

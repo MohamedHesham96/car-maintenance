@@ -6,8 +6,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-
+<%@page import="java.text.DecimalFormat"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +16,9 @@
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
-
+<%
+	DecimalFormat f = new DecimalFormat("0.00");
+%>
 <script type="text/javascript">
 	
 	function showAddForm(btn) {
@@ -74,11 +76,13 @@
 
 	<br>
 
-	<div style="text-align: center;" class="container">
-		<div dir="rtl" class="row">
-			<div>
+	<div style="align-items: center; width: 100%; text-align: center;"
+		class="">
 
-				<div id="add-form">
+		<div dir="rtl" class="row mr-lg-4">
+			<div>
+				<div class="row w-110" id="add-form">
+
 					<form:form modelAttribute="item" method="post"
 						action="add-new-item">
 
@@ -110,9 +114,7 @@
 
 				</div>
 
-				<div style="display: none" id="update-form">
-
-
+				<div class="row w-110" style="display: none" id="update-form">
 
 					<form:form modelAttribute="item" method="post" action="update-item">
 
@@ -152,31 +154,32 @@
 
 
 						<button type="button" onclick="showAddForm(this)"
-							class="btn btn-warning btn-sm mt-sm-2 w-100">ألغاء
-							التعديل</button>
+							class="btn btn-warning btn-sm mt-sm-2 w-100">إلغاء</button>
 
 					</form:form>
-
-
 
 				</div>
 
 			</div>
 
-			<div class="mr-4 col-8">
+			<div class="mr-2 col-10">
 
-				<div style="position: relative; height: 425px; overflow: auto;">
+				<div style="width: 100%; height: 500px; overflow: auto;"
+					class=" shadow">
 
-					<table class="table table-striped table-sm  table-bordered">
+					<table class="mh-50 table table-striped table-sm  table-bordered ">
 
-						<thead>
+						<thead style="position: sticky; top: 0;">
 							<tr>
 								<th>الكود</th>
 								<th>الصنف</th>
 								<th>الكمية</th>
 								<th>سعر الشراء</th>
 								<th>سعر البيع</th>
-								<th></th>
+								<th>جملة شراء</th>
+								<th>جملة بيع</th>
+								<th>ربح الوحدة</th>
+								<th>جملة الربح</th>
 							</tr>
 						</thead>
 
@@ -189,6 +192,20 @@
 									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
 									<td id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
 									<td id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
+
+									<td><fmt:formatNumber
+											value="${itemTemp.buyPrice * itemTemp.quantity}"
+											maxFractionDigits="2" /></td>
+									<td><fmt:formatNumber
+											value="${itemTemp.sellPrice * itemTemp.quantity}"
+											maxFractionDigits="2" /></td>
+
+									<td><fmt:formatNumber
+											value="${itemTemp.sellPrice - itemTemp.buyPrice}"
+											maxFractionDigits="2" /></td>
+									<td><fmt:formatNumber
+											value="${(itemTemp.sellPrice - itemTemp.buyPrice) * itemTemp.quantity}"
+											maxFractionDigits="2" /></td>
 
 									<td>
 										<button type="button" class="btn btn-outline-secondary btn-sm"
@@ -206,5 +223,6 @@
 		</div>
 
 	</div>
+
 </body>
 </html>
