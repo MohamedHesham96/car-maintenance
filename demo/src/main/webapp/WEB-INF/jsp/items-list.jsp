@@ -70,7 +70,7 @@
 
 
 </head>
-<body>
+<body background="images/wall1.jpg">
 
 	<%@ include file="header.jsp"%>
 
