@@ -18,6 +18,34 @@
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
 
+<script type="text/javascript">
+	
+function showUpdateForm(btn, id) {
+
+	var updateForm = document.getElementById("update-form");
+
+	var itemId = document.getElementById("itemId"+id).innerText;
+	var itemQuantity = document.getElementById("itemQuantity"+id).innerText;
+	var itemSellPrice = document.getElementById("itemSellPrice"+id).innerText;
+
+	var newId = document.getElementById("newId");
+	var newQuantity = document.getElementById("newQuantity");
+	var newSellPrice = document.getElementById("newSellPrice");
+
+	newId.value = itemId;
+	newQuantity.value = itemQuantity;
+	newSellPrice.value = itemSellPrice;
+
+	
+	
+	if (updateForm.style.display === "none")  {
+
+		updateForm.style.display = "block";
+	}
+
+}
+	
+	</script>
 </head>
 <body>
 
@@ -25,8 +53,9 @@
 
 	<br>
 
-	<div style="text-align: center;" class="container">
-		<div dir="rtl" class="row">
+	<div style="text-align: center;" class="">
+
+		<div dir="rtl" class="row  mr-2">
 
 			<div>
 
@@ -48,9 +77,7 @@
 						class="form-control text-center btn-outline-primary" />
 				</div>
 
-
-
-				<form:form method="get" action="add-item-to-sell-bill"
+				<form:form method="get" action="add-item-to-update-sell-bill"
 					modelAttribute="item">
 
 					<div class="form-group">
@@ -63,8 +90,7 @@
 
 					<div class="form-group">
 						<label>الكمية</label>
-						<form:input id="quantity" path="quantity"
-							class="form-control text-center" />
+						<form:input path="quantity" class="form-control text-center" />
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
@@ -75,7 +101,7 @@
 
 			</div>
 
-			<div class="mr-4 col-8 ">
+			<div class="mr-4 col-7 ">
 
 				<div class="shadow"
 					style="position: relative; height: 425px; overflow: auto;">
@@ -95,14 +121,19 @@
 							<c:forEach var="itemTemp" items="${billSellItems}">
 
 								<tr>
-									<td>${itemTemp.item.name}</td>
-									<td>${itemTemp.quantity}</td>
-									<td>${itemTemp.sellPrice}</td>
+									<td id="itemId${itemTemp.id}">${itemTemp.item.name}</td>
+									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
+									<td id="itemSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
 									<td>${itemTemp.sellPrice * itemTemp.quantity}</td>
 
-									<td><a
-										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
-										class="btn btn-outline-danger btn-sm"> إلغاء </a></td>
+									<td><button type="button"
+											class="btn btn-outline-secondary btn-sm"
+											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
+
+
+										<a type="button"
+										href="delete-sellBillItemUpdate?sellBillItemId=${itemTemp.id}"
+										class="btn btn-outline-danger btn-sm">إلغاء</a></td>
 								</tr>
 
 							</c:forEach>
@@ -120,22 +151,20 @@
 
 					<form:form>
 
-						<a
-							href="delete-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+
+						<a href="delete-sellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء </a>
 
 
-						<a
-							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
-							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+						<a href="update-sellBill?sellBillId=${billSell.id}"
+							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
 							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
-							حفظ</a>
+							تحديث</a>
 
 
-						<a
-							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+						<a href="save-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>
@@ -147,8 +176,46 @@
 			</div>
 
 
+			<div class="row mr-4 " style="display:;" id="update-form">
+
+				<div class="card border-warning " style="max-width: 20rem;">
+					<div class="card-header">
+						<h4>تعديل صنف</h4>
+					</div>
+					<div class="card-body">
+
+						<form method="get" action="update-item">
+
+							<div hidden="" class="form-group">
+								<label>اسم الصنف</label> <input id="newId"
+									class="form-control text-center" />
+							</div>
+
+							<div class="form-group">
+								<label>الكمية</label> <input id="newQuantity"
+									class="form-control text-center" />
+							</div>
+
+							<div class="form-group">
+								<label>سعر الشراء</label> <input id="newSellPrice"
+									class="form-control text-center" />
+							</div>
+
+							<button type="submit" class="btn btn-outline-dark btn-lg w-100">تعديل
+								الصنف</button>
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
+
+
+
 </body>
 </html>

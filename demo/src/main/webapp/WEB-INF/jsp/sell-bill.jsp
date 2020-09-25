@@ -96,6 +96,7 @@
 
 								<tr>
 									<td>${itemTemp.item.name}</td>
+
 									<td>${itemTemp.quantity}</td>
 									<td>${itemTemp.sellPrice}</td>
 									<td>${itemTemp.sellPrice * itemTemp.quantity}</td>
@@ -120,22 +121,19 @@
 
 					<form:form>
 
-						<a
-							href="delete-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+						<a href="delete-sellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء </a>
 
 
-						<a
-							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+						<a href="save-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
 							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							حفظ</a>
 
 
-						<a
-							href="save-sellBill?sellBillId=<%=session.getAttribute("billSellId")%>"
+						<a href="save-sellBill?sellBillId= ${billSell.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>

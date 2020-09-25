@@ -30,11 +30,15 @@ public class BillSell {
 	@Column(name = "saved")
 	private boolean saved;
 
+	@Column(name = "update_now")
+	private boolean updateNow;
+
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToMany(mappedBy = "billSell", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
 	private List<BillSellItem> billSellItems;
 
 	public BillSell() {
@@ -97,4 +101,16 @@ public class BillSell {
 		this.billSellItems = billSellItems;
 	}
 
+	public boolean isUpdateNow() {
+		return updateNow;
+	}
+
+	public void setUpdateNow(boolean updateNow) {
+		this.updateNow = updateNow;
+	}
+
+	public void removeAll() {
+
+		billSellItems = null;
+	}
 }

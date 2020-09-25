@@ -14,4 +14,6 @@ public interface BillSellRepository extends CrudRepository<BillSell, String> {
 
 	public List<BillSell> findAllByOrderByIdDesc();
 
+	public BillSell findByUpdateNowTrue();
+
 }

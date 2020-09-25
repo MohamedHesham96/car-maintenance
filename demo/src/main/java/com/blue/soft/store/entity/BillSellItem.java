@@ -29,21 +29,10 @@ public class BillSellItem {
 	@Column(name = "quantity")
 	private int quantity;
 
-	@Column(name = "buy_price")
-	private float buyPrice;
-
 	@Column(name = "sell_price")
 	private float sellPrice;
 
 	public BillSellItem() {
-	}
-
-	public float getBuyPrice() {
-		return buyPrice;
-	}
-
-	public void setBuyPrice(float buyPrice) {
-		this.buyPrice = buyPrice;
 	}
 
 	public float getSellPrice() {

@@ -23,4 +23,11 @@ public class BillSellItemsService {
 		billSellItemsRepository.deleteById(billSellItemId);
 
 	}
+
+	public BillSellItem getBillSellItem(String billSellItemId) {
+
+		return billSellItemsRepository.findById(billSellItemId).get();
+
+	}
+
 }

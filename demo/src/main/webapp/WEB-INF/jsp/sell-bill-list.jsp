@@ -67,7 +67,6 @@
 
 					<div class="card-body">
 
-
 						<form method="POST" action="search-sell-bill-by-id">
 
 							<div class="form-group">
@@ -116,7 +115,8 @@
 									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
 									<td>${billTemp.date}</td>
 
-									<td><a href="update-sell-bill?sellBillId=${billTemp.id}"
+									<td><a
+										href="show-update-sell-bill?sellBillId=${billTemp.id}"
 										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
 									</td>
 								</tr>

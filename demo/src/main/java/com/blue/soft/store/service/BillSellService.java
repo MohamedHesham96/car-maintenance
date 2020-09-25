@@ -45,4 +45,8 @@ public class BillSellService {
 		return (List<BillSell>) billSellRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
+	public BillSell getBillSellByUpdateNow() {
+
+		return (BillSell) billSellRepository.findByUpdateNowTrue();
+	}
 }

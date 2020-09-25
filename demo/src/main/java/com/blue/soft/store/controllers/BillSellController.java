@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
@@ -141,7 +142,6 @@ public class BillSellController {
 
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
-			billSellItem.setBuyPrice(theItem.getBuyPrice());
 			billSellItem.setSellPrice(theItem.getSellPrice());
 			billSellItem.setQuantity(item.getQuantity());
 
@@ -156,7 +156,17 @@ public class BillSellController {
 	}
 
 	@RequestMapping("/show-sell-bill-list")
-	public String showSellBillList(Model theModel) {
+	public String showSellBillList(Model theModel, RedirectAttributes attributes) {
+
+		BillSell billSell = billSellService.getBillSellByUpdateNow();
+
+		if (billSell != null) {
+
+			attributes.addAttribute("sellBillId", billSell.getId());
+
+			return "redirect:/show-update-sell-bill";
+
+		}
 
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
@@ -184,16 +194,17 @@ public class BillSellController {
 	}
 
 	@RequestMapping("/save-sellBill")
-	public String saveSellBillItem(@RequestParam(name = "sellBillId") String sellBillItemId) {
+	public String saveSellBillItem(@RequestParam(name = "sellBillId") String sellBillId) {
 
-		BillSell billSell = billSellService.getBillSellById(sellBillItemId);
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
-		if (billSell.getBillSellItems().isEmpty()) {
+		if (billSellItemsList.isEmpty()) {
 
 			return "redirect:/show-add-to-sell-bill";
 		}
+
 		float total = 0;
 
 		for (BillSellItem billSellItem : billSellItemsList) {
@@ -240,32 +251,6 @@ public class BillSellController {
 		theModel.addAttribute("billSellList", billSellService.getBillSellContainingId(billId));
 
 		return "sell-bill-list";
-	}
-
-	@RequestMapping("/update-sell-bill")
-	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
-
-		theModel.addAttribute("item", new Item());
-
-		BillSell billSell = billSellService.getBillSellById(sellBillId);
-
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-
-		float total = 0;
-
-		for (BillSellItem billSellItem : billSellItemsList) {
-
-			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
-		}
-
-		theModel.addAttribute("total", total);
-
-		// علشان اختار منها
-		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSellItems", billSellItemsList);
-		theModel.addAttribute("billSell", billSell);
-
-		return "update-sell-bill";
 	}
 
 }
