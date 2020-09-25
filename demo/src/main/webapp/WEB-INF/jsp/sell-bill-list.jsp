@@ -112,6 +112,10 @@
 								<td>${billTemp.late ? "آجل" : "نقدي" }</td>
 								<td>${billTemp.date}</td>
 
+								<td>
+									<button type="button" class="btn btn-outline-secondary btn-sm"
+										onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
+								</td>
 							</tr>
 
 						</c:forEach>
