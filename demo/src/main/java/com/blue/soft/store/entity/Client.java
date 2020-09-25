@@ -27,6 +27,10 @@ public class Client {
 			CascadeType.REFRESH })
 	private List<BillSell> billSell;
 
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	private List<Collect> collectList;
+
 	public Client() {
 	}
 
@@ -60,4 +64,18 @@ public class Client {
 
 	public void setBillSell(List<BillSell> billSell) {
 		this.billSell = billSell;
-	}}
+	}
+
+	public List<Collect> getCollectList() {
+		return collectList;
+	}
+
+	public void setCollectList(List<Collect> collectList) {
+		this.collectList = collectList;
+	}
+
+	public void addCollect(Collect collect) {
+
+		collectList.add(collect);
+	}
+}
