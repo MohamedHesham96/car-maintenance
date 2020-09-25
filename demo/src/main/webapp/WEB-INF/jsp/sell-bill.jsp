@@ -32,7 +32,7 @@
 
 				<div class="form-group">
 					<label>رقم الفاتورة</label> <input disabled="disabled"
-						value="S - <%=session.getAttribute("billSellId")%>"
+						value="S - ${billSell.id}"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 
@@ -43,8 +43,8 @@
 				</div>
 
 				<div class="form-group">
-					<label>الجهة</label> <input disabled="disabled"
-						value="<%=session.getAttribute("clientName")%>"
+					<label> اسم الوحدة </label> <input disabled="disabled"
+						value="${billSell.client.name}"
 						class="form-control text-center btn-outline-primary" />
 				</div>
 

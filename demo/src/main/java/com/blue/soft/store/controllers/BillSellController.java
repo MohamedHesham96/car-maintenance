@@ -71,10 +71,6 @@ public class BillSellController {
 
 		theModel.addAttribute("item", new Item());
 
-//		String billId = httpSession.getAttribute("billSellId").toString();
-//
-//		BillSell billSell = billSellService.getBillSellById(billId);
-
 		BillSell billSell = billSellService.getLast();
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
@@ -91,6 +87,7 @@ public class BillSellController {
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("billSellItems", billSellItemsList);
+		theModel.addAttribute("billSell", billSell);
 
 		return "sell-bill";
 	}
