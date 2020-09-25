@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.blue.soft.store.DAO.CompanyRepository;
 import com.blue.soft.store.DAO.ItemRepository;
+import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 
@@ -34,4 +35,10 @@ public class CompanyService {
 		return (List<Company>) companyRepository.findByNameContaining(theCompanyName);
 
 	}
+
+	public Company getCompanyById(String id) {
+
+		return companyRepository.findById(id).get();
+	}
+
 }

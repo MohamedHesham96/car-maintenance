@@ -21,7 +21,7 @@ public class Company {
 	private String name;
 
 	@Column(name = "drawee")
-	private int drawee;
+	private float drawee;
 
 	@OneToMany(mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -43,14 +43,6 @@ public class Company {
 		this.name = name;
 	}
 
-	public int getDrawee() {
-		return drawee;
-	}
-
-	public void setDrawee(int drawee) {
-		this.drawee = drawee;
-	}
-
 	public List<Pay> getPayList() {
 		return payList;
 	}
@@ -59,4 +51,17 @@ public class Company {
 		this.payList = payList;
 	}
 
+	public float getDrawee() {
+		return drawee;
+	}
+
+	public void setDrawee(float drawee) {
+		this.drawee = drawee;
+	}
+
+	public void addPay(Pay pay) {
+
+		payList.add(pay);
+
+	}
 }
