@@ -24,79 +24,109 @@
 
 	<br>
 
-	<div style="text-align: center;" class="container">
+	<div style="text-align: center;" class="">
 		<div dir="rtl" class="row">
 
-			<div>
+
+			<div class="mr-lg-5">
 
 
-				<form method="get" action="search-for-client">
 
-					<div class="form-group">
-						<label>اسم الوحدة</label> <input name="clientName"
-							class="form-control text-center" />
+
+
+				<div>
+
+					<div class="card border-primary mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<h5>أضافة وحدة</h5>
+						</div>
+						<div class="card-body">
+
+
+							<form:form modelAttribute="client" method="post"
+								action="add-new-client">
+
+								<div class="form-group">
+									<label>اسم الوحدة</label>
+									<form:input path="name" class="form-control text-center" />
+								</div>
+
+
+								<button type="submit" class="btn btn-primary btn-lg w-100">
+
+									اضافة وحدة</button>
+
+							</form:form>
+
+						</div>
 					</div>
 
+					<br>
 
-					<button type="submit" class="btn btn-success btn-lg w-100">
+					<div class="card border-success mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<h5>بحث وحدة</h5>
+						</div>
+						<div class="card-body">
 
-						بحث عن وحدة</button>
+							<form method="get" action="search-for-client">
 
-				</form>
-				<br>
+								<div class="form-group">
+									<label>اسم الوحدة</label> <input name="clientName"
+										class="form-control text-center" />
+								</div>
 
-				<hr>
 
-				<form:form modelAttribute="client" method="post"
-					action="add-new-client">
+								<button type="submit" class="btn btn-success btn-lg w-100">
 
-					<div class="form-group">
-						<label>اسم الوحدة</label>
-						<form:input path="name" class="form-control text-center" />
+									بحث عن وحدة</button>
+
+							</form>
+
+						</div>
 					</div>
 
+				</div>
 
-					<button type="submit" class="btn btn-primary btn-lg w-100">
-
-						اضافة وحدة</button>
-
-				</form:form>
 			</div>
-
 			<div class="mr-4 col-8">
-				<table class="table table-striped table-sm table-bordered shadow">
 
-					<thead>
-						<tr>
-							<th>اسم الوحدة</th>
-							<th>الدين</th>
-						</tr>
-					</thead>
+				<div class="shadow"
+					style="position: relative; height: 500px; overflow: auto;">
 
-					<tbody>
-						<c:forEach var="clientTemp" items="${clientsList}">
+					<table class="table table-striped table-sm table-bordered shadow">
 
+						<thead>
 							<tr>
-
-								<td class="col-4">${clientTemp.name}</td>
-								<td class="col-4">${clientTemp.drawee}</td>
-								<td class="col-3"><a type="button"
-									class="btn btn-primary btn-sm"
-									href="show-collects-client?clientId=${clientTemp.id}"
-									onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a>
-
-									<button type="button" class="btn btn-success btn-sm"
-										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</button>
-								</td>
-
-
+								<th>اسم الوحدة</th>
+								<th>الدين</th>
 							</tr>
+						</thead>
 
-						</c:forEach>
+						<tbody>
+							<c:forEach var="clientTemp" items="${clientsList}">
 
-					</tbody>
-				</table>
+								<tr>
 
+									<td class="col-4">${clientTemp.name}</td>
+									<td class="col-4">${clientTemp.drawee}</td>
+									<td class="col-3"><a type="button"
+										class="btn btn-primary btn-sm"
+										href="show-collects-client?clientId=${clientTemp.id}"
+										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a>
+
+										<button type="button" class="btn btn-success btn-sm"
+											onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</button>
+									</td>
+
+
+								</tr>
+
+							</c:forEach>
+
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 

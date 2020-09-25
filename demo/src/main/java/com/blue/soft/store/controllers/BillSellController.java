@@ -242,4 +242,30 @@ public class BillSellController {
 		return "sell-bill-list";
 	}
 
+	@RequestMapping("/update-sell-bill")
+	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
+
+		theModel.addAttribute("item", new Item());
+
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+
+		float total = 0;
+
+		for (BillSellItem billSellItem : billSellItemsList) {
+
+			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+		}
+
+		theModel.addAttribute("total", total);
+
+		// علشان اختار منها
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("billSellItems", billSellItemsList);
+		theModel.addAttribute("billSell", billSell);
+
+		return "update-sell-bill";
+	}
+
 }

@@ -31,8 +31,8 @@
 			<div class="mr-lg-4">
 
 
-				<div class="card border-dark mb-3" style="max-width: 20rem;">
-					<div class="card-header">
+				<div class="card border-primary mb-3" style="max-width: 20rem;">
+					<div class="card-header ">
 						<h4>البحث بالوحدة</h4>
 					</div>
 					<div class="card-body">
@@ -52,14 +52,14 @@
 							</div>
 
 							<button type="submit"
-								class="btn btn-outline-secondary  btn-lg w-100">بحث</button>
+								class="btn btn-outline-primary  btn-lg w-100">بحث</button>
 
 						</form>
 
 					</div>
 				</div>
 
-				<div class="card  border-dark w-100 mt-sm-4"
+				<div class="card  border-primary w-100 mt-sm-4"
 					style="max-width: 20rem;">
 					<div class="card-header">
 						<h4>البحث برقم الفاتورة</h4>
@@ -76,7 +76,7 @@
 							</div>
 
 							<button type="submit"
-								class="btn form-control btn-outline-secondary btn-lg w-100">بحث</button>
+								class="btn form-control btn-outline-primary btn-lg w-100">بحث</button>
 
 						</form>
 
@@ -89,44 +89,47 @@
 
 
 
-			<div class="mr-4 col-8">
-				<table class="table table-striped table-sm table-bordered shadow">
+			<div class="mr-4 col-8 ">
 
-					<thead>
-						<tr>
-							<th>الرقم</th>
-							<th>الوحدة</th>
-							<th>النوع</th>
-							<th>التاريخ</th>
-						</tr>
-					</thead>
+				<div class="shadow"
+					style="position: relative; height: 500px; overflow: auto;">
 
-					<tbody>
+					<table class="table table-striped table-sm table-bordered ">
 
-						<c:forEach var="billTemp" items="${billSellList}">
-
+						<thead>
 							<tr>
-
-								<td>${billTemp.id}</td>
-								<td>${billTemp.client.name}</td>
-								<td>${billTemp.late ? "آجل" : "نقدي" }</td>
-								<td>${billTemp.date}</td>
-
-								<td>
-									<button type="button" class="btn btn-outline-secondary btn-sm"
-										onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
-								</td>
+								<th>الرقم</th>
+								<th>الوحدة</th>
+								<th>النوع</th>
+								<th>التاريخ</th>
 							</tr>
+						</thead>
 
-						</c:forEach>
+						<tbody>
 
-					</tbody>
-				</table>
+							<c:forEach var="billTemp" items="${billSellList}">
 
+								<tr>
+
+									<td>${billTemp.id}</td>
+									<td>${billTemp.client.name}</td>
+									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
+									<td>${billTemp.date}</td>
+
+									<td><a href="update-sell-bill?sellBillId=${billTemp.id}"
+										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
+									</td>
+								</tr>
+
+							</c:forEach>
+
+						</tbody>
+					</table>
+
+				</div>
 			</div>
 
 		</div>
 	</div>
-
 </body>
 </html>

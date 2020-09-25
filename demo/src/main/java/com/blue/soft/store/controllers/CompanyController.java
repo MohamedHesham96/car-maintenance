@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Pay;
-import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.service.CompanyService;
 
 @Controller
