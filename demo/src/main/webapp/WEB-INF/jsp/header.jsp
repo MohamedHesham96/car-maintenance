@@ -13,7 +13,7 @@
 				href="items-list">الرئيسية</a></li>
 
 			<li class="nav-item active"><a class="nav-link"
-				href="show-sell-bill-info"> عمل فاتورة بيع</a></li>
+				href="show-sell-bill-info"> فاتورة بيع</a></li>
 
 
 			<li class="nav-item active"><a class="nav-link"

@@ -79,90 +79,111 @@
 	<div style="align-items: center; width: 100%; text-align: center;"
 		class="">
 
-		<div dir="rtl" class="row mr-lg-4">
+		<div dir="rtl" class="row mr-lg-5">
 			<div>
 				<div class="row" id="add-form">
 
-					<form:form modelAttribute="item" method="post"
-						action="add-new-item">
-
-						<div class="form-group">
-							<label>اسم الصنف</label>
-							<form:input path="name" class="form-control text-center" />
+					<div class="card border-dark mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<h4>اضافة صنف</h4>
 						</div>
 
-						<div class="form-group">
-							<label>الكمية</label>
-							<form:input path="quantity" class="form-control text-center" />
+						<div class="card-body">
+
+							<form:form modelAttribute="item" method="post"
+								action="add-new-item">
+
+								<div class="form-group">
+									<label>اسم الصنف</label>
+									<form:input path="name" class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>الكمية</label>
+									<form:input path="quantity" class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>سعر الشراء</label>
+									<form:input path="buyPrice" class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>سعر البيع</label>
+									<form:input path="sellPrice" class="form-control text-center" />
+								</div>
+
+								<button type="submit"
+									class="btn btn-outline-success btn-lg w-100">اضافة
+									الصنف</button>
+
+							</form:form>
+
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label>سعر الشراء</label>
-							<form:input path="buyPrice" class="form-control text-center" />
-						</div>
 
-						<div class="form-group">
-							<label>سعر البيع</label>
-							<form:input path="sellPrice" class="form-control text-center" />
-						</div>
 
-						<button type="submit" class="btn btn-primary btn-lg w-100">
-
-							اضافة الصنف</button>
-
-					</form:form>
 
 				</div>
 
 				<div class="row" style="display: none" id="update-form">
 
-					<form:form modelAttribute="item" method="post" action="update-item">
-
-						<div hidden="" class="form-group">
-							<label>اسم الصنف</label>
-							<form:input id="newId" path="id" class="form-control text-center" />
+					<div class="card border-dark mb-3" style="max-width: 20rem;">
+						<div class="card-header">
+							<h4>تعديل صنف</h4>
 						</div>
+						<div class="card-body">
+
+							<form:form modelAttribute="item" method="post"
+								action="update-item">
+
+								<div hidden="" class="form-group">
+									<label>اسم الصنف</label>
+									<form:input id="newId" path="id"
+										class="form-control text-center" />
+								</div>
 
 
-						<div class="form-group">
-							<label>اسم الصنف</label>
-							<form:input id="newName" path="name"
-								class="form-control text-center" />
+								<div class="form-group">
+									<label>اسم الصنف</label>
+									<form:input id="newName" path="name"
+										class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>الكمية</label>
+									<form:input id="newQuantity" path="quantity"
+										class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>سعر الشراء</label>
+									<form:input id="newBuyPrice" path="buyPrice"
+										class="form-control text-center" />
+								</div>
+
+								<div class="form-group">
+									<label>سعر البيع</label>
+									<form:input id="newSellPrice" path="sellPrice"
+										class="form-control text-center" />
+								</div>
+
+								<button type="submit" class="btn btn-outline-success btn-lg w-100">
+
+									تعديل الصنف</button>
+
+
+								<button type="button" onclick="showAddForm(this)"
+									class="btn btn-warning btn-sm mt-sm-2 w-100">إلغاء</button>
+
+							</form:form>
 						</div>
-
-						<div class="form-group">
-							<label>الكمية</label>
-							<form:input id="newQuantity" path="quantity"
-								class="form-control text-center" />
-						</div>
-
-						<div class="form-group">
-							<label>سعر الشراء</label>
-							<form:input id="newBuyPrice" path="buyPrice"
-								class="form-control text-center" />
-						</div>
-
-						<div class="form-group">
-							<label>سعر البيع</label>
-							<form:input id="newSellPrice" path="sellPrice"
-								class="form-control text-center" />
-						</div>
-
-						<button type="submit" class="btn btn-primary btn-lg w-100">
-
-							تعديل الصنف</button>
-
-
-						<button type="button" onclick="showAddForm(this)"
-							class="btn btn-warning btn-sm mt-sm-2 w-100">إلغاء</button>
-
-					</form:form>
-
+					</div>
 				</div>
-
 			</div>
 
-			<div class="mr-2 col-10">
+			<div class="mr-4 col-9">
 
 				<div style="width: 100%; height: 500px; overflow: auto;"
 					class=" shadow">
@@ -223,6 +244,5 @@
 		</div>
 
 	</div>
-
 </body>
 </html>
