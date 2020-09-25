@@ -10,5 +10,8 @@ public interface BillSellRepository extends CrudRepository<BillSell, String> {
 
 	public BillSell findTopByOrderByIdDesc();
 
-	public List<BillSell> findByIdContaining(String billId);
+	public List<BillSell> findByIdContainingOrderByIdDesc(String billId);
+
+	public List<BillSell> findAllByOrderByIdDesc();
+
 }

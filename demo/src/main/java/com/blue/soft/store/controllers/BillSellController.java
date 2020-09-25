@@ -8,15 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.context.Theme;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
+import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
@@ -63,19 +61,21 @@ public class BillSellController {
 			httpSession.setAttribute("billSellId", lastBillSell.getId());
 			httpSession.setAttribute("clientName", lastBillSell.getClient().getName());
 
-			return "redirect:/show-add-sell-bill";
+			return "redirect:/show-add-to-sell-bill";
 		}
 
 	}
 
-	@RequestMapping("/show-add-sell-bill")
-	public String showAddSellBill(Model theModel) {
+	@RequestMapping("/show-add-to-sell-bill")
+	public String showAddToSellBill(Model theModel) {
 
 		theModel.addAttribute("item", new Item());
 
-		String billId = httpSession.getAttribute("billSellId").toString();
+//		String billId = httpSession.getAttribute("billSellId").toString();
+//
+//		BillSell billSell = billSellService.getBillSellById(billId);
 
-		BillSell billSell = billSellService.getBillSellById(billId);
+		BillSell billSell = billSellService.getLast();
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
@@ -110,7 +110,7 @@ public class BillSellController {
 
 		if (lastBillSell == null || lastBillSell.isSaved()) {
 
-			billSellService.addNewSellBill(billSell);
+			billSellService.saveSellBill(billSell);
 
 		}
 
@@ -124,7 +124,7 @@ public class BillSellController {
 		httpSession.setAttribute("billSellId", billSell.getId());
 		httpSession.setAttribute("clientName", billSell.getClient().getName());
 
-		return "redirect:/show-add-sell-bill";
+		return "redirect:/show-add-to-sell-bill";
 
 	}
 
@@ -135,16 +135,15 @@ public class BillSellController {
 		BillSellItem billSellItem = new BillSellItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity()) {
+		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+
+			// String billId = httpSession.getAttribute("billSellId").toString();
+			// BillSell billSell = billSellService.getBillSellById(billId);
+
+			BillSell billSell = billSellService.getLast();
 
 			billSellItem.setItem(theItem);
-
-			String billId = httpSession.getAttribute("billSellId").toString();
-
-			BillSell billSell = billSellService.getBillSellById(billId);
-
 			billSellItem.setBillSell(billSell);
-
 			billSellItem.setBuyPrice(theItem.getBuyPrice());
 			billSellItem.setSellPrice(theItem.getSellPrice());
 			billSellItem.setQuantity(item.getQuantity());
@@ -156,7 +155,7 @@ public class BillSellController {
 			throw new Exception("Quantity is Not Good !");
 		}
 
-		return "redirect:/show-add-sell-bill";
+		return "redirect:/show-add-to-sell-bill";
 	}
 
 	@RequestMapping("/show-sell-bill-list")
@@ -183,7 +182,7 @@ public class BillSellController {
 
 		billSellItemsService.deleteBillSellItem(sellBillItemId);
 
-		return "redirect:/show-add-sell-bill";
+		return "redirect:/show-add-to-sell-bill";
 
 	}
 
@@ -196,8 +195,9 @@ public class BillSellController {
 
 		if (billSell.getBillSellItems().isEmpty()) {
 
-			return "redirect:/show-add-sell-bill";
+			return "redirect:/show-add-to-sell-bill";
 		}
+		float total = 0;
 
 		for (BillSellItem billSellItem : billSellItemsList) {
 
@@ -206,11 +206,20 @@ public class BillSellController {
 			item.setQuantity(item.getQuantity() - billSellItem.getQuantity());
 
 			itemService.addNewItem(item);
+
+			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+		}
+
+		if (billSell.isLate()) {
+
+			Client client = billSell.getClient();
+			client.setDrawee(client.getDrawee() + total);
+			billSell.setClient(client);
 		}
 
 		billSell.setSaved(true);
 
-		billSellService.addNewSellBill(billSell);
+		billSellService.saveSellBill(billSell);
 
 		return "redirect:/items-list";
 

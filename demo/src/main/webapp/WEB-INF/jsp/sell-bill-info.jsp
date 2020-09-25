@@ -24,67 +24,44 @@
 
 	<br>
 
-	<div style="text-align: center;" class="text-center container">
+	<div style="text-align: center; width: 100%;" class="text-center">
 
 
 		<div dir="rtl" class="row">
 
-			<form method="POST" action="save-sell-bill-info">
+			<div class="card border-dark w-25 mr-lg-5" style="max-width: 20rem;">
+				<div class="card-header">
+					<h4>فاتورة بيع</h4>
+				</div>
+				<div class="card-body">
 
-				<div class="form-group">
-					<label>الجهة</label> <select class="form-control text-center"
-						name="clientId">
+					<form method="POST" action="save-sell-bill-info">
 
-						<c:forEach var="clientTemp" items="${clientsList}">
+						<div class="form-group">
+							<label>اسم الوحدة</label> <select
+								class="form-control text-center" name="clientId">
 
-							<option value="${clientTemp.id}">${clientTemp.name}</option>
+								<c:forEach var="clientTemp" items="${clientsList}">
 
-						</c:forEach>
+									<option value="${clientTemp.id}">${clientTemp.name}</option>
 
-					</select>
+								</c:forEach>
+
+							</select>
+						</div>
+
+
+						<label>آجل</label> <input type="checkbox" name="late">
+
+						<button type="submit" class="btn btn-primary btn-lg w-100">
+							فاتورة جديدة</button>
+
+					</form>
 				</div>
 
-
-				<label>آجل</label> <input type="checkbox" name="late">
-
-				<button type="submit" class="btn btn-primary btn-lg w-100">عمل
-					فاتورة</button>
-
-			</form>
-
-
-
-			<div class="mr-4 col-8">
-				<table class="table table-striped table-sm table-bordered shadow">
-
-					<thead>
-						<tr>
-							<th>الرقم</th>
-							<th>الوحدة</th>
-							<th>النوع</th>
-							<th>التاريخ</th>
-						</tr>
-					</thead>
-
-					<tbody>
-
-						<c:forEach var="billTemp" items="${SellBillsList}">
-
-							<tr>
-
-								<td>${billTemp.id}</td>
-								<td>${billTemp.client.name}</td>
-								<td>${billTemp.late ? "آجل" : "نقدي" }</td>
-								<td>${billTemp.date}</td>
-
-							</tr>
-
-						</c:forEach>
-
-					</tbody>
-				</table>
-
 			</div>
+
+
 		</div>
 
 

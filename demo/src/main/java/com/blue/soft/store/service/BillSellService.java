@@ -14,7 +14,7 @@ public class BillSellService {
 	@Autowired
 	BillSellRepository billSellRepository;
 
-	public void addNewSellBill(BillSell billSell) {
+	public void saveSellBill(BillSell billSell) {
 
 		billSellRepository.save(billSell);
 
@@ -37,12 +37,12 @@ public class BillSellService {
 
 	public List<BillSell> getAllSellBills() {
 
-		return (List<BillSell>) billSellRepository.findAll();
+		return (List<BillSell>) billSellRepository.findAllByOrderByIdDesc();
 	}
 
 	public List<BillSell> getBillSellContainingId(String id) {
 
-		return (List<BillSell>) billSellRepository.findByIdContaining(id);
+		return (List<BillSell>) billSellRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
 }

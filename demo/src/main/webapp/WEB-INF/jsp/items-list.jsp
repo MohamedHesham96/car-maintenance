@@ -83,7 +83,7 @@
 			<div>
 				<div class="row" id="add-form">
 
-					<div class="card border-dark mb-3" style="max-width: 20rem;">
+					<div class="card border-dark" style="max-width: 20rem;">
 						<div class="card-header">
 							<h4>اضافة صنف</h4>
 						</div>
@@ -169,9 +169,9 @@
 										class="form-control text-center" />
 								</div>
 
-								<button type="submit" class="btn btn-outline-success btn-lg w-100">
-
-									تعديل الصنف</button>
+								<button type="submit"
+									class="btn btn-outline-success btn-lg w-100">تعديل
+									الصنف</button>
 
 
 								<button type="button" onclick="showAddForm(this)"

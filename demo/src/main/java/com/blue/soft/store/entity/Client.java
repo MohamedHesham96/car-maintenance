@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -23,7 +21,7 @@ public class Client {
 	private String name;
 
 	@Column(name = "drawee")
-	private int drawee;
+	private float drawee;
 
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -32,12 +30,12 @@ public class Client {
 	public Client() {
 	}
 
-	public int getDrawee() {
+	public float getDrawee() {
 		return this.drawee;
 	}
 
-	public void setDrawee(int drawee) {
-		this.drawee = drawee;
+	public void setDrawee(float f) {
+		this.drawee = f;
 	}
 
 	public String getId() {
@@ -62,6 +60,4 @@ public class Client {
 
 	public void setBillSell(List<BillSell> billSell) {
 		this.billSell = billSell;
-	}
-
-}
+	}}
