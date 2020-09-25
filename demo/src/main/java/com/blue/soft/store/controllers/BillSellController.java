@@ -8,9 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.context.Theme;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
@@ -48,17 +51,9 @@ public class BillSellController {
 
 		BillSell lastBillSell = billSellService.getLast();
 
-		theModel.addAttribute("sellBill", billSell);
-//
-		theModel.addAttribute("clientsList", clientService.getAllClients());
+		if (lastBillSell == null || lastBillSell.isSaved()) {
 
-		if (lastBillSell == null) {
-
-			return "sell-bill-info";
-
-		}
-
-		if (lastBillSell.isSaved()) {
+			theModel.addAttribute("clientsList", clientService.getAllClients());
 
 			return "sell-bill-info";
 		}
@@ -66,45 +61,11 @@ public class BillSellController {
 		else {
 
 			httpSession.setAttribute("billSellId", lastBillSell.getId());
-			httpSession.setAttribute("clientName", clientService.getClientById(lastBillSell.getClientId()).getName());
+			httpSession.setAttribute("clientName", lastBillSell.getClient().getName());
 
 			return "redirect:/show-add-sell-bill";
-
 		}
 
-	}
-
-	// حفظ ببيانات الفاتورة
-	@RequestMapping("/save-sell-bill-info")
-	public String saveSellBillInfo(@ModelAttribute(name = "sellBill") BillSell billSell) {
-
-		billSell.setDate(LocalDate.now().toString());
-
-		BillSell lastBillSell = billSellService.getLast();
-
-		if (lastBillSell != null) {
-
-			if (lastBillSell.isSaved()) {
-
-				billSellService.addNewSellBill(billSell);
-
-			} else {
-
-				billSell = lastBillSell;
-
-			}
-
-		} else {
-
-			billSellService.addNewSellBill(billSell);
-		}
-
-		// redirectAttributes.addAttribute("sellBill", billSell);
-
-		httpSession.setAttribute("billSellId", billSell.getId());
-		httpSession.setAttribute("clientName", clientService.getClientById(billSell.getClientId()).getName());
-
-		return "redirect:/show-add-sell-bill";
 	}
 
 	@RequestMapping("/show-add-sell-bill")
@@ -132,6 +93,39 @@ public class BillSellController {
 		theModel.addAttribute("billSellItems", billSellItemsList);
 
 		return "sell-bill";
+	}
+
+	// حفظ ببيانات الفاتورة
+	@RequestMapping("/save-sell-bill-info")
+	public String saveSellBillInfo(@RequestParam(name = "late", defaultValue = "off") String late,
+			@RequestParam(name = "clientId") String clientid) {
+
+		BillSell billSell = new BillSell();
+
+		billSell.setDate(LocalDate.now().toString());
+		billSell.setClient(clientService.getClientById(clientid));
+		billSell.setLate("on".equals(late) ? true : false);
+
+		BillSell lastBillSell = billSellService.getLast();
+
+		if (lastBillSell == null || lastBillSell.isSaved()) {
+
+			billSellService.addNewSellBill(billSell);
+
+		}
+
+		else {
+
+			billSell = lastBillSell;
+
+		}
+
+		// redirectAttributes.addAttribute("sellBill", billSell);
+		httpSession.setAttribute("billSellId", billSell.getId());
+		httpSession.setAttribute("clientName", billSell.getClient().getName());
+
+		return "redirect:/show-add-sell-bill";
+
 	}
 
 	// اضافة فاتورة شراء
@@ -163,6 +157,16 @@ public class BillSellController {
 		}
 
 		return "redirect:/show-add-sell-bill";
+	}
+
+	@RequestMapping("/show-sell-bill-list")
+	public String showSellBillList(Model theModel) {
+
+		theModel.addAttribute("clientsList", clientService.getAllClients());
+
+		theModel.addAttribute("billSellList", billSellService.getAllSellBills());
+
+		return "sell-bill-list";
 	}
 
 	@RequestMapping("/delete-sellBill")
@@ -210,6 +214,26 @@ public class BillSellController {
 
 		return "redirect:/items-list";
 
+	}
+
+	@RequestMapping("/search-sell-bill-by-clientId")
+	public String searchForSellBillByClientId(@RequestParam(name = "clientId") String clientId, Model theModel) {
+
+		theModel.addAttribute("clientsList", clientService.getAllClients());
+
+		theModel.addAttribute("billSellList", clientService.getClientById(clientId).getBillSell());
+
+		return "sell-bill-list";
+	}
+
+	@RequestMapping("/search-sell-bill-by-id")
+	public String searchForSellBillById(@RequestParam(name = "billId") String billId, Model theModel) {
+
+		theModel.addAttribute("clientsList", clientService.getAllClients());
+
+		theModel.addAttribute("billSellList", billSellService.getBillSellContainingId(billId));
+
+		return "sell-bill-list";
 	}
 
 }

@@ -77,7 +77,8 @@
 
 			<div class="mr-4 col-8 ">
 
-				<div class="shadow" style="position: relative; height: 425px; overflow: auto;">
+				<div class="shadow"
+					style="position: relative; height: 425px; overflow: auto;">
 
 					<table class="table table-striped table-sm table-bordered">
 

@@ -1,10 +1,16 @@
 package com.blue.soft.store.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -18,6 +24,10 @@ public class Client {
 
 	@Column(name = "drawee")
 	private int drawee;
+
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	private List<BillSell> billSell;
 
 	public Client() {
 	}
@@ -44,6 +54,14 @@ public class Client {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<BillSell> getBillSell() {
+		return billSell;
+	}
+
+	public void setBillSell(List<BillSell> billSell) {
+		this.billSell = billSell;
 	}
 
 }

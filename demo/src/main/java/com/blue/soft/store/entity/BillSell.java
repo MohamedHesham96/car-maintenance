@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,9 +21,6 @@ public class BillSell {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 
-	@Column(name = "client_id")
-	private String clientId;
-
 	@Column(name = "date")
 	private String date;
 
@@ -31,7 +30,10 @@ public class BillSell {
 	@Column(name = "saved")
 	private boolean saved;
 
-	// bi-directional many-to-many association to Item
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "client_id")
+	private Client client;
+
 	@OneToMany(mappedBy = "billSell", cascade = CascadeType.ALL)
 	private List<BillSellItem> billSellItems;
 
@@ -59,12 +61,12 @@ public class BillSell {
 		this.id = id;
 	}
 
-	public String getClientId() {
-		return this.clientId;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	public String getDate() {

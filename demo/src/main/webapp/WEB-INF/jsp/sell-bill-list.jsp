@@ -24,33 +24,68 @@
 
 	<br>
 
-	<div style="text-align: center;" class="text-center container">
-
+	<div style="text-align: center;" class="text-center ">
 
 		<div dir="rtl" class="row">
 
-			<form method="POST" action="save-sell-bill-info">
+			<div class="mr-lg-4">
 
-				<div class="form-group">
-					<label>الجهة</label> <select class="form-control text-center"
-						name="clientId">
 
-						<c:forEach var="clientTemp" items="${clientsList}">
+				<div class="card border-dark mb-3" style="max-width: 20rem;">
+					<div class="card-header">
+						<h4>البحث بالوحدة</h4>
+					</div>
+					<div class="card-body">
+						<form method="POST" action="search-sell-bill-by-clientId">
 
-							<option value="${clientTemp.id}">${clientTemp.name}</option>
+							<div class="form-group">
 
-						</c:forEach>
+								<select class="form-control text-center" name="clientId">
 
-					</select>
+									<c:forEach var="clientTemp" items="${clientsList}">
+
+										<option value="${clientTemp.id}">${clientTemp.name}</option>
+
+									</c:forEach>
+
+								</select>
+							</div>
+
+							<button type="submit"
+								class="btn btn-outline-secondary  btn-lg w-100">بحث</button>
+
+						</form>
+
+					</div>
+				</div>
+
+				<div class="card  border-dark w-100 mt-sm-4"
+					style="max-width: 20rem;">
+					<div class="card-header">
+						<h4>البحث برقم الفاتورة</h4>
+					</div>
+
+					<div class="card-body">
+
+
+						<form method="POST" action="search-sell-bill-by-id">
+
+							<div class="form-group">
+								<input class="form-control text-center" name="billId">
+
+							</div>
+
+							<button type="submit"
+								class="btn form-control btn-outline-secondary btn-lg w-100">بحث</button>
+
+						</form>
+
+					</div>
 				</div>
 
 
-				<label>آجل</label> <input type="checkbox" name="late">
+			</div>
 
-				<button type="submit" class="btn btn-primary btn-lg w-100">عمل
-					فاتورة</button>
-
-			</form>
 
 
 
@@ -68,7 +103,7 @@
 
 					<tbody>
 
-						<c:forEach var="billTemp" items="${SellBillsList}">
+						<c:forEach var="billTemp" items="${billSellList}">
 
 							<tr>
 
@@ -85,10 +120,9 @@
 				</table>
 
 			</div>
+
 		</div>
-
-
-
 	</div>
+
 </body>
 </html>
