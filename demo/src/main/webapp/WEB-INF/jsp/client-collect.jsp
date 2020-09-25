@@ -36,6 +36,12 @@
 						value="${client.name}" disabled="disabled"
 						class="form-control btn-outline-primary text-center" />
 				</div>
+				
+				<div class="form-group">
+					<label>الدين</label> <input name="companyName"
+						value="${client.drawee}" disabled="disabled"
+						class="form-control btn-outline-primary text-center" />
+				</div>
 
 				<form method="get" action="add-client-collect">
 					<input hidden="" name="clientId" value="${client.id}">

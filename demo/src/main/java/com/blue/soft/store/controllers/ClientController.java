@@ -67,7 +67,6 @@ public class ClientController {
 	public String addClientCollect(@RequestParam(name = "clientId") String clientId,
 			@RequestParam(name = "amount") float amount, Model theModel) {
 
-	
 		Client client = clientService.getClientById(clientId);
 		Collect collect = new Collect();
 		collect.setAmount(amount);
@@ -75,9 +74,9 @@ public class ClientController {
 		collect.setClient(client);
 		collect.setAmount(amount);
 		client.addCollect(collect);
-
+		client.setDrawee(client.getDrawee() - amount);
 		clientService.addNewClient(client);
-		
+
 		theModel.addAttribute("client", client);
 
 		return "client-collect";
