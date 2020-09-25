@@ -65,9 +65,12 @@ public class ClientController {
 
 	@RequestMapping("/add-client-collect")
 	public String addClientCollect(@RequestParam(name = "clientId") String clientId,
-			@RequestParam(name = "amount") float amount, Model theModel) {
-
+			@RequestParam(name = "amount") float amount, Model theModel) throws Exception {
 		Client client = clientService.getClientById(clientId);
+
+		if (amount > client.getDrawee())
+			throw new Exception("مبلغ التحصيل اكبر من الدين");
+
 		Collect collect = new Collect();
 		collect.setAmount(amount);
 		collect.setDate(LocalDate.now().toString());

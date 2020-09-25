@@ -10,21 +10,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Collect {
+public class Pay {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "company_id")
+	private Company company;
 
 	@Column(name = "amount")
 	private float amount;
 
 	@Column(name = "date")
 	private String date;
-
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	@JoinColumn(name = "client_id")
-	private Client client;
 
 	public String getId() {
 		return id;
@@ -34,12 +34,12 @@ public class Collect {
 		this.id = id;
 	}
 
-	public Client getClient() {
-		return client;
+	public float getAmount() {
+		return amount;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setAmount(float amount) {
+		this.amount = amount;
 	}
 
 	public String getDate() {
@@ -50,12 +50,12 @@ public class Collect {
 		this.date = date;
 	}
 
-	public float getAmount() {
-		return amount;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setAmount(float amount) {
-		this.amount = amount;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 }

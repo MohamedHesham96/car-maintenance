@@ -8,7 +8,12 @@
 
 	<div class="collapse navbar-collapse">
 
+
+
+
 		<ul class="navbar-nav mr-auto">
+
+
 			<li class="nav-item active"><a class="nav-link"
 				href="items-list">الرئيسية</a></li>
 

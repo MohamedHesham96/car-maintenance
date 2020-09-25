@@ -80,6 +80,14 @@
 
 								<td>${companyTemp.name}</td>
 								<td>${companyTemp.drawee}</td>
+								<td class="col-3"><a type="button"
+									class="btn btn-primary btn-sm"
+									href="show-collects-client?clientId=${clientTemp.id}"
+									onclick="showUpdateForm(this,${itemTemp.id})">الدفع</a>
+
+									<button type="button" class="btn btn-success btn-sm"
+										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</button>
+								</td>
 
 							</tr>
 
