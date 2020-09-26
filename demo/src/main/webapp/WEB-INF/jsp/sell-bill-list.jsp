@@ -116,7 +116,7 @@
 									<td>${billTemp.date}</td>
 
 									<td><a
-										href="show-update-sell-bill?sellBillId=${billTemp.id}"
+										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
 										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
 									</td>
 								</tr>
