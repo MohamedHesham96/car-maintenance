@@ -1,6 +1,10 @@
 package com.blue.soft.store.controllers;
 
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +21,13 @@ import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.clientService;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 @Controller
 public class UpdateBillSellController {
+
+	@Autowired
+	HttpSession httpSession;
 
 	@Autowired
 	ItemService itemService;
@@ -33,16 +41,35 @@ public class UpdateBillSellController {
 	@Autowired
 	BillSellItemsService billSellItemsService;
 
-	@RequestMapping("/show-update-sell-bill")
-	public String showUpdateSellBill(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
-
-		theModel.addAttribute("item", new Item());
+	@RequestMapping("/change-sell-bill-to-update")
+	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
 
+		if (billSell.isUpdateNow())
+			return "redirect:/show-update-sell-bill";
+
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+
 		billSell.setUpdateNow(true);
+		int counter = 1;
 
 		billSellService.saveSellBill(billSell);
+
+		for (BillSellItem billSellItem : billSellItemsList) {
+
+			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
+					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
+			System.out.println("Done >>> ");
+		}
+
+		return "redirect:/show-update-sell-bill";
+	}
+
+	@RequestMapping("/show-update-sell-bill")
+	public String showUpdateSellBill(Model theModel) {
+
+		BillSell billSell = billSellService.getBillSellByUpdateNow();
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
@@ -54,9 +81,11 @@ public class UpdateBillSellController {
 
 		}
 
-		theModel.addAttribute("total", total);
+		billSellService.saveSellBill(billSell);
 
-		// علشان اختار منها
+		theModel.addAttribute("total", total);
+		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("updateItem", new BillSellItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("billSellItems", billSellItemsList);
 		theModel.addAttribute("billSell", billSell);
@@ -95,49 +124,29 @@ public class UpdateBillSellController {
 		return "redirect:/show-update-sell-bill";
 	}
 
-	@RequestMapping("/show-add-to-update-sell-bill")
-	public String showAddToUpdateSellBill(Model theModel) {
-
-		theModel.addAttribute("item", new Item());
-
-		BillSell billSell = billSellService.getBillSellByUpdateNow();
-
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-
-		float total = 0;
-
-		for (BillSellItem billSellItem : billSellItemsList) {
-
-			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
-		}
-
-		theModel.addAttribute("total", total);
-
-		// علشان اختار منها
-		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSellItems", billSellItemsList);
-		theModel.addAttribute("billSell", billSell);
-
-		return "update-sell-bill";
-	}
-
 	@RequestMapping("/delete-sellBillItemUpdate")
 	public String updateSellBillItemUpdate(@RequestParam(name = "sellBillItemId") String sellBillItemId,
 			RedirectAttributes attributes) {
 
 		billSellItemsService.deleteBillSellItem(sellBillItemId);
 
-		return "redirect:/show-add-to-update-sell-bill";
+		return "redirect:/show-update-sell-bill";
 
 	}
 
-	@RequestMapping("/update-sellBillItemUpdate")
-	public String deleteSellBillItemUpdate(@RequestParam(name = "sellBillItemId") String sellBillItemId,
-			RedirectAttributes attributes) {
+	@RequestMapping("/update-sellBillItem")
+	public String deleteSellBillItemUpdate(@ModelAttribute(name = "updateItem") Item sellBillItem) {
 
-		BillSellItem billSellItem = billSellItemsService.getBillSellItem(sellBillItemId);
+		BillSellItem oldBSItem = billSellItemsService.getBillSellItem(sellBillItem.getId());
 
-		return "redirect:/show-add-to-update-sell-bill";
+		oldBSItem.setQuantity(sellBillItem.getQuantity());
+		oldBSItem.setSellPrice(sellBillItem.getSellPrice());
+
+		System.out.println(oldBSItem.getSellPrice());
+
+		billSellItemsService.addBillSellItem(oldBSItem);
+
+		return "redirect:/show-update-sell-bill";
 
 	}
 
