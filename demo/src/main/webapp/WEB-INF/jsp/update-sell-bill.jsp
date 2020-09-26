@@ -7,6 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ function showUpdateForm(btn, id) {
 
 	var updateForm = document.getElementById("update-form");
 
-	var itemId = document.getElementById("itemId"+id).innerText;
+	var itemId = document.getElementById(id).id;
 	var itemQuantity = document.getElementById("itemQuantity"+id).innerText;
 	var itemSellPrice = document.getElementById("itemSellPrice"+id).innerText;
 
@@ -87,7 +88,6 @@ function showUpdateForm(btn, id) {
 						</form:select>
 					</div>
 
-
 					<div class="form-group">
 						<label>الكمية</label>
 						<form:input path="quantity" class="form-control text-center" />
@@ -121,10 +121,14 @@ function showUpdateForm(btn, id) {
 							<c:forEach var="itemTemp" items="${billSellItems}">
 
 								<tr>
-									<td id="itemId${itemTemp.id}">${itemTemp.item.name}</td>
+									<td id="${itemTemp.id}">${itemTemp.item.name}</td>
 									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
-									<td id="itemSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
-									<td>${itemTemp.sellPrice * itemTemp.quantity}</td>
+									<td id="itemSellPrice${itemTemp.id}"><fmt:formatNumber
+											value="${itemTemp.sellPrice}" maxFractionDigits="2" /></td>
+
+									<td><fmt:formatNumber
+											value="${itemTemp.sellPrice * itemTemp.quantity}"
+											maxFractionDigits="2" /></td>
 
 									<td><button type="button"
 											class="btn btn-outline-secondary btn-sm"
@@ -184,20 +188,24 @@ function showUpdateForm(btn, id) {
 					</div>
 					<div class="card-body">
 
-						<form method="get" action="update-item">
+						<form:form modelAttribute="updateItem" method="get"
+							action="update-sellBillItem">
 
-							<div hidden="" class="form-group">
-								<label>اسم الصنف</label> <input id="newId"
+							<div class="form-group">
+								<label>كود الصنف</label>
+								<form:input path="id" id="newId"
 									class="form-control text-center" />
 							</div>
 
 							<div class="form-group">
-								<label>الكمية</label> <input id="newQuantity"
+								<label>الكمية</label>
+								<form:input path="quantity" id="newQuantity"
 									class="form-control text-center" />
 							</div>
 
 							<div class="form-group">
-								<label>سعر الشراء</label> <input id="newSellPrice"
+								<label>سعر البيع</label>
+								<form:input path="sellPrice" id="newSellPrice"
 									class="form-control text-center" />
 							</div>
 
@@ -205,8 +213,7 @@ function showUpdateForm(btn, id) {
 								الصنف</button>
 
 
-						</form>
-
+						</form:form>
 					</div>
 				</div>
 			</div>
