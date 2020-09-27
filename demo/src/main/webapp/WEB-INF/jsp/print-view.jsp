@@ -62,10 +62,27 @@
 
 	<br>
 
-	<div id="printDIV" style="width: 100%; text-align: center;">
+	<div class="container" style="">
+
+		<div>
+			<img style="height: 200px;" class="float-left mb-4"
+				src="/images/army.jpg">
+		</div>
+
+		<div style="font-family: sans-serif;" class="float-right mt-4">
+			<h3>الجيــش الثانــــي الميدانــــي</h3>
+
+			<h3>محطة الإسماعيلية العسكرية</h3>
+
+			<h3>دايمـــــــــــوند مــــــــــــــول</h3>
+		</div>
+	</div>
 
 
-		<div dir="rtl" style="width: 100%; padding: 50px">
+	<div id="printDIV" style="width: 100%; text-align: center;"
+		class="container">
+
+		<div dir="rtl" style="width: 100%;">
 
 			<div class="" style="width: 100%;">
 
@@ -77,7 +94,6 @@
 					style="width: 100%; font-size: 25px">
 
 					<tbody>
-
 
 						<tr>
 
