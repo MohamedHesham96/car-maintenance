@@ -8,6 +8,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,7 +133,7 @@
 
 					<div class="card border-warning mb-3" style="max-width: 20rem;">
 						<div class="card-header">
-							<h4>تعديل صنف</h4>
+							<h5>تعديل صنف</h5>
 						</div>
 						<div class="card-body">
 
@@ -228,7 +230,7 @@
 											maxFractionDigits="2" /></td>
 
 									<td>
-										<button type="button" class="btn btn-outline-secondary btn-sm"
+										<button type="button" class="btn btn-outline-primary btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 									</td>
 								</tr>

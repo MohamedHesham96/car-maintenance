@@ -7,6 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -93,14 +94,17 @@
 						</thead>
 
 						<tbody>
-							<c:forEach var="itemTemp" items="${billSellItems}">
+							<c:forEach var="itemTemp" items="${billSell.billSellItems}">
 
 								<tr>
 									<td>${itemTemp.item.name}</td>
 
 									<td>${itemTemp.quantity}</td>
-									<td>${itemTemp.sellPrice}</td>
-									<td>${itemTemp.sellPrice * itemTemp.quantity}</td>
+									<td><fmt:formatNumber value="${itemTemp.sellPrice}"
+											maxFractionDigits="2" /></td>
+									<td><fmt:formatNumber
+											value=" ${itemTemp.sellPrice * itemTemp.quantity}"
+											maxFractionDigits="2" /></td>
 
 									<td><a
 										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
@@ -134,7 +138,7 @@
 							حفظ</a>
 
 
-						<a href="save-sellBill?sellBillId= ${billSell.id}"
+						<a href="show-printView?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>

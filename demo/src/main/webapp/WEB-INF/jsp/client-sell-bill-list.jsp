@@ -28,6 +28,28 @@
 
 		<div dir="rtl" class="row">
 
+			<div class="card border-primary  mr-lg-5" style="max-width: 20rem;">
+				<div class="card-header">
+					<h4>سجل فواتير</h4>
+				</div>
+				<div class="card-body">
+
+					<div class="form-group">
+						<label> الوحدة</label> <input name="companyName"
+							value="${client.name}" disabled="disabled"
+							class="form-control btn-outline-primary text-center" />
+					</div>
+
+					<div class="form-group">
+						<label>الدين</label> <input name="companyName"
+							value="${client.drawee}" disabled="disabled"
+							class="form-control btn-outline-primary text-center" />
+					</div>
+
+				</div>
+			</div>
+
+
 			<div class="mr-4 col-8 ">
 
 				<div class="shadow"

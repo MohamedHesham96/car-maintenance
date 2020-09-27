@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 
 				<div class="card border-primary mb-3" style="max-width: 20rem;">
 					<div class="card-header ">
-						<h4>البحث بالوحدة</h4>
+						<h5>البحث بالوحدة</h5>
 					</div>
 					<div class="card-body">
 						<form method="POST" action="search-sell-bill-by-clientId">
@@ -61,7 +62,7 @@
 				<div class="card  border-primary w-100 mt-sm-4"
 					style="max-width: 20rem;">
 					<div class="card-header">
-						<h4>البحث برقم الفاتورة</h4>
+						<h5>البحث برقم الفاتورة</h5>
 					</div>
 
 					<div class="card-body">

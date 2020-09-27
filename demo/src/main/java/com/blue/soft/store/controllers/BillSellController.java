@@ -68,7 +68,8 @@ public class BillSellController {
 	public String showAddToSellBill(Model theModel) {
 
 		theModel.addAttribute("item", new Item());
-
+// TO-DO 
+		// Change the method
 		BillSell billSell = billSellService.getLast();
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
@@ -84,7 +85,6 @@ public class BillSellController {
 
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSellItems", billSellItemsList);
 		theModel.addAttribute("billSell", billSell);
 
 		return "sell-bill";
@@ -244,6 +244,14 @@ public class BillSellController {
 		theModel.addAttribute("billSellList", billSellService.getBillSellContainingId(billId));
 
 		return "sell-bill-list";
+	}
+
+	@RequestMapping("/show-printView")
+	public String showPrintView(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
+
+		theModel.addAttribute("billSell", billSellService.getBillSellById(sellBillId));
+		theModel.addAttribute("total", 11212);
+		return "print-view";
 	}
 
 }
