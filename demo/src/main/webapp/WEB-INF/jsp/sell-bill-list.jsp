@@ -24,7 +24,7 @@
 
 	<br>
 
-	<div style="text-align: center;" class="text-center ">
+	<div style="text-align: center;" class="text-center mr-lg-4">
 
 		<div dir="rtl" class="row">
 
