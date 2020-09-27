@@ -62,24 +62,28 @@
 
 	<br>
 
-	<div class="container" style="">
+	<div class="container" style="padding-left: 65px; padding-right: 65px;">
 
 		<div>
-			<img style="height: 200px;" class="float-left mb-4"
+			<img style="height: 225px;" class="float-left mb-4"
 				src="/images/army.jpg">
 		</div>
 
-		<div style="font-family: sans-serif;" class="float-right mt-4">
-			<h3>الجيــش الثانــــي الميدانــــي</h3>
 
-			<h3>محطة الإسماعيلية العسكرية</h3>
 
-			<h3>دايمـــــــــــوند مــــــــــــــول</h3>
+		<div style="font-family: sans-serif;"
+			class="float-right mt-sm-4 card border-dark p-3">
+			<h2>الجيــش الثانــــي الميدانــــي</h2>
+
+			<h2>فـــوج المشروعات الأنتاجية</h2>
+
+			<h2>دايمــــــــــوند مــــــــــــــول</h2>
 		</div>
 	</div>
 
 
-	<div id="printDIV" style="width: 100%; text-align: center;"
+	<div id="printDIV"
+		style="width: 100%; padding-left: 65px; padding-right: 65px; text-align: center;"
 		class="container">
 
 		<div dir="rtl" style="width: 100%;">
@@ -90,14 +94,16 @@
 					class="mb-4 btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 					طباعة</a>
 
+
+
 				<table class="table table-striped table-lg table-bordered"
-					style="width: 100%; font-size: 25px">
+					style="width: 100%; font-size: 22px">
 
 					<tbody>
 
 						<tr>
 
-							<td>رقم الفاتورة : ${billSell.id}</td>
+							<td>رقم الفاتورة : S - ${billSell.id}</td>
 
 							<td>التاريخ : <%=LocalDate.now().toString()%></td>
 
@@ -113,11 +119,11 @@
 
 				<div class="" style="width: 100%;">
 
-					<table class="table table-striped table-lg table-bordered"
-						style="width: 100%; font-size: 25px; border: 5px solid black;">
+					<table class="table table-striped table-sm table-bordered"
+						style="width: 100%; font-size: 22px; border: 3px solid black;">
 
 						<thead>
-							<tr style="font-style: inherit; font-size: 27px">
+							<tr style="font-style: inherit; font-size: 22px">
 								<th>الصنف</th>
 								<th>الكمية</th>
 								<th>سعر الوحدة</th>

@@ -81,7 +81,7 @@
 	<div style="align-items: center; width: 100%; text-align: center;"
 		class="">
 
-		<div dir="rtl" class="row mr-lg-5">
+		<div dir="rtl" class="row mr-lg-4">
 			<div>
 				<div class="row" id="add-form">
 
@@ -131,7 +131,7 @@
 
 				<div class="row" style="display: none" id="update-form">
 
-					<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card border-warning mb-2" style="max-width: 20rem;">
 						<div class="card-header">
 							<h5>تعديل صنف</h5>
 						</div>
@@ -184,7 +184,7 @@
 				</div>
 			</div>
 
-			<div class="mr-4 col-9">
+			<div class="mr-2 col-9">
 
 				<div style="width: 100%; height: 500px; overflow: auto;"
 					class=" shadow">
