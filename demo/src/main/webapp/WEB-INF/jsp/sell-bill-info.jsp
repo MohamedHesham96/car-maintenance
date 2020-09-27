@@ -28,7 +28,7 @@
 
 
 		<div dir="rtl" class="row mt-lg-4"
-			style="width: 800px; margin: 0auto;">
+			style="width: 850px; margin: 0auto;">
 
 			<div class="card border-primary w-50" style="max-width: 20rem;">
 
