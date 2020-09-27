@@ -53,9 +53,6 @@
 	@page {
 		margin: 0;
 	}
-	body {
-		margin: 1.6cm;
-	}
 }
 </style>
 </head>
