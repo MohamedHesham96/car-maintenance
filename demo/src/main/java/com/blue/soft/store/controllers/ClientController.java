@@ -57,6 +57,7 @@ public class ClientController {
 	@RequestMapping("/add-client-collect")
 	public String addClientCollect(@RequestParam(name = "clientId") String clientId,
 			@RequestParam(name = "amount") float amount, Model theModel) throws Exception {
+
 		Client client = clientService.getClientById(clientId);
 
 		if (amount > client.getDrawee())
@@ -66,14 +67,23 @@ public class ClientController {
 		collect.setAmount(amount);
 		collect.setDate(LocalDate.now().toString());
 		collect.setClient(client);
-		collect.setAmount(amount);
+
 		client.addCollect(collect);
 		client.setDrawee(client.getDrawee() - amount);
+
 		clientService.addNewClient(client);
 
 		theModel.addAttribute("client", client);
 
 		return "client-collect";
+	}
+
+	@RequestMapping("/show-client-bills-list")
+	public String showClientBillsList(@RequestParam(name = "clientId") String ClientId, Model theModel) {
+
+		theModel.addAttribute("client", clientService.getClientById(ClientId));
+
+		return "client-sell-bill-list";
 	}
 
 }

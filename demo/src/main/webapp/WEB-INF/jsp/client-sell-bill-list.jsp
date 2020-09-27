@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف فواتير البيع</title>
+<title>كشف فواتير - [${client.name}]</title>
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -27,65 +27,6 @@
 	<div style="text-align: center;" class="text-center ">
 
 		<div dir="rtl" class="row">
-
-			<div class="mr-lg-4">
-
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header ">
-						<h4>البحث بالوحدة</h4>
-					</div>
-					<div class="card-body">
-						<form method="POST" action="search-sell-bill-by-clientId">
-
-							<div class="form-group">
-
-								<select class="form-control text-center" name="clientId">
-
-									<c:forEach var="clientTemp" items="${clientsList}">
-
-										<option value="${clientTemp.id}">${clientTemp.name}</option>
-
-									</c:forEach>
-
-								</select>
-							</div>
-
-							<button type="submit"
-								class="btn btn-outline-primary  btn-lg w-100">بحث</button>
-
-						</form>
-
-					</div>
-				</div>
-
-				<div class="card  border-primary w-100 mt-sm-4"
-					style="max-width: 20rem;">
-					<div class="card-header">
-						<h4>البحث برقم الفاتورة</h4>
-					</div>
-
-					<div class="card-body">
-
-						<form method="POST" action="search-sell-bill-by-id">
-
-							<div class="form-group">
-								<input class="form-control text-center" name="billId">
-
-							</div>
-
-							<button type="submit"
-								class="btn form-control btn-outline-primary btn-lg w-100">بحث</button>
-
-						</form>
-
-					</div>
-				</div>
-
-
-			</div>
-
-
-
 
 			<div class="mr-4 col-8 ">
 
@@ -105,12 +46,11 @@
 
 						<tbody>
 
-							<c:forEach var="billTemp" items="${billSellList}">
+							<c:forEach var="billTemp" items="${client.billSellList}">
 
 								<tr>
 
 									<td>${billTemp.id}</td>
-									<td>${billTemp.client.name}</td>
 									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
 									<td>${billTemp.date}</td>
 

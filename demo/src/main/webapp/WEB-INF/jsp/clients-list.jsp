@@ -113,11 +113,12 @@
 									<td class="col-3"><a type="button"
 										class="btn btn-primary btn-sm"
 										href="show-collects-client?clientId=${clientTemp.id}"
-										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a>
-
-										<button type="button" class="btn btn-success btn-sm"
-											onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</button>
-									</td>
+										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> 
+										
+										<a
+										type="button" class="btn btn-success btn-sm"
+										href="show-client-bills-list?clientId=${clientTemp.id}"
+										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>
 
 
 								</tr>

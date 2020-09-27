@@ -33,6 +33,15 @@ public class BillSellItem {
 	private float sellPrice;
 
 	public BillSellItem() {
+		super();
+	}
+
+	public BillSellItem(BillSell billSell, Item item, int quantity, float sellPrice) {
+		super();
+		this.billSell = billSell;
+		this.item = item;
+		this.quantity = quantity;
+		this.sellPrice = sellPrice;
 	}
 
 	public float getSellPrice() {

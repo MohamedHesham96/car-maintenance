@@ -1,10 +1,12 @@
 package com.blue.soft.store.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blue.soft.store.service.BillSellItemsService;
@@ -41,7 +44,7 @@ public class BillSell {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private List<BillSellItem> billSellItems;
 
 	public BillSell() {
@@ -112,4 +115,20 @@ public class BillSell {
 		this.updateNow = updateNow;
 	}
 
+	public List<String> getBillSellItemsIDS() {
+
+		List<String> idsList = new ArrayList<String>();
+
+		for (BillSellItem billSellItem : billSellItems) {
+
+			idsList.add(billSellItem.getId());
+		}
+
+		return idsList;
+	}
+
+	public void removeItem(BillSellItem billSellItem) {
+
+		billSellItems.remove(billSellItem);
+	}
 }

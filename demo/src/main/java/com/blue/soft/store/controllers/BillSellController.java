@@ -238,7 +238,7 @@ public class BillSellController {
 
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
-		theModel.addAttribute("billSellList", clientService.getClientById(clientId).getBillSell());
+		theModel.addAttribute("billSellList", clientService.getClientById(clientId).getBillSellList());
 
 		return "sell-bill-list";
 	}

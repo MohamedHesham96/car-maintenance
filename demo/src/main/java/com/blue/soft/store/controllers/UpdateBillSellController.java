@@ -55,6 +55,8 @@ public class UpdateBillSellController {
 
 		billSellService.saveSellBill(billSell);
 
+		httpSession.setAttribute("itemsSize", billSellItemsList.size());
+
 		for (BillSellItem billSellItem : billSellItemsList) {
 
 			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
@@ -166,22 +168,33 @@ public class UpdateBillSellController {
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
 
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+		List<String> ids = billSell.getBillSellItemsIDS();
 
-//		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-//
-//		billSellItemsService.deleteBillSellItem(billSellItemsList.get(0).getId());
+		int size = billSell.getBillSellItems().size();
 
-//		int counter = 1;
-//
-//		billSellService.saveSellBill(billSell);
-//
-//		for (BillSellItem billSellItem : billSellItemsList) {
-//
-//			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
-//					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
-//			System.out.println("Done >>> ");
-//		}
+		for (int i = size - 1; i >= 0; i--) {
+
+			billSell.removeItem(billSell.getBillSellItems().get(i));
+		}
+
+		for (String id : ids) {
+
+			billSellItemsService.deleteBillSellItem(id);
+
+		}
+
+		int i = (int) httpSession.getAttribute("itemsSize");
+
+		for (; i > 0; i--) {
+
+			String[] splitItem = httpSession.getAttribute(billSell.getId() + i).toString().split("-");
+
+			BillSellItem billSellItem = new BillSellItem(billSell, itemService.getItemById(splitItem[0]),
+					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
+
+			billSellItemsService.addBillSellItem(billSellItem);
+
+		}
 
 		return "redirect:/show-update-sell-bill";
 	}
