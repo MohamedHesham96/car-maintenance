@@ -27,12 +27,14 @@
 	<div style="text-align: center; width: 100%;" class="text-center">
 
 
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row mt-lg-4" style="margin-right: 37.5%;">
 
-			<div class="card border-dark w-25 mr-lg-5" style="max-width: 20rem;">
+			<div class="card border-primary w-50" style="max-width: 20rem;">
+
 				<div class="card-header">
 					<h4>فاتورة بيع</h4>
 				</div>
+
 				<div class="card-body">
 
 					<form method="POST" action="save-sell-bill-info">
@@ -53,7 +55,7 @@
 
 						<label>آجل</label> <input type="checkbox" name="late">
 
-						<button type="submit" class="btn btn-primary btn-lg w-100">
+						<button type="submit" class="btn btn-outline-primary btn-lg w-100">
 							فاتورة جديدة</button>
 
 					</form>

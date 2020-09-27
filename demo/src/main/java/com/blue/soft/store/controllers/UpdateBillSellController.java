@@ -1,7 +1,5 @@
 package com.blue.soft.store.controllers;
 
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +19,6 @@ import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.clientService;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 @Controller
 public class UpdateBillSellController {
@@ -41,6 +38,7 @@ public class UpdateBillSellController {
 	@Autowired
 	BillSellItemsService billSellItemsService;
 
+	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-sell-bill-to-update")
 	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
 
@@ -52,6 +50,7 @@ public class UpdateBillSellController {
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
 		billSell.setUpdateNow(true);
+
 		int counter = 1;
 
 		billSellService.saveSellBill(billSell);
@@ -66,6 +65,7 @@ public class UpdateBillSellController {
 		return "redirect:/show-update-sell-bill";
 	}
 
+	// بيعرض صفحة التعديل على الفاتورة
 	@RequestMapping("/show-update-sell-bill")
 	public String showUpdateSellBill(Model theModel) {
 
@@ -93,10 +93,9 @@ public class UpdateBillSellController {
 		return "update-sell-bill";
 	}
 
-	// اضافة فاتورة شراء
+	// بيضيف صنف للفاتورة اللي بتتعدل
 	@RequestMapping("/add-item-to-update-sell-bill")
-	public String addToUpdateSellBill(@ModelAttribute(name = "item") Item item, Model theModel,
-			RedirectAttributes attributes) throws Exception {
+	public String addToUpdateSellBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
 
 		BillSellItem billSellItem = new BillSellItem();
 		Item theItem = itemService.getItemById(item.getId());
@@ -114,7 +113,6 @@ public class UpdateBillSellController {
 			billSellItem.setQuantity(item.getQuantity());
 
 			billSellItemsService.addBillSellItem(billSellItem);
-			attributes.addAttribute("sellBillId", billSell.getId());
 
 		} else {
 
@@ -124,16 +122,30 @@ public class UpdateBillSellController {
 		return "redirect:/show-update-sell-bill";
 	}
 
+	// بيسمح اصناف من الفاتورة اللي بتتعدل
 	@RequestMapping("/delete-sellBillItemUpdate")
 	public String updateSellBillItemUpdate(@RequestParam(name = "sellBillItemId") String sellBillItemId,
 			RedirectAttributes attributes) {
 
-		billSellItemsService.deleteBillSellItem(sellBillItemId);
+		BillSell billSell = billSellService.getBillSellByUpdateNow();
 
 		return "redirect:/show-update-sell-bill";
 
 	}
 
+	// بيسمح اصناف من الفاتورة اللي بتتعدل
+	@RequestMapping("/update-sellBill")
+	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, RedirectAttributes attributes) {
+
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+		billSell.setUpdateNow(false);
+		billSellService.saveSellBill(billSell);
+
+		return "redirect:/show-sell-bill-list";
+
+	}
+
+	// بيجيب الداتا من الفورم بتاعت التعديل علشان يعدل على الاصناف
 	@RequestMapping("/update-sellBillItem")
 	public String deleteSellBillItemUpdate(@ModelAttribute(name = "updateItem") Item sellBillItem) {
 
@@ -148,6 +160,31 @@ public class UpdateBillSellController {
 
 		return "redirect:/show-update-sell-bill";
 
+	}
+
+	@RequestMapping("/retrive-UpdateSellBill")
+	public String retriveUpdateSellBill(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
+
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+
+//		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+//
+//		billSellItemsService.deleteBillSellItem(billSellItemsList.get(0).getId());
+
+//		int counter = 1;
+//
+//		billSellService.saveSellBill(billSell);
+//
+//		for (BillSellItem billSellItem : billSellItemsList) {
+//
+//			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
+//					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
+//			System.out.println("Done >>> ");
+//		}
+
+		return "redirect:/show-update-sell-bill";
 	}
 
 }

@@ -26,14 +26,18 @@ function showUpdateForm(btn, id) {
 	var updateForm = document.getElementById("update-form");
 
 	var itemId = document.getElementById(id).id;
+	var itemName = document.getElementById(id).innerText;
+
 	var itemQuantity = document.getElementById("itemQuantity"+id).innerText;
 	var itemSellPrice = document.getElementById("itemSellPrice"+id).innerText;
 
 	var newId = document.getElementById("newId");
 	var newQuantity = document.getElementById("newQuantity");
+	var newName = document.getElementById("newName");
 	var newSellPrice = document.getElementById("newSellPrice");
 
 	newId.value = itemId;
+	newName.value = itemName;
 	newQuantity.value = itemQuantity;
 	newSellPrice.value = itemSellPrice;
 
@@ -54,59 +58,55 @@ function showUpdateForm(btn, id) {
 
 	<br>
 
-	<div style="text-align: center;" class="">
+	<div style="text-align: center;" class=" ">
 
-		<div dir="rtl" class="row  mr-2">
+		<div dir="rtl" class="row mr-lg-2 ">
 
-			<div>
+			<div class="card border-primary mb-3" style="max-width: 20rem;">
+				<div class="card-header ">
+					<h5>أضافة للفاتور</h5>
+				</div>
+				<div class="card-body">
 
-				<div class="form-group">
 					<label>رقم الفاتورة</label> <input disabled="disabled"
 						value="S - ${billSell.id}"
-						class="form-control text-center btn-outline-primary" />
-				</div>
-
-				<div class="form-group">
-					<label>التاريخ</label> <input disabled="disabled"
-						value="<%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary" />
-				</div>
-
-				<div class="form-group">
-					<label> اسم الوحدة </label> <input disabled="disabled"
+						class="form-control text-center btn-outline-primary" /> <label>التاريخ</label>
+					<input disabled="disabled" value="<%=LocalDate.now().toString()%>"
+						class="form-control text-center btn-outline-primary" /> <label>
+						اسم الوحدة </label> <input disabled="disabled"
 						value="${billSell.client.name}"
 						class="form-control text-center btn-outline-primary" />
+
+					<form:form method="get" action="add-item-to-update-sell-bill"
+						modelAttribute="item">
+
+						<div class="form-group">
+							<label>اسم الصنف</label>
+							<form:select class="form-control text-center " path="id">
+								<form:options items="${itemsList}" itemLabel="name" />
+							</form:select>
+						</div>
+
+						<div class="form-group">
+							<label>الكمية</label>
+							<form:input path="quantity" class="form-control text-center" />
+						</div>
+
+						<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+							للفاتورة</button>
+
+
+					</form:form>
+
 				</div>
-
-				<form:form method="get" action="add-item-to-update-sell-bill"
-					modelAttribute="item">
-
-					<div class="form-group">
-						<label>اسم الصنف</label>
-						<form:select class="form-control text-center " path="id">
-							<form:options items="${itemsList}" itemLabel="name" />
-						</form:select>
-					</div>
-
-					<div class="form-group">
-						<label>الكمية</label>
-						<form:input path="quantity" class="form-control text-center" />
-					</div>
-
-					<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
-						للفاتورة</button>
-
-
-				</form:form>
-
 			</div>
 
-			<div class="mr-4 col-7 ">
+			<div class="mr-2 col-7 ">
 
-				<div class="shadow"
+				<div class="shadow "
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered">
+					<table class="table table-striped table-sm table-bordered ">
 
 						<thead>
 							<tr>
@@ -131,7 +131,7 @@ function showUpdateForm(btn, id) {
 											maxFractionDigits="2" /></td>
 
 									<td><button type="button"
-											class="btn btn-outline-secondary btn-sm"
+											class="btn btn-outline-primary btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 
 
@@ -151,22 +151,24 @@ function showUpdateForm(btn, id) {
 					اجمالي: ${total}</span>
 
 
-				<div class="float-left pt-sm-4">
+				<div class="float-left pt-sm-4 ">
 
 					<form:form>
 
+						<a href="retrive-UpdateSellBill?sellBillId=${billSell.id}"
+							class="btn btn-warning "
+							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
+							إلغاء التحديث </a>
 
 						<a href="delete-sellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
-							إلغاء </a>
-
+							إلغاء الفاتورة </a>
 
 						<a href="update-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
 							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							تحديث</a>
-
 
 						<a href="save-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
@@ -180,49 +182,48 @@ function showUpdateForm(btn, id) {
 			</div>
 
 
-			<div class="row mr-4 " style="display:;" id="update-form">
-
-				<div class="card border-warning " style="max-width: 20rem;">
-					<div class="card-header">
-						<h4>تعديل صنف</h4>
-					</div>
-					<div class="card-body">
-
-						<form:form modelAttribute="updateItem" method="get"
-							action="update-sellBillItem">
-
-							<div class="form-group">
-								<label>كود الصنف</label>
-								<form:input path="id" id="newId"
-									class="form-control text-center" />
-							</div>
-
-							<div class="form-group">
-								<label>الكمية</label>
-								<form:input path="quantity" id="newQuantity"
-									class="form-control text-center" />
-							</div>
-
-							<div class="form-group">
-								<label>سعر البيع</label>
-								<form:input path="sellPrice" id="newSellPrice"
-									class="form-control text-center" />
-							</div>
-
-							<button type="submit" class="btn btn-outline-dark btn-lg w-100">تعديل
-								الصنف</button>
-
-
-						</form:form>
-					</div>
+			<div class="card border-primary mb-3" style="max-width: 20rem;">
+				<div class="card-header ">
+					<h5>تعديل الصنف</h5>
 				</div>
+				<div class="card-body">
+
+					<form:form modelAttribute="updateItem" method="get"
+						action="update-sellBillItem">
+
+						<div hidden="" class="form-group">
+							<label>اسم الصنف</label>
+							<form:input path="id" id="newId" class="form-control text-center" />
+						</div>
+
+						<div class="form-group">
+							<label>اسم الصنف</label> <input disabled="disabled" id="newName"
+								class="form-control text-center btn-outline-primary"> </input>
+						</div>
+
+						<div class="form-group">
+							<label>الكمية</label>
+							<form:input path="quantity" id="newQuantity"
+								class="form-control text-center" />
+						</div>
+
+						<div class="form-group">
+							<label>سعر البيع</label>
+							<form:input path="sellPrice" id="newSellPrice"
+								class="form-control text-center" />
+						</div>
+
+						<button type="submit" class="btn btn-outline-primary btn-lg w-100">تعديل
+							الصنف</button>
+
+
+					</form:form>
+
+				</div>
+
 			</div>
 
 		</div>
-
 	</div>
-
-
-
 </body>
 </html>

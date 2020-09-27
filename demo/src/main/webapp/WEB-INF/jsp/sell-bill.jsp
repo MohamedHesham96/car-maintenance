@@ -22,57 +22,58 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-
 	<br>
 
-	<div style="text-align: center;" class="container">
+	<div style="text-align: center;" class="container ">
 		<div dir="rtl" class="row">
 
 			<div>
 
-				<div class="form-group">
-					<label>رقم الفاتورة</label> <input disabled="disabled"
-						value="S - ${billSell.id}"
-						class="form-control text-center btn-outline-primary" />
-				</div>
-
-				<div class="form-group">
-					<label>التاريخ</label> <input disabled="disabled"
-						value="<%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary" />
-				</div>
-
-				<div class="form-group">
-					<label> اسم الوحدة </label> <input disabled="disabled"
-						value="${billSell.client.name}"
-						class="form-control text-center btn-outline-primary" />
-				</div>
-
-
-
-				<form:form method="get" action="add-item-to-sell-bill"
-					modelAttribute="item">
-
-					<div class="form-group">
-						<label>اسم الصنف</label>
-						<form:select class="form-control text-center " path="id">
-							<form:options items="${itemsList}" itemLabel="name" />
-						</form:select>
+				<div class="card border-primary" style="max-width: 20rem;">
+					<div class="card-header">
+						<h5>اضافة صنف</h5>
 					</div>
 
+					<div class="card-body">
 
-					<div class="form-group">
-						<label>الكمية</label>
-						<form:input id="quantity" path="quantity"
-							class="form-control text-center" />
+
+						<label>رقم الفاتورة</label> <input disabled="disabled"
+							value="S - ${billSell.id}"
+							class="form-control text-center btn-outline-primary" /> <label>التاريخ</label>
+						<input disabled="disabled" value="<%=LocalDate.now().toString()%>"
+							class="form-control text-center btn-outline-primary" />
+
+						<div class="form-group">
+
+							<label> اسم الوحدة </label> <input disabled="disabled"
+								value="${billSell.client.name}"
+								class="form-control text-center btn-outline-primary" />
+						</div>
+
+
+						<form:form method="get" action="add-item-to-sell-bill"
+							modelAttribute="item">
+
+							<label>اسم الصنف</label>
+							<form:select class="form-control text-center " path="id">
+								<form:options items="${itemsList}" itemLabel="name" />
+							</form:select>
+
+
+							<div class="form-group">
+								<label>الكمية</label>
+								<form:input id="quantity" path="quantity"
+									class="form-control text-center" />
+							</div>
+
+							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+								للفاتورة</button>
+
+
+						</form:form>
+
 					</div>
-
-					<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
-						للفاتورة</button>
-
-
-				</form:form>
-
+				</div>
 			</div>
 
 			<div class="mr-4 col-8 ">

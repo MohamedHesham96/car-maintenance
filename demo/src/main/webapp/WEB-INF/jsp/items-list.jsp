@@ -83,7 +83,7 @@
 			<div>
 				<div class="row" id="add-form">
 
-					<div class="card border-success" style="max-width: 20rem;">
+					<div class="card border-primary" style="max-width: 20rem;">
 						<div class="card-header">
 							<h4>اضافة صنف</h4>
 						</div>
@@ -114,7 +114,7 @@
 								</div>
 
 								<button type="submit"
-									class="btn btn-outline-success btn-lg w-100">اضافة
+									class="btn btn-outline-primary btn-lg w-100">اضافة
 									الصنف</button>
 
 							</form:form>

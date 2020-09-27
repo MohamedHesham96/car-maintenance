@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.blue.soft.store.service.BillSellItemsService;
+
 @Entity
 @Table(name = "bill_sell")
 public class BillSell {
@@ -37,8 +41,7 @@ public class BillSell {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.ALL })
 	private List<BillSellItem> billSellItems;
 
 	public BillSell() {
@@ -109,8 +112,4 @@ public class BillSell {
 		this.updateNow = updateNow;
 	}
 
-	public void removeAll() {
-
-		billSellItems = null;
-	}
 }
