@@ -24,11 +24,11 @@
 
 	<br>
 
-	<div style="width: 100%;" class="text-center">
+	<div style="text-align: center; width: 100%;" class="text-center ">
 
 
 		<div dir="rtl" class="row mt-lg-4"
-			style="width: 850px; margin: 0auto;">
+			style="width: 800px; margin: 0auto;">
 
 			<div class="card border-primary w-50" style="max-width: 20rem;">
 
