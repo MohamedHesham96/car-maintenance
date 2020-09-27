@@ -48,6 +48,15 @@
 	border: black solid 3px !important;
 	font-family: sans-serif;
 }
+
+@media print {
+	@page {
+		margin: 0;
+	}
+	body {
+		margin: 1.6cm;
+	}
+}
 </style>
 </head>
 <body>
@@ -63,10 +72,10 @@
 
 			<div class="" style="width: 100%;">
 
-<a onclick="this.hidden='true'; window.print(); "
+				<a onclick="this.hidden='true'; window.print(); "
 					class="mb-4 btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 					طباعة</a>
-					
+
 				<table class="table table-striped table-lg table-bordered"
 					style="width: 100%; font-size: 25px">
 
@@ -169,7 +178,7 @@
 
 				</table>
 
-				
+
 			</div>
 
 
