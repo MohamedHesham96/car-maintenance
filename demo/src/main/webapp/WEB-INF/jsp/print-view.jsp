@@ -39,16 +39,14 @@
 </script>
 
 <style type="text/css">
-.table {
-	border: black solid 3px !important;
-}
-
 .table td {
 	border: black solid 3px !important;
+	font-family: sans-serif;
 }
 
 .table th {
 	border: black solid 3px !important;
+	font-family: sans-serif;
 }
 </style>
 </head>
@@ -93,7 +91,7 @@
 						style="width: 100%; font-size: 25px; border: 5px solid black;">
 
 						<thead>
-							<tr>
+							<tr style="font-style: inherit; font-size: 27px">
 								<th>الصنف</th>
 								<th>الكمية</th>
 								<th>سعر الوحدة</th>
