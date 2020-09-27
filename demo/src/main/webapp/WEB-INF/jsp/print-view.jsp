@@ -38,13 +38,13 @@
 	}
 </script>
 </head>
-<body style="width: 50%; height: 200px;">
+<body>
 
 	<%@ include file="header.jsp"%>
 
 	<br>
 
-	<div id="printDIV" style="width: 100%; text-align: center;">
+	<div  id="printDIV" style="width: 100%; text-align: center;">
 
 
 		<div dir="rtl" style="width: 100%;">
