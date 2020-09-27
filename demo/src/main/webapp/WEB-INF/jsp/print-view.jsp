@@ -65,7 +65,7 @@
 	<div id="printDIV" style="width: 100%; text-align: center;">
 
 
-		<div dir="rtl" style="width: 100%;">
+		<div dir="rtl" style="width: 100%; padding: 50px">
 
 			<div class="" style="width: 100%;">
 
