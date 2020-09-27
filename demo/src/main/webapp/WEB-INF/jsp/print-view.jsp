@@ -39,16 +39,14 @@
 </script>
 
 <style type="text/css">
-.table {
-	border: black solid 3px !important;
-}
-
 .table td {
 	border: black solid 3px !important;
+	font-family: sans-serif;
 }
 
 .table th {
 	border: black solid 3px !important;
+	font-family: sans-serif;
 }
 </style>
 </head>
@@ -65,6 +63,10 @@
 
 			<div class="" style="width: 100%;">
 
+<a onclick="this.hidden='true'; window.print(); "
+					class="mb-4 btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+					طباعة</a>
+					
 				<table class="table table-striped table-lg table-bordered"
 					style="width: 100%; font-size: 25px">
 
@@ -93,7 +95,7 @@
 						style="width: 100%; font-size: 25px; border: 5px solid black;">
 
 						<thead>
-							<tr>
+							<tr style="font-style: inherit; font-size: 27px">
 								<th>الصنف</th>
 								<th>الكمية</th>
 								<th>سعر الوحدة</th>
@@ -151,7 +153,8 @@
 
 							<td>حالة الفاتورة: ${billSell.late ? "آجل" : "نـقـــدي"}</td>
 
-							<td>المدفوع : ${total}</td>
+							<td>المدفوع : <fmt:formatNumber value="${total}"
+									maxFractionDigits="2" /></td>
 
 							<td>المتبقي : --------</td>
 
@@ -166,11 +169,7 @@
 
 				</table>
 
-				<form:form>
-					<a onclick="this.hidden='true'; window.print(); "
-						class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
-						طباعة</a>
-				</form:form>
+				
 			</div>
 
 
