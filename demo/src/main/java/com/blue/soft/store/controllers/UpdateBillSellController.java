@@ -124,10 +124,9 @@ public class UpdateBillSellController {
 
 	// بيسمح اصناف من الفاتورة اللي بتتعدل
 	@RequestMapping("/delete-sellBillItemUpdate")
-	public String updateSellBillItemUpdate(@RequestParam(name = "sellBillItemId") String sellBillItemId,
-			RedirectAttributes attributes) {
+	public String deleteSellBillItemUpdate(@RequestParam(name = "sellBillItemId") String sellBillItemId) {
 
-		BillSell billSell = billSellService.getBillSellByUpdateNow();
+		billSellItemsService.deleteBillSellItem(sellBillItemId);
 
 		return "redirect:/show-update-sell-bill";
 

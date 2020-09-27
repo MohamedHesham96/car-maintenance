@@ -137,6 +137,7 @@ function showUpdateForm(btn, id) {
 
 										<a type="button"
 										href="delete-sellBillItemUpdate?sellBillItemId=${itemTemp.id}"
+										onclick="return confirm('هل انت متأكد من إلغاء الصنف ؟')"
 										class="btn btn-outline-danger btn-sm">إلغاء</a></td>
 								</tr>
 
