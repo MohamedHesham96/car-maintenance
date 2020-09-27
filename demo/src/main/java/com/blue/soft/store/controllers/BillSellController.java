@@ -59,9 +59,6 @@ public class BillSellController {
 
 		else {
 
-			httpSession.setAttribute("billSellId", lastBillSell.getId());
-			httpSession.setAttribute("clientName", lastBillSell.getClient().getName());
-
 			return "redirect:/show-add-to-sell-bill";
 		}
 
@@ -117,10 +114,6 @@ public class BillSellController {
 			billSell = lastBillSell;
 
 		}
-
-		// redirectAttributes.addAttribute("sellBill", billSell);
-		httpSession.setAttribute("billSellId", billSell.getId());
-		httpSession.setAttribute("clientName", billSell.getClient().getName());
 
 		return "redirect:/show-add-to-sell-bill";
 

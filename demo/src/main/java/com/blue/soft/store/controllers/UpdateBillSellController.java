@@ -61,7 +61,15 @@ public class UpdateBillSellController {
 
 			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
 					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
-			System.out.println("Done >>> ");
+		}
+
+		String[] names = httpSession.getValueNames();
+
+		for (String name : names) {
+
+			System.out.println(
+					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
+
 		}
 
 		return "redirect:/show-update-sell-bill";
@@ -142,6 +150,8 @@ public class UpdateBillSellController {
 		billSell.setUpdateNow(false);
 		billSellService.saveSellBill(billSell);
 
+		clearHttpSession(sellBillId);
+
 		return "redirect:/show-sell-bill-list";
 
 	}
@@ -154,8 +164,6 @@ public class UpdateBillSellController {
 
 		oldBSItem.setQuantity(sellBillItem.getQuantity());
 		oldBSItem.setSellPrice(sellBillItem.getSellPrice());
-
-		System.out.println(oldBSItem.getSellPrice());
 
 		billSellItemsService.addBillSellItem(oldBSItem);
 
@@ -196,7 +204,41 @@ public class UpdateBillSellController {
 
 		}
 
+		clearHttpSession(sellBillId);
+
 		return "redirect:/show-update-sell-bill";
 	}
 
+	@RequestMapping("/delete-updateSellBill")
+	public String deleteSellBill(@RequestParam(name = "sellBillId") String sellBillId) {
+
+		billSellService.deleteSellBill(sellBillId);
+
+		clearHttpSession(sellBillId);
+
+		return "redirect:/show-sell-bill-info";
+
+	}
+
+	public void clearHttpSession(String sellBillId) {
+
+		int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
+
+		for (int i = 1; i <= size; i++) {
+
+			httpSession.removeAttribute(sellBillId + i);
+		}
+
+		httpSession.removeAttribute("itemsSize");
+
+		String[] names = httpSession.getValueNames();
+
+		for (String name : names) {
+
+			System.out.println(
+					"ClEAR_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
+
+		}
+
+	}
 }

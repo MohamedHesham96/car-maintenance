@@ -161,7 +161,7 @@ function showUpdateForm(btn, id) {
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
 
-						<a href="delete-sellBill?sellBillId=${billSell.id}"
+						<a href="delete-updateSellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء الفاتورة </a>
