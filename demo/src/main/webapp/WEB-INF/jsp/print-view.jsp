@@ -37,6 +37,20 @@
 		return true;
 	}
 </script>
+
+<style type="text/css">
+.table {
+	border: black solid 3px !important;
+}
+
+.table td {
+	border: black solid 3px !important;
+}
+
+.table th {
+	border: black solid 3px !important;
+}
+</style>
 </head>
 <body>
 
@@ -44,7 +58,7 @@
 
 	<br>
 
-	<div  id="printDIV" style="width: 100%; text-align: center;">
+	<div id="printDIV" style="width: 100%; text-align: center;">
 
 
 		<div dir="rtl" style="width: 100%;">
@@ -76,7 +90,7 @@
 				<div class="" style="width: 100%;">
 
 					<table class="table table-striped table-lg table-bordered"
-						style="width: 100%; font-size: 25px">
+						style="width: 100%; font-size: 25px; border: 5px solid black;">
 
 						<thead>
 							<tr>
