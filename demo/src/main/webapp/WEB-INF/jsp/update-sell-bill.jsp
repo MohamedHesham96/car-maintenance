@@ -62,7 +62,7 @@ function showUpdateForm(btn, id) {
 
 		<div dir="rtl" class="row mr-lg-2 ">
 
-			<div class="card border-primary mb-3" style="max-width: 20rem;">
+			<div class="card border-primary" style="max-width: 20rem;">
 				<div class="card-header ">
 					<h5>أضافة للفاتور</h5>
 				</div>
@@ -101,7 +101,7 @@ function showUpdateForm(btn, id) {
 				</div>
 			</div>
 
-			<div class="mr-2 col-7 ">
+			<div class=" col-7">
 
 				<div class="shadow "
 					style="position: relative; height: 425px; overflow: auto;">
@@ -183,7 +183,7 @@ function showUpdateForm(btn, id) {
 			</div>
 
 
-			<div class="card border-primary mb-3" style="max-width: 20rem;">
+			<div class="card border-primary" style="max-width: 20rem;">
 				<div class="card-header ">
 					<h5>تعديل الصنف</h5>
 				</div>
