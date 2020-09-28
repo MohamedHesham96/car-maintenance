@@ -171,7 +171,8 @@ function showUpdateForm(btn, id) {
 							class="btn btn-success ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							تحديث</a>
 
-						<a href="save-buyBill?buyBillId=${billBuy.id}"
+
+						<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 							class="btn btn-primary ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>

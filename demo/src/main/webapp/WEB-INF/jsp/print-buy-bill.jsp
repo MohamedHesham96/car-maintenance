@@ -69,8 +69,6 @@
 				src="/images/army.jpg">
 		</div>
 
-
-
 		<div style="font-family: sans-serif;"
 			class="float-right mt-sm-4 card border-dark p-3">
 			<h2>الجيــش الثانــــي الميدانــــي</h2>
@@ -80,7 +78,6 @@
 			<h2>دايمــــــــــوند مــــــــــــــول</h2>
 		</div>
 	</div>
-
 
 	<div id="printDIV"
 		style="width: 100%; padding-left: 65px; padding-right: 65px; text-align: center;"
@@ -93,8 +90,6 @@
 				<a onclick="this.hidden='true'; window.print(); "
 					class="mb-4 btn btn-primary ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 					طباعة</a>
-
-
 
 				<table class="table table-striped table-lg table-bordered"
 					style="width: 100%; font-size: 22px">
@@ -109,11 +104,9 @@
 
 							<td>المورد : ${billBuy.company.name}</td>
 
-
 						</tr>
 
 					</tbody>
-
 
 				</table>
 
@@ -185,20 +178,13 @@
 
 							<td>المتبقي : --------</td>
 
-
 						</tr>
 
 					</tbody>
 
-
-
-
-
 				</table>
 
-
 			</div>
-
 
 		</div>
 
