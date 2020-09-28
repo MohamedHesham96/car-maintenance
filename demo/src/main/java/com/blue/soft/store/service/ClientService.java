@@ -9,7 +9,7 @@ import com.blue.soft.store.DAO.ClientRepository;
 import com.blue.soft.store.entity.Client;
 
 @Service
-public class clientService {
+public class ClientService {
 
 	@Autowired
 	ClientRepository clientRepository;

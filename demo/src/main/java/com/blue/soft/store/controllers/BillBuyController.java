@@ -13,12 +13,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
-import com.blue.soft.store.entity.Client;
+import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
+import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
-import com.blue.soft.store.service.clientService;
 
 @Controller
 public class BillBuyController {
@@ -30,7 +30,10 @@ public class BillBuyController {
 	BillBuyService billBuyService;
 
 	@Autowired
-	clientService clientService;
+	CompanyService compnyService;
+
+	@Autowired
+	CompanyService companyService;
 
 	@Autowired
 	BillBuyItemsService billBuyItemsService;
@@ -47,7 +50,7 @@ public class BillBuyController {
 
 		if (lastBillBuy == null || lastBillBuy.isSaved()) {
 
-			theModel.addAttribute("clientsList", clientService.getAllClients());
+			theModel.addAttribute("companiesList", compnyService.getAllCompanies());
 
 			return "buy-bill-info";
 		}
@@ -80,14 +83,12 @@ public class BillBuyController {
 
 	// حفظ ببيانات الفاتورة
 	@RequestMapping("/save-buy-bill-info")
-	public String saveBuyBillInfo(@RequestParam(name = "late", defaultValue = "off") String late,
-			@RequestParam(name = "clientId") String clientid) {
+	public String saveBuyBillInfo(@RequestParam(name = "companyId") String companyId) {
 
 		BillBuy billBuy = new BillBuy();
 
 		billBuy.setDate(LocalDate.now().toString());
-		billBuy.setClient(clientService.getClientById(clientid));
-		billBuy.setLate("on".equals(late) ? true : false);
+		billBuy.setCompany(companyService.getCompanyById(companyId));
 
 		BillBuy lastBillBuy = billBuyService.getLast();
 
@@ -149,7 +150,7 @@ public class BillBuyController {
 
 		}
 
-		theModel.addAttribute("clientsList", clientService.getAllClients());
+		theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
 		theModel.addAttribute("billBuyList", billBuyService.getAllBuyBills());
 
@@ -199,12 +200,9 @@ public class BillBuyController {
 			total += billBuyItem.getBuyPrice() * billBuyItem.getQuantity();
 		}
 
-		if (billBuy.isLate()) {
-
-			Client client = billBuy.getClient();
-			client.setDrawee(client.getDrawee() + total);
-			billBuy.setClient(client);
-		}
+		Company company = billBuy.getCompany();
+		company.setDrawee(company.getDrawee() + total);
+		billBuy.setCompany(company);
 
 		billBuy.setSaved(true);
 
@@ -214,12 +212,12 @@ public class BillBuyController {
 
 	}
 
-	@RequestMapping("/search-buy-bill-by-clientId")
-	public String searchForBuyBillByClientId(@RequestParam(name = "clientId") String clientId, Model theModel) {
+	@RequestMapping("/search-buy-bill-by-companyId")
+	public String searchForBuyBillByCompanyId(@RequestParam(name = "companyId") String companyId, Model theModel) {
 
-		theModel.addAttribute("clientsList", clientService.getAllClients());
+		theModel.addAttribute("companiesList", compnyService.getAllCompanies());
 
-		theModel.addAttribute("billBuyList", clientService.getClientById(clientId).getBillBuyList());
+		theModel.addAttribute("billBuyList", companyService.getCompanyById(companyId).getBillBuyList());
 
 		return "buy-bill-list";
 	}
@@ -227,14 +225,14 @@ public class BillBuyController {
 	@RequestMapping("/search-buy-bill-by-id")
 	public String searchForBuyBillById(@RequestParam(name = "billId") String billId, Model theModel) {
 
-		theModel.addAttribute("clientsList", clientService.getAllClients());
+		theModel.addAttribute("companiesList", compnyService.getAllCompanies());
 
 		theModel.addAttribute("billBuyList", billBuyService.getBillBuyContainingId(billId));
 
 		return "buy-bill-list";
 	}
 
-	@RequestMapping("/show-printView")
+	@RequestMapping("/showprintView")
 	public String showPrintView(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);

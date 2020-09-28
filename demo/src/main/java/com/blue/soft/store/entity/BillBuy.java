@@ -25,9 +25,6 @@ public class BillBuy {
 	@Column(name = "date")
 	private String date;
 
-	@Column(name = "late")
-	private boolean late;
-
 	@Column(name = "saved")
 	private boolean saved;
 
@@ -35,8 +32,8 @@ public class BillBuy {
 	private boolean updateNow;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	@JoinColumn(name = "client_id")
-	private Client client;
+	@JoinColumn(name = "company_id")
+	private Company company;
 
 	@OneToMany(mappedBy = "billBuy", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -66,12 +63,12 @@ public class BillBuy {
 		this.id = id;
 	}
 
-	public Client getClient() {
-		return client;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public String getDate() {
@@ -80,14 +77,6 @@ public class BillBuy {
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public boolean isLate() {
-		return late;
-	}
-
-	public void setLate(boolean late) {
-		this.late = late;
 	}
 
 	public boolean isSaved() {

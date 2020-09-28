@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Collect;
-import com.blue.soft.store.service.clientService;
+import com.blue.soft.store.service.ClientService;
 
 @Controller
 public class ClientController {
 
 	@Autowired
-	clientService clientService;
+	ClientService clientService;
 
 	@RequestMapping("clients-list")
 	public String showClientsList(Model theModel) {

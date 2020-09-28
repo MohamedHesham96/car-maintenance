@@ -18,9 +18,12 @@
 			href="show-sell-bill-list"> فواتير البيع</a></li>
 
 
-		<li class="nav-item active"><a class="nav-link" href="">فاتورة
-				شراء</a></li>
+		<li class="nav-item active"><a class="nav-link"
+			href="show-buy-bill-info">فاتورة شراء</a></li>
 
+
+		<li class="nav-item active"><a class="nav-link"
+			href="show-buy-bill-list">فواتير الشراء</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link" href="">

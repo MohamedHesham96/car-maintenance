@@ -3,15 +3,10 @@ package com.blue.soft.store.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.blue.soft.store.DAO.CompanyRepository;
-import com.blue.soft.store.DAO.ItemRepository;
-import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Company;
-import com.blue.soft.store.entity.Item;
 
 @Service
 public class CompanyService {

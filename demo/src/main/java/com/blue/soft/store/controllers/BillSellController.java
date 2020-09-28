@@ -17,8 +17,8 @@ import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
+import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
-import com.blue.soft.store.service.clientService;
 
 @Controller
 public class BillSellController {
@@ -30,7 +30,7 @@ public class BillSellController {
 	BillSellService billSellService;
 
 	@Autowired
-	clientService clientService;
+	ClientService clientService;
 
 	@Autowired
 	BillSellItemsService billSellItemsService;
