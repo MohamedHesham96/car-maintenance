@@ -81,15 +81,7 @@ public class UpdateBillSellController {
 
 		BillSell billSell = billSellService.getBillSellByUpdateNow();
 
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-
-		float total = 0;
-
-		for (BillSellItem billSellItem : billSellItemsList) {
-
-			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
-
-		}
+		float total = billSell.getTotal();
 
 		billSellService.saveSellBill(billSell);
 
@@ -97,7 +89,6 @@ public class UpdateBillSellController {
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("updateItem", new BillSellItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSellItems", billSellItemsList);
 		theModel.addAttribute("billSell", billSell);
 
 		return "update-sell-bill";
@@ -115,7 +106,7 @@ public class UpdateBillSellController {
 			// String billId = httpSession.getAttribute("billSellId").toString();
 			// BillSell billSell = billSellService.getBillSellById(billId);
 
-			BillSell billSell = billSellService.getLast();
+			BillSell billSell = billSellService.getBillSellByUpdateNow();
 
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
@@ -147,7 +138,9 @@ public class UpdateBillSellController {
 	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, RedirectAttributes attributes) {
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
 		billSell.setUpdateNow(false);
+
 		billSellService.saveSellBill(billSell);
 
 		clearHttpSession(sellBillId);
@@ -203,8 +196,6 @@ public class UpdateBillSellController {
 			billSellItemsService.addBillSellItem(billSellItem);
 
 		}
-
-		clearHttpSession(sellBillId);
 
 		return "redirect:/show-update-sell-bill";
 	}

@@ -37,19 +37,17 @@
 
 					<div class="card-body">
 
-
-						<label>رقم الفاتورة</label> <input disabled="disabled"
-							value="S - ${billSell.id}"
-							class="form-control text-center btn-outline-primary" /> <label>التاريخ</label>
-						<input disabled="disabled" value="<%=LocalDate.now().toString()%>"
-							class="form-control text-center btn-outline-primary" />
-
-						<div class="form-group">
-
-							<label> اسم الوحدة </label> <input disabled="disabled"
-								value="${billSell.client.name}"
-								class="form-control text-center btn-outline-primary" />
-						</div>
+						<input disabled="disabled"
+							value=" رقم الفاتورة : S - ${billSell.id}"
+							class="form-control text-center btn-outline-primary  mb-2" /> <input
+							disabled="disabled"
+							value="التاريخ : <%=LocalDate.now().toString()%>"
+							class="form-control text-center btn-outline-primary  mb-2" /> <input
+							disabled="disabled"
+							value=" نوع الفاتورة :  ${billSell.late ? 'آجل' : 'نقدي'} "
+							class="form-control text-center btn-outline-primary  mb-2" /> <input
+							disabled="disabled" value="الوحدة : ${billSell.client.name}"
+							class="form-control text-center btn-outline-primary  mb-2" />
 
 
 						<form:form method="get" action="add-item-to-sell-bill"
@@ -64,10 +62,10 @@
 							<div class="form-group">
 								<label>الكمية</label>
 								<form:input id="quantity" path="quantity"
-									class="form-control text-center" />
+									class="form-control text-center " />
 							</div>
 
-							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+							<button type="submit" class="btn btn-primary btn-lg w-100 ">اضافة
 								للفاتورة</button>
 
 
@@ -118,18 +116,23 @@
 
 				</div>
 
+
+
+
 				<span class="btn btn-outline-success float-right mt-sm-4">
 					اجمالي: ${total}</span>
 
 
-				<div class="float-left pt-sm-4">
+
+				<div class="float-left pt-sm-4 ">
+
 
 					<form:form>
 
 						<a href="delete-sellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
-							إلغاء الفاتورة </a>
+							حذف </a>
 
 
 						<a href="save-sellBill?sellBillId=${billSell.id}"
@@ -147,6 +150,8 @@
 
 				</div>
 
+
+
 			</div>
 
 
@@ -155,3 +160,6 @@
 	</div>
 </body>
 </html>
+
+
+

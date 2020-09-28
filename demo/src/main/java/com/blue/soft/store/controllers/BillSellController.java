@@ -3,8 +3,6 @@ package com.blue.soft.store.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +22,6 @@ import com.blue.soft.store.service.clientService;
 
 @Controller
 public class BillSellController {
-
-	@Autowired
-	private HttpSession httpSession;
 
 	@Autowired
 	ItemService itemService;
@@ -72,14 +67,7 @@ public class BillSellController {
 		// Change the method
 		BillSell billSell = billSellService.getLast();
 
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-
-		float total = 0;
-
-		for (BillSellItem billSellItem : billSellItemsList) {
-
-			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
-		}
+		float total = billSell.getTotal();
 
 		theModel.addAttribute("total", total);
 
@@ -249,8 +237,12 @@ public class BillSellController {
 	@RequestMapping("/show-printView")
 	public String showPrintView(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
 
-		theModel.addAttribute("billSell", billSellService.getBillSellById(sellBillId));
-		theModel.addAttribute("total", 11212);
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
+		theModel.addAttribute("billSell", billSell);
+
+		theModel.addAttribute("total", billSell.getTotal());
+
 		return "print-view";
 	}
 

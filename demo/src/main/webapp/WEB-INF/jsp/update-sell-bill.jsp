@@ -118,7 +118,7 @@ function showUpdateForm(btn, id) {
 						</thead>
 
 						<tbody>
-							<c:forEach var="itemTemp" items="${billSellItems}">
+							<c:forEach var="itemTemp" items="${billSell.billSellItems}">
 
 								<tr>
 									<td id="${itemTemp.id}">${itemTemp.item.name}</td>
@@ -199,7 +199,7 @@ function showUpdateForm(btn, id) {
 
 						<div class="form-group">
 							<label>اسم الصنف</label> <input disabled="disabled" id="newName"
-								class="form-control text-center btn-outline-primary"> </input>
+								class="form-control text-center btn-outline-primary">
 						</div>
 
 						<div class="form-group">

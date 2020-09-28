@@ -15,8 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bill_sell")
-public class BillSell {
+@Table(name = "bill_buy")
+public class BillBuy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,6 @@ public class BillSell {
 	@Column(name = "late")
 	private boolean late;
 
-	@Column(name = "payed")
-	private float payed;
-
 	@Column(name = "saved")
 	private boolean saved;
 
@@ -41,24 +38,24 @@ public class BillSell {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(mappedBy = "billBuy", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<BillSellItem> billSellItems;
+	private List<BillBuyItem> billBuyItems;
 
-	public BillSell() {
+	public BillBuy() {
 	}
 
-	public void addBillSellItem(BillSellItem billSellItem) {
+	public void addBillBuyItem(BillBuyItem billBuyItem) {
 
-		billSellItems.add(billSellItem);
+		billBuyItems.add(billBuyItem);
 	}
 
-	public List<BillSellItem> getBillSellItems() {
-		return billSellItems;
+	public List<BillBuyItem> getBillBuyItems() {
+		return billBuyItems;
 	}
 
-	public void setBillSellItem(List<BillSellItem> billSellItems) {
-		this.billSellItems = billSellItems;
+	public void setBillBuyItem(List<BillBuyItem> billBuyItems) {
+		this.billBuyItems = billBuyItems;
 	}
 
 	public String getId() {
@@ -93,14 +90,6 @@ public class BillSell {
 		this.late = late;
 	}
 
-	public float getPayed() {
-		return payed;
-	}
-
-	public void setPayed(float payed) {
-		this.payed = payed;
-	}
-
 	public boolean isSaved() {
 		return saved;
 	}
@@ -109,8 +98,8 @@ public class BillSell {
 		this.saved = saved;
 	}
 
-	public void setBillSellItems(List<BillSellItem> billSellItems) {
-		this.billSellItems = billSellItems;
+	public void setBillBuyItems(List<BillBuyItem> billBuyItems) {
+		this.billBuyItems = billBuyItems;
 	}
 
 	public boolean isUpdateNow() {
@@ -121,29 +110,30 @@ public class BillSell {
 		this.updateNow = updateNow;
 	}
 
-	public List<String> getBillSellItemsIDS() {
+	public List<String> getBillBuyItemsIDS() {
 
 		List<String> idsList = new ArrayList<String>();
 
-		for (BillSellItem billSellItem : billSellItems) {
+		for (BillBuyItem billBuyItem : billBuyItems) {
 
-			idsList.add(billSellItem.getId());
+			idsList.add(billBuyItem.getId());
 		}
 
 		return idsList;
 	}
 
-	public void removeItem(BillSellItem billSellItem) {
+	public void removeItem(BillBuyItem billBuyItem) {
 
-		billSellItems.remove(billSellItem);
+		billBuyItems.remove(billBuyItem);
 	}
 
 	public float getTotal() {
+
 		float total = 0;
 
-		for (BillSellItem billSellItem : billSellItems) {
+		for (BillBuyItem billBuyItem : billBuyItems) {
 
-			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+			total += billBuyItem.getBuyPrice() * billBuyItem.getQuantity();
 		}
 
 		return total;
