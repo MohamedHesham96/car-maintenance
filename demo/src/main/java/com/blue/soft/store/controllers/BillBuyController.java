@@ -232,8 +232,8 @@ public class BillBuyController {
 		return "buy-bill-list";
 	}
 
-	@RequestMapping("/showprintView")
-	public String showPrintView(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
+	@RequestMapping("/show-print-buy-bill")
+	public String showPrintBuyBill(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 
@@ -241,7 +241,7 @@ public class BillBuyController {
 
 		theModel.addAttribute("total", billBuy.getTotal());
 
-		return "print-view";
+		return "print-buy-bill";
 	}
 
 }

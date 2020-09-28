@@ -33,7 +33,7 @@
 			<div class="card border-primary w-50" style="max-width: 20rem;">
 
 				<div class="card-header">
-					<h4>فاتورة بيع</h4>
+					<h4>فاتورة شراء</h4>
 				</div>
 
 				<div class="card-body">
