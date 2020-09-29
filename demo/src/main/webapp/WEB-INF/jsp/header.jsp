@@ -30,6 +30,9 @@
 				المصاريف</a></li>
 
 
+		<li class="nav-item active"><a class="nav-link" href="">
+				الخزنة</a></li>
+
 
 		<li class="nav-item active"><a class="nav-link"
 			href="companies-list">الموردين</a></li>

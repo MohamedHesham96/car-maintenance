@@ -32,7 +32,7 @@
 
 				<div class="card border-primary" style="max-width: 20rem;">
 					<div class="card-header">
-						<h5>اضافة صنف</h5>
+						<h5>فاتورة بيع</h5>
 					</div>
 
 					<div class="card-body">

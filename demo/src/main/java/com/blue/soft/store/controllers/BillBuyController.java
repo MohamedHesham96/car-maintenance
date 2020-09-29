@@ -124,7 +124,10 @@ public class BillBuyController {
 
 			billBuyItem.setItem(theItem);
 			billBuyItem.setBillBuy(billBuy);
-			billBuyItem.setBuyPrice(theItem.getBuyPrice());
+
+//			float avgBuyPrice = (item.getBuyPrice() + theItem.getBuyPrice()) / 2;
+
+			billBuyItem.setBuyPrice(item.getBuyPrice());
 			billBuyItem.setQuantity(item.getQuantity());
 
 			billBuyItemsService.addBillBuyItem(billBuyItem);

@@ -32,7 +32,7 @@
 
 				<div class="card border-primary" style="max-width: 20rem;">
 					<div class="card-header">
-						<h5>اضافة صنف</h5>
+						<h5>فاتورة شراء</h5>
 					</div>
 
 					<div class="card-body">
@@ -62,6 +62,15 @@
 									class="form-control text-center " />
 							</div>
 
+
+
+							<div class="form-group">
+								<label>سعر الشراء</label>
+								<form:input id="quantity" path="buyPrice"
+									class="form-control text-center " />
+							</div>
+
+
 							<button type="submit" class="btn btn-primary btn-lg w-100 ">اضافة
 								للفاتورة</button>
 
@@ -83,7 +92,7 @@
 							<tr>
 								<th>الصنف</th>
 								<th>الكمية</th>
-								<th>سعر البيع</th>
+								<th>سعر الشراء</th>
 								<th>اجمالي السعر</th>
 							</tr>
 						</thead>
