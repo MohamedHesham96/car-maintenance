@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Spend;
 import com.blue.soft.store.service.ItemService;
@@ -39,6 +40,15 @@ public class SpendController {
 		theModel.addAttribute("spendsList", spendService.getAllSpends());
 
 		return "redirect:/spend-list";
+	}
+
+	@RequestMapping("/delete-spend")
+	public String deleteSpend(@RequestParam(name = "spendId") String spendId) {
+
+		spendService.deleteSpendById(spendId);
+
+		return "redirect:/spend-list";
+
 	}
 
 }

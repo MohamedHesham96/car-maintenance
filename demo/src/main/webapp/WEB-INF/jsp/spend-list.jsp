@@ -84,16 +84,18 @@
 						</thead>
 
 						<tbody>
-							<c:forEach var="colllectTemp" items="${spendsList}">
+							<c:forEach var="spendTemp" items="${spendsList}">
 
 								<tr>
 
-									<td class="col-3">${colllectTemp.amount}</td>
-									<td class="col-3">${colllectTemp.note}</td>
-									<td class="col-3">${colllectTemp.date}</td>
+									<td class="col-3">${spendTemp.amount}</td>
+									<td class="col-3">${spendTemp.note}</td>
+									<td class="col-3">${spendTemp.date}</td>
 
-									<td class="col-1 "><a ${colllectTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
-										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
+									<td class="col-1 "><a
+										${spendTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
+										href="delete-spend?spendId=${spendTemp.id}"
+										onclick="return confirm('هل انت متأكد من الإلغاء ؟')"
 										class="btn btn-outline-danger btn-sm "> إلغاء </a></td>
 								</tr>
 

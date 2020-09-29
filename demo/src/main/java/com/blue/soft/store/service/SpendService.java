@@ -36,4 +36,9 @@ public class SpendService {
 		return spendRepository.findById(id).get();
 	}
 
+	public void deleteSpendById(String id) {
+
+		spendRepository.deleteById(id);
+	}
+
 }

@@ -1,7 +1,5 @@
 package com.blue.soft.store.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +11,7 @@ public class Spend {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 
 	@Column(name = "amount")
 	private int amount;
@@ -27,11 +25,11 @@ public class Spend {
 	public Spend() {
 	}
 
-	public int getId() {
-		return this.id;
+	public String getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
