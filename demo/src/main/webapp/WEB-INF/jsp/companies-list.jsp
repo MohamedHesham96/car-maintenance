@@ -45,8 +45,8 @@
 							</div>
 
 
-							<button type="submit"
-								class="btn btn-outline-success btn-lg w-100">اضافة مورد</button>
+							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+								مورد</button>
 
 						</form:form>
 					</div>
@@ -67,9 +67,8 @@
 							</div>
 
 
-							<button type="submit"
-								class="btn btn-outline-primary btn-lg w-100">بحث عن
-								مورد</button>
+							<button type="submit" class="btn btn-success btn-lg w-100">بحث
+								عن مورد</button>
 
 						</form>
 
@@ -91,8 +90,9 @@
 
 						<thead>
 							<tr>
-								<th>اسم المورد</th>
-								<th>الدين</th>
+								<th class="col-4">اسم المورد</th>
+								<th class="col-4">الدين</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 

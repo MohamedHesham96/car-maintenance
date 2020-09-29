@@ -31,15 +31,41 @@ public class SpendController {
 	}
 
 	@RequestMapping("/add-spend")
-	public String addSpend(@ModelAttribute("spend") Spend theSpend, Model theModel) {
+	public String addSpend(@ModelAttribute("spend") Spend theSpend, Model theModel) throws Exception {
 
-		theSpend.setDate(LocalDate.now().toString());
+		if (theSpend.getAmount() > 0) {
 
-		spendService.saveSpend(theSpend);
+			theSpend.setDate(LocalDate.now().toString());
 
-		theModel.addAttribute("spendsList", spendService.getAllSpends());
+			spendService.saveSpend(theSpend);
 
-		return "redirect:/spend-list";
+			theModel.addAttribute("spendsList", spendService.getAllSpends());
+
+			return "redirect:/spend-list";
+
+		} else {
+
+			throw new Exception("المبلغ اصغر او اكبر من قيمة الخزنة");
+		}
+	}
+
+	@RequestMapping("/update-spend")
+	public String updateSpend(@ModelAttribute("spend") Spend theSpend, Model theModel) throws Exception {
+
+		if (theSpend.getAmount() > 0) {
+
+			theSpend.setDate(LocalDate.now().toString());
+
+			spendService.saveSpend(theSpend);
+
+			theModel.addAttribute("spendsList", spendService.getAllSpends());
+
+			return "redirect:/spend-list";
+
+		} else {
+
+			throw new Exception("المبلغ اصغر او اكبر من قيمة الخزنة");
+		}
 	}
 
 	@RequestMapping("/delete-spend")

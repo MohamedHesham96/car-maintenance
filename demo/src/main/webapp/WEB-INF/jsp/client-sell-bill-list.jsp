@@ -59,10 +59,10 @@
 
 						<thead>
 							<tr>
-								<th>الرقم</th>
-								<th>الوحدة</th>
-								<th>النوع</th>
-								<th>التاريخ</th>
+								<th class="col-3">الرقم</th>
+								<th class="col-3">النوع</th>
+								<th class="col-3">التاريخ</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 

@@ -14,7 +14,7 @@ public class Spend {
 	private String id;
 
 	@Column(name = "amount")
-	private int amount;
+	private float amount;
 
 	@Column(name = "note")
 	private String note;
@@ -33,11 +33,11 @@ public class Spend {
 		this.id = id;
 	}
 
-	public int getAmount() {
+	public float getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 

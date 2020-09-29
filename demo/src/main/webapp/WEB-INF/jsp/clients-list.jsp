@@ -24,11 +24,11 @@
 
 	<br>
 
-	<div style="text-align: center;" class="">
+	<div style="text-align: center;" class="container">
 		<div dir="rtl" class="row">
 
 
-			<div class="mr-lg-5">
+			<div class="">
 
 
 
@@ -65,7 +65,7 @@
 
 					<div class="card border-success mb-3" style="max-width: 20rem;">
 						<div class="card-header">
-							<h5>بحث وحدة</h5>
+							<h5>بحث عن وحدة</h5>
 						</div>
 						<div class="card-body">
 
@@ -98,8 +98,9 @@
 
 						<thead>
 							<tr>
-								<th>اسم الوحدة</th>
-								<th>الدين</th>
+								<th class="col-3">اسم الوحدة</th>
+								<th class="col-3">الدين</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 
@@ -113,9 +114,7 @@
 									<td class="col-3"><a type="button"
 										class="btn btn-primary btn-sm"
 										href="show-collects-client?clientId=${clientTemp.id}"
-										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> 
-										
-										<a
+										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> <a
 										type="button" class="btn btn-success btn-sm"
 										href="show-client-bills-list?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>
