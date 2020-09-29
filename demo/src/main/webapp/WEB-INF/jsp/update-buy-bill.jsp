@@ -68,25 +68,22 @@ function showUpdateForm(btn, id) {
 				</div>
 				<div class="card-body">
 
-					 <input disabled="disabled"
+					<input disabled="disabled"
 						value=" رقم الفاتورة : B - ${billBuy.id}"
 						class="form-control text-center btn-outline-primary mb-2" /> 
 						
-					
-					
-					
-					<input disabled="disabled" value="التاريخ : <%=LocalDate.now().toString()%>"
+						<input
+						disabled="disabled"
+						value="التاريخ : <%=LocalDate.now().toString()%>"
 						class="form-control text-center btn-outline-primary mb-2" /> 
 						
-						
-						
-						<input disabled="disabled"
-						value="اسم الوحدة : ${billBuy.company.name}"
+						<input
+						disabled="disabled" value="اسم الوحدة : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-primary mb-2" />
 
 					<form:form method="get" action="add-item-to-update-buy-bill"
 						modelAttribute="item">
-						
+
 
 						<div class="form-group">
 							<label>اسم الصنف</label>

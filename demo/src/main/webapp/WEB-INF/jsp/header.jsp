@@ -26,7 +26,7 @@
 			href="show-buy-bill-list">فواتير الشراء</a></li>
 
 
-		<li class="nav-item active"><a class="nav-link" href="">
+		<li class="nav-item active"><a class="nav-link" href="spend-list">
 				المصاريف</a></li>
 
 
