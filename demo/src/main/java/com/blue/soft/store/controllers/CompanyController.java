@@ -69,7 +69,9 @@ public class CompanyController {
 			throw new Exception("مبلغ الدفع اكبر من الدين");
 
 		Pay pay = new Pay();
+
 		pay.setBalanceNow(company.getDrawee() - amount);
+
 		pay.setAmount(amount);
 		pay.setDate(LocalDate.now().toString());
 		pay.setCompany(company);

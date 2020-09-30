@@ -19,6 +19,9 @@ public class Collect {
 	@Column(name = "amount")
 	private float amount;
 
+	@Column(name = "balance_now")
+	private float balanceNow;
+
 	@Column(name = "date")
 	private String date;
 
@@ -56,6 +59,14 @@ public class Collect {
 
 	public void setAmount(float amount) {
 		this.amount = amount;
+	}
+
+	public float getBalanceNow() {
+		return balanceNow;
+	}
+
+	public void setBalanceNow(float balanceNow) {
+		this.balanceNow = balanceNow;
 	}
 
 }

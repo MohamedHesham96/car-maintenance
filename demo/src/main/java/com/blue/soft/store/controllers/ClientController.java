@@ -65,6 +65,7 @@ public class ClientController {
 
 		Collect collect = new Collect();
 		collect.setAmount(amount);
+		collect.setBalanceNow(client.getDrawee() - amount);
 		collect.setDate(LocalDate.now().toString());
 		collect.setClient(client);
 
