@@ -11,11 +11,11 @@
 		<li class="nav-item active"><a class="nav-link" href="items-list">الرئيسية</a></li>
 
 		<li class="nav-item active"><a class="nav-link"
-			href="show-sell-bill-info"> فاتورة بيع</a></li>
+			href="show-sell-bill-info">فاتورة بيع</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link"
-			href="show-sell-bill-list"> فواتير البيع</a></li>
+			href="show-sell-bill-list">فواتير البيع</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link"
@@ -24,6 +24,13 @@
 
 		<li class="nav-item active"><a class="nav-link"
 			href="show-buy-bill-list">فواتير الشراء</a></li>
+
+		<li class="nav-item active"><a class="nav-link"
+			href="show-buy-bill-info">فاتورة مرتجع</a></li>
+
+
+		<li class="nav-item active"><a class="nav-link"
+			href="show-buy-bill-list">فواتير مرتجع</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link" href="spend-list">

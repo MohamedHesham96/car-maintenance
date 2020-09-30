@@ -15,6 +15,7 @@ import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
 import com.blue.soft.store.service.CompanyService;
@@ -37,6 +38,9 @@ public class BillBuyController {
 
 	@Autowired
 	BillBuyItemsService billBuyItemsService;
+
+	@Autowired
+	BankService bankService;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-buy-bill-info")

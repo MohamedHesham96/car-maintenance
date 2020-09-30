@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
@@ -34,6 +36,9 @@ public class BillSellController {
 
 	@Autowired
 	BillSellItemsService billSellItemsService;
+
+	@Autowired
+	BankService bankService;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-sell-bill-info")
@@ -57,25 +62,6 @@ public class BillSellController {
 			return "redirect:/show-add-to-sell-bill";
 		}
 
-	}
-
-	@RequestMapping("/show-add-to-sell-bill")
-	public String showAddToSellBill(Model theModel) {
-
-		theModel.addAttribute("item", new Item());
-// TO-DO 
-		// Change the method
-		BillSell billSell = billSellService.getLast();
-
-		float total = billSell.getTotal();
-
-		theModel.addAttribute("total", total);
-
-		// علشان اختار منها
-		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSell", billSell);
-
-		return "sell-bill";
 	}
 
 	// حفظ ببيانات الفاتورة
@@ -105,6 +91,25 @@ public class BillSellController {
 
 		return "redirect:/show-add-to-sell-bill";
 
+	}
+
+	@RequestMapping("/show-add-to-sell-bill")
+	public String showAddToSellBill(Model theModel) {
+
+		theModel.addAttribute("item", new Item());
+// TO-DO 
+		// Change the method
+		BillSell billSell = billSellService.getLast();
+
+		float total = billSell.getTotal();
+
+		theModel.addAttribute("total", total);
+
+		// علشان اختار منها
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("billSell", billSell);
+
+		return "sell-bill";
 	}
 
 	// اضافة فاتورة شراء
@@ -192,6 +197,7 @@ public class BillSellController {
 
 			Item item = billSellItem.getItem();
 
+			// تعديل كمية الصنف
 			item.setQuantity(item.getQuantity() - billSellItem.getQuantity());
 
 			itemService.addNewItem(item);
@@ -204,6 +210,13 @@ public class BillSellController {
 			Client client = billSell.getClient();
 			client.setDrawee(client.getDrawee() + total);
 			billSell.setClient(client);
+
+		} else {
+
+			Bank bank = bankService.getBank();
+
+			bank.setBalance(bank.getBalance() + total);
+			bank.setBalanceToday(bank.getBalanceToday() + total);
 		}
 
 		billSell.setSaved(true);

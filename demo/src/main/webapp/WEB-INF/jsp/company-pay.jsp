@@ -71,6 +71,7 @@
 						<tr>
 							<th class="col-2">المبلغ</th>
 							<th class="col-2">التاريخ</th>
+							<th class="col-2">الدين الحالي</th>
 						</tr>
 					</thead>
 
@@ -81,6 +82,8 @@
 
 								<td>${colllectTemp.amount}</td>
 								<td>${colllectTemp.date}</td>
+								<td>${colllectTemp.balanceNow}</td>
+
 
 							</tr>
 

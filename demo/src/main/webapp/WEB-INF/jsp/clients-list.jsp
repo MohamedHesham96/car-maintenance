@@ -27,12 +27,7 @@
 	<div style="text-align: center;" class="container">
 		<div dir="rtl" class="row">
 
-
 			<div class="">
-
-
-
-
 
 				<div>
 

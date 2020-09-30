@@ -37,10 +37,14 @@
 
 						<input name="companyName" value="الخزنة : ${150000}"
 							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
+							class="form-control btn-outline-primary text-center mb-2" />
+							
+							<input
 							name="companyName" value="الدين الخارجي : ${25100}"
 							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
+							class="form-control btn-outline-primary text-center mb-2" />
+							
+							<input
 							name="companyName"
 							value="التاريخ : <%=LocalDate.now().toString()%>"
 							disabled="disabled"

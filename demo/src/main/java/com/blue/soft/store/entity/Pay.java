@@ -23,6 +23,9 @@ public class Pay {
 	@Column(name = "amount")
 	private float amount;
 
+	@Column(name = "balance_now")
+	private float balanceNow;
+
 	@Column(name = "date")
 	private String date;
 
@@ -56,6 +59,14 @@ public class Pay {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public float getBalanceNow() {
+		return balanceNow;
+	}
+
+	public void setBalanceNow(float balanceNow) {
+		this.balanceNow = balanceNow;
 	}
 
 }

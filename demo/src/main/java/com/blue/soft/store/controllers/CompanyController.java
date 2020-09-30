@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Pay;
+import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.CompanyService;
 
 @Controller
@@ -18,6 +20,9 @@ public class CompanyController {
 
 	@Autowired
 	CompanyService companyService;
+
+	@Autowired
+	BankService bankService;
 
 	@RequestMapping("/companies-list")
 	public String showCompanies(Model theModel) {
@@ -64,13 +69,20 @@ public class CompanyController {
 			throw new Exception("مبلغ الدفع اكبر من الدين");
 
 		Pay pay = new Pay();
+		pay.setBalanceNow(company.getDrawee() - amount);
 		pay.setAmount(amount);
 		pay.setDate(LocalDate.now().toString());
 		pay.setCompany(company);
-		pay.setAmount(amount);
+
 		company.addPay(pay);
 		company.setDrawee(company.getDrawee() - amount);
 		companyService.addNewCompany(company);
+
+		Bank bank = bankService.getBank();
+		bank.setBalance(bank.getBalance() - amount);
+		bank.setBalanceToday(bank.getBalanceToday() - amount);
+
+		bankService.saveBank(bank);
 
 		theModel.addAttribute("company", company);
 

@@ -80,6 +80,22 @@ public class UpdateBillSellController {
 	public String showUpdateSellBill(Model theModel) {
 
 		BillSell billSell = billSellService.getBillSellByUpdateNow();
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+
+		int length = httpSession.getValueNames().length;
+
+		if (length < 3) {
+
+			httpSession.setAttribute("itemsSize", billSellItemsList.size());
+
+			int counter = 1;
+
+			for (BillSellItem billSellItem : billSellItemsList) {
+
+				httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
+						+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
+			}
+		}
 
 		float total = billSell.getTotal();
 
@@ -133,7 +149,6 @@ public class UpdateBillSellController {
 
 	}
 
-	// بيسمح اصناف من الفاتورة اللي بتتعدل
 	@RequestMapping("/update-sellBill")
 	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, RedirectAttributes attributes) {
 
@@ -213,21 +228,22 @@ public class UpdateBillSellController {
 
 	public void clearHttpSession(String sellBillId) {
 
-		int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
-
-		for (int i = 1; i <= size; i++) {
-
-			httpSession.removeAttribute(sellBillId + i);
-		}
-
-		httpSession.removeAttribute("itemsSize");
-
 		String[] names = httpSession.getValueNames();
 
-		for (String name : names) {
+		int length = names.length;
 
-			System.out.println(
-					"ClEAR_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
+		if (length > 2) {
+
+			int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
+
+			for (int i = 1; i <= size; i++) {
+
+				httpSession.removeAttribute(sellBillId + i);
+			}
+
+			httpSession.removeAttribute("itemsSize");
+
+		} else {
 
 		}
 
