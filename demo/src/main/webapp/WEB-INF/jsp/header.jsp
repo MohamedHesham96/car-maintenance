@@ -23,14 +23,14 @@
 
 
 		<li class="nav-item active"><a class="nav-link"
-			href="show-buy-bill-list">فواتير الشراء</a></li>
+			href="show-return-bill-list">فواتير الشراء</a></li>
 
 		<li class="nav-item active"><a class="nav-link"
-			href="show-buy-bill-info">فاتورة مرتجع</a></li>
+			href="show-return-bill-info">فاتورة مرتجع</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link"
-			href="show-buy-bill-list">فواتير مرتجع</a></li>
+			href="show-return-bill-list">فواتير مرتجع</a></li>
 
 
 		<li class="nav-item active"><a class="nav-link" href="spend-list">

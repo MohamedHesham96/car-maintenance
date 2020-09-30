@@ -30,7 +30,7 @@ public class Client {
 
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<BillSell> billReturnList;
+	private List<BillReturn> billReturnList;
 
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -85,11 +85,11 @@ public class Client {
 		collectList.add(collect);
 	}
 
-	public List<BillSell> getBillReturnList() {
+	public List<BillReturn> getBillReturnList() {
 		return billReturnList;
 	}
 
-	public void setBillReturnList(List<BillSell> billReturnList) {
+	public void setBillReturnList(List<BillReturn> billReturnList) {
 		this.billReturnList = billReturnList;
 	}
 
