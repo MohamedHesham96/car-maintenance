@@ -24,6 +24,9 @@ public class CompanyController {
 	@Autowired
 	BankService bankService;
 
+	@Autowired
+	BankController bankController;
+
 	@RequestMapping("/companies-list")
 	public String showCompanies(Model theModel) {
 
@@ -79,12 +82,9 @@ public class CompanyController {
 		company.addPay(pay);
 		company.setDrawee(company.getDrawee() - amount);
 		companyService.addNewCompany(company);
-
-		Bank bank = bankService.getBank();
-		bank.setBalance(bank.getBalance() - amount);
-		bank.setBalanceToday(bank.getBalanceToday() - amount);
-
-		bankService.saveBank(bank);
+		
+		// update the Bank
+		bankController.updateBankBalance("less", pay.getAmount());
 
 		theModel.addAttribute("company", company);
 

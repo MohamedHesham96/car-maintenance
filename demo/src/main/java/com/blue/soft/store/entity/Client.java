@@ -30,7 +30,11 @@ public class Client {
 
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	@OrderBy(value = "date DESC")
+	private List<BillSell> billReturnList;
+
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	@OrderBy(value = "time_stamp DESC")
 	private List<Collect> collectList;
 
 	public Client() {
@@ -79,6 +83,18 @@ public class Client {
 	public void addCollect(Collect collect) {
 
 		collectList.add(collect);
+	}
+
+	public List<BillSell> getBillReturnList() {
+		return billReturnList;
+	}
+
+	public void setBillReturnList(List<BillSell> billReturnList) {
+		this.billReturnList = billReturnList;
+	}
+
+	public void setBillSellList(List<BillSell> billSellList) {
+		this.billSellList = billSellList;
 	}
 
 }

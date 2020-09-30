@@ -26,7 +26,7 @@ public class Company {
 
 	@OneToMany(mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	@OrderBy(value = "date DESC")
+	@OrderBy(value = "time_stamp DESC")
 	private List<Pay> payList;
 
 	@OneToMany(mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,

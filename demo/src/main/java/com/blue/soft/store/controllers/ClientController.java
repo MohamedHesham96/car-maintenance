@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Collect;
+import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.ClientService;
 
 @Controller
@@ -18,6 +19,12 @@ public class ClientController {
 
 	@Autowired
 	ClientService clientService;
+
+	@Autowired
+	BankService bankService;
+
+	@Autowired
+	BankController bankController;
 
 	@RequestMapping("clients-list")
 	public String showClientsList(Model theModel) {
@@ -71,6 +78,13 @@ public class ClientController {
 
 		client.addCollect(collect);
 		client.setDrawee(client.getDrawee() - amount);
+
+//		Bank bank = bankService.getBank();
+//		bank.setBalance(bank.getBalance() + collect.getAmount());
+//		bank.setBalanceToday(bank.getBalanceToday() + collect.getAmount());
+//		bankService.saveBank(bank);
+
+		bankController.updateBankBalance("add", collect.getAmount());
 
 		clientService.addNewClient(client);
 

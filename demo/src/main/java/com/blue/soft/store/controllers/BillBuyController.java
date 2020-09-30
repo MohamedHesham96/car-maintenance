@@ -200,7 +200,7 @@ public class BillBuyController {
 
 			Item item = billBuyItem.getItem();
 
-			item.setQuantity(item.getQuantity() - billBuyItem.getQuantity());
+			item.setQuantity(item.getQuantity() + billBuyItem.getQuantity());
 
 			itemService.addNewItem(item);
 

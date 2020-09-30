@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
@@ -39,6 +38,9 @@ public class BillSellController {
 
 	@Autowired
 	BankService bankService;
+
+	@Autowired
+	BankController bankController;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-sell-bill-info")
@@ -213,10 +215,8 @@ public class BillSellController {
 
 		} else {
 
-			Bank bank = bankService.getBank();
-
-			bank.setBalance(bank.getBalance() + total);
-			bank.setBalanceToday(bank.getBalanceToday() + total);
+			// update the Bank
+			bankController.updateBankBalance("add", total);
 		}
 
 		billSell.setSaved(true);
