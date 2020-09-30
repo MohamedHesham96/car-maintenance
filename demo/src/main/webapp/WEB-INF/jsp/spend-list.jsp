@@ -35,12 +35,16 @@
 					</div>
 					<div class="card-body">
 
-						<input name="companyName" value="الخزنة : ${150000}"
+						<input name="companyName" value="الخزنة : ${bank.balance}"
+							disabled="disabled"
+							class="form-control btn-outline-primary text-center mb-2" />
+							
+							<input name="companyName" value="الخزنة اليوم : ${bank.balanceToday}"
 							disabled="disabled"
 							class="form-control btn-outline-primary text-center mb-2" />
 							
 							<input
-							name="companyName" value="الدين الخارجي : ${25100}"
+							name="companyName" value="رصيد الموردين  : ${bank.drawee}"
 							disabled="disabled"
 							class="form-control btn-outline-primary text-center mb-2" />
 							

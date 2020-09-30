@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Company {
@@ -25,6 +26,7 @@ public class Company {
 
 	@OneToMany(mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
+	@OrderBy(value = "date DESC")
 	private List<Pay> payList;
 
 	@OneToMany(mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,

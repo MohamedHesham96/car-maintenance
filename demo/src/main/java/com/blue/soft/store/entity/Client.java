@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Client {
@@ -29,6 +30,7 @@ public class Client {
 
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
+	@OrderBy(value = "date DESC")
 	private List<Collect> collectList;
 
 	public Client() {

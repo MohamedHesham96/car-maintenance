@@ -71,11 +71,12 @@
 						<tr>
 							<th class="col-2">المبلغ</th>
 							<th class="col-2">التاريخ</th>
-							<th class="col-2">الدين الحالي</th>
+							<th class="col-2">الرصيد</th>
 						</tr>
 					</thead>
 
 					<tbody>
+
 						<c:forEach var="colllectTemp" items="${client.collectList}">
 
 							<tr>
