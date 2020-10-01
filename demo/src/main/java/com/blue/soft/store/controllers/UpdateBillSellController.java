@@ -15,10 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.TempBillItemsService;
 
 @Controller
 public class UpdateBillSellController {
@@ -38,6 +40,9 @@ public class UpdateBillSellController {
 	@Autowired
 	BillSellItemsService billSellItemsService;
 
+	@Autowired
+	TempBillItemsService tempBillItemsService;
+
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-sell-bill-to-update")
 	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
@@ -51,26 +56,9 @@ public class UpdateBillSellController {
 
 		billSell.setUpdateNow(true);
 
-		int counter = 1;
-
 		billSellService.saveSellBill(billSell);
 
-		httpSession.setAttribute("itemsSize", billSellItemsList.size());
-
-		for (BillSellItem billSellItem : billSellItemsList) {
-
-			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
-					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
-		}
-
-		String[] names = httpSession.getValueNames();
-
-		for (String name : names) {
-
-			System.out.println(
-					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
-
-		}
+		tempBillItemsService.addBillSellItems(billSellItemsList);
 
 		return "redirect:/show-update-sell-bill";
 	}
@@ -158,7 +146,7 @@ public class UpdateBillSellController {
 
 		billSellService.saveSellBill(billSell);
 
-		clearHttpSession(sellBillId);
+		clearTempBillItems(billSell);
 
 		return "redirect:/show-sell-bill-list";
 
@@ -199,18 +187,31 @@ public class UpdateBillSellController {
 
 		}
 
-		int i = (int) httpSession.getAttribute("itemsSize");
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillSellItems(billSell.getId());
 
-		for (; i > 0; i--) {
+		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-			String[] splitItem = httpSession.getAttribute(billSell.getId() + i).toString().split("-");
+			Item theItem = itemService.getItemById(tempBillItem.getItemId());
 
-			BillSellItem billSellItem = new BillSellItem(billSell, itemService.getItemById(splitItem[0]),
-					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
-
-			billSellItemsService.addBillSellItem(billSellItem);
+			billSell.addBillSellItem(
+					new BillSellItem(billSell, theItem, tempBillItem.getQuantity(), tempBillItem.getPrice()));
 
 		}
+
+		billSellService.saveSellBill(billSell);
+
+//		int i = (int) httpSession.getAttribute("itemsSize");
+//
+//		for (; i > 0; i--) {
+//
+//			String[] splitItem = httpSession.getAttribute(billSell.getId() + i).toString().split("-");
+//
+//			BillSellItem billSellItem = new BillSellItem(billSell, itemService.getItemById(splitItem[0]),
+//					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
+//
+//			billSellItemsService.addBillSellItem(billSellItem);
+//
+//		}
 
 		return "redirect:/show-update-sell-bill";
 	}
@@ -218,12 +219,25 @@ public class UpdateBillSellController {
 	@RequestMapping("/delete-updateSellBill")
 	public String deleteSellBill(@RequestParam(name = "sellBillId") String sellBillId) {
 
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
 		billSellService.deleteSellBill(sellBillId);
 
-		clearHttpSession(sellBillId);
+		clearTempBillItems(billSell);
 
 		return "redirect:/show-sell-bill-info";
 
+	}
+
+	public void clearTempBillItems(BillSell billSell) {
+
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillSellItems(billSell.getId());
+
+		for (TempBillItem tempBillItem : tempBillItemsList) {
+
+			tempBillItemsService.deleteBillSellItem(tempBillItem.getId());
+
+		}
 	}
 
 	public void clearHttpSession(String sellBillId) {
@@ -248,4 +262,41 @@ public class UpdateBillSellController {
 		}
 
 	}
+
+//	@RequestMapping("/change-sell-bill-to-update")
+//	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
+//
+//		BillSell billSell = billSellService.getBillSellById(sellBillId);
+//
+//		if (billSell.isUpdateNow())
+//			return "redirect:/show-update-sell-bill";
+//
+//		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+//
+//		billSell.setUpdateNow(true);
+//
+//		int counter = 1;
+//
+//		billSellService.saveSellBill(billSell);
+//
+//		httpSession.setAttribute("itemsSize", billSellItemsList.size());
+//
+//		for (BillSellItem billSellItem : billSellItemsList) {
+//
+//			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
+//					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
+//		}
+//
+//		String[] names = httpSession.getValueNames();
+//
+//		for (String name : names) {
+//
+//			System.out.println(
+//					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
+//
+//		}
+//
+//		return "redirect:/show-update-sell-bill";
+//	}
+
 }

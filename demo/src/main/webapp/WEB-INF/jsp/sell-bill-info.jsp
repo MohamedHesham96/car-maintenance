@@ -53,7 +53,6 @@
 							</select>
 						</div>
 
-
 						<label>آجل</label> <input type="checkbox" name="late">
 
 						<button type="submit" class="btn btn-outline-primary btn-lg w-100">
