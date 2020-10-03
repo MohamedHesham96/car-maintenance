@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
-import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillReturnItemsService;
@@ -154,7 +152,7 @@ public class UpdateBillReturnController {
 
 	}
 
-	@RequestMapping("/retrive-UpdateReturnBill")
+	@RequestMapping("/retrieve-UpdateReturnBill")
 	public String retriveUpdateReturnBill(@RequestParam(name = "returnBillId") String returnBillId, Model theModel) {
 
 		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);

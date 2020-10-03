@@ -3,6 +3,8 @@ package com.blue.soft.store.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +17,13 @@ import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class BillSellController {
@@ -40,7 +44,13 @@ public class BillSellController {
 	BankService bankService;
 
 	@Autowired
+	UserService userService;
+
+	@Autowired
 	BankController bankController;
+
+	@Autowired
+	HttpSession httpSession;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-sell-bill-info")
@@ -71,10 +81,17 @@ public class BillSellController {
 	public String saveSellBillInfo(@RequestParam(name = "late", defaultValue = "off") String late,
 			@RequestParam(name = "clientId") String clientid) {
 
+		User theUser = (User) httpSession.getAttribute("user");
+
+		theUser = userService.getUserById(theUser.getId());
+
 		BillSell billSell = new BillSell();
 
 		billSell.setDate(LocalDate.now().toString());
+
 		billSell.setClient(clientService.getClientById(clientid));
+		billSell.setUser(theUser);
+
 		billSell.setLate("on".equals(late) ? true : false);
 
 		BillSell lastBillSell = billSellService.getLast();

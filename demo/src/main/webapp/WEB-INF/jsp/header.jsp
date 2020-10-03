@@ -52,6 +52,17 @@
 		<li class="btn-sm btn-info font-weight-bold nav-item active mr-1"><a
 			class="nav-link" href="#">التقرير</a></li>
 
+		<li class="text-white mr-1 " style="font-size: 30px">|</li>
+
+
+		<li class="btn-sm btn-danger font-weight-bold nav-item active mr-1"><a
+			class="nav-link" href="logout"
+			onclick="return confirm('هل انت متأكد من الخروج ؟')"> <%=session.getAttribute("user").toString()%>
+				| خروج
+		</a></li>
+
+
+
 	</ul>
 
 </nav>

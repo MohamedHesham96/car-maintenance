@@ -137,7 +137,7 @@
 
 						<a href="delete-buyBill?buyBillId=${billBuy.id}"
 							class="btn btn-danger "
-							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
+							onclick="return confirm('هل انت متأكد من حذف الفاتورة ؟')">
 							حذف </a>
 
 

@@ -149,8 +149,8 @@ public class UpdateBillBuyController {
 
 	}
 
-	@RequestMapping("/retrive-UpdateBuyBill")
-	public String retriveUpdateBuyBill(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
+	@RequestMapping("/retrieve-UpdateBuyBill")
+	public String retrieveUpdateBuyBill(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 

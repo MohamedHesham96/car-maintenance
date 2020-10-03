@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الأصناف</title>
+<title>طباعة فاتورة بيع</title>
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -109,7 +109,6 @@
 
 							<td>الوحدة : ${billSell.client.name}</td>
 
-
 						</tr>
 
 					</tbody>
@@ -164,7 +163,7 @@
 
 						<tr>
 
-							<td colspan="" style="font-size: 25px">اجمالي الفاتورة:</td>
+							<td colspan="" style="font-size: 25px">اجمالي الفاتورة :</td>
 
 							<td colspan="2"><fmt:formatNumber value="${total}"
 									maxFractionDigits="2" /> [جنيه مصري]</td>
@@ -173,13 +172,14 @@
 					</tbody>
 				</table>
 
-				<table class="table  table-lg table-bordered"
+				<table class="table table-striped table-lg table-bordered"
 					style="width: 100%; font-size: 25px">
 
 					<tbody>
 						<tr>
 
-							<td>حالة الفاتورة: ${billSell.late ? "آجل" : "نـقـــدي"}</td>
+							<td>حالة الفاتورة : ${billSell.late ? "آجل" : "نـقـــدي"}</td>
+
 
 							<td>المدفوع : <fmt:formatNumber value="${total}"
 									maxFractionDigits="2" /></td>
@@ -188,6 +188,18 @@
 
 
 						</tr>
+
+						<tr>
+
+							<td colspan="2">الرصيد الحالي : ${billSell.client.drawee}</td>
+
+							<td>البائع : ${billSell.user.name}</td>
+
+
+
+
+						</tr>
+
 
 					</tbody>
 

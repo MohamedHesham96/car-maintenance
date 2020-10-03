@@ -41,6 +41,10 @@ public class BillSell {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private List<BillSellItem> billSellItems;
@@ -75,6 +79,14 @@ public class BillSell {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getDate() {

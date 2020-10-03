@@ -156,7 +156,7 @@ function showUpdateForm(btn, id) {
 
 					<form:form>
 
-						<a href="retrive-UpdateSellBill?sellBillId=${billSell.id}"
+						<a href="retrieve-UpdateSellBill?sellBillId=${billSell.id}"
 							class="btn btn-warning "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>

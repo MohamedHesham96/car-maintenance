@@ -70,14 +70,10 @@ function showUpdateForm(btn, id) {
 
 					<input disabled="disabled"
 						value=" رقم الفاتورة : B - ${billBuy.id}"
-						class="form-control text-center btn-outline-primary mb-2" /> 
-						
-						<input
+						class="form-control text-center btn-outline-primary mb-2" /> <input
 						disabled="disabled"
 						value="التاريخ : <%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary mb-2" /> 
-						
-						<input
+						class="form-control text-center btn-outline-primary mb-2" /> <input
 						disabled="disabled" value="اسم الوحدة : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-primary mb-2" />
 
@@ -161,7 +157,7 @@ function showUpdateForm(btn, id) {
 
 					<form:form>
 
-						<a href="retrive-UpdateBuyBill?buyBillId=${billBuy.id}"
+						<a href="retrieve-UpdateBuyBill?buyBillId=${billBuy.id}"
 							class="btn btn-warning "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
