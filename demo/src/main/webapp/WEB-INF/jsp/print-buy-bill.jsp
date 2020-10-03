@@ -14,14 +14,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الأصناف</title>
+<title>طباعة</title>
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <script type="text/javascript">
 	function PrintElem() {
-		var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+		var mywindow = window.open('', 'PRINT', 'height=400, width=600');
 
 		mywindow.document.write('<body > ');
 		mywindow.document.write('<h1>' + document.title + '</h1>');

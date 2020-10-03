@@ -23,7 +23,7 @@ public class UserService {
 		if (theUser != null) {
 
 			httpSession.setAttribute("user", theUser);
-			httpSession.setMaxInactiveInterval(10 * 60);
+			httpSession.setMaxInactiveInterval(30 * 60);
 			return true;
 
 		} else {

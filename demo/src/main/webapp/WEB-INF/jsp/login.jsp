@@ -19,7 +19,7 @@
 
 	<div style="text-align: center;" class="container shadow mt-4">
 
-		<div dir="rtl" class="row " style="">
+		<div dir="rtl" class="row">
 
 			<div class="card border-primary float-left w-25 shadow"
 				style="margin: 0; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">
