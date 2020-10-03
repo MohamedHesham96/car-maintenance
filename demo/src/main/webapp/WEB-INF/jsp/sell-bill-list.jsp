@@ -88,7 +88,7 @@
 
 
 
-			<div class="mr-4 col-8 ">
+			<div class="mr-4 col-8">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
@@ -97,10 +97,11 @@
 
 						<thead>
 							<tr>
-								<th>الرقم</th>
-								<th>الوحدة</th>
-								<th>النوع</th>
-								<th>التاريخ</th>
+								<th class="col-2">الرقم</th>
+								<th class="col-2">الوحدة</th>
+								<th class="col-2">النوع</th>
+								<th class="col-2">التاريخ</th>
+								<th class="col-2"></th>
 							</tr>
 						</thead>
 
@@ -115,9 +116,13 @@
 									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
 									<td>${billTemp.date}</td>
 
-									<td><a
-										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
+
+									<td><a href="view-sell-bill?sellBillId=${billTemp.id}"
+										type="button" class="btn btn-outline-secondary btn-sm">عرض</a>
+
+										<a href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
 										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
+
 									</td>
 								</tr>
 

@@ -59,45 +59,69 @@ function showUpdateForm(btn, id) {
 	<br>
 
 	<div style="text-align: center;" class=" ">
-
+		<!-- style="width: 90%; position: absolute; top: 55%; left: 45%; transform: translate(-50%, -50%);" -->
 		<div dir="rtl" class="row mr-lg-2 ">
+			<div class="card border-primary " style="max-width: 20rem;">
+				<div class="card-header ">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'  }
 
-			<div class="card border-primary" style="max-width: 20rem;">
-				<div class="card-header ">
-					<h5>أضافة للفاتور</h5>
 				</div>
 				<div class="card-body">
 
 					<label>رقم الفاتورة</label> <input disabled="disabled"
 						value="S - ${billSell.id}"
 						class="form-control text-center btn-outline-primary" /> <label>التاريخ</label>
+					
+					
+					
 					<input disabled="disabled" value="<%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary" /> <label>
-						اسم الوحدة </label> <input disabled="disabled"
+						class="form-control text-center btn-outline-primary" /> 
+						
+						
+						<label>
+						اسم الوحدة </label> 
+						
+					<input disabled="disabled"
 						value="${billSell.client.name}"
 						class="form-control text-center btn-outline-primary" />
+				
+				<div ${view ? '' :  'hidden'  }>
+				
+				
+						<label>
+						اسم البائع </label> 
+						
+						<input disabled="disabled" value="${billSell.user.name}"
+						class="form-control text-center btn-outline-primary" /> 
+						
+						
+				 </div>
+						
+						
+						
+						
+				
+					<div ${view ? 'hidden' :  ''  }>
+						<form:form method="get" action="add-item-to-update-sell-bill"
+							modelAttribute="item">
 
-					<form:form method="get" action="add-item-to-update-sell-bill"
-						modelAttribute="item">
+							<div class="form-group">
+								<label>اسم الصنف</label>
+								<form:select class="form-control text-center " path="id">
+									<form:options items="${itemsList}" itemLabel="name" />
+								</form:select>
+							</div>
 
-						<div class="form-group">
-							<label>اسم الصنف</label>
-							<form:select class="form-control text-center " path="id">
-								<form:options items="${itemsList}" itemLabel="name" />
-							</form:select>
-						</div>
+							<div class="form-group">
+								<label>الكمية</label>
+								<form:input path="quantity" class="form-control text-center" />
+							</div>
 
-						<div class="form-group">
-							<label>الكمية</label>
-							<form:input path="quantity" class="form-control text-center" />
-						</div>
-
-						<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
-							للفاتورة</button>
+							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+								للفاتورة</button>
 
 
-					</form:form>
-
+						</form:form>
+					</div>
 				</div>
 			</div>
 
@@ -130,7 +154,9 @@ function showUpdateForm(btn, id) {
 											value="${itemTemp.sellPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td><button type="button"
+									<td ${view ? 'hidden' :  ''  }> 
+									
+									<button type="button"
 											class="btn btn-outline-primary btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 
@@ -156,7 +182,8 @@ function showUpdateForm(btn, id) {
 
 					<form:form>
 
-						<a href="retrieve-UpdateSellBill?sellBillId=${billSell.id}"
+						<a ${view ? 'hidden' :  ''  }
+							href="retrieve-UpdateSellBill?sellBillId=${billSell.id}"
 							class="btn btn-warning "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
@@ -166,7 +193,8 @@ function showUpdateForm(btn, id) {
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء الفاتورة </a>
 
-						<a href="update-sellBill?sellBillId=${billSell.id}"
+						<a ${view ? 'hidden' :  ''  }
+							href="update-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
 							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							تحديث</a>
@@ -183,7 +211,8 @@ function showUpdateForm(btn, id) {
 			</div>
 
 
-			<div class="card border-primary" style="max-width: 20rem;">
+			<div ${view ? 'hidden' :  ''  } class="card border-primary"
+				style="max-width: 20rem;">
 				<div class="card-header ">
 					<h5>تعديل الصنف</h5>
 				</div>

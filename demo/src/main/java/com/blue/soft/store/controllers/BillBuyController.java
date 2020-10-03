@@ -35,9 +35,6 @@ public class BillBuyController {
 	BillBuyService billBuyService;
 
 	@Autowired
-	CompanyService compnyService;
-
-	@Autowired
 	CompanyService companyService;
 
 	@Autowired
@@ -64,7 +61,7 @@ public class BillBuyController {
 
 		if (lastBillBuy == null || lastBillBuy.isSaved()) {
 
-			theModel.addAttribute("companiesList", compnyService.getAllCompanies());
+			theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
 			return "buy-bill-info";
 		}
@@ -126,6 +123,23 @@ public class BillBuyController {
 
 		return "redirect:/show-add-to-buy-bill";
 
+	}
+
+	@RequestMapping("/view-buy-bill")
+	public String viewbuyBill(@RequestParam("buyBillId") String buyBillId, Model theModel) {
+
+		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
+
+		float total = billBuy.getTotal();
+
+		theModel.addAttribute("view", true);
+		theModel.addAttribute("total", total);
+		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billBuy", billBuy);
+		theModel.addAttribute("updateItem", new BillBuyItem());
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+
+		return "update-buy-bill";
 	}
 
 	// اضافة فاتورة شراء
@@ -238,7 +252,7 @@ public class BillBuyController {
 	@RequestMapping("/search-buy-bill-by-companyId")
 	public String searchForBuyBillByCompanyId(@RequestParam(name = "companyId") String companyId, Model theModel) {
 
-		theModel.addAttribute("companiesList", compnyService.getAllCompanies());
+		theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
 		theModel.addAttribute("billBuyList", companyService.getCompanyById(companyId).getBillBuyList());
 
@@ -248,7 +262,7 @@ public class BillBuyController {
 	@RequestMapping("/search-buy-bill-by-id")
 	public String searchForBuyBillById(@RequestParam(name = "billId") String billId, Model theModel) {
 
-		theModel.addAttribute("companiesList", compnyService.getAllCompanies());
+		theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
 		theModel.addAttribute("billBuyList", billBuyService.getBillBuyContainingId(billId));
 

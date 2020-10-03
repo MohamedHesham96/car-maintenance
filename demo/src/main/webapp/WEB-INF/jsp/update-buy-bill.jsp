@@ -63,42 +63,55 @@ function showUpdateForm(btn, id) {
 		<div dir="rtl" class="row mr-lg-2 ">
 
 			<div class="card border-primary" style="max-width: 20rem;">
-				<div class="card-header ">
-					<h5>أضافة للفاتور</h5>
+				<div class="card-header ">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'}
+
 				</div>
 				<div class="card-body">
 
 					<input disabled="disabled"
 						value=" رقم الفاتورة : B - ${billBuy.id}"
-						class="form-control text-center btn-outline-primary mb-2" /> <input
+						class="form-control text-center btn-outline-primary mb-2" /> 
+						
+						
+						<input
 						disabled="disabled"
 						value="التاريخ : <%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary mb-2" /> <input
+						class="form-control text-center btn-outline-primary mb-2" />
+						
+						 <input
 						disabled="disabled" value="اسم الوحدة : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-primary mb-2" />
 
-					<form:form method="get" action="add-item-to-update-buy-bill"
-						modelAttribute="item">
+						 <input  ${view ? '' :  'hidden'  }
+						disabled="disabled" value="اسم البائع : ${billBuy.user.name}"
+						class="form-control text-center btn-outline-primary mb-2" />
 
 
-						<div class="form-group">
-							<label>اسم الصنف</label>
-							<form:select class="form-control text-center " path="id">
-								<form:options items="${itemsList}" itemLabel="name" />
-							</form:select>
-						</div>
-
-						<div class="form-group">
-							<label>الكمية</label>
-							<form:input path="quantity" class="form-control text-center" />
-						</div>
-
-						<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
-							للفاتورة</button>
+					<div ${view ? 'hidden' :  ''  }>
 
 
-					</form:form>
+						<form:form method="get" action="add-item-to-update-buy-bill"
+							modelAttribute="item">
 
+
+							<div class="form-group">
+								<label>اسم الصنف</label>
+								<form:select class="form-control text-center " path="id">
+									<form:options items="${itemsList}" itemLabel="name" />
+								</form:select>
+							</div>
+
+							<div class="form-group">
+								<label>الكمية</label>
+								<form:input path="quantity" class="form-control text-center" />
+							</div>
+
+							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+								للفاتورة</button>
+
+
+						</form:form>
+					</div>
 				</div>
 			</div>
 
@@ -131,7 +144,7 @@ function showUpdateForm(btn, id) {
 											value="${itemTemp.buyPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td><button type="button"
+									<td ${view ? 'hidden' :  ''  }><button type="button"
 											class="btn btn-outline-primary btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 
@@ -157,7 +170,8 @@ function showUpdateForm(btn, id) {
 
 					<form:form>
 
-						<a href="retrieve-UpdateBuyBill?buyBillId=${billBuy.id}"
+						<a ${view ? 'hidden' :  ''  }
+							href="retrieve-UpdateBuyBill?buyBillId=${billBuy.id}"
 							class="btn btn-warning "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
@@ -167,7 +181,8 @@ function showUpdateForm(btn, id) {
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء الفاتورة </a>
 
-						<a href="update-buyBill?buyBillId=${billBuy.id}"
+						<a ${view ? 'hidden' :  ''  }
+							href="update-buyBill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
 							class="btn btn-success ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							تحديث</a>
@@ -185,7 +200,8 @@ function showUpdateForm(btn, id) {
 			</div>
 
 
-			<div class="card border-primary" style="max-width: 20rem;">
+			<div ${view ? 'hidden' :  ''  } class="card border-primary"
+				style="max-width: 20rem;">
 				<div class="card-header ">
 					<h5>تعديل الصنف</h5>
 				</div>

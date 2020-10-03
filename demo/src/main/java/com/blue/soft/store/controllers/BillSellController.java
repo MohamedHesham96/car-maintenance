@@ -160,6 +160,24 @@ public class BillSellController {
 		return "redirect:/show-add-to-sell-bill";
 	}
 
+	// بيعرض صفحة التعديل على الفاتورة
+	@RequestMapping("/view-sell-bill")
+	public String viewSellBill(@RequestParam("sellBillId") String sellBillId, Model theModel) {
+
+		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
+		float total = billSell.getTotal();
+
+		theModel.addAttribute("view", true);
+		theModel.addAttribute("total", total);
+		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billSell", billSell);
+		theModel.addAttribute("updateItem", new BillSellItem());
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+
+		return "update-sell-bill";
+	}
+
 	@RequestMapping("/show-sell-bill-list")
 	public String showSellBillList(Model theModel, RedirectAttributes attributes) {
 

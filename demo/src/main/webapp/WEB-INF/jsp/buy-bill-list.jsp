@@ -114,8 +114,10 @@
 									<td>${billTemp.company.name}</td>
 									<td>${billTemp.date}</td>
 
-									<td><a
-										href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
+									<td><a href="view-buy-bill?buyBillId=${billTemp.id}"
+										type="button" class="btn btn-outline-secondary btn-sm">عرض</a>
+
+										<a href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
 										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
 									</td>
 								</tr>
