@@ -245,7 +245,7 @@ public class BillBuyController {
 
 		billBuyService.saveBuyBill(billBuy);
 
-		return "redirect:/items-list";
+		return "redirect:/show-buy-bill-list";
 
 	}
 

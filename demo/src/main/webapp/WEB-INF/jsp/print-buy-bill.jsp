@@ -172,6 +172,7 @@
 					<tbody>
 						<tr>
 
+							<td>نوع الفاتورة : مشتريات</td>
 
 							<td>المدفوع : <fmt:formatNumber value="${total}"
 									maxFractionDigits="2" /></td>

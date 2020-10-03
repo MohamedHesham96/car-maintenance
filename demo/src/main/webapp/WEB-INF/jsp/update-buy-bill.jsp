@@ -182,7 +182,7 @@ function showUpdateForm(btn, id) {
 							إلغاء الفاتورة </a>
 
 						<a ${view ? 'hidden' :  ''  }
-							href="update-buyBill?buyBillId=${billBuy.id}"
+							href="save-buyBill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
 							class="btn btn-success ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							تحديث</a>

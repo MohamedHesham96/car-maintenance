@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
+import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillBuyItemsService;
@@ -55,6 +56,23 @@ public class UpdateBillBuyController {
 		List<BillBuyItem> billBuyItemsList = billBuy.getBillBuyItems();
 
 		billBuy.setUpdateNow(true);
+
+		float total = 0;
+
+		for (BillBuyItem billBuyItem : billBuyItemsList) {
+
+			Item item = billBuyItem.getItem();
+
+			item.setQuantity(item.getQuantity() - billBuyItem.getQuantity());
+
+			itemService.addNewItem(item);
+			total += billBuyItem.getBuyPrice() * billBuyItem.getQuantity();
+
+		}
+
+		Company company = billBuy.getCompany();
+		company.setDrawee(company.getDrawee() - total);
+		billBuy.setCompany(company);
 
 		billBuyService.saveBuyBill(billBuy);
 
@@ -124,6 +142,25 @@ public class UpdateBillBuyController {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 
+		List<BillBuyItem> billBuyItemsList = billBuy.getBillBuyItems();
+
+		float total = 0;
+
+		for (BillBuyItem billBuyItem : billBuyItemsList) {
+
+			Item item = billBuyItem.getItem();
+
+			item.setQuantity(item.getQuantity() + billBuyItem.getQuantity());
+
+			itemService.addNewItem(item);
+
+			total += billBuyItem.getBuyPrice() * billBuyItem.getQuantity();
+		}
+
+		Company company = billBuy.getCompany();
+		company.setDrawee(company.getDrawee() + total);
+		billBuy.setCompany(company);
+
 		billBuy.setUpdateNow(false);
 
 		billBuyService.saveBuyBill(billBuy);
@@ -141,6 +178,7 @@ public class UpdateBillBuyController {
 		BillBuyItem oldBSItem = billBuyItemsService.getBillBuyItem(buyBillItem.getId());
 
 		oldBSItem.setQuantity(buyBillItem.getQuantity());
+
 		oldBSItem.setBuyPrice(buyBillItem.getBuyPrice());
 
 		billBuyItemsService.addBillBuyItem(oldBSItem);

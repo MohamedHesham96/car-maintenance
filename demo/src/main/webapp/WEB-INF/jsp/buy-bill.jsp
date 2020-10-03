@@ -126,8 +126,8 @@
 
 
 				<span class="btn btn-outline-success float-right mt-sm-4">
-					اجمالي: ${total}</span>
-
+					اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />
+				</span>
 
 
 				<div class="float-left pt-sm-4 ">
