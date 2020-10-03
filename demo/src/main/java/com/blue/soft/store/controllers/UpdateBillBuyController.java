@@ -46,7 +46,7 @@ public class UpdateBillBuyController {
 
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-buy-bill-to-update")
-	public String changeSellBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
+	public String changebuyBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 
@@ -226,9 +226,13 @@ public class UpdateBillBuyController {
 	@RequestMapping("/delete-updateBuyBill")
 	public String deleteBuyBill(@RequestParam(name = "buyBillId") String buyBillId) {
 
+		BillBuy billbuy = billBuyService.getBillBuyById(buyBillId);
+
 		billBuyService.deleteBuyBill(buyBillId);
 
-		return "redirect:/show-buy-bill-info";
+		clearTempBillItems(billbuy);
+
+		return "redirect:/show-buy-bill-list";
 
 	}
 

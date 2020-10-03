@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
+import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillSellItemsService;
@@ -38,6 +39,9 @@ public class UpdateBillSellController {
 	CompanyService companyService;
 
 	@Autowired
+	BankController bankController;
+
+	@Autowired
 	BillSellItemsService billSellItemsService;
 
 	@Autowired
@@ -55,6 +59,32 @@ public class UpdateBillSellController {
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
 		billSell.setUpdateNow(true);
+
+		float total = 0;
+
+		for (BillSellItem billSellItem : billSellItemsList) {
+
+			Item item = billSellItem.getItem();
+
+			// تعديل كمية الصنف
+			item.setQuantity(item.getQuantity() + billSellItem.getQuantity());
+
+			itemService.addNewItem(item);
+
+			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+		}
+
+		if (billSell.isLate()) {
+
+			Client client = billSell.getClient();
+			client.setDrawee(client.getDrawee() - total);
+			billSell.setClient(client);
+
+		} else {
+
+			// update the Bank
+			bankController.updateBankBalance("less", total);
+		}
 
 		billSellService.saveSellBill(billSell);
 
@@ -81,8 +111,6 @@ public class UpdateBillSellController {
 
 		return "update-sell-bill";
 	}
-
-	
 
 	// بيضيف صنف للفاتورة اللي بتتعدل
 	@RequestMapping("/add-item-to-update-sell-bill")
@@ -127,8 +155,35 @@ public class UpdateBillSellController {
 	public String updateSellBill(@RequestParam(name = "sellBillId") String sellBillId, RedirectAttributes attributes) {
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
 		billSell.setUpdateNow(false);
+
+		float total = 0;
+
+		for (BillSellItem billSellItem : billSellItemsList) {
+
+			Item item = billSellItem.getItem();
+
+			// تعديل كمية الصنف
+			item.setQuantity(item.getQuantity() - billSellItem.getQuantity());
+
+			itemService.addNewItem(item);
+
+			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+		}
+
+		if (billSell.isLate()) {
+
+			Client client = billSell.getClient();
+			client.setDrawee(client.getDrawee() + total);
+			billSell.setClient(client);
+
+		} else {
+
+			// update the Bank
+			bankController.updateBankBalance("add", total);
+		}
 
 		billSellService.saveSellBill(billSell);
 
@@ -145,6 +200,7 @@ public class UpdateBillSellController {
 		BillSellItem oldBSItem = billSellItemsService.getBillSellItem(sellBillItem.getId());
 
 		oldBSItem.setQuantity(sellBillItem.getQuantity());
+
 		oldBSItem.setSellPrice(sellBillItem.getSellPrice());
 
 		billSellItemsService.addBillSellItem(oldBSItem);
