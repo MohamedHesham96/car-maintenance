@@ -24,7 +24,6 @@ public class ItemController {
 
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
 		return "items-list";
 	}

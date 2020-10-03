@@ -97,10 +97,10 @@
 
 						<thead>
 							<tr>
-								<th>الرقم</th>
-								<th>الوحدة</th>
-								<th>النوع</th>
-								<th>التاريخ</th>
+								<th class="col-2">الرقم</th>
+								<th class="col-2">الوحدة</th>
+								<th class="col-2">التاريخ</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 

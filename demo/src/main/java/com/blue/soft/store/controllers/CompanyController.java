@@ -81,13 +81,21 @@ public class CompanyController {
 		company.addPay(pay);
 		company.setDrawee(company.getDrawee() - amount);
 		companyService.addNewCompany(company);
-		
+
 		// update the Bank
 		bankController.updateBankBalance("less", pay.getAmount());
 
 		theModel.addAttribute("company", company);
 
 		return "company-pay";
+	}
+
+	@RequestMapping("/show-company-bills-list")
+	public String showCompanyBillsList(@RequestParam(name = "companyId") String companyId, Model theModel) {
+
+		theModel.addAttribute("company", companyService.getCompanyById(companyId));
+
+		return "company-buy-bill-list";
 	}
 
 }

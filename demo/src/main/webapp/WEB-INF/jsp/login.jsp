@@ -11,11 +11,23 @@
 
 
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/lumen/_bootswatch.scss"
 	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/lumen/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/lumen/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/lumen/bootstrap.css"
+	rel="stylesheet">
+
 
 </head>
 <body>
+
 
 	<div style="text-align: center;" class="container shadow mt-4">
 

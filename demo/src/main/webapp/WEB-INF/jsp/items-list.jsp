@@ -85,7 +85,8 @@
 			<div>
 				<div class="row" id="add-form">
 
-					<div class="card border-primary" style="max-width: 20rem;">
+
+					<div class="card border-primary " style="max-width: 20rem;">
 						<div class="card-header">
 							<h4>اضافة صنف</h4>
 						</div>

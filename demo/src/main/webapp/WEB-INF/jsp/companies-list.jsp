@@ -107,7 +107,8 @@
 										class="btn btn-primary btn-sm"
 										href="show-pays-company?companyId=${companyTemp.id}">الدفع</a>
 
-										<button type="button" class="btn btn-success btn-sm">الفواتير</button>
+										<a type="button" class="btn btn-success btn-sm"
+										href="show-company-bills-list?companyId=${companyTemp.id}">الفواتير</a>
 									</td>
 
 								</tr>

@@ -4,7 +4,7 @@
 
 
 <nav dir="rtl" style="align-items: flex-end;"
-	class="navbar navbar-expand-lg navbar-dark bg-info">
+	class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 	<ul class="navbar-nav mr-auto">
 
