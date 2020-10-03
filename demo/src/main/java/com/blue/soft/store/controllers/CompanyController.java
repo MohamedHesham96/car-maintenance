@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Pay;
 import com.blue.soft.store.service.BankService;

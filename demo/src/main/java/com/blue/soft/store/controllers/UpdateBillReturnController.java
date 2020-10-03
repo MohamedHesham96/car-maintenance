@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
+import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillReturnItemsService;
 import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.TempBillItemsService;
 
 @Controller
 public class UpdateBillReturnController {
@@ -38,6 +42,9 @@ public class UpdateBillReturnController {
 	@Autowired
 	BillReturnItemsService billReturnItemsService;
 
+	@Autowired
+	TempBillItemsService tempBillItemsService;
+
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-return-bill-to-update")
 	public String changeReturnBillToUpdate(@RequestParam(name = "returnBillId") String returnBillId, Model theModel) {
@@ -51,26 +58,9 @@ public class UpdateBillReturnController {
 
 		billReturn.setUpdateNow(true);
 
-		int counter = 1;
-
 		billReturnService.saveReturnBill(billReturn);
 
-		httpSession.setAttribute("itemsSize", billReturnItemsList.size());
-
-		for (BillReturnItem billReturnItem : billReturnItemsList) {
-
-			httpSession.setAttribute(billReturn.getId() + counter++, billReturnItem.getItem().getId() + "-"
-					+ billReturnItem.getQuantity() + "-" + billReturnItem.getReturnPrice());
-		}
-
-		String[] names = httpSession.getValueNames();
-
-		for (String name : names) {
-
-			System.out.println(
-					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
-
-		}
+		tempBillItemsService.addBillReturnItems(billReturnItemsList);
 
 		return "redirect:/show-update-return-bill";
 	}
@@ -80,22 +70,6 @@ public class UpdateBillReturnController {
 	public String showUpdateReturnBill(Model theModel) {
 
 		BillReturn billReturn = billReturnService.getBillReturnByUpdateNow();
-		List<BillReturnItem> billReturnItemsList = billReturn.getBillReturnItems();
-
-		int length = httpSession.getValueNames().length;
-
-		if (length < 3) {
-
-			httpSession.setAttribute("itemsSize", billReturnItemsList.size());
-
-			int counter = 1;
-
-			for (BillReturnItem billReturnItem : billReturnItemsList) {
-
-				httpSession.setAttribute(billReturn.getId() + counter++, billReturnItem.getItem().getId() + "-"
-						+ billReturnItem.getQuantity() + "-" + billReturnItem.getReturnPrice());
-			}
-		}
 
 		float total = billReturn.getTotal();
 
@@ -103,9 +77,9 @@ public class UpdateBillReturnController {
 
 		theModel.addAttribute("total", total);
 		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billReturn", billReturn);
 		theModel.addAttribute("updateItem", new BillReturnItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billReturn", billReturn);
 
 		return "update-return-bill";
 	}
@@ -159,7 +133,7 @@ public class UpdateBillReturnController {
 
 		billReturnService.saveReturnBill(billReturn);
 
-		clearHttpSession(returnBillId);
+		clearTempBillItems(billReturn);
 
 		return "redirect:/show-return-bill-list";
 
@@ -200,18 +174,18 @@ public class UpdateBillReturnController {
 
 		}
 
-		int i = (int) httpSession.getAttribute("itemsSize");
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billReturn.getId(), "returnBill");
 
-		for (; i > 0; i--) {
+		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-			String[] splitItem = httpSession.getAttribute(billReturn.getId() + i).toString().split("-");
+			Item theItem = itemService.getItemById(tempBillItem.getItemId());
 
-			BillReturnItem billReturnItem = new BillReturnItem(billReturn, itemService.getItemById(splitItem[0]),
-					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
-
-			billReturnItemsService.addBillReturnItem(billReturnItem);
+			billReturn.addBillReturnItem(
+					new BillReturnItem(billReturn, theItem, tempBillItem.getQuantity(), tempBillItem.getPrice()));
 
 		}
+
+		billReturnService.saveReturnBill(billReturn);
 
 		return "redirect:/show-update-return-bill";
 	}
@@ -219,34 +193,24 @@ public class UpdateBillReturnController {
 	@RequestMapping("/delete-updateReturnBill")
 	public String deleteReturnBill(@RequestParam(name = "returnBillId") String returnBillId) {
 
+		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);
+
 		billReturnService.deleteReturnBill(returnBillId);
 
-		clearHttpSession(returnBillId);
+		clearTempBillItems(billReturn);
 
 		return "redirect:/show-return-bill-info";
 
 	}
 
-	public void clearHttpSession(String returnBillId) {
+	public void clearTempBillItems(BillReturn billReturn) {
 
-		String[] names = httpSession.getValueNames();
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billReturn.getId(), "returnBill");
 
-		int length = names.length;
+		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-		if (length > 2) {
-
-			int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
-
-			for (int i = 1; i <= size; i++) {
-
-				httpSession.removeAttribute(returnBillId + i);
-			}
-
-			httpSession.removeAttribute("itemsSize");
-
-		} else {
+			tempBillItemsService.deleteTempBillItems(tempBillItem.getId());
 
 		}
-
 	}
 }

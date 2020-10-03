@@ -4,7 +4,7 @@
 
 
 <nav dir="rtl" style="align-items: flex-end;"
-	class="navbar navbar-expand-lg navbar-dark bg-primary">
+	class="navbar navbar-expand-lg navbar-dark bg-info">
 
 	<ul class="navbar-nav mr-auto">
 
@@ -24,7 +24,7 @@
 
 
 		<li class="btn-sm btn-info font-weight-bold nav-item active mr-1"><a
-			class="nav-link" href="show-return-bill-list">فواتير الشراء</a></li>
+			class="nav-link" href="show-buy-bill-list">فواتير الشراء</a></li>
 
 
 		<li class="btn-sm btn-info font-weight-bold nav-item active mr-1"><a

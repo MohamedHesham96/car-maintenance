@@ -72,7 +72,7 @@
 
 
 </head>
-<body background="images/wall1.jpg">
+<body background="">
 
 	<%@ include file="header.jsp"%>
 

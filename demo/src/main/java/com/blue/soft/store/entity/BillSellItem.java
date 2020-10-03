@@ -23,7 +23,7 @@ public class BillSellItem {
 	private Item item;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	@JoinColumn(name = "Bill_id")
+	@JoinColumn(name = "bill_id")
 	private BillSell billSell;
 
 	@Column(name = "quantity")

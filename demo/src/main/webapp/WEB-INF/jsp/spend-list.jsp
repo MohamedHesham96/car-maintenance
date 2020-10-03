@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>تحصيل الوحدة</title>
+<title>المصاريف</title>
 
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -37,18 +37,13 @@
 
 						<input name="companyName" value="الخزنة : ${bank.balance}"
 							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" />
-							
-							<input name="companyName" value="الخزنة اليوم : ${bank.balanceToday}"
+							class="form-control btn-outline-primary text-center mb-2" /> <input
+							name="companyName" value="الخزنة اليوم : ${bank.balanceToday}"
 							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" />
-							
-							<input
+							class="form-control btn-outline-primary text-center mb-2" /> <input
 							name="companyName" value="رصيد الموردين  : ${bank.drawee}"
 							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" />
-							
-							<input
+							class="form-control btn-outline-primary text-center mb-2" /> <input
 							name="companyName"
 							value="التاريخ : <%=LocalDate.now().toString()%>"
 							disabled="disabled"

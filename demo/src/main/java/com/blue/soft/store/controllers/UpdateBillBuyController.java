@@ -15,10 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.TempBillItemsService;
 
 @Controller
 public class UpdateBillBuyController {
@@ -38,9 +40,12 @@ public class UpdateBillBuyController {
 	@Autowired
 	BillBuyItemsService billBuyItemsService;
 
+	@Autowired
+	TempBillItemsService tempBillItemsService;
+
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-buy-bill-to-update")
-	public String changeBuyBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
+	public String changeSellBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 
@@ -51,26 +56,9 @@ public class UpdateBillBuyController {
 
 		billBuy.setUpdateNow(true);
 
-		int counter = 1;
-
 		billBuyService.saveBuyBill(billBuy);
 
-		httpSession.setAttribute("itemsSize", billBuyItemsList.size());
-
-		for (BillBuyItem billBuyItem : billBuyItemsList) {
-
-			httpSession.setAttribute(billBuy.getId() + counter++,
-					billBuyItem.getItem().getId() + "-" + billBuyItem.getQuantity() + "-" + billBuyItem.getBuyPrice());
-		}
-
-		String[] names = httpSession.getValueNames();
-
-		for (String name : names) {
-
-			System.out.println(
-					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
-
-		}
+		tempBillItemsService.addBillBuyItems(billBuyItemsList);
 
 		return "redirect:/show-update-buy-bill";
 	}
@@ -87,9 +75,9 @@ public class UpdateBillBuyController {
 
 		theModel.addAttribute("total", total);
 		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billBuy", billBuy);
 		theModel.addAttribute("updateItem", new BillBuyItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billBuy", billBuy);
 
 		return "update-buy-bill";
 	}
@@ -102,9 +90,6 @@ public class UpdateBillBuyController {
 		Item theItem = itemService.getItemById(item.getId());
 
 		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
-
-			// String billId = httpSession.getAttribute("billBuyId").toString();
-			// BillBuy billBuy = billBuyService.getBillBuyById(billId);
 
 			BillBuy billBuy = billBuyService.getBillBuyByUpdateNow();
 
@@ -143,7 +128,7 @@ public class UpdateBillBuyController {
 
 		billBuyService.saveBuyBill(billBuy);
 
-		clearHttpSession(buyBillId);
+		clearTempBillItems(billBuy);
 
 		return "redirect:/show-buy-bill-list";
 
@@ -184,18 +169,18 @@ public class UpdateBillBuyController {
 
 		}
 
-		int i = (int) httpSession.getAttribute("itemsSize");
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billBuy.getId(), "buyBill");
 
-		for (; i > 0; i--) {
+		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-			String[] splitItem = httpSession.getAttribute(billBuy.getId() + i).toString().split("-");
+			Item theItem = itemService.getItemById(tempBillItem.getItemId());
 
-			BillBuyItem billBuyItem = new BillBuyItem(billBuy, itemService.getItemById(splitItem[0]),
-					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
-
-			billBuyItemsService.addBillBuyItem(billBuyItem);
+			billBuy.addBillBuyItem(
+					new BillBuyItem(billBuy, theItem, tempBillItem.getQuantity(), tempBillItem.getPrice()));
 
 		}
+
+		billBuyService.saveBuyBill(billBuy);
 
 		return "redirect:/show-update-buy-bill";
 	}
@@ -205,31 +190,19 @@ public class UpdateBillBuyController {
 
 		billBuyService.deleteBuyBill(buyBillId);
 
-		clearHttpSession(buyBillId);
-
 		return "redirect:/show-buy-bill-info";
 
 	}
 
-	public void clearHttpSession(String buyBillId) {
+	public void clearTempBillItems(BillBuy billBuy) {
 
-		int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billBuy.getId(), "buyBill");
 
-		for (int i = 1; i <= size; i++) {
+		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-			httpSession.removeAttribute(buyBillId + i);
-		}
-
-		httpSession.removeAttribute("itemsSize");
-
-		String[] names = httpSession.getValueNames();
-
-		for (String name : names) {
-
-			System.out.println(
-					"ClEAR_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
+			tempBillItemsService.deleteTempBillItems(tempBillItem.getId());
 
 		}
-
 	}
+
 }

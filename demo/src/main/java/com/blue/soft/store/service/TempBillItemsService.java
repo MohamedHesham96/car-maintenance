@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.blue.soft.store.DAO.BillBuyItemsRepository;
 import com.blue.soft.store.DAO.BillReturnItemsRepository;
 import com.blue.soft.store.DAO.BillSellItemsRepository;
-import com.blue.soft.store.DAO.BillSellRepository;
 import com.blue.soft.store.DAO.TempBillItemsRepository;
+import com.blue.soft.store.entity.BillBuyItem;
+import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
@@ -42,15 +43,42 @@ public class TempBillItemsService {
 
 	}
 
-	public List<TempBillItem> getTempBillSellItems(String billId) {
+	public void addBillBuyItems(List<BillBuyItem> billBuyItemsList) {
 
-		return tempBillItemsRepository.findByBillIdAndBillType(billId, "sellBill");
+		for (BillBuyItem bbItem : billBuyItemsList) {
+
+			Item theItem = bbItem.getItem();
+
+			tempBillItemsRepository.save(new TempBillItem(theItem.getId(), bbItem.getBillBuy().getId(), "buyBill",
+					bbItem.getQuantity(), bbItem.getBuyPrice()));
+
+		}
 
 	}
 
-	public void addBillBuyItems(BillSellItem billSellItem) {
+	public void addBillReturnItems(List<BillReturnItem> billReturnItemsList) {
 
-		billSellItemsRepository.save(billSellItem);
+		for (BillReturnItem brItem : billReturnItemsList) {
+
+			Item theItem = brItem.getItem();
+
+			tempBillItemsRepository.save(new TempBillItem(theItem.getId(), brItem.getBillReturn().getId(), "returnBill",
+					brItem.getQuantity(), brItem.getReturnPrice()));
+
+		}
+
+	}
+
+	public List<TempBillItem> getTempBillItems(String billId, String billType) {
+
+		if (billType.equals("sellBill"))
+			return tempBillItemsRepository.findByBillIdAndBillType(billId, "sellBill");
+
+		else if (billType.equals("buyBill"))
+			return tempBillItemsRepository.findByBillIdAndBillType(billId, "buyBill");
+
+		else
+			return tempBillItemsRepository.findByBillIdAndBillType(billId, "returnBill");
 
 	}
 
@@ -60,9 +88,11 @@ public class TempBillItemsService {
 
 	}
 
-	public void deleteBillSellItem(String tempBillSellItemId) {
+	public void deleteTempBillItems(String tempBillSellItemId) {
 
 		tempBillItemsRepository.deleteById(tempBillSellItemId);
+
+//		tempBillItemsRepository.deleteByBillIdAndBillType(billSellId, "sellBill");
 
 	}
 

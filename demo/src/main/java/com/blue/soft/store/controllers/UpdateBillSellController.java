@@ -68,22 +68,6 @@ public class UpdateBillSellController {
 	public String showUpdateSellBill(Model theModel) {
 
 		BillSell billSell = billSellService.getBillSellByUpdateNow();
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-
-		int length = httpSession.getValueNames().length;
-
-		if (length < 3) {
-
-			httpSession.setAttribute("itemsSize", billSellItemsList.size());
-
-			int counter = 1;
-
-			for (BillSellItem billSellItem : billSellItemsList) {
-
-				httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
-						+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
-			}
-		}
 
 		float total = billSell.getTotal();
 
@@ -91,9 +75,9 @@ public class UpdateBillSellController {
 
 		theModel.addAttribute("total", total);
 		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billSell", billSell);
 		theModel.addAttribute("updateItem", new BillSellItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
-		theModel.addAttribute("billSell", billSell);
 
 		return "update-sell-bill";
 	}
@@ -187,7 +171,7 @@ public class UpdateBillSellController {
 
 		}
 
-		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillSellItems(billSell.getId());
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billSell.getId(), "sellBill");
 
 		for (TempBillItem tempBillItem : tempBillItemsList) {
 
@@ -199,19 +183,6 @@ public class UpdateBillSellController {
 		}
 
 		billSellService.saveSellBill(billSell);
-
-//		int i = (int) httpSession.getAttribute("itemsSize");
-//
-//		for (; i > 0; i--) {
-//
-//			String[] splitItem = httpSession.getAttribute(billSell.getId() + i).toString().split("-");
-//
-//			BillSellItem billSellItem = new BillSellItem(billSell, itemService.getItemById(splitItem[0]),
-//					Integer.parseInt(splitItem[1]), Float.parseFloat(splitItem[2]));
-//
-//			billSellItemsService.addBillSellItem(billSellItem);
-//
-//		}
 
 		return "redirect:/show-update-sell-bill";
 	}
@@ -231,72 +202,15 @@ public class UpdateBillSellController {
 
 	public void clearTempBillItems(BillSell billSell) {
 
-		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillSellItems(billSell.getId());
+		List<TempBillItem> tempBillItemsList = tempBillItemsService.getTempBillItems(billSell.getId(), "sellBill");
+
+//		tempBillItemsService.deleteTempBillSellItems(billSell.getId());
 
 		for (TempBillItem tempBillItem : tempBillItemsList) {
 
-			tempBillItemsService.deleteBillSellItem(tempBillItem.getId());
+			tempBillItemsService.deleteTempBillItems(tempBillItem.getId());
 
 		}
 	}
-
-	public void clearHttpSession(String sellBillId) {
-
-		String[] names = httpSession.getValueNames();
-
-		int length = names.length;
-
-		if (length > 2) {
-
-			int size = Integer.parseInt(httpSession.getAttribute("itemsSize").toString());
-
-			for (int i = 1; i <= size; i++) {
-
-				httpSession.removeAttribute(sellBillId + i);
-			}
-
-			httpSession.removeAttribute("itemsSize");
-
-		} else {
-
-		}
-
-	}
-
-//	@RequestMapping("/change-sell-bill-to-update")
-//	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
-//
-//		BillSell billSell = billSellService.getBillSellById(sellBillId);
-//
-//		if (billSell.isUpdateNow())
-//			return "redirect:/show-update-sell-bill";
-//
-//		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-//
-//		billSell.setUpdateNow(true);
-//
-//		int counter = 1;
-//
-//		billSellService.saveSellBill(billSell);
-//
-//		httpSession.setAttribute("itemsSize", billSellItemsList.size());
-//
-//		for (BillSellItem billSellItem : billSellItemsList) {
-//
-//			httpSession.setAttribute(billSell.getId() + counter++, billSellItem.getItem().getId() + "-"
-//					+ billSellItem.getQuantity() + "-" + billSellItem.getSellPrice());
-//		}
-//
-//		String[] names = httpSession.getValueNames();
-//
-//		for (String name : names) {
-//
-//			System.out.println(
-//					"SHOW_HTTPS_SESSION >> " + "name >> " + name + " : " + httpSession.getAttribute(name).toString());
-//
-//		}
-//
-//		return "redirect:/show-update-sell-bill";
-//	}
 
 }

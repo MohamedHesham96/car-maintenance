@@ -10,4 +10,6 @@ public interface TempBillItemsRepository extends CrudRepository<TempBillItem, St
 
 	public List<TempBillItem> findByBillIdAndBillType(String billId, String billType);
 
+//	public void deleteByBillIdAndBillType(String billSellId, String string);
+
 }

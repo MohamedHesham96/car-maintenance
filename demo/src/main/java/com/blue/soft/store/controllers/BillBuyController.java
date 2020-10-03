@@ -70,7 +70,8 @@ public class BillBuyController {
 	public String showAddToBuyBill(Model theModel) {
 
 		theModel.addAttribute("item", new Item());
-// TO-DO 
+
+		// TO-DO
 		// Change the method
 		BillBuy billBuy = billBuyService.getLast();
 
@@ -85,6 +86,7 @@ public class BillBuyController {
 		return "buy-bill";
 	}
 
+	
 	// حفظ ببيانات الفاتورة
 	@RequestMapping("/save-buy-bill-info")
 	public String saveBuyBillInfo(@RequestParam(name = "companyId") String companyId) {

@@ -20,7 +20,6 @@ import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
-import com.blue.soft.store.service.TempBillItemsService;
 
 @Controller
 public class BillSellController {
