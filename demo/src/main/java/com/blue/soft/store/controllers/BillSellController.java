@@ -44,10 +44,10 @@ public class BillSellController {
 	BankService bankService;
 
 	@Autowired
-	UserService userService;
+	BankController bankController;
 
 	@Autowired
-	BankController bankController;
+	UserService userService;
 
 	@Autowired
 	HttpSession httpSession;

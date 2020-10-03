@@ -35,6 +35,10 @@ public class BillBuy {
 	@JoinColumn(name = "company_id")
 	private Company company;
 
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	@OneToMany(mappedBy = "billBuy", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private List<BillBuyItem> billBuyItems;
@@ -69,6 +73,14 @@ public class BillBuy {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getDate() {

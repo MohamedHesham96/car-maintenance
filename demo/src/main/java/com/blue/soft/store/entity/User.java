@@ -30,6 +30,10 @@ public class User {
 			CascadeType.REFRESH })
 	private List<BillSell> billSellList;
 
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	private List<BillBuy> billBuyList;
+
 	public String getId() {
 		return id;
 	}
@@ -73,6 +77,14 @@ public class User {
 
 	public void setBillSellList(List<BillSell> billSellList) {
 		this.billSellList = billSellList;
+	}
+
+	public List<BillBuy> getBillBuyList() {
+		return billBuyList;
+	}
+
+	public void setBillBuyList(List<BillBuy> billBuyList) {
+		this.billBuyList = billBuyList;
 	}
 
 }

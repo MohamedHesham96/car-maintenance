@@ -3,6 +3,8 @@ package com.blue.soft.store.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +17,13 @@ import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class BillBuyController {
@@ -41,6 +45,12 @@ public class BillBuyController {
 
 	@Autowired
 	BankService bankService;
+
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	HttpSession httpSession;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-buy-bill-info")
@@ -86,15 +96,19 @@ public class BillBuyController {
 		return "buy-bill";
 	}
 
-	
 	// حفظ ببيانات الفاتورة
 	@RequestMapping("/save-buy-bill-info")
 	public String saveBuyBillInfo(@RequestParam(name = "companyId") String companyId) {
+
+		User theUser = (User) httpSession.getAttribute("user");
+
+		theUser = userService.getUserById(theUser.getId());
 
 		BillBuy billBuy = new BillBuy();
 
 		billBuy.setDate(LocalDate.now().toString());
 		billBuy.setCompany(companyService.getCompanyById(companyId));
+		billBuy.setUser(theUser);
 
 		BillBuy lastBillBuy = billBuyService.getLast();
 
