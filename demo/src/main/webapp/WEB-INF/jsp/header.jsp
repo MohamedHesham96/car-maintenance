@@ -50,7 +50,7 @@
 			class="nav-link" href="clients-list">الوحدات</a></li>
 
 		<li class="btn-sm btn-info font-weight-bold nav-item active mr-1"><a
-			class="nav-link" href="#">التقرير</a></li>
+			class="nav-link" href="show-today-report">التقرير</a></li>
 
 		<li class="text-white mr-1 " style="font-size: 30px">|</li>
 

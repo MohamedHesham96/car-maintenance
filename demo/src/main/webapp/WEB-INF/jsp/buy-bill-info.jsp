@@ -41,7 +41,7 @@
 					<form method="POST" action="save-buy-bill-info">
 
 						<div class="form-group">
-							<label>اسم الوحدة</label> <select
+							<label>اسم المورد</label> <select
 								class="form-control text-center" name="companyId">
 
 								<c:forEach var="companyTemp" items="${companiesList}">

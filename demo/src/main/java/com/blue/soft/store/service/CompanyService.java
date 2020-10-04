@@ -36,4 +36,8 @@ public class CompanyService {
 		return companyRepository.findById(id).get();
 	}
 
+	public float getDraweeTotal() {
+		return companyRepository.getDraweeTotal();
+	}
+
 }

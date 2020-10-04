@@ -14,6 +14,8 @@ public class SpendService {
 	@Autowired
 	SpendRepository spendRepository;
 
+	float spendTotal;
+
 	public List<Spend> getAllSpends() {
 
 		return (List<Spend>) spendRepository.findAllByOrderByIdDesc();
@@ -41,4 +43,8 @@ public class SpendService {
 		spendRepository.deleteById(id);
 	}
 
+	
+	public float getSpendTotal() {
+		return spendRepository.getSpendTotal();
+	}
 }

@@ -35,4 +35,8 @@ public class ClientService {
 		return (List<Client>) clientRepository.findByNameContaining(theClientName);
 
 	}
+
+	public float getDraweeTotal() {
+		return clientRepository.getDraweeTotal();
+	}
 }

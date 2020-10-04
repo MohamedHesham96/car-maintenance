@@ -86,7 +86,7 @@
 				<div class="row" id="add-form">
 
 
-					<div class="card border-primary " style="max-width: 20rem;">
+					<div class="card border-info " style="max-width: 20rem;">
 						<div class="card-header">
 							<h4>اضافة صنف</h4>
 						</div>
@@ -116,8 +116,7 @@
 									<form:input path="sellPrice" class="form-control text-center" />
 								</div>
 
-								<button type="submit"
-									class="btn btn-outline-primary btn-lg w-100">اضافة
+								<button type="submit" class="btn btn-outline-info btn-lg w-100">اضافة
 									الصنف</button>
 
 							</form:form>
@@ -190,10 +189,11 @@
 				<div style="width: 100%; height: 500px; overflow: auto;"
 					class=" shadow">
 
-					<table class="mh-50 table table-striped table-sm  table-bordered ">
+					<table class="table table-striped table-sm table-bordered">
 
-						<thead style="position: sticky; top: 0;">
-							<tr>
+						<thead class="bg-info text-white"
+							style="position: sticky; top: 0;">
+							<tr class=" ">
 								<th>الكود</th>
 								<th>الصنف</th>
 								<th>الكمية</th>
@@ -203,6 +203,8 @@
 								<th>جملة بيع</th>
 								<th>ربح الوحدة</th>
 								<th>جملة الربح</th>
+								<th></th>
+
 							</tr>
 						</thead>
 
@@ -231,7 +233,7 @@
 											maxFractionDigits="2" /></td>
 
 									<td>
-										<button type="button" class="btn btn-outline-primary btn-sm"
+										<button type="button" class="btn btn-outline-info btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 									</td>
 								</tr>
