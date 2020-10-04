@@ -43,8 +43,7 @@ public class SpendService {
 		spendRepository.deleteById(id);
 	}
 
-	
 	public float getSpendTotal() {
-		return spendRepository.getSpendTotal();
+		return spendRepository.getSpendTotalToday();
 	}
 }

@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -27,90 +28,150 @@
 	<div style="text-align: center;" class="">
 		<div dir="rtl" class="row">
 
-			<div>
+			<div
+				style="margin: 0; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);"
+				class="col-6">
 
-				<div class="card border-primary mr-lg-5">
-					<div class="card-header">
-						<h5>التقرير</h5>
-					</div>
-					<div class="card-body">
-
-						<input name="companyName"
-							value="التاريخ : <%=LocalDate.now().toString()%>"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value="الخزنة : ${bank.balance}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value="الخزنة اليوم : ${bank.balanceToday}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> 
-							
-							
-							<input
-							name="companyName" value="رصيد الموردين : ${companyDraweeTotal}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> 
-								
-							<input
-							name="companyName" value="رصيد الوحدات : ${clientDraweeTotal}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> 
-							
-							
-							<input
-							name="companyName" value="مبيعات اليوم : ${bank.drawee}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value="مصاريف اليوم :  ${spendTotal}"
-							disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value=" فواتير البيع : 35" disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value=" فواتير الشراء : 5" disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" /> <input
-							name="companyName" value="فواتير المرتجع : 2" disabled="disabled"
-							class="form-control btn-outline-primary text-center mb-2" />
-
-
-
-					</div>
-				</div>
-				<br>
-			</div>
-
-			<div class="mr-4 col-6">
-
-				<div style="width: 100%; height: 500px; overflow: auto;"
+				<div style="width: 100%; height: 520px; overflow: auto;"
 					class=" shadow">
 
-					<table class="mh-50 table table-striped table-sm  table-bordered ">
 
-						<thead>
+					<table style="font-size: 18px"
+						class="mh-50 table   table-striped table-sm  table-bordered ">
+
+						<thead class="bg-info">
 							<tr>
-								<th class="col-2">الصنف</th>
-								<th class="col-2">الكمية</th>
-								<th class="col-2">الربح</th>
+								<th class="col-2">المفتاح</th>
+								<th class="col-2">القيمة</th>
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="spendTemp" items="${spendsList}">
 
-								<tr>
 
-									<td class="col-3">${spendTemp.amount}</td>
-									<td class="col-3">${spendTemp.note}</td>
-									<td class="col-3">${spendTemp.date}</td>
+							<tr>
 
-									<td class="col-1 "><a
-										${spendTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
-										href="delete-spend?spendId=${spendTemp.id}"
-										onclick="return confirm('هل انت متأكد من الإلغاء ؟')"
-										class="btn btn-outline-danger btn-sm "> إلغاء </a></td>
-								</tr>
+								<td class="col-3">الخزنة</td>
+								<td class="col-3"><fmt:formatNumber value="${bank.balance}"
+										maxFractionDigits="2" /></td>
 
-							</c:forEach>
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">الخزنة اليوم</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${bank.balanceToday}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">مبيعات اليوم</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${totalSallsToday}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+
+							<tr>
+
+								<td class="col-3">مشتريات اليوم</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${totalBuysToday}" maxFractionDigits="2" /></td>
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">اجمالي الربح</td>
+								<td class="col-3"><fmt:formatNumber value="${totalGain}"
+										maxFractionDigits="2" /></td>
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">مصاريف اليوم</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${spendTotalToday}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+
+
+
+							<tr>
+
+								<td class="col-3">صافي ربح اليوم</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${totalGain - spendTotalToday}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+
+
+
+
+							<tr>
+
+								<td class="col-3">رصيد الموردين</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${companyDraweeTotal}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">رصيد الوحدات</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${clientDraweeTotal}" maxFractionDigits="2" /></td>
+
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">فواتير البيع</td>
+								<td class="col-3">35</td>
+
+
+							</tr>
+
+							<tr>
+
+								<td class="col-3">فواتير الآجل</td>
+								<td class="col-3">20</td>
+
+
+							</tr>
+
+
+							<tr>
+
+								<td class="col-3">فواتير الشراء</td>
+								<td class="col-3">35</td>
+
+
+							</tr>
+
+
+							<tr>
+
+
+								<td class="col-3">فواتير المرتجع</td>
+								<td class="col-3">35</td>
+
+
+							</tr>
+
+
 						</tbody>
 					</table>
 

@@ -36,8 +36,12 @@ public class TempBillItemsService {
 
 			Item theItem = bsItem.getItem();
 
-			tempBillItemsRepository.save(new TempBillItem(theItem.getId(), bsItem.getBillSell().getId(), "sellBill",
-					bsItem.getQuantity(), bsItem.getSellPrice()));
+			TempBillItem tempbillItem = new TempBillItem(theItem.getId(), bsItem.getBillSell().getId(), "sellBill",
+					bsItem.getQuantity(), bsItem.getSellPrice());
+
+			tempbillItem.setBuyPrice(theItem.getBuyPrice());
+
+			tempBillItemsRepository.save(tempbillItem);
 
 		}
 

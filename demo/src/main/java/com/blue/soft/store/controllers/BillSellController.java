@@ -148,6 +148,7 @@ public class BillSellController {
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
 			billSellItem.setSellPrice(theItem.getSellPrice());
+			billSellItem.setBuyPrice(theItem.getBuyPrice());
 			billSellItem.setQuantity(item.getQuantity());
 
 			billSellItemsService.addBillSellItem(billSellItem);

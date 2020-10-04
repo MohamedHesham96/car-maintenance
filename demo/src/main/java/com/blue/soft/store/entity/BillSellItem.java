@@ -32,6 +32,9 @@ public class BillSellItem {
 	@Column(name = "sell_price")
 	private float sellPrice;
 
+	@Column(name = "buy_price")
+	private float buyPrice;
+
 	public BillSellItem() {
 		super();
 	}
@@ -50,6 +53,14 @@ public class BillSellItem {
 
 	public void setSellPrice(float sellPrice) {
 		this.sellPrice = sellPrice;
+	}
+
+	public float getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(float buyPrice) {
+		this.buyPrice = buyPrice;
 	}
 
 	public String getId() {

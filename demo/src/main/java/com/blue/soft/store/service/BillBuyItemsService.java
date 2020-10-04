@@ -15,7 +15,7 @@ public class BillBuyItemsService {
 	public void addBillBuyItem(BillBuyItem billBuyItem) {
 
 		billBuyItemsRepository.save(billBuyItem);
-		
+
 	}
 
 	public void deleteBillBuyItem(String billBuyItemId) {
@@ -28,6 +28,10 @@ public class BillBuyItemsService {
 
 		return billBuyItemsRepository.findById(billBuyItemId).get();
 
+	}
+
+	public float getTotalBuysToday() {
+		return billBuyItemsRepository.getTotalBuysToday();
 	}
 
 }

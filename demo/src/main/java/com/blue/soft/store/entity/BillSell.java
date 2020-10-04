@@ -49,8 +49,6 @@ public class BillSell {
 			CascadeType.REFRESH })
 	private List<BillSellItem> billSellItems;
 
-	float total;
-
 	public BillSell() {
 	}
 

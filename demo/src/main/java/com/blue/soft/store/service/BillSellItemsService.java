@@ -30,4 +30,12 @@ public class BillSellItemsService {
 
 	}
 
+	public float getTotalSallsToday() {
+		return billSellItemsRepository.getTotalSallsToday();
+	}
+
+	public float getTotalGains() {
+		return billSellItemsRepository.getTotalGains();
+	}
+
 }

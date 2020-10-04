@@ -30,6 +30,9 @@ public class TempBillItem {
 	@Column(name = "price")
 	private float price;
 
+	@Column(name = "buy_price")
+	private float buyPrice;
+
 	public TempBillItem() {
 		super();
 	}
@@ -89,6 +92,14 @@ public class TempBillItem {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public float getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(float buyPrice) {
+		this.buyPrice = buyPrice;
 	}
 
 }

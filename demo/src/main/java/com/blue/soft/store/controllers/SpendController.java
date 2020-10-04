@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.Spend;
 import com.blue.soft.store.service.BankService;
+import com.blue.soft.store.service.BillBuyItemsService;
+import com.blue.soft.store.service.BillSellItemsService;
+import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.SpendService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class SpendController {
@@ -27,13 +31,31 @@ public class SpendController {
 	SpendService spendService;
 
 	@Autowired
-	BankService bankService;
-
-	@Autowired
 	ClientService clientSerivce;
 
 	@Autowired
 	CompanyService companyService;
+
+	@Autowired
+	BillSellService billSellService;
+
+	@Autowired
+	ClientService clientService;
+
+	@Autowired
+	BillSellItemsService billSellItemsService;
+
+	@Autowired
+	BillBuyItemsService billBuyItemsService;
+
+	@Autowired
+	BankService bankService;
+
+	@Autowired
+	BankController bankController;
+
+	@Autowired
+	UserService userService;
 
 	@RequestMapping("/spend-list")
 	public String showSpendList(Model theModel) {
@@ -98,9 +120,12 @@ public class SpendController {
 		Bank bank = bankService.getBank();
 
 		theModel.addAttribute("bank", bank);
-		theModel.addAttribute("spendTotal", spendService.getSpendTotal());
+		theModel.addAttribute("spendTotalToday", spendService.getSpendTotal());
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
+		theModel.addAttribute("totalSallsToday", billSellItemsService.getTotalSallsToday());
+		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
+		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
 
 		return "today-report";
 
