@@ -72,6 +72,7 @@ public class BillReturnController {
 		BillReturn billReturn = new BillReturn();
 
 		billReturn.setDate(LocalDate.now().toString());
+		
 		billReturn.setClient(clientService.getClientById(clientid));
 
 		BillReturn lastBillReturn = billReturnService.getLast();

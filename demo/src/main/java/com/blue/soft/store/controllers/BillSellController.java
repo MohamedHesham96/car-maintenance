@@ -81,9 +81,9 @@ public class BillSellController {
 	public String saveSellBillInfo(@RequestParam(name = "late", defaultValue = "off") String late,
 			@RequestParam(name = "clientId") String clientid) {
 
-		User theUser = (User) httpSession.getAttribute("user");
+		String userId = httpSession.getAttribute("id").toString();
 
-		theUser = userService.getUserById(theUser.getId());
+		User theUser = userService.getUserById(userId);
 
 		BillSell billSell = new BillSell();
 

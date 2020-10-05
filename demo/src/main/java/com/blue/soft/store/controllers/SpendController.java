@@ -13,6 +13,8 @@ import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.Spend;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillBuyItemsService;
+import com.blue.soft.store.service.BillBuyService;
+import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
@@ -38,6 +40,12 @@ public class SpendController {
 
 	@Autowired
 	BillSellService billSellService;
+
+	@Autowired
+	BillBuyService billBuyService;
+
+	@Autowired
+	BillReturnService billReturnService;
 
 	@Autowired
 	ClientService clientService;
@@ -126,6 +134,11 @@ public class SpendController {
 		theModel.addAttribute("totalSallsToday", billSellItemsService.getTotalSallsToday());
 		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
 		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
+		theModel.addAttribute("sellBillCountToday", billSellService.getSellBillCountToday());
+		theModel.addAttribute("payedSellBillCountToday", billSellService.getPayedSellBillCountToday());
+		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
+		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
+		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
 
 		return "today-report";
 

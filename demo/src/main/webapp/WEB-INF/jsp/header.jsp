@@ -57,7 +57,7 @@
 
 		<li class="btn-sm btn-danger font-weight-bold nav-item active mr-1"><a
 			class="nav-link" href="logout"
-			onclick="return confirm('هل انت متأكد من الخروج ؟')"> <%=session.getAttribute("user").toString()%>
+			onclick="return confirm('هل انت متأكد من الخروج ؟')"> <%=session.getAttribute("name")%>
 				| خروج
 		</a></li>
 

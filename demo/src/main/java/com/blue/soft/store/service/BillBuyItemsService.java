@@ -30,8 +30,11 @@ public class BillBuyItemsService {
 
 	}
 
-	public float getTotalBuysToday() {
-		return billBuyItemsRepository.getTotalBuysToday();
+	public Float getTotalBuysToday() {
+
+		Float totalBuys = billBuyItemsRepository.getTotalBuysToday();
+
+		return totalBuys != null ? totalBuys : 0;
 	}
 
 }

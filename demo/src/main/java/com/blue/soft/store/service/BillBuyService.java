@@ -49,4 +49,12 @@ public class BillBuyService {
 
 		return (BillBuy) billBuyRepository.findByUpdateNowTrue();
 	}
+
+	public Integer getBuyBillCountToday() {
+
+		Integer bbCountToday = billBuyRepository.getBuyBillCountToday();
+
+		return bbCountToday != null ? bbCountToday : 0;
+
+	}
 }

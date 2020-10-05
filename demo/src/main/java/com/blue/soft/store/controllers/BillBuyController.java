@@ -97,9 +97,9 @@ public class BillBuyController {
 	@RequestMapping("/save-buy-bill-info")
 	public String saveBuyBillInfo(@RequestParam(name = "companyId") String companyId) {
 
-		User theUser = (User) httpSession.getAttribute("user");
+		String userId = httpSession.getAttribute("id").toString();
 
-		theUser = userService.getUserById(theUser.getId());
+		User theUser = userService.getUserById(userId);
 
 		BillBuy billBuy = new BillBuy();
 

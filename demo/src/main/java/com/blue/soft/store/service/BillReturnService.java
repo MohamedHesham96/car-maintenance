@@ -49,4 +49,12 @@ public class BillReturnService {
 
 		return (BillReturn) billReturnRepository.findByUpdateNowTrue();
 	}
+
+	public Integer getReturnBillCountToday() {
+
+		Integer rbCountToday = billReturnRepository.getReturnBillCountToday();
+
+		return rbCountToday != null ? rbCountToday : 0;
+
+	}
 }

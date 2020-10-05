@@ -16,11 +16,11 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف الأصناف</title>
 
+
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
-<%
-	DecimalFormat f = new DecimalFormat("0.00");
-%>
+
+
 <script type="text/javascript">
 	
 	function showAddForm(btn) {

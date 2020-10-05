@@ -17,7 +17,6 @@ public class BillSellService {
 	public void saveSellBill(BillSell billSell) {
 
 		billSellRepository.save(billSell);
-
 	}
 
 	public BillSell getBillSellById(String id) {
@@ -49,4 +48,28 @@ public class BillSellService {
 
 		return (BillSell) billSellRepository.findByUpdateNowTrue();
 	}
+
+	public Integer getSellBillCountToday() {
+
+		Integer sbCountToday = billSellRepository.getSellBillCountToday();
+
+		return sbCountToday != null ? sbCountToday : 0;
+
+	}
+
+	public Integer getLateSellBillCountToday() {
+
+		Integer lsbCountToday = billSellRepository.getLateSellBillCountToday();
+
+		return lsbCountToday != null ? lsbCountToday : 0;
+
+	}
+
+	public Object getPayedSellBillCountToday() {
+
+		Integer lsbCountToday = billSellRepository.getPayedSellBillCountToday();
+
+		return lsbCountToday != null ? lsbCountToday : 0;
+	}
+
 }

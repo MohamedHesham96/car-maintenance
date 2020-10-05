@@ -27,12 +27,6 @@ public class SpendService {
 
 	}
 
-//	public List<Spend> searchForSpend(String theSpendName) {
-//
-//		return (List<Spend>) spendRepository.findByNameContaining(theSpendName);
-//
-//	}
-
 	public Spend getSpendById(String id) {
 
 		return spendRepository.findById(id).get();
@@ -44,6 +38,11 @@ public class SpendService {
 	}
 
 	public float getSpendTotal() {
-		return spendRepository.getSpendTotalToday();
+
+		Float spendTotal = spendRepository.getSpendTotalToday();
+		if (spendTotal != null)
+			return spendTotal;
+		else
+			return 0.0f;
 	}
 }

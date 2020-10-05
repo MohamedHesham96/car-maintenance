@@ -22,7 +22,9 @@ public class UserService {
 		User theUser = UserRepository.findByNameAndPassword(name, password);
 		if (theUser != null) {
 
-			httpSession.setAttribute("user", theUser);
+			httpSession.setAttribute("id", theUser.getId());
+			httpSession.setAttribute("name", theUser.getName());
+
 			httpSession.setMaxInactiveInterval(10000000);
 			return true;
 

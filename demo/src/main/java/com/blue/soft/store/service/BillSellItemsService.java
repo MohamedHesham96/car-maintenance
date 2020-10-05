@@ -31,11 +31,19 @@ public class BillSellItemsService {
 	}
 
 	public float getTotalSallsToday() {
-		return billSellItemsRepository.getTotalSallsToday();
+
+		Float totalSalls = billSellItemsRepository.getTotalSallsToday();
+
+		return totalSalls != null ? totalSalls : 0;
+
 	}
 
-	public float getTotalGains() {
-		return billSellItemsRepository.getTotalGains();
+	public Float getTotalGains() {
+
+		Float totalGains = billSellItemsRepository.getTotalGains();
+
+		return totalGains != null ? totalGains : 0;
+
 	}
 
 }
