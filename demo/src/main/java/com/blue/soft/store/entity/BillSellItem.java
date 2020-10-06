@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import net.bytebuddy.asm.Advice.Local;
-
 @Entity
 @Table(name = "bill_sell_items")
 public class BillSellItem {
@@ -52,6 +50,7 @@ public class BillSellItem {
 		this.item = item;
 		this.quantity = quantity;
 		this.sellPrice = sellPrice;
+		this.date = billSell.getDate();
 	}
 
 	public float getSellPrice() {

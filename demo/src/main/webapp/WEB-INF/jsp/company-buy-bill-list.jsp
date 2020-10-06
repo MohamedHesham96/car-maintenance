@@ -87,8 +87,8 @@
 
 									<td><a
 										href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
-									</td>
+										type="button" class="btn btn-outline-secondary btn-sm"
+										${ billTemp.updater != null ? 'hidden' :  '' }>تعديل</a></td>
 								</tr>
 
 							</c:forEach>

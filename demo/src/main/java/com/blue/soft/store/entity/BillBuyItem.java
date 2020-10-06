@@ -42,6 +42,7 @@ public class BillBuyItem {
 		this.item = item;
 		this.quantity = quantity;
 		this.buyPrice = buyPrice;
+
 	}
 
 	public float getBuyPrice() {
