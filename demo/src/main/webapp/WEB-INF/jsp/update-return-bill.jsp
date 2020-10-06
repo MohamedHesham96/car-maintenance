@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>تعديل فاتورة مرتجع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 <script type="text/javascript">
@@ -42,11 +42,7 @@ function showUpdateForm(btn, id) {
 	newReturnPrice.value = itemReturnPrice;
 
 	
-	
-	if (updateForm.style.display === "none")  {
 
-		updateForm.style.display = "block";
-	}
 
 }
 	
@@ -122,7 +118,9 @@ function showUpdateForm(btn, id) {
 
 								<tr>
 									<td id="${itemTemp.id}">${itemTemp.item.name}</td>
+
 									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
+
 									<td id="itemReturnPrice${itemTemp.id}"><fmt:formatNumber
 											value="${itemTemp.returnPrice}" maxFractionDigits="2" /></td>
 
@@ -192,7 +190,7 @@ function showUpdateForm(btn, id) {
 					<form:form modelAttribute="updateItem" method="get"
 						action="update-returnBillItem">
 
-						<div hidden="" class="form-group">
+						<div class="form-group">
 							<label>اسم الصنف</label>
 							<form:input path="id" id="newId" class="form-control text-center" />
 						</div>

@@ -3,6 +3,8 @@ package com.blue.soft.store.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillReturnItemsService;
 import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class BillReturnController {
@@ -40,6 +45,12 @@ public class BillReturnController {
 
 	@Autowired
 	BankController bankController;
+
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	HttpSession httpSession;
 
 	// عرض الفورم بتاعت ادخال بيانات الفاتورة
 	@RequestMapping("/show-return-bill-info")
@@ -69,12 +80,18 @@ public class BillReturnController {
 	@RequestMapping("/save-return-bill-info")
 	public String saveReturnBillInfo(@RequestParam(name = "clientId") String clientid) {
 
+		String userId = httpSession.getAttribute("id").toString();
+
+		User theUser = userService.getUserById(userId);
+
 		BillReturn billReturn = new BillReturn();
 
 		billReturn.setDate(LocalDate.now().toString());
-		
+
 		billReturn.setClient(clientService.getClientById(clientid));
 
+		billReturn.setUser(theUser);
+		
 		BillReturn lastBillReturn = billReturnService.getLast();
 
 		if (lastBillReturn == null || lastBillReturn.isSaved()) {
@@ -198,6 +215,8 @@ public class BillReturnController {
 
 			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
 		}
+
+		bankController.updateBankBalance("less", total);
 
 		billReturn.setSaved(true);
 

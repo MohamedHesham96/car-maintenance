@@ -68,8 +68,20 @@ public class SpendController {
 	@RequestMapping("/spend-list")
 	public String showSpendList(Model theModel) {
 
+		Bank theBank = bankService.getBank();
+
+		if (!theBank.getDate().equals(LocalDate.now().toString())) {
+
+			theBank.setDate(LocalDate.now().toString());
+			theBank.setBalanceToday(0);
+			bankService.saveBank(theBank);
+		}
+
 		theModel.addAttribute("spendsList", spendService.getAllSpends());
 		theModel.addAttribute("bank", bankService.getBank());
+		theModel.addAttribute("spendTotal", spendService.getSpendTotal());
+		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
+
 		return "spend-list";
 	}
 
@@ -125,13 +137,23 @@ public class SpendController {
 	@RequestMapping("/show-today-report")
 	public String showTodayReport(Model theModel) {
 
-		Bank bank = bankService.getBank();
+		Bank theBank = bankService.getBank();
 
-		theModel.addAttribute("bank", bank);
-		theModel.addAttribute("spendTotalToday", spendService.getSpendTotal());
+		if (!theBank.getDate().equals(LocalDate.now().toString())) {
+
+			theBank.setDate(LocalDate.now().toString());
+			theBank.setBalanceToday(0);
+			bankService.saveBank(theBank);
+		}
+
+		theModel.addAttribute("bank", theBank);
+		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
-		theModel.addAttribute("totalSallsToday", billSellItemsService.getTotalSallsToday());
+		theModel.addAttribute("totalSalesToday", billSellItemsService.getTotalSalesToday());
+		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
+		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
+
 		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
 		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
 		theModel.addAttribute("sellBillCountToday", billSellService.getSellBillCountToday());

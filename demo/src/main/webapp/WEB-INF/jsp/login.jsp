@@ -11,17 +11,17 @@
 
 
 
-<link href="webjars/bootswatch/4.5.2/dist/lumen/_bootswatch.scss"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
 	rel="stylesheet">
 
-<link href="webjars/bootswatch/4.5.2/dist/lumen/_variables.scss"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
 	rel="stylesheet">
 
-<link href="webjars/bootswatch/4.5.2/dist/lumen/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 
-<link href="webjars/bootswatch/4.5.2/dist/lumen/bootstrap.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 

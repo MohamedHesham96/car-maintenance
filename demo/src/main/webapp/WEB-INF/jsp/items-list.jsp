@@ -16,9 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف الأصناف</title>
 
-
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
+
 
 
 <script type="text/javascript">
@@ -72,7 +72,7 @@
 
 
 </head>
-<body background="">
+<body>
 
 	<%@ include file="header.jsp"%>
 
@@ -82,41 +82,49 @@
 		class="">
 
 		<div dir="rtl" class="row mr-lg-4">
-			<div>
+
+			<div class="shadow ">
 				<div class="row" id="add-form">
 
 
-					<div class="card border-info " style="max-width: 20rem;">
-						<div class="card-header">
+					<div
+						class="card  border-warning font-weight-bold pb-4 text-warning"
+						style="max-width: 20rem;">
+						<div class="card-header   border-warning ">
 							<h4>اضافة صنف</h4>
 						</div>
 
-						<div class="card-body">
+						<div class="card-body bg-dark ">
 
 							<form:form modelAttribute="item" method="post"
 								action="add-new-item">
 
-								<div class="form-group">
-									<label>اسم الصنف</label>
-									<form:input path="name" class="form-control text-center" />
+								<div class="form-group ">
+									<label class="">اسم الصنف</label>
+									<form:input path="name"
+										class="form-control text-center bg-light" />
 								</div>
 
 								<div class="form-group">
 									<label>الكمية</label>
-									<form:input path="quantity" class="form-control text-center" />
+									<form:input path="quantity"
+										class="form-control text-center bg-light" />
 								</div>
 
 								<div class="form-group">
 									<label>سعر الشراء</label>
-									<form:input path="buyPrice" class="form-control text-center" />
+									<form:input path="buyPrice"
+										class="form-control text-center bg-light" />
 								</div>
 
 								<div class="form-group">
 									<label>سعر البيع</label>
-									<form:input path="sellPrice" class="form-control text-center" />
+									<form:input path="sellPrice"
+										class="form-control text-center bg-light" />
 								</div>
 
-								<button type="submit" class="btn btn-outline-info btn-lg w-100">اضافة
+								<button type="submit"
+									class="btn btn-outline-warning btn-lg w-100 ">اضافة
 									الصنف</button>
 
 							</form:form>
@@ -124,15 +132,13 @@
 						</div>
 					</div>
 
-
-
-
 				</div>
 
 				<div class="row" style="display: none" id="update-form">
 
-					<div class="card border-warning mb-2" style="max-width: 20rem;">
-						<div class="card-header">
+					<div class="card border-success font-weight-bold mb-2 text-success"
+						style="max-width: 20rem;">
+						<div class="card-header   border-success ">
 							<h5>تعديل صنف</h5>
 						</div>
 						<div class="card-body">
@@ -171,7 +177,8 @@
 										class="form-control text-center" />
 								</div>
 
-								<button type="submit" class="btn btn-outline-dark btn-lg w-100">تعديل
+								<button type="submit"
+									class="btn btn-outline-success btn-lg w-100">تعديل
 									الصنف</button>
 
 
@@ -184,14 +191,15 @@
 				</div>
 			</div>
 
-			<div class="mr-2 col-9">
+			<div class="mr-4 col-9  ">
 
 				<div style="width: 100%; height: 500px; overflow: auto;"
-					class=" shadow">
+					class=" shadow ">
 
-					<table class="table table-striped table-sm table-bordered">
+					<table
+						class="table  table-striped table-sm border-primary   shadow ">
 
-						<thead class="bg-info text-white"
+						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
 							<tr class=" ">
 								<th>الكود</th>
@@ -208,32 +216,34 @@
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class=" ">
 							<c:forEach var="itemTemp" items="${itemsList}">
 
 								<tr>
-									<th id="itemId${itemTemp.id}">${itemTemp.id}</th>
-									<td id="itemName${itemTemp.id}">${itemTemp.name}</td>
-									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
-									<td id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
-									<td id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
+									<td class="pt-2 border-warning text-warning"
+										id="itemId${itemTemp.id}">${itemTemp.id}</td>
+									<td class="pt-2 border-primary " id="itemName${itemTemp.id}">${itemTemp.name}</td>
+									<td class="pt-2 border-primary" id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
+									<td class="pt-2 border-primary" id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
+									<td class="pt-2 border-primary"
+										id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
 
-									<td><fmt:formatNumber
+									<td class="pt-2 border-primary"><fmt:formatNumber
 											value="${itemTemp.buyPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
-									<td><fmt:formatNumber
+									<td class="pt-2 border-primary"><fmt:formatNumber
 											value="${itemTemp.sellPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td><fmt:formatNumber
+									<td class="pt-2 border-primary"><fmt:formatNumber
 											value="${itemTemp.sellPrice - itemTemp.buyPrice}"
 											maxFractionDigits="2" /></td>
-									<td><fmt:formatNumber
+									<td class="pt-2 border-primary"><fmt:formatNumber
 											value="${(itemTemp.sellPrice - itemTemp.buyPrice) * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td>
-										<button type="button" class="btn btn-outline-info btn-sm"
+									<td class=" border-primary">
+										<button type="button" class="btn btn-primary btn-sm "
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 									</td>
 								</tr>

@@ -22,6 +22,9 @@ public class Bank {
 	@Column(name = "balance_today")
 	private float balanceToday;
 
+	@Column(name = "date")
+	private String date;
+
 	public String getId() {
 		return id;
 	}
@@ -52,6 +55,14 @@ public class Bank {
 
 	public void setBalanceToday(float balanceToday) {
 		this.balanceToday = balanceToday;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

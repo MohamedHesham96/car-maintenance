@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف فواتير المرتجع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 </head>
@@ -25,14 +25,15 @@
 
 	<br>
 
-	<div style="text-align: center;" class="text-center mr-lg-4">
+	<div style="text-align: center;"
+		class="text-center mr-lg-4 text-warning">
 
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row w-100">
 
 			<div class="mr-lg-4">
 
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header ">
+				<div class="card border-warning mb-3 " style="max-width: 25rem;">
+					<div class="card-header border-warning">
 						<h5>البحث بالوحدة</h5>
 					</div>
 					<div class="card-body">
@@ -40,7 +41,8 @@
 
 							<div class="form-group">
 
-								<select class="form-control text-center" name="clientId">
+								<select class="form-control text-center bg-light"
+									name="clientId">
 
 									<c:forEach var="clientTemp" items="${clientsList}">
 
@@ -52,16 +54,16 @@
 							</div>
 
 							<button type="submit"
-								class="btn btn-outline-primary  btn-lg w-100">بحث</button>
+								class="btn btn-outline-warning  btn-lg w-100">بحث</button>
 
 						</form>
 
 					</div>
 				</div>
 
-				<div class="card  border-primary w-100 mt-sm-4"
+				<div class="card  border-warning w-100 mt-sm-4"
 					style="max-width: 20rem;">
-					<div class="card-header">
+					<div class="card-header border-warning">
 						<h5>البحث برقم الفاتورة</h5>
 					</div>
 
@@ -70,12 +72,12 @@
 						<form method="POST" action="search-return-bill-by-id">
 
 							<div class="form-group">
-								<input class="form-control text-center" name="billId">
+								<input class="form-control text-center bg-light" name="billId">
 
 							</div>
 
 							<button type="submit"
-								class="btn form-control btn-outline-primary btn-lg w-100">بحث</button>
+								class="btn form-control btn-outline-warning btn-lg w-100">بحث</button>
 
 						</form>
 
@@ -93,13 +95,15 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered ">
+					<table
+						class="table  table-striped table-sm border-primary font-weight-bold">
 
-						<thead>
+						<thead class="bg-primary">
 							<tr>
-								<th>الرقم</th>
-								<th>الوحدة</th>
-								<th>التاريخ</th>
+								<th class="col-1">الرقم</th>
+								<th class="col-1">الوحدة</th>
+								<th class="col-1">التاريخ</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 
@@ -109,14 +113,13 @@
 
 								<tr>
 
-									<td>${billTemp.id}</td>
-									<td>${billTemp.client.name}</td>
-									<td>${billTemp.date}</td>
+									<td class="border-primary">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.client.name}</td>
+									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td><a
+									<td class="border-primary"><a
 										href="change-return-bill-to-update?returnBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
-									</td>
+										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
 								</tr>
 
 							</c:forEach>

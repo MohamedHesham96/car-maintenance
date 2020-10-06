@@ -14,7 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>فاتورة شراء</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 </head>
@@ -26,20 +28,22 @@
 
 	<div style="text-align: center;" class="text-center mr-lg-4">
 
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row w-100">
 
-			<div class="mr-lg-4">
+			<div class="mr-lg-4 shadow">
 
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header ">
-						<h5>البحث بالوحدة</h5>
+				<div class="card border-warning mb-3 " style="max-width: 20rem;">
+					<div class="card-header border-warning text-warning">
+						<h5>البحث بالمورد</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body ">
 						<form method="POST" action="search-buy-bill-by-companyId">
 
 							<div class="form-group">
 
-								<select class="form-control text-center" name="companyId">
+								<select
+									class="form-control text-center bg-light font-weight-bold"
+									name="companyId">
 
 									<c:forEach var="companyTemp" items="${companiesList}">
 
@@ -51,16 +55,16 @@
 							</div>
 
 							<button type="submit"
-								class="btn btn-outline-primary  btn-lg w-100">بحث</button>
+								class="btn btn-outline-warning  btn-lg w-100">بحث</button>
 
 						</form>
 
 					</div>
 				</div>
 
-				<div class="card  border-primary w-100 mt-sm-4"
+				<div class="card  border-warning w-100 mt-sm-4"
 					style="max-width: 20rem;">
-					<div class="card-header">
+					<div class="card-header border-warning text-warning">
 						<h5>البحث برقم الفاتورة</h5>
 					</div>
 
@@ -69,12 +73,14 @@
 						<form method="POST" action="search-buy-bill-by-id">
 
 							<div class="form-group">
-								<input class="form-control text-center" name="billId">
+								<input
+									class="form-control text-center bg-light font-weight-bold"
+									name="billId">
 
 							</div>
 
 							<button type="submit"
-								class="btn form-control btn-outline-primary btn-lg w-100">بحث</button>
+								class="btn form-control btn-outline-warning btn-lg w-100">بحث</button>
 
 						</form>
 
@@ -92,14 +98,15 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered ">
+					<table
+						class="table  table-striped table-sm  font-weight-bold shadow ">
 
-						<thead>
+						<thead class="table-primary ">
 							<tr>
 								<th class="col-2">الرقم</th>
-								<th class="col-2">الوحدة</th>
+								<th class="col-2">المورد</th>
 								<th class="col-2">التاريخ</th>
-								<th class="col-1"></th>
+								<th class="col-2"></th>
 							</tr>
 						</thead>
 
@@ -109,16 +116,15 @@
 
 								<tr>
 
-									<td>${billTemp.id}</td>
-									<td>${billTemp.company.name}</td>
-									<td>${billTemp.date}</td>
+									<td class="border-primary pt-2">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.company.name}</td>
+									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td><a href="view-buy-bill?buyBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">عرض</a>
-
-										<a href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
-									</td>
+									<td class="border-primary"><a
+										href="view-buy-bill?buyBillId=${billTemp.id}" type="button"
+										class="btn btn-warning btn-sm">عرض</a> <a
+										href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
+										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
 								</tr>
 
 							</c:forEach>

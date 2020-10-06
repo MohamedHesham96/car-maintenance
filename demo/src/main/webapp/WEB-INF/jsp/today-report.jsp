@@ -15,9 +15,19 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>تقرير</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
 	rel="stylesheet">
 
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
+	rel="stylesheet">
 </head>
 <body>
 
@@ -63,9 +73,20 @@
 							<tr>
 								<td class="col-3">مبيعات</td>
 								<td class="col-3"><fmt:formatNumber
-										value="${totalSallsToday}" maxFractionDigits="2" /></td>
+										value="${totalSalesToday}" maxFractionDigits="2" /></td>
 							</tr>
 
+							<tr>
+								<td class="col-3">مبيعات نقدي</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${totalPayedSalesToday}" maxFractionDigits="2" /></td>
+							</tr>
+
+							<tr>
+								<td class="col-3">مبيعات آجل</td>
+								<td class="col-3"><fmt:formatNumber
+										value="${totalLateSalesToday}" maxFractionDigits="2" /></td>
+							</tr>
 
 							<tr>
 								<td class="col-3">مشتريات</td>

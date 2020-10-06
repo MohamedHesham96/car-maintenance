@@ -119,7 +119,7 @@
 							<tr style="font-style: inherit; font-size: 22px">
 								<th>الصنف</th>
 								<th>الكمية</th>
-								<th>سعر الوحدة</th>
+								<th>سعر الشراء</th>
 								<th>اجمالي السعر</th>
 							</tr>
 						</thead>

@@ -30,9 +30,9 @@ public class BillSellItemsService {
 
 	}
 
-	public float getTotalSallsToday() {
+	public float getTotalSalesToday() {
 
-		Float totalSalls = billSellItemsRepository.getTotalSallsToday();
+		Float totalSalls = billSellItemsRepository.getTotalSalesToday();
 
 		return totalSalls != null ? totalSalls : 0;
 
@@ -44,6 +44,20 @@ public class BillSellItemsService {
 
 		return totalGains != null ? totalGains : 0;
 
+	}
+
+	public Float getTotalPayedSalesToday() {
+
+		Float totalPayedSalls = billSellItemsRepository.getTotalPayedSalesToday();
+
+		return totalPayedSalls != null ? totalPayedSalls : 0;
+	}
+
+	public Float getTotalLateSalesToday() {
+
+		Float totalLateSalls = billSellItemsRepository.getTotalLateSalesToday();
+
+		return totalLateSalls != null ? totalLateSalls : 0;
 	}
 
 }

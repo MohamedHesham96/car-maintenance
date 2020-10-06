@@ -37,12 +37,17 @@ public class SpendService {
 		spendRepository.deleteById(id);
 	}
 
-	public float getSpendTotal() {
+	public Float getSpendTotal() {
 
-		Float spendTotal = spendRepository.getSpendTotalToday();
-		if (spendTotal != null)
-			return spendTotal;
-		else
-			return 0.0f;
+		Float spendTotal = spendRepository.getSpendTotal();
+
+		return spendTotal != null ? spendTotal : 0;
+	}
+
+	public Float getSpendTotalToday() {
+
+		Float spendTotalToday = spendRepository.getSpendTotalToday();
+
+		return spendTotalToday != null ? spendTotalToday : 0;
 	}
 }

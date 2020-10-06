@@ -15,63 +15,67 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>فاتورة شراء</title>
-
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
-
 </head>
-<body>
+<body class="">
 
 	<%@ include file="header.jsp"%>
 	<br>
 
 	<div style="text-align: center;" class="container ">
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row ">
 
-			<div>
+			<div class=" shadow">
 
-				<div class="card border-primary" style="max-width: 20rem;">
-					<div class="card-header">
+				<div class="card border-warning text-warning shadow"
+					style="max-width: 20rem;">
+					<div class="card-header border-warning shadow">
 						<h5>فاتورة شراء</h5>
 					</div>
 
-					<div class="card-body">
+					<div class="card-body font-weight-bold ">
 
 						<input disabled="disabled"
 							value=" رقم الفاتورة : B - ${billBuy.id}"
-							class="form-control text-center btn-outline-primary  mb-2" /> <input
-							disabled="disabled"
+							class="form-control text-center btn-outline-warning font-weight-bold  mb-2" />
+
+						<input disabled="disabled"
 							value="التاريخ : <%=LocalDate.now().toString()%>"
-							class="form-control text-center btn-outline-primary  mb-2" /> <input
-							disabled="disabled" value="الوحدة : ${billBuy.company.name}"
-							class="form-control text-center btn-outline-primary  mb-2" />
+							class="form-control text-center btn-outline-warning font-weight-bold  mb-2" />
+
+
+						<input disabled="disabled"
+							value="الوحدة : ${billBuy.company.name}"
+							class="form-control text-center btn-outline-warning font-weight-bold  mb-2" />
 
 
 						<form:form method="get" action="add-item-to-buy-bill"
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select class="form-control text-center " path="id">
+							<form:select
+								class="form-control text-center font-weight-bold bg-light"
+								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
 							</form:select>
 
 
-							<div class="form-group">
-								<label>الكمية</label>
-								<form:input id="quantity" path="quantity"
-									class="form-control text-center " />
-							</div>
+							<label>الكمية</label>
+							<form:input id="quantity" path="quantity"
+								class="form-control text-center font-weight-bold bg-light" />
 
 
 
 							<div class="form-group">
 								<label>سعر الشراء</label>
 								<form:input id="quantity" path="buyPrice"
-									class="form-control text-center " />
+									class="form-control text-center font-weight-bold bg-light" />
 							</div>
 
 
-							<button type="submit" class="btn btn-primary btn-lg w-100 ">اضافة
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100 ">اضافة
 								للفاتورة</button>
 
 
@@ -81,19 +85,20 @@
 				</div>
 			</div>
 
-			<div class="mr-4 col-8 ">
+			<div class="mr-4 col-8 shadow pb-3">
 
-				<div class="shadow"
+				<div class="  font-weight-bold shadow"
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered">
+					<table class="table  table-striped table-sm  shadow ">
 
-						<thead>
+						<thead class="bg-primary text-white border-primary">
 							<tr>
-								<th>الصنف</th>
-								<th>الكمية</th>
-								<th>سعر الشراء</th>
-								<th>اجمالي السعر</th>
+								<th class=" col-1">الصنف</th>
+								<th class=" col-1">الكمية</th>
+								<th class=" col-1">سعر الشراء</th>
+								<th class=" col-1">اجمالي السعر</th>
+								<th class=" col-1"></th>
 							</tr>
 						</thead>
 
@@ -101,18 +106,20 @@
 							<c:forEach var="itemTemp" items="${billBuy.billBuyItems}">
 
 								<tr>
-									<td>${itemTemp.item.name}</td>
+									<td class="border-primary pt-2">${itemTemp.item.name}</td>
 
-									<td>${itemTemp.quantity}</td>
-									<td><fmt:formatNumber value="${itemTemp.buyPrice}"
-											maxFractionDigits="2" /></td>
-									<td><fmt:formatNumber
+									<td class="border-primary pt-2">${itemTemp.quantity}</td>
+
+									<td class="border-primary pt-2"><fmt:formatNumber
+											value="${itemTemp.buyPrice}" maxFractionDigits="2" /></td>
+
+									<td class="border-primary pt-2"><fmt:formatNumber
 											value=" ${itemTemp.buyPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td><a
+									<td class="border-primary "><a
 										href="delete-buyBillItem?buyBillItemId=${itemTemp.id}"
-										class="btn btn-outline-danger btn-sm"> إلغاء </a></td>
+										class="btn btn-danger btn-sm "> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>
@@ -125,31 +132,32 @@
 
 
 
-				<span class="btn btn-outline-success float-right mt-sm-4">
-					اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />
-				</span>
+				<input
+					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"
+					value="اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
 
 
-				<div class="float-left pt-sm-4 ">
+
+				<div class="float-left pt-sm-4">
 
 
 					<form:form>
 
 						<a href="delete-buyBill?buyBillId=${billBuy.id}"
-							class="btn btn-danger "
+							class="btn btn-danger shadow font-weight-bold"
 							onclick="return confirm('هل انت متأكد من حذف الفاتورة ؟')">
 							حذف </a>
 
 
 						<a href="save-buyBill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-							class="btn btn-success ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+							class="btn btn-success mr-1 shadow font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							حفظ</a>
 
 
 						<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-							class="btn btn-primary ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+							class="btn btn-primary mr-1 shadow font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>
 
 					</form:form>

@@ -15,7 +15,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف فواتير البيع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 </head>
@@ -27,20 +29,22 @@
 
 	<div style="text-align: center;" class="text-center mr-lg-4">
 
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row w-100">
 
-			<div class="mr-lg-4">
+			<div class="mr-lg-4 ">
 
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header ">
-						<h5>البحث بالوحدة</h5>
+				<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning text-warning ">
+						<h4>البحث بالوحدة</h4>
 					</div>
-					<div class="card-body">
+					<div class="card-body bg-dark text-warning ">
 						<form method="POST" action="search-sell-bill-by-clientId">
 
 							<div class="form-group">
 
-								<select class="form-control text-center" name="clientId">
+								<select
+									class="form-control text-center bg-light font-weight-bold"
+									name="clientId">
 
 									<c:forEach var="clientTemp" items="${clientsList}">
 
@@ -52,33 +56,32 @@
 							</div>
 
 							<button type="submit"
-								class="btn btn-outline-primary  btn-lg w-100">بحث</button>
+								class="btn btn-outline-warning btn-lg w-100">بحث</button>
 
 						</form>
 
 					</div>
 				</div>
 
-				<div class="card  border-primary w-100 mt-sm-4"
-					style="max-width: 20rem;">
-					<div class="card-header">
-						<h5>البحث برقم الفاتورة</h5>
+				<div class=" card border-warning  mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning text-warning ">
+						<h4>البحث برقم الفاتورة</h4>
 					</div>
-
-					<div class="card-body">
+					<div class="card-body bg-dark text-warning">
 
 						<form method="POST" action="search-sell-bill-by-id">
 
-							<div class="form-group">
-								<input class="form-control text-center" name="billId">
+							<div class="form-group ">
+								<input
+									class="form-control text-center bg-light bg-light font-weight-bold"
+									name="billId">
 
 							</div>
 
 							<button type="submit"
-								class="btn form-control btn-outline-primary btn-lg w-100">بحث</button>
+								class="btn form-control btn-outline-warning btn-lg w-100">بحث</button>
 
 						</form>
-
 					</div>
 				</div>
 
@@ -88,16 +91,18 @@
 
 
 
-			<div class="mr-4 col-8">
+			<div class="mr-4 col-8 ">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered ">
+					<table
+						class="table  table-striped table-sm shadow font-weight-bold">
 
-						<thead>
+
+						<thead class="bg-primary text-white ">
 							<tr>
-								<th class="col-2">الرقم</th>
+								<th class="col-2  ">الرقم</th>
 								<th class="col-2">الوحدة</th>
 								<th class="col-2">النوع</th>
 								<th class="col-2">التاريخ</th>
@@ -111,19 +116,17 @@
 
 								<tr>
 
-									<td>${billTemp.id}</td>
-									<td>${billTemp.client.name}</td>
-									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
-									<td>${billTemp.date}</td>
+									<td class="border-primary  pt-2">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.client.name}</td>
+									<td class="border-primary pt-2">${billTemp.late ? "آجل" : "نقدي" }</td>
+									<td class="border-primary pt-2">${billTemp.date}</td>
 
 
-									<td><a href="view-sell-bill?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">عرض</a>
-
-										<a href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
-
-									</td>
+									<td class="border-primary "><a
+										href="view-sell-bill?sellBillId=${billTemp.id}" type="button"
+										class="btn btn-warning btn-sm">عرض</a> <a
+										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
+										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
 								</tr>
 
 							</c:forEach>

@@ -14,7 +14,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>دفع لمورد</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 </head>

@@ -14,9 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف الأصناف</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
 
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
+	rel="stylesheet">
 </head>
 <body>
 
@@ -30,9 +30,10 @@
 		<div dir="rtl" class="row mt-lg-4"
 			style="width: 800px; margin: 0auto;">
 
-			<div class="card border-primary w-50" style="max-width: 20rem;">
+			<div class="card border-warning text-warning w-50 shadow"
+				style="margin: 0; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); max-width: 24rem;">
 
-				<div class="card-header">
+				<div class="card-header   border-warning  ">
 					<h4>فاتورة شراء</h4>
 				</div>
 
@@ -40,9 +41,10 @@
 
 					<form method="POST" action="save-buy-bill-info">
 
-						<div class="form-group">
+						<div class="form-group font-weight-bold">
 							<label>اسم المورد</label> <select
-								class="form-control text-center" name="companyId">
+								class="form-control text-center bg-light font-weight-bold"
+								name="companyId">
 
 								<c:forEach var="companyTemp" items="${companiesList}">
 
@@ -54,7 +56,7 @@
 						</div>
 
 
-						<button type="submit" class="btn btn-outline-primary btn-lg w-100">
+						<button type="submit" class="btn btn-outline-warning btn-lg w-100">
 							فاتورة جديدة</button>
 
 					</form>

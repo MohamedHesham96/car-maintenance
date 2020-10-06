@@ -14,8 +14,11 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف فواتير - [${client.name}]</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
+
+
 
 </head>
 <body>

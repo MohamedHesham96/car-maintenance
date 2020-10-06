@@ -16,9 +16,19 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>تعديل فاتورة بيع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
 	rel="stylesheet">
 
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
+	rel="stylesheet">
 <script type="text/javascript">
 	
 function showUpdateForm(btn, id) {
@@ -74,7 +84,7 @@ function showUpdateForm(btn, id) {
 						disabled="disabled"
 						value="التاريخ : <%=LocalDate.now().toString()%>"
 						class="form-control text-center btn-outline-primary mb-2" /> <input
-						disabled="disabled" value="اسم الوحدة : ${billBuy.company.name}"
+						disabled="disabled" value="اسم المورد : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-primary mb-2" /> <input
 						${view ? '' :  'hidden'  } disabled="disabled"
 						value="اسم البائع : ${billBuy.user.name}"
@@ -120,7 +130,7 @@ function showUpdateForm(btn, id) {
 							<tr>
 								<th>الصنف</th>
 								<th>الكمية</th>
-								<th>سعر البيع</th>
+								<th>سعر الشراء</th>
 								<th>اجمالي السعر</th>
 							</tr>
 						</thead>

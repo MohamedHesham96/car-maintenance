@@ -130,6 +130,7 @@ public class UpdateBillSellController {
 			billSellItem.setBillSell(billSell);
 			billSellItem.setSellPrice(theItem.getSellPrice());
 			billSellItem.setQuantity(item.getQuantity());
+			billSellItem.setDate();
 
 			billSellItemsService.addBillSellItem(billSellItem);
 

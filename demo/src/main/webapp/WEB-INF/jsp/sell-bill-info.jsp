@@ -14,11 +14,21 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>فاتورة بيع جديدة</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
 	rel="stylesheet">
 
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
+	rel="stylesheet">
 </head>
 <body>
+
 
 	<%@ include file="header.jsp"%>
 
@@ -27,22 +37,24 @@
 	<div style="text-align: center; width: 100%;" class="text-center ">
 
 
-		<div dir="rtl" class="row mt-lg-4"
+		<div dir="rtl" class="row mt-lg-4 "
 			style="width: 800px; margin: 0auto;">
 
-			<div class="card border-primary w-50" style="max-width: 20rem;">
+			<div class="card border-warning w-50 font-weight-bold shadow"
+				style="margin: 0; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); max-width: 24rem;">
 
-				<div class="card-header">
+				<div class="card-header  border-warning text-warning">
 					<h4>فاتورة بيع</h4>
 				</div>
 
-				<div class="card-body">
+				<div class="card-body bg-dark text-warning">
 
 					<form method="POST" action="save-sell-bill-info">
 
-						<div class="form-group">
+						<div class="form-group ">
 							<label>اسم الوحدة</label> <select
-								class="form-control text-center" name="clientId">
+								class="form-control text-center  font-weight-bold bg-light"
+								name="clientId">
 
 								<c:forEach var="clientTemp" items="${clientsList}">
 
@@ -55,8 +67,9 @@
 
 						<label>آجل</label> <input type="checkbox" name="late">
 
-						<button type="submit" class="btn btn-outline-primary btn-lg w-100">
-							فاتورة جديدة</button>
+						<button type="submit"
+							class="btn btn-outline-warning btn-lg w-100 ">فاتورة
+							جديدة</button>
 
 					</form>
 				</div>

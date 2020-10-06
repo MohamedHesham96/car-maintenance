@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
+import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
 import com.blue.soft.store.service.BillReturnItemsService;
@@ -53,6 +54,23 @@ public class UpdateBillReturnController {
 			return "redirect:/show-update-return-bill";
 
 		List<BillReturnItem> billReturnItemsList = billReturn.getBillReturnItems();
+
+		float total = 0;
+
+		for (BillReturnItem billReturnItem : billReturnItemsList) {
+
+			Item item = billReturnItem.getItem();
+
+			item.setQuantity(item.getQuantity() - billReturnItem.getQuantity());
+
+			itemService.addNewItem(item);
+
+			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
+		}
+
+		Client theClient = billReturn.getClient();
+
+		theClient.setDrawee(theClient.getDrawee() - total);
 
 		billReturn.setUpdateNow(true);
 
@@ -127,6 +145,21 @@ public class UpdateBillReturnController {
 
 		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);
 
+		List<BillReturnItem> billReturnItems = billReturn.getBillReturnItems();
+
+		float total = 0;
+
+		for (BillReturnItem billReturnItem : billReturnItems) {
+
+			Item item = billReturnItem.getItem();
+
+			item.setQuantity(item.getQuantity() + billReturnItem.getQuantity());
+
+			itemService.addNewItem(item);
+
+			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
+		}
+
 		billReturn.setUpdateNow(false);
 
 		billReturnService.saveReturnBill(billReturn);
@@ -139,12 +172,12 @@ public class UpdateBillReturnController {
 
 	// بيجيب الداتا من الفورم بتاعت التعديل علشان يعدل على الاصناف
 	@RequestMapping("/update-returnBillItem")
-	public String deleteReturnBillItemUpdate(@ModelAttribute(name = "updateItem") Item returnBillItem) {
+	public String deleteReturnBillItemUpdate(@ModelAttribute(name = "updateItem") BillReturnItem returnBillItem) {
 
 		BillReturnItem oldBRItem = billReturnItemsService.getBillReturnItem(returnBillItem.getId());
 
 		oldBRItem.setQuantity(returnBillItem.getQuantity());
-		oldBRItem.setReturnPrice(returnBillItem.getSellPrice());
+		oldBRItem.setReturnPrice(returnBillItem.getReturnPrice());
 
 		billReturnItemsService.addBillReturnItem(oldBRItem);
 

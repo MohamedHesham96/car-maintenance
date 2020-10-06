@@ -32,6 +32,10 @@ public class BillReturn {
 	private boolean updateNow;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "client_id")
 	private Client client;
 
@@ -124,4 +128,13 @@ public class BillReturn {
 
 		return total;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

@@ -16,7 +16,10 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف فواتير البيع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 </head>
@@ -30,31 +33,41 @@
 
 			<div>
 
-				<div class="card border-primary" style="max-width: 20rem;">
-					<div class="card-header">
+				<div
+					class="card border-warning shadow text-warning font-weight-bold pb-2"
+					style="max-width: 20rem;">
+
+					<div class="card-header  border-warning ">
 						<h5>فاتورة بيع</h5>
 					</div>
 
-					<div class="card-body">
+					<div class="card-body bg-dark ">
 
 						<input disabled="disabled"
 							value=" رقم الفاتورة : S - ${billSell.id}"
-							class="form-control text-center btn-outline-primary  mb-2" /> <input
-							disabled="disabled"
-							value="التاريخ : <%=LocalDate.now().toString()%>"
-							class="form-control text-center btn-outline-primary  mb-2" /> <input
-							disabled="disabled"
-							value=" نوع الفاتورة :  ${billSell.late ? 'آجل' : 'نقدي'} "
-							class="form-control text-center btn-outline-primary  mb-2" /> <input
-							disabled="disabled" value="الوحدة : ${billSell.client.name}"
-							class="form-control text-center btn-outline-primary  mb-2" />
+							class="form-control text-center font-weight-bold btn-outline-warning text-warning  mb-2" />
 
+						<input disabled="disabled"
+							value="التاريخ : <%=LocalDate.now().toString()%>"
+							class="form-control text-center font-weight-bold btn-outline-warning text-warning  mb-2" />
+
+
+						<input disabled="disabled"
+							value=" نوع الفاتورة :  ${billSell.late ? 'آجل' : 'نقدي'} "
+							class="form-control text-center font-weight-bold btn-outline-warning text-warning  mb-2" />
+
+
+						<input disabled="disabled"
+							value="الوحدة : ${billSell.client.name}"
+							class="form-control text-center font-weight-bold btn-outline-warning text-warning  mb-2" />
 
 						<form:form method="get" action="add-item-to-sell-bill"
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select class="form-control text-center " path="id">
+							<form:select
+								class="form-control text-center bg-light font-weight-bold"
+								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
 							</form:select>
 
@@ -62,10 +75,11 @@
 							<div class="form-group">
 								<label>الكمية</label>
 								<form:input id="quantity" path="quantity"
-									class="form-control text-center " />
+									class="form-control text-center bg-light font-weight-bold" />
 							</div>
 
-							<button type="submit" class="btn btn-primary btn-lg w-100 ">اضافة
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100 ">اضافة
 								للفاتورة</button>
 
 
@@ -75,38 +89,39 @@
 				</div>
 			</div>
 
-			<div class="mr-4 col-8 ">
+			<div class="mr-4 col-8 shadow">
 
-				<div class="shadow"
+				<div class="  font-weight-bold shadow"
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered">
+					<table class="table  table-striped table-sm  shadow ">
 
-						<thead>
+						<thead class="bg-primary text-white ">
 							<tr>
-								<th>الصنف</th>
-								<th>الكمية</th>
-								<th>سعر البيع</th>
-								<th>اجمالي السعر</th>
+								<th class="col-1">الصنف</th>
+								<th class="col-1">الكمية</th>
+								<th class="col-1">سعر البيع</th>
+								<th class="col-1">اجمالي السعر</th>
+								<th class="col-1"></th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="">
 							<c:forEach var="itemTemp" items="${billSell.billSellItems}">
 
 								<tr>
-									<td>${itemTemp.item.name}</td>
+									<td class="border-primary pt-2">${itemTemp.item.name}</td>
 
-									<td>${itemTemp.quantity}</td>
-									<td><fmt:formatNumber value="${itemTemp.sellPrice}"
-											maxFractionDigits="2" /></td>
-									<td><fmt:formatNumber
+									<td class="border-primary pt-2">${itemTemp.quantity}</td>
+									<td class="border-primary pt-2"><fmt:formatNumber
+											value="${itemTemp.sellPrice}" maxFractionDigits="2" /></td>
+									<td class="border-primary pt-2"><fmt:formatNumber
 											value=" ${itemTemp.sellPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td><a
+									<td class="border-primary"><a
 										href="delete-sellBillItem?sellBillItemId=${itemTemp.id}"
-										class="btn btn-outline-danger btn-sm"> إلغاء </a></td>
+										class="btn btn-danger btn-sm"> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>
@@ -116,35 +131,32 @@
 
 				</div>
 
+				<input
+					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"
+					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
 
 
 
-				<span class="btn btn-outline-success float-right mt-sm-4">
-					اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />
-				</span>
-
-
-
-				<div class="float-left pt-sm-4 ">
+				<div class="float-left pt-sm-4 pb-3">
 
 
 					<form:form>
 
 						<a href="delete-sellBill?sellBillId=${billSell.id}"
-							class="btn btn-danger "
+							class="btn btn-danger shadow font-weight-bold"
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							حذف </a>
 
 
 						<a href="save-sellBill?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-							class="btn btn-success ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+							class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							حفظ</a>
 
 
 						<a href="show-printView?sellBillId=${billSell.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-							class="btn btn-primary ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+							class="btn btn-primary shadow mr-1  font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 							طباعة</a>
 
 					</form:form>

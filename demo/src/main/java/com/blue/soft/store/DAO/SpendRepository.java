@@ -11,6 +11,9 @@ public interface SpendRepository extends CrudRepository<Spend, String> {
 
 	public List<Spend> findAllByOrderByIdDesc();
 
+	@Query("SELECT SUM(s.amount) FROM Spend s")
+	public Float getSpendTotal();
+
 	@Query("SELECT SUM(s.amount) FROM Spend s where date = CURRENT_DATE")
 	public Float getSpendTotalToday();
 

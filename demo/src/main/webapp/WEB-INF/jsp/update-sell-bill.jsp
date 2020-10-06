@@ -14,9 +14,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>تعديل فاتورة بيع </title>
+<title>تعديل فاتورة بيع</title>
 
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
+	rel="stylesheet">
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 <script type="text/javascript">
@@ -70,36 +81,29 @@ function showUpdateForm(btn, id) {
 					<label>رقم الفاتورة</label> <input disabled="disabled"
 						value="S - ${billSell.id}"
 						class="form-control text-center btn-outline-primary" /> <label>التاريخ</label>
-					
-					
-					
+
+
+
 					<input disabled="disabled" value="<%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary" /> 
-						
-						
-						<label>
-						اسم الوحدة </label> 
-						
-					<input disabled="disabled"
+						class="form-control text-center btn-outline-primary" /> <label>
+						اسم الوحدة </label> <input disabled="disabled"
 						value="${billSell.client.name}"
 						class="form-control text-center btn-outline-primary" />
-				
-				<div ${view ? '' :  'hidden'  }>
-				
-				
-						<label>
-						اسم البائع </label> 
-						
-						<input disabled="disabled" value="${billSell.user.name}"
-						class="form-control text-center btn-outline-primary" /> 
-						
-						
-				 </div>
-						
-						
-						
-						
-				
+
+					<div ${view ? '' :  'hidden'  }>
+
+
+						<label> اسم البائع </label> <input disabled="disabled"
+							value="${billSell.user.name}"
+							class="form-control text-center btn-outline-primary" />
+
+
+					</div>
+
+
+
+
+
 					<div ${view ? 'hidden' :  ''  }>
 						<form:form method="get" action="add-item-to-update-sell-bill"
 							modelAttribute="item">
@@ -154,17 +158,17 @@ function showUpdateForm(btn, id) {
 											value="${itemTemp.sellPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td ${view ? 'hidden' :  ''  }> 
-									
-									<button type="button"
-											class="btn btn-outline-primary btn-sm"
+									<td ${view ? 'hidden' :  ''  }>
+
+										<button type="button" class="btn btn-outline-primary btn-sm"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 
 
 										<a type="button"
 										href="delete-sellBillItemUpdate?sellBillItemId=${itemTemp.id}"
 										onclick="return confirm('هل انت متأكد من إلغاء الصنف ؟')"
-										class="btn btn-outline-danger btn-sm">إلغاء</a></td>
+										class="btn btn-outline-danger btn-sm">إلغاء</a>
+									</td>
 								</tr>
 
 							</c:forEach>
