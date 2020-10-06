@@ -102,25 +102,25 @@
 								<div class="form-group ">
 									<label class="">اسم الصنف</label>
 									<form:input path="name"
-										class="form-control text-center bg-light" />
+										class="form-control text-center bg-light font-weight-bold" />
 								</div>
 
 								<div class="form-group">
 									<label>الكمية</label>
 									<form:input path="quantity"
-										class="form-control text-center bg-light" />
+										class="form-control text-center bg-light font-weight-bold" />
 								</div>
 
 								<div class="form-group">
 									<label>سعر الشراء</label>
 									<form:input path="buyPrice"
-										class="form-control text-center bg-light" />
+										class="form-control text-center bg-light font-weight-bold" />
 								</div>
 
 								<div class="form-group">
 									<label>سعر البيع</label>
 									<form:input path="sellPrice"
-										class="form-control text-center bg-light" />
+										class="form-control text-center bg-light font-weight-bold" />
 								</div>
 
 								<button type="submit"

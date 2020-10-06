@@ -176,26 +176,48 @@ function showUpdateForm(btn, id) {
 
 						<a ${view ? 'hidden' :  ''  }
 							href="retrieve-UpdateBuyBill?buyBillId=${billBuy.id}"
-							class="btn btn-warning "
+							class="btn btn-warning    "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
 
 						<a href="delete-updateBuyBill?buyBillId=${billBuy.id}"
-							class="btn btn-danger "
+							class="btn btn-danger  mr-1  "
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء الفاتورة </a>
 
-						<a ${view ? 'hidden' :  ''  }
-							href="update-buyBill?buyBillId=${billBuy.id}"
-							onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
-							class="btn btn-success ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
-							تحديث</a>
+
+						<c:if test="${billBuy.billBuyItems.size() > 0 }">
 
 
-						<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
-							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-							class="btn btn-primary ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
-							طباعة</a>
+							<a ${view ? 'hidden' :  ''  }
+								href="update-buyBill?buyBillId=${billBuy.id}"
+								onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
+								class="btn btn-success  mr-1  ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+								تحديث</a>
+
+
+							<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
+								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
+								class="btn btn-primary  mr-1  ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+								طباعة</a>
+						</c:if>
+
+
+
+						<c:if test="${billBuy.billBuyItems.size() eq 0 }">
+
+
+							<button class="btn btn-success mr-1 shadow font-weight-bold "
+								disabled>تحديث</button>
+
+
+							<button class="btn btn-primary shadow mr-1  font-weight-bold"
+								disabled>طباعة</button>
+						</c:if>
+
+
+
+
 
 					</form:form>
 
