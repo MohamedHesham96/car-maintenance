@@ -242,8 +242,8 @@
 											value="${(itemTemp.sellPrice - itemTemp.buyPrice) * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td class=" border-primary">
-										<button type="button" class="btn btn-primary btn-sm "
+									<td class=" border-primary ">
+										<button type="button" class="btn btn-primary btn-sm font-weight-bold"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 									</td>
 								</tr>

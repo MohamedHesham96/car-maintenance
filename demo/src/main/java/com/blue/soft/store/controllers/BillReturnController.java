@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
+import com.blue.soft.store.entity.BillReturn;
+import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
@@ -90,7 +92,7 @@ public class BillReturnController {
 		billReturn.setClient(clientService.getClientById(clientid));
 
 		billReturn.setUser(theUser);
-		
+
 		BillReturn lastBillReturn = billReturnService.getLast();
 
 		if (lastBillReturn == null || lastBillReturn.isSaved()) {
@@ -169,6 +171,23 @@ public class BillReturnController {
 		theModel.addAttribute("billReturnList", billReturnService.getAllReturnBills());
 
 		return "return-bill-list";
+	}
+
+	@RequestMapping("/view-return-bill")
+	public String viewreturnBill(@RequestParam("returnBillId") String returnBillId, Model theModel) {
+
+		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);
+
+		float total = billReturn.getTotal();
+
+		theModel.addAttribute("view", true);
+		theModel.addAttribute("total", total);
+		theModel.addAttribute("item", new Item());
+		theModel.addAttribute("billReturn", billReturn);
+		theModel.addAttribute("updateItem", new BillReturnItem());
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+
+		return "update-return-bill";
 	}
 
 	@RequestMapping("/delete-returnBill")

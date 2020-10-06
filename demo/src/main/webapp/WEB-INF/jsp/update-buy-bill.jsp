@@ -29,6 +29,7 @@
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
+
 <script type="text/javascript">
 	
 function showUpdateForm(btn, id) {
@@ -39,17 +40,17 @@ function showUpdateForm(btn, id) {
 	var itemName = document.getElementById(id).innerText;
 
 	var itemQuantity = document.getElementById("itemQuantity"+id).innerText;
-	var itemBuyPrice = document.getElementById("itemBuyPrice"+id).innerText;
+	var itembuyPrice = document.getElementById("itembuyPrice"+id).innerText;
 
 	var newId = document.getElementById("newId");
 	var newQuantity = document.getElementById("newQuantity");
 	var newName = document.getElementById("newName");
-	var newBuyPrice = document.getElementById("newBuyPrice");
+	var newbuyPrice = document.getElementById("newbuyPrice");
 
 	newId.value = itemId;
 	newName.value = itemName;
 	newQuantity.value = itemQuantity;
-	newBuyPrice.value = itemBuyPrice;
+	newbuyPrice.value = itembuyPrice;
 
 	
 	
@@ -68,49 +69,56 @@ function showUpdateForm(btn, id) {
 
 	<br>
 
-	<div style="text-align: center;" class=" ">
+	<div
+		style="width: 100%; position: absolute; top: 56%; left: 46.5%; transform: translate(-50%, -50%); text-align: center;"
+		class=" ">
 
-		<div dir="rtl" class="row mr-lg-2 ">
-
-			<div class="card border-primary" style="max-width: 20rem;">
-				<div class="card-header ">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'}
-
+		<div dir="rtl" class="row ">
+			<div class="card border-warning " style="max-width: 20rem;">
+				<div class="card-header border-warning text-warning">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'  }
 				</div>
-				<div class="card-body">
+				<div class="card-body text-warning font-weight-bold">
 
 					<input disabled="disabled"
-						value=" رقم الفاتورة : B - ${billBuy.id}"
-						class="form-control text-center btn-outline-primary mb-2" /> <input
-						disabled="disabled"
-						value="التاريخ : <%=LocalDate.now().toString()%>"
-						class="form-control text-center btn-outline-primary mb-2" /> <input
-						disabled="disabled" value="اسم المورد : ${billBuy.company.name}"
-						class="form-control text-center btn-outline-primary mb-2" /> <input
-						${view ? '' :  'hidden'  } disabled="disabled"
-						value="اسم البائع : ${billBuy.user.name}"
-						class="form-control text-center btn-outline-primary mb-2" />
+						value="رقم الفاتورة :  B - ${billBuy.id} "
+						class="form-control text-center btn-outline-warning font-weight-bold" />
+
+					<input disabled="disabled"
+						value="التاريخ  :  <%=LocalDate.now().toString()%> "
+						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
+					<input disabled="disabled"
+						value="اسم الوحدة : ${billBuy.company.name}"
+						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
+
+					<div ${view ? '' :  'hidden'  } class="mt-2">
 
 
-					<div ${view ? 'hidden' :  ''  }>
+						<input disabled="disabled"
+							value="  اسم البائع : ${billBuy.user.name}"
+							class="form-control text-center btn-outline-warning font-weight-bold" />
 
 
+					</div>
+
+					<div ${view ? 'hidden' :  ''  } class="mt-2 ">
 						<form:form method="get" action="add-item-to-update-buy-bill"
 							modelAttribute="item">
 
+							<label>اسم الصنف</label>
+							<form:select
+								class="form-control text-center bg-light font-weight-bold"
+								path="id">
+								<form:options items="${itemsList}" itemLabel="name" />
+							</form:select>
 
-							<div class="form-group">
-								<label>اسم الصنف</label>
-								<form:select class="form-control text-center " path="id">
-									<form:options items="${itemsList}" itemLabel="name" />
-								</form:select>
-							</div>
-
-							<div class="form-group">
+							<div class="form-group mt-1">
 								<label>الكمية</label>
-								<form:input path="quantity" class="form-control text-center" />
+								<form:input path="quantity"
+									class="form-control text-center  bg-light font-weight-bold" />
 							</div>
 
-							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100">اضافة
 								للفاتورة</button>
 
 
@@ -119,44 +127,48 @@ function showUpdateForm(btn, id) {
 				</div>
 			</div>
 
-			<div class=" col-7">
+			<div class=" col-7 shadow pb-3 mr-2">
 
 				<div class="shadow "
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered ">
+					<table class="table table-striped table-sm  ">
 
-						<thead>
+						<thead class="bg-primary">
 							<tr>
-								<th>الصنف</th>
-								<th>الكمية</th>
-								<th>سعر الشراء</th>
-								<th>اجمالي السعر</th>
+								<th class="col-1">الصنف</th>
+								<th class="col-1">الكمية</th>
+								<th class="col-1">سعر الشراء</th>
+								<th class="col-1">اجمالي السعر</th>
+								<th ${view ? 'hidden' :  ''  } class="col-1"></th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="shadow font-weight-bold">
 							<c:forEach var="itemTemp" items="${billBuy.billBuyItems}">
 
 								<tr>
-									<td id="${itemTemp.id}">${itemTemp.item.name}</td>
-									<td id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
-									<td id="itemBuyPrice${itemTemp.id}"><fmt:formatNumber
+									<td class="pt-2" id="${itemTemp.id}">${itemTemp.item.name}</td>
+									<td class="pt-2" id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
+									<td class="pt-2" id="itembuyPrice${itemTemp.id}"><fmt:formatNumber
 											value="${itemTemp.buyPrice}" maxFractionDigits="2" /></td>
 
-									<td><fmt:formatNumber
+									<td class="pt-2"><fmt:formatNumber
 											value="${itemTemp.buyPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
 
-									<td ${view ? 'hidden' :  ''  }><button type="button"
-											class="btn btn-outline-primary btn-sm"
+									<td ${view ? 'hidden' :  ''  }>
+
+										<button type="button"
+											class="btn btn-primary btn-sm font-weight-bold"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 
 
 										<a type="button"
 										href="delete-buyBillItemUpdate?buyBillItemId=${itemTemp.id}"
 										onclick="return confirm('هل انت متأكد من إلغاء الصنف ؟')"
-										class="btn btn-outline-danger btn-sm">إلغاء</a></td>
+										class="btn btn-danger btn-sm font-weight-bold">إلغاء</a>
+									</td>
 								</tr>
 
 							</c:forEach>
@@ -166,8 +178,12 @@ function showUpdateForm(btn, id) {
 
 				</div>
 
-				<span class="btn btn-outline-success float-right mt-sm-4">
-					اجمالي: ${total}</span>
+
+				<input
+					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"
+					value="اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
+
+
 
 
 				<div class="float-left pt-sm-4 ">
@@ -176,15 +192,14 @@ function showUpdateForm(btn, id) {
 
 						<a ${view ? 'hidden' :  ''  }
 							href="retrieve-UpdateBuyBill?buyBillId=${billBuy.id}"
-							class="btn btn-warning    "
+							class="btn btn-warning mr-1 font-weight-bold"
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء التحديث </a>
 
 						<a href="delete-updateBuyBill?buyBillId=${billBuy.id}"
-							class="btn btn-danger  mr-1  "
+							class="btn btn-danger mr-1 font-weight-bold"
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							إلغاء الفاتورة </a>
-
 
 						<c:if test="${billBuy.billBuyItems.size() > 0 }">
 
@@ -192,13 +207,12 @@ function showUpdateForm(btn, id) {
 							<a ${view ? 'hidden' :  ''  }
 								href="update-buyBill?buyBillId=${billBuy.id}"
 								onclick="return confirm('هل انت متأكد من تحديث الفاتورة ؟')"
-								class="btn btn-success  mr-1  ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+								class="btn btn-success mr-1 font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 								تحديث</a>
 
-
-							<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
+							<a  href="/show-print-buy-bill?buyBillId=${billBuy.id}"
 								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-								class="btn btn-primary  mr-1  ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
+								class="btn btn-primary mr-1 font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 								طباعة</a>
 						</c:if>
 
@@ -208,12 +222,16 @@ function showUpdateForm(btn, id) {
 
 
 							<button class="btn btn-success mr-1 shadow font-weight-bold "
-								disabled>تحديث</button>
+								disabled>حفظ</button>
 
 
 							<button class="btn btn-primary shadow mr-1  font-weight-bold"
 								disabled>طباعة</button>
+
 						</c:if>
+
+
+
 
 
 
@@ -226,39 +244,40 @@ function showUpdateForm(btn, id) {
 			</div>
 
 
-			<div ${view ? 'hidden' :  ''  } class="card border-primary"
+			<div ${view ? 'hidden' :  ''  } class="card border-warning mr-2"
 				style="max-width: 20rem;">
-				<div class="card-header ">
+				<div class="card-header border-warning text-warning">
 					<h5>تعديل الصنف</h5>
 				</div>
-				<div class="card-body">
+				<div class="card-body text-warning font-weight-bold">
 
 					<form:form modelAttribute="updateItem" method="get"
 						action="update-buyBillItem">
 
 						<div hidden="" class="form-group">
 							<label>اسم الصنف</label>
-							<form:input path="id" id="newId" class="form-control text-center" />
+							<form:input path="id" id="newId"
+								class="form-control text-center font-weight-bold" />
 						</div>
 
 						<div class="form-group">
 							<label>اسم الصنف</label> <input disabled="disabled" id="newName"
-								class="form-control text-center btn-outline-primary">
+								class="form-control text-center btn-outline-warning font-weight-bold">
 						</div>
 
 						<div class="form-group">
 							<label>الكمية</label>
 							<form:input path="quantity" id="newQuantity"
-								class="form-control text-center" />
+								class="form-control text-center  bg-light font-weight-bold" />
 						</div>
 
 						<div class="form-group">
 							<label>سعر الشراء</label>
-							<form:input path="buyPrice" id="newBuyPrice"
-								class="form-control text-center" />
+							<form:input path="buyPrice" id="newbuyPrice"
+								class="form-control text-center bg-light font-weight-bold" />
 						</div>
 
-						<button type="submit" class="btn btn-outline-primary btn-lg w-100">تعديل
+						<button type="submit" class="btn btn-outline-warning btn-lg w-100">تعديل
 							الصنف</button>
 
 

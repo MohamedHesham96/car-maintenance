@@ -114,7 +114,7 @@
 
 									<td class="border-primary"><a
 										href="delete-returnBillItem?returnBillItemId=${itemTemp.id}"
-										class="btn btn-danger btn-sm"> إلغاء </a></td>
+										class="btn btn-danger btn-sm font-weight-bold"> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>

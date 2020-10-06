@@ -125,10 +125,13 @@
 									<td class="border-primary "><a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="view-sell-bill?sellBillId=${billTemp.id}" type="button"
-										class="btn btn-warning btn-sm">عرض</a> <a
+										class="btn btn-warning btn-sm font-weight-bold">عرض</a>
+										
+										
+										 <a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-primary btn-sm">التعديل</a></td>
+										type="button" class="btn btn-primary btn-sm font-weight-bold">التعديل</a></td>
 								</tr>
 
 							</c:forEach>

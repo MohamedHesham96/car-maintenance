@@ -117,9 +117,18 @@
 									<td class="border-primary pt-2">${billTemp.client.name}</td>
 									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td class="border-primary"><a
+									<td class="border-primary">
+											
+									<a
+<%-- 										${ billTemp.updater != null ? 'hidden' :  '' } --%>
+										href="view-return-bill?returnBillId=${billTemp.id}" type="button"
+										class="btn btn-warning btn-sm font-weight-bold">عرض</a>
+										
+										<a
+<%-- 																				${ billTemp.updater != null ? 'hidden' :  '' } --%>
+										
 										href="change-return-bill-to-update?returnBillId=${billTemp.id}"
-										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
+										type="button" class="btn btn-primary btn-sm font-weight-bold">تعديل</a></td>
 								</tr>
 
 							</c:forEach>
