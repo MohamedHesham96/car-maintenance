@@ -37,17 +37,12 @@ public class BillBuyService {
 
 	public List<BillBuy> getAllBuyBills() {
 
-		return (List<BillBuy>) billBuyRepository.findAllByOrderByIdDesc();
+		return (List<BillBuy>) billBuyRepository.findAllBySaverIdIsNullOrderByIdDesc();
 	}
 
 	public List<BillBuy> getBillBuyContainingId(String id) {
 
 		return (List<BillBuy>) billBuyRepository.findByIdContainingOrderByIdDesc(id);
-	}
-
-	public BillBuy getBillBuyByUpdateNow() {
-
-		return (BillBuy) billBuyRepository.findByUpdateNowTrue();
 	}
 
 	public Integer getBuyBillCountToday() {
@@ -56,5 +51,15 @@ public class BillBuyService {
 
 		return bbCountToday != null ? bbCountToday : 0;
 
+	}
+
+	public BillBuy getBillBuyByUpdaterId(String updateId) {
+
+		return billBuyRepository.getBillBuyByUpdaterId(updateId);
+	}
+
+	public BillBuy getBillBuyBySaverId(String userId) {
+
+		return billBuyRepository.getBillBuyBySaverId(userId);
 	}
 }

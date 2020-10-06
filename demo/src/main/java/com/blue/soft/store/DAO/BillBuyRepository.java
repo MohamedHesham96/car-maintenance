@@ -13,11 +13,12 @@ public interface BillBuyRepository extends CrudRepository<BillBuy, String> {
 
 	public List<BillBuy> findByIdContainingOrderByIdDesc(String billId);
 
-	public List<BillBuy> findAllByOrderByIdDesc();
+	public List<BillBuy> findAllBySaverIdIsNullOrderByIdDesc();
 
-	public BillBuy findByUpdateNowTrue();
-
-	@Query("SELECT COUNT(bb) FROM BillBuy bb where date = CURRENT_DATE")
+	@Query("SELECT COUNT(bb) FROM BillBuy bb where date = CURRENT_DATE  and saver = null")
 	public Integer getBuyBillCountToday();
 
+	public BillBuy getBillBuyByUpdaterId(String updaterId);
+
+	public BillBuy getBillBuyBySaverId(String saverId);
 }

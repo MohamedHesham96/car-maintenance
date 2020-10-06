@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,12 +26,6 @@ public class BillBuy {
 	@Column(name = "date")
 	private String date;
 
-	@Column(name = "saved")
-	private boolean saved;
-
-	@Column(name = "update_now")
-	private boolean updateNow;
-
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "company_id")
 	private Company company;
@@ -38,6 +33,14 @@ public class BillBuy {
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "updater_id")
+	private User updater;
+
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "saver_id")
+	private User saver;
 
 	@OneToMany(mappedBy = "billBuy", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -83,6 +86,22 @@ public class BillBuy {
 		this.user = user;
 	}
 
+	public User getUpdater() {
+		return updater;
+	}
+
+	public void setUpdater(User updater) {
+		this.updater = updater;
+	}
+
+	public User getSaver() {
+		return saver;
+	}
+
+	public void setSaver(User saver) {
+		this.saver = saver;
+	}
+
 	public String getDate() {
 		return this.date;
 	}
@@ -91,24 +110,8 @@ public class BillBuy {
 		this.date = date;
 	}
 
-	public boolean isSaved() {
-		return saved;
-	}
-
-	public void setSaved(boolean saved) {
-		this.saved = saved;
-	}
-
 	public void setBillBuyItems(List<BillBuyItem> billBuyItems) {
 		this.billBuyItems = billBuyItems;
-	}
-
-	public boolean isUpdateNow() {
-		return updateNow;
-	}
-
-	public void setUpdateNow(boolean updateNow) {
-		this.updateNow = updateNow;
 	}
 
 	public List<String> getBillBuyItemsIDS() {

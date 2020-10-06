@@ -42,25 +42,26 @@
 
 				<div>
 
-					<div class="card border-primary mb-3" style="max-width: 20rem;">
-						<div class="card-header">
+					<div class="card border-warning mb-3" style="max-width: 20rem;">
+						<div class="card-header border-warning text-warning">
 							<h5>أضافة وحدة</h5>
 						</div>
-						<div class="card-body">
+						<div class="card-body text-warning font-weight-bold">
 
 
 							<form:form modelAttribute="client" method="post"
 								action="add-new-client">
 
-								<div class="form-group">
+								<div class="form-group ">
 									<label>اسم الوحدة</label>
-									<form:input path="name" class="form-control text-center" />
+									<form:input path="name"
+										class="form-control text-center bg-light" />
 								</div>
 
 
-								<button type="submit" class="btn btn-primary btn-lg w-100">
-
-									اضافة وحدة</button>
+								<button type="submit"
+									class="btn btn-outline-warning btn-lg w-100">اضافة
+									وحدة</button>
 
 							</form:form>
 
@@ -69,23 +70,23 @@
 
 					<br>
 
-					<div class="card border-success mb-3" style="max-width: 20rem;">
-						<div class="card-header">
+					<div class="card border-warning mb-3" style="max-width: 20rem;">
+						<div class="card-header border-warning text-warning">
 							<h5>بحث عن وحدة</h5>
 						</div>
 						<div class="card-body">
 
 							<form method="get" action="search-for-client">
 
-								<div class="form-group">
+								<div class="form-group text-warning font-weight-bold">
 									<label>اسم الوحدة</label> <input name="clientName"
-										class="form-control text-center" />
+										class="form-control text-center bg-light" />
 								</div>
 
 
-								<button type="submit" class="btn btn-success btn-lg w-100">
-
-									بحث عن وحدة</button>
+								<button type="submit"
+									class="btn btn-outline-warning btn-lg w-100">بحث عن
+									وحدة</button>
 
 							</form>
 
@@ -95,18 +96,19 @@
 				</div>
 
 			</div>
-			<div class="mr-4 col-8">
+			<div class="mr-4 col-9">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered shadow">
+					<table
+						class="table table-striped table-sm  shadow font-weight-bold">
 
-						<thead>
+						<thead class="bg-primary">
 							<tr>
 								<th class="col-3">اسم الوحدة</th>
-								<th class="col-3">الدين</th>
-								<th class="col-1"></th>
+								<th class="col-2">الدين</th>
+								<th class="col-3"></th>
 							</tr>
 						</thead>
 
@@ -115,13 +117,13 @@
 
 								<tr>
 
-									<td class="col-4">${clientTemp.name}</td>
-									<td class="col-4">${clientTemp.drawee}</td>
-									<td class="col-3"><a type="button"
-										class="btn btn-primary btn-sm"
+									<td class="border-primary pt-2">${clientTemp.name}</td>
+									<td class="border-primary pt-2">${clientTemp.drawee}</td>
+									<td class="border-primary "><a type="button"
+										class="btn btn-warning btn-sm"
 										href="show-collects-client?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> <a
-										type="button" class="btn btn-success btn-sm"
+										type="button" class="btn btn-primary btn-sm"
 										href="show-client-bills-list?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>
 

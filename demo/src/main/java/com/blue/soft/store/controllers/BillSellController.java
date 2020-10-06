@@ -56,13 +56,15 @@ public class BillSellController {
 	@RequestMapping("/show-sell-bill-info")
 	public String showSellBillInfo(Model theModel) {
 
+		String userId = httpSession.getAttribute("id").toString();
+
 		BillSell billSell = new BillSell();
 
 		billSell.setDate(LocalDate.now().toString());
 
-		BillSell lastBillSell = billSellService.getLast();
+		BillSell lastBillSell = billSellService.getBillSellBySaverId(userId);
 
-		if (lastBillSell == null || lastBillSell.isSaved()) {
+		if (lastBillSell == null) {
 
 			theModel.addAttribute("clientsList", clientService.getAllClients());
 
@@ -85,26 +87,23 @@ public class BillSellController {
 
 		User theUser = userService.getUserById(userId);
 
-		BillSell billSell = new BillSell();
+		BillSell lastBillSell = billSellService.getBillSellBySaverId(theUser.getId());
 
-		billSell.setDate(LocalDate.now().toString());
+		if (lastBillSell == null) {
 
-		billSell.setClient(clientService.getClientById(clientid));
-		billSell.setUser(theUser);
+			BillSell billSell = new BillSell();
 
-		billSell.setLate("on".equals(late) ? true : false);
+			billSell.setDate(LocalDate.now().toString());
 
-		BillSell lastBillSell = billSellService.getLast();
+			billSell.setClient(clientService.getClientById(clientid));
 
-		if (lastBillSell == null || lastBillSell.isSaved()) {
+			billSell.setUser(theUser);
+
+			billSell.setLate("on".equals(late) ? true : false);
+
+			billSell.setSaver(theUser);
 
 			billSellService.saveSellBill(billSell);
-
-		}
-
-		else {
-
-			billSell = lastBillSell;
 
 		}
 
@@ -116,9 +115,10 @@ public class BillSellController {
 	public String showAddToSellBill(Model theModel) {
 
 		theModel.addAttribute("item", new Item());
-// TO-DO 
-		// Change the method
-		BillSell billSell = billSellService.getLast();
+
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillSell billSell = billSellService.getBillSellBySaverId(userId);
 
 		float total = billSell.getTotal();
 
@@ -140,10 +140,9 @@ public class BillSellController {
 
 		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
 
-			// String billId = httpSession.getAttribute("billSellId").toString();
-			// BillSell billSell = billSellService.getBillSellById(billId);
+			String userId = httpSession.getAttribute("id").toString();
 
-			BillSell billSell = billSellService.getLast();
+			BillSell billSell = billSellService.getBillSellBySaverId(userId);
 
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
@@ -182,8 +181,9 @@ public class BillSellController {
 
 	@RequestMapping("/show-sell-bill-list")
 	public String showSellBillList(Model theModel, RedirectAttributes attributes) {
+		String userId = httpSession.getAttribute("id").toString();
 
-		BillSell billSell = billSellService.getBillSellByUpdateNow();
+		BillSell billSell = billSellService.getBillSellByUpdaterId(userId);
 
 		if (billSell != null) {
 
@@ -256,7 +256,7 @@ public class BillSellController {
 			bankController.updateBankBalance("add", total);
 		}
 
-		billSell.setSaved(true);
+		billSell.setSaver(null);
 
 		billSellService.saveSellBill(billSell);
 

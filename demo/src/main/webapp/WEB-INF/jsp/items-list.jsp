@@ -83,7 +83,7 @@
 
 		<div dir="rtl" class="row mr-lg-4">
 
-			<div class="shadow ">
+			<div class=" ">
 				<div class="row" id="add-form">
 
 
@@ -193,7 +193,7 @@
 
 			<div class="mr-4 col-9  ">
 
-				<div style="width: 100%; height: 500px; overflow: auto;"
+				<div style="width: 100%; height: 63%; overflow: auto;"
 					class=" shadow ">
 
 					<table

@@ -148,16 +148,44 @@
 							حذف </a>
 
 
-						<a href="save-sellBill?sellBillId=${billSell.id}"
-							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-							class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
-							حفظ</a>
+
+						<c:if test="${billSell.billSellItems.size() > 0 }">
 
 
-						<a href="show-printView?sellBillId=${billSell.id}"
-							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-							class="btn btn-primary shadow mr-1  font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
-							طباعة</a>
+							<a href="save-sellBill?sellBillId=${billSell.id}"
+								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+								class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+								حفظ</a>
+
+
+							<a href="show-printView?sellBillId=${billSell.id}"
+								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
+								class="btn btn-primary shadow mr-1  font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+								طباعة</a>
+
+						</c:if>
+
+
+
+						<c:if test="${billSell.billSellItems.size() eq 0 }">
+
+
+							<button class="btn btn-success mr-1 shadow font-weight-bold "
+								disabled>حفظ</button>
+
+
+							<button class="btn btn-primary shadow mr-1  font-weight-bold"
+								disabled>طباعة</button>
+
+						</c:if>
+
+
+
+
+
+
+
+
 
 					</form:form>
 

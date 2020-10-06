@@ -121,8 +121,10 @@
 									<td class="border-primary pt-2">${billTemp.date}</td>
 
 									<td class="border-primary"><a
+										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="view-buy-bill?buyBillId=${billTemp.id}" type="button"
 										class="btn btn-warning btn-sm">عرض</a> <a
+										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
 										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
 								</tr>

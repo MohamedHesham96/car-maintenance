@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,12 +32,6 @@ public class BillSell {
 	@Column(name = "payed")
 	private float payed;
 
-	@Column(name = "saved")
-	private boolean saved;
-
-	@Column(name = "update_now")
-	private boolean updateNow;
-
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "client_id")
 	private Client client;
@@ -44,6 +39,14 @@ public class BillSell {
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "updater_id")
+	private User updater;
+
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "saver_id")
+	private User saver;
 
 	@OneToMany(mappedBy = "billSell", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
@@ -89,6 +92,22 @@ public class BillSell {
 		this.user = user;
 	}
 
+	public User getUpdater() {
+		return updater;
+	}
+
+	public void setUpdater(User updater) {
+		this.updater = updater;
+	}
+
+	public User getSaver() {
+		return saver;
+	}
+
+	public void setSaver(User saver) {
+		this.saver = saver;
+	}
+
 	public String getDate() {
 		return this.date;
 	}
@@ -113,24 +132,8 @@ public class BillSell {
 		this.payed = payed;
 	}
 
-	public boolean isSaved() {
-		return saved;
-	}
-
-	public void setSaved(boolean saved) {
-		this.saved = saved;
-	}
-
 	public void setBillSellItems(List<BillSellItem> billSellItems) {
 		this.billSellItems = billSellItems;
-	}
-
-	public boolean isUpdateNow() {
-		return updateNow;
-	}
-
-	public void setUpdateNow(boolean updateNow) {
-		this.updateNow = updateNow;
 	}
 
 	public List<String> getBillSellItemsIDS() {

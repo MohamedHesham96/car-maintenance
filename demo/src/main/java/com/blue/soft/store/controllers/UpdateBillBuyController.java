@@ -17,11 +17,13 @@ import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.TempBillItemsService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class UpdateBillBuyController {
@@ -44,18 +46,35 @@ public class UpdateBillBuyController {
 	@Autowired
 	TempBillItemsService tempBillItemsService;
 
+	@Autowired
+	UserService userService;
+
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-buy-bill-to-update")
-	public String changebuyBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel) {
+	public String changebuyBillToUpdate(@RequestParam(name = "buyBillId") String buyBillId, Model theModel)
+			throws Exception {
+
+		String userId = httpSession.getAttribute("id").toString();
+
+		User theUser = userService.getUserById(userId);
 
 		BillBuy billBuy = billBuyService.getBillBuyById(buyBillId);
 
-		if (billBuy.isUpdateNow())
+		BillBuy buyBillToUpdate = billBuyService.getBillBuyByUpdaterId(theUser.getId());
+
+		// NEW
+		if (buyBillToUpdate != null) {
+
+			throw new Exception("انت بالفعل تعدل فاتورة اخرى !!");
+		}
+		// NEW
+
+		if (billBuy.getUpdater() != null)
 			return "redirect:/show-update-buy-bill";
 
 		List<BillBuyItem> billBuyItemsList = billBuy.getBillBuyItems();
 
-		billBuy.setUpdateNow(true);
+		billBuy.setUpdater(theUser);
 
 		float total = 0;
 
@@ -85,7 +104,9 @@ public class UpdateBillBuyController {
 	@RequestMapping("/show-update-buy-bill")
 	public String showUpdateBuyBill(Model theModel) {
 
-		BillBuy billBuy = billBuyService.getBillBuyByUpdateNow();
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillBuy billBuy = billBuyService.getBillBuyByUpdaterId(userId);
 
 		float total = billBuy.getTotal();
 
@@ -104,12 +125,14 @@ public class UpdateBillBuyController {
 	@RequestMapping("/add-item-to-update-buy-bill")
 	public String addToUpdateBuyBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
 
+		String userId = httpSession.getAttribute("id").toString();
+
 		BillBuyItem billBuyItem = new BillBuyItem();
 		Item theItem = itemService.getItemById(item.getId());
 
 		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
 
-			BillBuy billBuy = billBuyService.getBillBuyByUpdateNow();
+			BillBuy billBuy = billBuyService.getBillBuyByUpdaterId(userId);
 
 			billBuyItem.setItem(theItem);
 			billBuyItem.setBillBuy(billBuy);
@@ -161,7 +184,7 @@ public class UpdateBillBuyController {
 		company.setDrawee(company.getDrawee() + total);
 		billBuy.setCompany(company);
 
-		billBuy.setUpdateNow(false);
+		billBuy.setUpdater(null);
 
 		billBuyService.saveBuyBill(billBuy);
 

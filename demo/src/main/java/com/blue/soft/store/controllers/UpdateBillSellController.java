@@ -17,11 +17,13 @@ import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.TempBillItemsService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class UpdateBillSellController {
@@ -39,6 +41,9 @@ public class UpdateBillSellController {
 	CompanyService companyService;
 
 	@Autowired
+	UserService userService;
+
+	@Autowired
 	BankController bankController;
 
 	@Autowired
@@ -49,16 +54,30 @@ public class UpdateBillSellController {
 
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-sell-bill-to-update")
-	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel) {
+	public String changeSellBillToUpdate(@RequestParam(name = "sellBillId") String sellBillId, Model theModel)
+			throws Exception {
+
+		String userId = httpSession.getAttribute("id").toString();
+
+		User theUser = userService.getUserById(userId);
+
+		BillSell sillBillToUpdate = billSellService.getBillSellByUpdaterId(theUser.getId());
+
+		// NEW
+		if (sillBillToUpdate != null) {
+
+			throw new Exception("انت بالفعل تعدل فاتورة اخرى !!");
+		}
+		// NEW
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
 
-		if (billSell.isUpdateNow())
+		if (billSell.getUpdater() != null)
 			return "redirect:/show-update-sell-bill";
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
-		billSell.setUpdateNow(true);
+		billSell.setUpdater(theUser);
 
 		float total = 0;
 
@@ -95,9 +114,18 @@ public class UpdateBillSellController {
 
 	// بيعرض صفحة التعديل على الفاتورة
 	@RequestMapping("/show-update-sell-bill")
-	public String showUpdateSellBill(Model theModel) {
+	public String showUpdateSellBill(Model theModel) throws Exception {
 
-		BillSell billSell = billSellService.getBillSellByUpdateNow();
+		String userId = httpSession.getAttribute("id").toString();
+
+		User theUser = userService.getUserById(userId);
+
+		BillSell billSell = billSellService.getBillSellByUpdaterId(theUser.getId());
+
+		if (billSell == null) {
+
+			throw new Exception("هناك مستخدم اخر يعدل هذه الفاتورة");
+		}
 
 		float total = billSell.getTotal();
 
@@ -123,8 +151,9 @@ public class UpdateBillSellController {
 
 			// String billId = httpSession.getAttribute("billSellId").toString();
 			// BillSell billSell = billSellService.getBillSellById(billId);
+			String userId = httpSession.getAttribute("id").toString();
 
-			BillSell billSell = billSellService.getBillSellByUpdateNow();
+			BillSell billSell = billSellService.getBillSellByUpdaterId(userId);
 
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
@@ -158,7 +187,7 @@ public class UpdateBillSellController {
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 
-		billSell.setUpdateNow(false);
+		billSell.setUpdater(null);
 
 		float total = 0;
 
@@ -185,6 +214,8 @@ public class UpdateBillSellController {
 			// update the Bank
 			bankController.updateBankBalance("add", total);
 		}
+
+		billSell.setUpdater(null);
 
 		billSellService.saveSellBill(billSell);
 

@@ -102,7 +102,7 @@
 
 						<thead class="bg-primary text-white ">
 							<tr>
-								<th class="col-2  ">الرقم</th>
+								<th class="col-2">الرقم</th>
 								<th class="col-2">الوحدة</th>
 								<th class="col-2">النوع</th>
 								<th class="col-2">التاريخ</th>
@@ -123,10 +123,12 @@
 
 
 									<td class="border-primary "><a
+										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="view-sell-bill?sellBillId=${billTemp.id}" type="button"
 										class="btn btn-warning btn-sm">عرض</a> <a
+										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-primary btn-sm">تعديل</a></td>
+										type="button" class="btn btn-primary btn-sm">التعديل</a></td>
 								</tr>
 
 							</c:forEach>

@@ -147,13 +147,26 @@
 							class="btn btn-danger shadow font-weight-bold"
 							onclick="return confirm('هل انت متأكد من حذف الفاتورة ؟')">
 							حذف </a>
+					
+					
+						<c:if test="${billBuy.billBuyItems.size() > 0 }">
 
 
-						<a href="save-buyBill?buyBillId=${billBuy.id}"
-							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-							class="btn btn-success mr-1 shadow font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
-							حفظ</a>
+							<a href="save-buyBill?buyBillId=${billBuy.id}"
+								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+								class="btn btn-success mr-1 shadow font-weight-bold "> حفظ</a>
 
+						</c:if>
+
+
+
+						<c:if test="${billBuy.billBuyItems.size() eq 0 }">
+
+
+							<button class="btn btn-success mr-1 shadow font-weight-bold "
+								disabled>حفظ</button>
+
+						</c:if>
 
 						<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
 							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"

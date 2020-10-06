@@ -65,7 +65,7 @@
 								<th class="col-3">الرقم</th>
 								<th class="col-3">النوع</th>
 								<th class="col-3">التاريخ</th>
-								<th class="col-1"></th>
+								<th class="col-2"></th>
 							</tr>
 						</thead>
 
@@ -81,8 +81,8 @@
 
 									<td><a
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-outline-secondary btn-sm">تعديل</a>
-									</td>
+										type="button" class="btn btn-priamry btn-sm"
+										${ billTemp.updater != null ? 'hidden' :  '' }> تعديل </a></td>
 								</tr>
 
 							</c:forEach>

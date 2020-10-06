@@ -16,18 +16,9 @@
 <title>تقرير</title>
 
 
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
-	rel="stylesheet">
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
-	rel="stylesheet">
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
-	rel="stylesheet">
 </head>
 <body>
 
@@ -40,16 +31,15 @@
 
 			<div
 				style="margin: 0; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);"
-				class="col-6">
+				class="col-4 ">
 
-				<div style="width: 100%; height: 520px; overflow: auto;"
+				<div style="width: 100%; height: 500px; overflow: auto;"
 					class=" shadow">
 
+					<table style="font-size: 15px"
+						class="mh-50 table  table-striped table-sm   ">
 
-					<table style="font-size: 18px"
-						class="mh-50 table   table-striped table-sm  table-bordered ">
-
-						<thead class="bg-info">
+						<thead class="bg-primary shadow" style="position: sticky; top: 0;">
 							<tr>
 								<th class="col-2">المفتاح</th>
 								<th class="col-2">القيمة</th>
@@ -59,95 +49,95 @@
 						<tbody>
 
 							<tr>
-								<td class="col-3">الخزنة</td>
-								<td class="col-3"><fmt:formatNumber value="${bank.balance}"
-										maxFractionDigits="2" /></td>
+								<td class=" border-primary">الخزنة</td>
+								<td class="border-primary"><fmt:formatNumber
+										value="${bank.balance}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">الخزنة اليوم</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">الخزنة اليوم</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${bank.balanceToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">مبيعات</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">مبيعات</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${totalSalesToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">مبيعات نقدي</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">مبيعات نقدي</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${totalPayedSalesToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">مبيعات آجل</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">مبيعات آجل</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${totalLateSalesToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">مشتريات</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">مشتريات</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${totalBuysToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">اجمالي الربح</td>
-								<td class="col-3"><fmt:formatNumber value="${totalGain}"
-										maxFractionDigits="2" /></td>
+								<td class=" border-primary">اجمالي الربح</td>
+								<td class=" border-primary"><fmt:formatNumber
+										value="${totalGain}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">مصاريف</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">مصاريف</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${spendTotalToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">صافي ربح</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">صافي ربح</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${totalGain - spendTotalToday}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">رصيد الموردين</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">رصيد الموردين</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${companyDraweeTotal}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">رصيد الوحدات</td>
-								<td class="col-3"><fmt:formatNumber
+								<td class=" border-primary">رصيد الوحدات</td>
+								<td class=" border-primary"><fmt:formatNumber
 										value="${clientDraweeTotal}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
-								<td class="col-3">فواتير البيع</td>
-								<td class="col-3">${sellBillCountToday}</td>
+								<td class=" border-primary">فواتير البيع</td>
+								<td class=" border-primary">${sellBillCountToday}</td>
 							</tr>
 
 							<tr>
-								<td class="col-3">فواتير النقدي</td>
-								<td class="col-3">${payedSellBillCountToday}</td>
+								<td class=" border-primary">فواتير النقدي</td>
+								<td class=" border-primary">${payedSellBillCountToday}</td>
 							</tr>
 
 							<tr>
-								<td class="col-3">فواتير الآجل</td>
-								<td class="col-3">${lateSellBillCountToday}</td>
+								<td class=" border-primary">فواتير الآجل</td>
+								<td class=" border-primary">${lateSellBillCountToday}</td>
 
 							</tr>
 
 							<tr>
-								<td class="col-3">فواتير الشراء</td>
-								<td class="col-3">${buyBillCountToday}</td>
+								<td class=" border-primary">فواتير الشراء</td>
+								<td class=" border-primary">${buyBillCountToday}</td>
 							</tr>
 
 							<tr>
-								<td class="col-3">فواتير المرتجع</td>
-								<td class="col-3">${returnBillCountToday}</td>
+								<td class=" border-primary">فواتير المرتجع</td>
+								<td class=" border-primary">${returnBillCountToday}</td>
 							</tr>
 
 

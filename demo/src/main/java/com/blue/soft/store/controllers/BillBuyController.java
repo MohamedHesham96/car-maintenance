@@ -53,13 +53,15 @@ public class BillBuyController {
 	@RequestMapping("/show-buy-bill-info")
 	public String showBuyBillInfo(Model theModel) {
 
+		String userId = httpSession.getAttribute("id").toString();
+
 		BillBuy billBuy = new BillBuy();
 
 		billBuy.setDate(LocalDate.now().toString());
 
-		BillBuy lastBillBuy = billBuyService.getLast();
+		BillBuy lastBillBuy = billBuyService.getBillBuyBySaverId(userId);
 
-		if (lastBillBuy == null || lastBillBuy.isSaved()) {
+		if (lastBillBuy == null) {
 
 			theModel.addAttribute("companiesList", companyService.getAllCompanies());
 
@@ -101,24 +103,21 @@ public class BillBuyController {
 
 		User theUser = userService.getUserById(userId);
 
-		BillBuy billBuy = new BillBuy();
+		BillBuy lastBillBuy = billBuyService.getBillBuyBySaverId(userId);
 
-		billBuy.setDate(LocalDate.now().toString());
-		billBuy.setCompany(companyService.getCompanyById(companyId));
-		billBuy.setUser(theUser);
+		if (lastBillBuy == null) {
 
-		BillBuy lastBillBuy = billBuyService.getLast();
+			BillBuy billBuy = new BillBuy();
 
-		if (lastBillBuy == null || lastBillBuy.isSaved()) {
+			billBuy.setDate(LocalDate.now().toString());
+
+			billBuy.setUser(theUser);
+
+			billBuy.setCompany(companyService.getCompanyById(companyId));
+
+			billBuy.setSaver(theUser);
 
 			billBuyService.saveBuyBill(billBuy);
-
-		}
-
-		else {
-
-			billBuy = lastBillBuy;
-
 		}
 
 		return "redirect:/show-add-to-buy-bill";
@@ -177,7 +176,9 @@ public class BillBuyController {
 	@RequestMapping("/show-buy-bill-list")
 	public String showBuyBillList(Model theModel, RedirectAttributes attributes) {
 
-		BillBuy billBuy = billBuyService.getBillBuyByUpdateNow();
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillBuy billBuy = billBuyService.getBillBuyByUpdaterId(userId);
 
 		if (billBuy != null) {
 
@@ -241,7 +242,7 @@ public class BillBuyController {
 		company.setDrawee(company.getDrawee() + total);
 		billBuy.setCompany(company);
 
-		billBuy.setSaved(true);
+		billBuy.setSaver(null);
 
 		billBuyService.saveBuyBill(billBuy);
 

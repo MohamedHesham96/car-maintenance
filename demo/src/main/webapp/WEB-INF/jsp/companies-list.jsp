@@ -40,8 +40,8 @@
 
 			<div>
 
-				<div class="card border-success mb-3" style="max-width: 20rem;">
-					<div class="card-header">
+				<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card-header border-warning text-warning">
 						<h5>أضافة مورد</h5>
 					</div>
 					<div class="card-body">
@@ -50,75 +50,73 @@
 						<form:form modelAttribute="company" method="post"
 							action="add-new-company">
 
-							<div class="form-group">
+							<div class="form-group text-warning font-weight-bold">
 								<label>اسم المورد</label>
-								<form:input path="name" class="form-control text-center" />
+								<form:input path="name"
+									class="form-control text-center bg-light" />
 							</div>
 
 
-							<button type="submit" class="btn btn-primary btn-lg w-100">اضافة
-								مورد</button>
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100">اضافة مورد</button>
 
 						</form:form>
 					</div>
 				</div>
 				<br>
 
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header">
+				<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card-header border-warning text-warning">
 						<h5>البحث عن مورد</h5>
 					</div>
 					<div class="card-body">
 
 						<form method="get" action="search-for-company">
 
-							<div class="form-group">
+							<div class="form-group text-warning font-weight-bold">
 								<label>اسم المورد</label> <input name="companyName"
-									class="form-control text-center" />
+									class="form-control text-center bg-light" />
 							</div>
 
 
-							<button type="submit" class="btn btn-success btn-lg w-100">بحث
-								عن مورد</button>
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100">بحث عن
+								مورد</button>
 
 						</form>
 
 					</div>
 				</div>
 
-				<br>
-
-
-
 			</div>
 
-			<div class="mr-4 col-8">
+			<div class="mr-4 col-9">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered shadow">
+					<table class="table table-striped table-sm  shadow ">
 
-						<thead>
+						<thead class="bg-primary">
 							<tr>
-								<th class="col-4">اسم المورد</th>
-								<th class="col-4">الدين</th>
-								<th class="col-1"></th>
+								<th class="col-3">اسم المورد</th>
+								<th class="col-2">الدين</th>
+								<th class="col-3"></th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="font-weight-bold">
 							<c:forEach var="companyTemp" items="${companiesList}">
 
 								<tr>
 
-									<td>${companyTemp.name}</td>
-									<td>${companyTemp.drawee}</td>
-									<td class="col-3"><a type="button"
-										class="btn btn-primary btn-sm"
+									<td class="border-primary pt-2">${companyTemp.name}</td>
+									<td class="border-primary pt-2">${companyTemp.drawee}</td>
+									<td class="border-primary "><a type="button"
+										class="btn btn-warning btn-sm"
 										href="show-pays-company?companyId=${companyTemp.id}">الدفع</a>
 
-										<a type="button" class="btn btn-success btn-sm"
+										<a type="button" class="btn btn-primary btn-sm"
 										href="show-company-bills-list?companyId=${companyTemp.id}">الفواتير</a>
 									</td>
 
