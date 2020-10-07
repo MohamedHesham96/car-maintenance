@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.blue.soft.store.DAO.ClientRepository;
 import com.blue.soft.store.entity.Client;
+import com.blue.soft.store.entity.Collect;
 
 @Service
 public class ClientService {

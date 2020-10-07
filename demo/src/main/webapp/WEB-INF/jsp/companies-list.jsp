@@ -97,11 +97,13 @@
 
 					<table class="table table-striped table-sm  shadow ">
 
-						<thead class="bg-primary">
+
+						<thead class="bg-primary  shadow "
+							style="position: sticky; top: 0;">
 							<tr>
 								<th class="col-3">اسم المورد</th>
 								<th class="col-2">الدين</th>
-								<th class="col-3"></th>
+								<th class="col-3">العميلة</th>
 							</tr>
 						</thead>
 
@@ -113,10 +115,11 @@
 									<td class="border-primary pt-2">${companyTemp.name}</td>
 									<td class="border-primary pt-2">${companyTemp.drawee}</td>
 									<td class="border-primary "><a type="button"
-										class="btn btn-warning btn-sm"
+										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-pays-company?companyId=${companyTemp.id}">الدفع</a>
 
-										<a type="button" class="btn btn-primary btn-sm"
+										<a type="button"
+										class="btn btn-primary btn-sm font-weight-bold"
 										href="show-company-bills-list?companyId=${companyTemp.id}">الفواتير</a>
 									</td>
 

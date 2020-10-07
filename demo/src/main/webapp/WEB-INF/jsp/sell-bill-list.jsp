@@ -29,15 +29,15 @@
 
 	<div style="text-align: center;" class="text-center mr-lg-4">
 
-		<div dir="rtl" class="row w-100">
+		<div dir="rtl" class="row w-100 ">
 
-			<div class="mr-lg-4 ">
+			<div class="mr-lg-4    ">
 
 				<div class="card border-warning mb-3" style="max-width: 20rem;">
 					<div class="card-header  border-warning text-warning ">
-						<h4>البحث بالوحدة</h4>
+						<h5>البحث بالوحدة</h5>
 					</div>
-					<div class="card-body bg-dark text-warning ">
+					<div class="card-body  text-warning ">
 						<form method="POST" action="search-sell-bill-by-clientId">
 
 							<div class="form-group">
@@ -65,7 +65,7 @@
 
 				<div class=" card border-warning  mb-3" style="max-width: 20rem;">
 					<div class="card-header  border-warning text-warning ">
-						<h4>البحث برقم الفاتورة</h4>
+						<h5>البحث برقم الفاتورة</h5>
 					</div>
 					<div class="card-body bg-dark text-warning">
 
@@ -100,23 +100,23 @@
 						class="table  table-striped table-sm shadow font-weight-bold">
 
 
-						<thead class="bg-primary text-white ">
+						<thead class="bg-primary">
 							<tr>
-								<th class="col-2">الرقم</th>
+								<th class="col-2 ">الرقم</th>
 								<th class="col-2">الوحدة</th>
 								<th class="col-2">النوع</th>
 								<th class="col-2">التاريخ</th>
-								<th class="col-2"></th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="shadow">
 
 							<c:forEach var="billTemp" items="${billSellList}">
 
 								<tr>
 
-									<td class="border-primary  pt-2">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.id}</td>
 									<td class="border-primary pt-2">${billTemp.client.name}</td>
 									<td class="border-primary pt-2">${billTemp.late ? "آجل" : "نقدي" }</td>
 									<td class="border-primary pt-2">${billTemp.date}</td>
@@ -125,10 +125,7 @@
 									<td class="border-primary "><a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="view-sell-bill?sellBillId=${billTemp.id}" type="button"
-										class="btn btn-warning btn-sm font-weight-bold">عرض</a>
-										
-										
-										 <a
+										class="btn btn-warning btn-sm font-weight-bold">عرض</a> <a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
 										type="button" class="btn btn-primary btn-sm font-weight-bold">التعديل</a></td>

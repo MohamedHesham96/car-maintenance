@@ -17,6 +17,7 @@ import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
+import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
@@ -57,13 +58,15 @@ public class BillReturnController {
 	@RequestMapping("/show-return-bill-info")
 	public String showReturnBillInfo(Model theModel) {
 
+		String userId = httpSession.getAttribute("id").toString();
+
 		BillReturn billReturn = new BillReturn();
 
 		billReturn.setDate(LocalDate.now().toString());
 
-		BillReturn lastBillReturn = billReturnService.getLast();
+		BillReturn lastBillReturn = billReturnService.getBillReturnBySaverId(userId);
 
-		if (lastBillReturn == null || lastBillReturn.isSaved()) {
+		if (lastBillReturn == null) {
 
 			theModel.addAttribute("clientsList", clientService.getAllClients());
 
@@ -77,48 +80,14 @@ public class BillReturnController {
 
 	}
 
-	// حفظ ببيانات الفاتورة
-	@RequestMapping("/save-return-bill-info")
-	public String saveReturnBillInfo(@RequestParam(name = "clientId") String clientid) {
-
-		String userId = httpSession.getAttribute("id").toString();
-
-		User theUser = userService.getUserById(userId);
-
-		BillReturn billReturn = new BillReturn();
-
-		billReturn.setDate(LocalDate.now().toString());
-
-		billReturn.setClient(clientService.getClientById(clientid));
-
-		billReturn.setUser(theUser);
-
-		BillReturn lastBillReturn = billReturnService.getLast();
-
-		if (lastBillReturn == null || lastBillReturn.isSaved()) {
-
-			billReturnService.saveReturnBill(billReturn);
-
-		}
-
-		else {
-
-			billReturn = lastBillReturn;
-
-		}
-
-		return "redirect:/show-add-to-return-bill";
-
-	}
-
 	@RequestMapping("/show-add-to-return-bill")
 	public String showAddToReturnBill(Model theModel) {
 
 		theModel.addAttribute("item", new Item());
 
-		// TO-DO
-		// Change the method
-		BillReturn billReturn = billReturnService.getLast();
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillReturn billReturn = billReturnService.getBillReturnBySaverId(userId);
 
 		float total = billReturn.getTotal();
 
@@ -131,46 +100,33 @@ public class BillReturnController {
 		return "return-bill";
 	}
 
-	// اضافة فاتورة شراء
-	@RequestMapping("/add-item-to-return-bill")
-	public String addReturnBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
+	// حفظ ببيانات الفاتورة
+	@RequestMapping("/save-return-bill-info")
+	public String saveReturnBillInfo(@RequestParam(name = "clientId") String clientId) {
 
-		BillReturnItem billReturnItem = new BillReturnItem();
-		Item theItem = itemService.getItemById(item.getId());
+		String userId = httpSession.getAttribute("id").toString();
 
-		// String billId = httpSession.getAttribute("billReturnId").toString();
-		// BillReturn billReturn = billReturnService.getBillReturnById(billId);
+		User theUser = userService.getUserById(userId);
 
-		BillReturn billReturn = billReturnService.getLast();
+		BillReturn lastBillReturn = billReturnService.getBillReturnBySaverId(userId);
 
-		billReturnItem.setItem(theItem);
-		billReturnItem.setBillReturn(billReturn);
-		billReturnItem.setReturnPrice(theItem.getSellPrice());
-		billReturnItem.setQuantity(item.getQuantity());
+		if (lastBillReturn == null) {
 
-		billReturnItemsService.addBillReturnItem(billReturnItem);
+			BillReturn billReturn = new BillReturn();
 
-		return "redirect:/show-add-to-return-bill";
-	}
+			billReturn.setDate(LocalDate.now().toString());
 
-	@RequestMapping("/show-return-bill-list")
-	public String showReturnBillList(Model theModel, RedirectAttributes attributes) {
+			billReturn.setUser(theUser);
 
-		BillReturn billReturn = billReturnService.getBillReturnByUpdateNow();
+			billReturn.setClient(clientService.getClientById(clientId));
 
-		if (billReturn != null) {
+			billReturn.setSaver(theUser);
 
-			attributes.addAttribute("returnBillId", billReturn.getId());
-
-			return "redirect:/show-update-return-bill";
-
+			billReturnService.saveReturnBill(billReturn);
 		}
 
-		theModel.addAttribute("clientsList", clientService.getAllClients());
+		return "redirect:/show-add-to-return-bill";
 
-		theModel.addAttribute("billReturnList", billReturnService.getAllReturnBills());
-
-		return "return-bill-list";
 	}
 
 	@RequestMapping("/view-return-bill")
@@ -188,6 +144,67 @@ public class BillReturnController {
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 
 		return "update-return-bill";
+	}
+
+	// اضافة فاتورة شراء
+	@RequestMapping("/add-item-to-return-bill")
+	public String addItemToReturnBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
+
+		BillReturnItem billReturnItem = new BillReturnItem();
+		Item theItem = itemService.getItemById(item.getId());
+
+		if (item.getQuantity() > 0 && item.getSellPrice() > 0) {
+
+			String userId = httpSession.getAttribute("id").toString();
+
+			BillReturn billReturn = billReturnService.getBillReturnBySaverId(userId);
+
+			billReturnItem.setItem(theItem);
+			billReturnItem.setReturnPrice(item.getSellPrice());
+
+			System.out.println("billReturnItem >> Return Price >> " + billReturnItem.getReturnPrice());
+
+			billReturnItem.setQuantity(item.getQuantity());
+
+			billReturnItem.setBillReturn(billReturn);
+
+			billReturnItemsService.addBillReturnItem(billReturnItem);
+
+		}
+
+		else if (item.getSellPrice() <= 0) {
+
+			throw new Exception("من فضلك ادخل السعر بشكل صحيح");
+		}
+
+		else if (item.getQuantity() <= 0) {
+
+			throw new Exception("من فضلك ادخل الكمية بشكل صحيح");
+		}
+
+		return "redirect:/show-add-to-return-bill";
+	}
+
+	@RequestMapping("/show-return-bill-list")
+	public String showReturnBillList(Model theModel, RedirectAttributes attributes) {
+
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillReturn billReturn = billReturnService.getBillReturnByUpdaterId(userId);
+
+		if (billReturn != null) {
+
+			attributes.addAttribute("returnBillId", billReturn.getId());
+
+			return "redirect:/show-update-return-bill";
+
+		}
+
+		theModel.addAttribute("clientsList", clientService.getAllClients());
+
+		theModel.addAttribute("billReturnList", billReturnService.getAllReturnBills());
+
+		return "return-bill-list";
 	}
 
 	@RequestMapping("/delete-returnBill")
@@ -226,7 +243,6 @@ public class BillReturnController {
 
 			Item item = billReturnItem.getItem();
 
-			// تعديل كمية الصنف
 			item.setQuantity(item.getQuantity() + billReturnItem.getQuantity());
 
 			itemService.addNewItem(item);
@@ -234,13 +250,15 @@ public class BillReturnController {
 			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
 		}
 
-		bankController.updateBankBalance("less", total);
+		Client client = billReturn.getClient();
+		client.setDrawee(client.getDrawee() + total);
+		billReturn.setClient(client);
 
-		billReturn.setSaved(true);
+		billReturn.setSaver(null);
 
 		billReturnService.saveReturnBill(billReturn);
 
-		return "redirect:/items-list";
+		return "redirect:/show-return-bill-list";
 
 	}
 
@@ -264,4 +282,15 @@ public class BillReturnController {
 		return "return-bill-list";
 	}
 
+	@RequestMapping("/show-print-return-bill")
+	public String showPrintReturnBill(@RequestParam(name = "returnBillId") String returnBillId, Model theModel) {
+
+		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);
+
+		theModel.addAttribute("billReturn", billReturn);
+
+		theModel.addAttribute("total", billReturn.getTotal());
+
+		return "print-return-bill";
+	}
 }

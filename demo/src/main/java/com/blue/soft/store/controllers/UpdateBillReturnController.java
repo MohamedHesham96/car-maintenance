@@ -14,14 +14,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
+import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
+import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BillReturnItemsService;
 import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.ClientService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.TempBillItemsService;
+import com.blue.soft.store.service.UserService;
 
 @Controller
 public class UpdateBillReturnController {
@@ -39,6 +42,9 @@ public class UpdateBillReturnController {
 	ClientService clientService;
 
 	@Autowired
+	UserService userService;
+
+	@Autowired
 	BillReturnItemsService billReturnItemsService;
 
 	@Autowired
@@ -46,12 +52,26 @@ public class UpdateBillReturnController {
 
 	// بيشوف لو في فاتورة بتتعدل بالفعل وبيدخل عليها لو كده
 	@RequestMapping("/change-return-bill-to-update")
-	public String changeReturnBillToUpdate(@RequestParam(name = "returnBillId") String returnBillId, Model theModel) {
+	public String changeReturnBillToUpdate(@RequestParam(name = "returnBillId") String returnBillId, Model theModel)
+			throws Exception {
+
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillReturn billReturnToUpdate = billReturnService.getBillReturnByUpdaterId(userId);
+
+		if (billReturnToUpdate != null) {
+
+			throw new Exception("انت بالفعل تعدل فاتورة اخرى !!");
+		}
 
 		BillReturn billReturn = billReturnService.getBillReturnById(returnBillId);
 
-		if (billReturn.isUpdateNow())
+		if (billReturn.getUpdater() != null)
 			return "redirect:/show-update-return-bill";
+
+		User theUser = userService.getUserById(userId);
+
+		billReturn.setUpdater(theUser);
 
 		List<BillReturnItem> billReturnItemsList = billReturn.getBillReturnItems();
 
@@ -72,8 +92,6 @@ public class UpdateBillReturnController {
 
 		theClient.setDrawee(theClient.getDrawee() - total);
 
-		billReturn.setUpdateNow(true);
-
 		billReturnService.saveReturnBill(billReturn);
 
 		tempBillItemsService.addBillReturnItems(billReturnItemsList);
@@ -85,7 +103,9 @@ public class UpdateBillReturnController {
 	@RequestMapping("/show-update-return-bill")
 	public String showUpdateReturnBill(Model theModel) {
 
-		BillReturn billReturn = billReturnService.getBillReturnByUpdateNow();
+		String userId = httpSession.getAttribute("id").toString();
+
+		BillReturn billReturn = billReturnService.getBillReturnByUpdaterId(userId);
 
 		float total = billReturn.getTotal();
 
@@ -112,7 +132,9 @@ public class UpdateBillReturnController {
 			// String billId = httpSession.getAttribute("billReturnId").toString();
 			// BillReturn billReturn = billReturnService.getBillReturnById(billId);
 
-			BillReturn billReturn = billReturnService.getBillReturnByUpdateNow();
+			String userId = httpSession.getAttribute("id").toString();
+
+			BillReturn billReturn = billReturnService.getBillReturnByUpdaterId(userId);
 
 			billReturnItem.setItem(theItem);
 			billReturnItem.setBillReturn(billReturn);
@@ -160,7 +182,7 @@ public class UpdateBillReturnController {
 			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
 		}
 
-		billReturn.setUpdateNow(false);
+		billReturn.setUpdater(null);
 
 		billReturnService.saveReturnBill(billReturn);
 

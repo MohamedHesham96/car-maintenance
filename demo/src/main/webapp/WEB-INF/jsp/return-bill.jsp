@@ -50,24 +50,29 @@
 							value="الوحدة : ${billReturn.client.name}"
 							class="form-control text-center btn-outline-warning  mb-2 font-weight-bold" />
 
-						<input disabled="disabled"
-							value="البائع : ${billReturn.user.name}"
-							class="form-control text-center btn-outline-warning  mb-2 font-weight-bold" />
 
 						<form:form method="get" action="add-item-to-return-bill"
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select class="form-control text-center bg-light" path="id">
+							<form:select
+								class="form-control text-center bg-light font-weight-bold"
+								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
 							</form:select>
 
 
+							<label>الكمية</label>
+							<form:input id="quantity" path="quantity"
+								class="form-control text-center bg-light font-weight-bold" />
+
+
 							<div class="form-group">
-								<label>الكمية</label>
-								<form:input id="quantity" path="quantity"
-									class="form-control text-center bg-light" />
+								<label>سعر المرتجع</label>
+								<form:input id="quantity" path="sellPrice"
+									class="form-control text-center bg-light font-weight-bold" />
 							</div>
+
 
 
 							<button type="submit"
@@ -87,15 +92,15 @@
 					style="position: relative; height: 425px; overflow: auto;">
 
 					<table
-						class="table table-dark table-striped table-sm font-weight-bold shadow">
+						class="table  table-striped table-sm font-weight-bold shadow">
 
-						<thead class="bg-primary">
+						<thead class="bg-primary shadow">
 							<tr>
 								<th class="col-2">الصنف</th>
 								<th class="col-2">الكمية</th>
 								<th class="col-2">سعر البيع</th>
 								<th class="col-2">اجمالي السعر</th>
-								<th class="col-2"></th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
@@ -106,8 +111,10 @@
 									<td class="border-primary pt-2">${itemTemp.item.name}</td>
 
 									<td class="border-primary pt-2">${itemTemp.quantity}</td>
+
 									<td class="border-primary pt-2"><fmt:formatNumber
 											value="${itemTemp.returnPrice}" maxFractionDigits="2" /></td>
+
 									<td class="border-primary pt-2"><fmt:formatNumber
 											value=" ${itemTemp.returnPrice * itemTemp.quantity}"
 											maxFractionDigits="2" /></td>
@@ -128,7 +135,7 @@
 					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
 					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
 
-				<div class="float-left pt-sm-4 ">
+				<div class="float-left pt-sm-4">
 
 					<form:form>
 
@@ -137,29 +144,35 @@
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							حذف </a>
 
+						<c:if test="${billReturn.billReturnItems.size() > 0 }">
 
-						<a href="save-returnBill?returnBillId=${billReturn.id}"
-							onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-							class="btn btn-success mr-1 shadow font-weight-bold ${billReturnItems.size() eq 0 ? 'disabled' : ''} ">
-							حفظ</a>
+							<a href="save-returnBill?returnBillId=${billReturn.id}"
+								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+								class="btn btn-success mr-1 shadow font-weight-bold ${billReturnItems.size() eq 0 ? 'disabled' : ''} ">
+								حفظ</a>
+
+							<a href="show-printView?returnBillId=${billReturn.id}"
+								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
+								class="btn btn-primary mr-1 shadow font-weight-bold ${billReturnItems.size() eq 0 ? 'disabled' : ''} ">
+								طباعة</a>
+
+						</c:if>
+
+						<c:if test="${billReturn.billReturnItems.size() eq 0 }">
+
+							<button class="btn btn-success mr-1 shadow font-weight-bold "
+								disabled>حفظ</button>
 
 
-						<a href="show-printView?returnBillId=${billReturn.id}"
-							onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
-							class="btn btn-primary mr-1 shadow font-weight-bold ${billReturnItems.size() eq 0 ? 'disabled' : ''} ">
-							طباعة</a>
+							<button class="btn btn-primary shadow mr-1  font-weight-bold"
+								disabled>طباعة</button>
+						</c:if>
 
 					</form:form>
 
 				</div>
-
-
-
 			</div>
-
-
 		</div>
-
 	</div>
 </body>
 </html>

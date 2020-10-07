@@ -13,6 +13,7 @@ import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Collect;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.ClientService;
+import com.blue.soft.store.service.CollectService;
 
 @Controller
 public class ClientController {
@@ -22,6 +23,9 @@ public class ClientController {
 
 	@Autowired
 	BankService bankService;
+
+	@Autowired
+	CollectService collectService;
 
 	@Autowired
 	BankController bankController;
@@ -87,6 +91,24 @@ public class ClientController {
 		bankController.updateBankBalance("add", collect.getAmount());
 
 		clientService.addNewClient(client);
+
+		theModel.addAttribute("client", client);
+
+		return "client-collect";
+	}
+
+	@RequestMapping("/delete-client-collect")
+	public String deleteClientCollect(@RequestParam(name = "clientId") String clientId,
+			@RequestParam(name = "collectId") String collectId, Model theModel) throws Exception {
+
+		Client client = clientService.getClientById(clientId);
+
+		Collect theCollect = collectService.getCollectById(collectId);
+
+		client.setDrawee(client.getDrawee() + theCollect.getAmount());
+		bankController.updateBankBalance("less", theCollect.getAmount());
+
+		collectService.deleteCollectById(collectId);
 
 		theModel.addAttribute("client", client);
 

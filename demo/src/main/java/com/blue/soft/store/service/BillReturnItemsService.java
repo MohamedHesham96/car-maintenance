@@ -30,4 +30,11 @@ public class BillReturnItemsService {
 
 	}
 
+	public Float getTotalReturnsToday() {
+
+		Float totalLateSalls = billReturnItemsRepository.getTotalLateReturnsToday();
+
+		return totalLateSalls != null ? totalLateSalls : 0;
+	}
+
 }

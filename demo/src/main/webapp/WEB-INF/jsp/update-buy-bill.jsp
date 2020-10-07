@@ -16,18 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>تعديل فاتورة بيع</title>
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
-	rel="stylesheet">
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
-	rel="stylesheet">
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
-	rel="stylesheet">
-
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 <script type="text/javascript">
@@ -69,11 +58,10 @@ function showUpdateForm(btn, id) {
 
 	<br>
 
-	<div
-		style="width: 100%; position: absolute; top: 56%; left: 46.5%; transform: translate(-50%, -50%); text-align: center;"
-		class=" ">
+	<div style="width: 100%; text-align: center;" class=" ">
 
-		<div dir="rtl" class="row ">
+
+		<div dir="rtl" class="row mr-3">
 			<div class="card border-warning " style="max-width: 20rem;">
 				<div class="card-header border-warning text-warning">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'  }
 				</div>
@@ -86,9 +74,12 @@ function showUpdateForm(btn, id) {
 					<input disabled="disabled"
 						value="التاريخ  :  <%=LocalDate.now().toString()%> "
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
+
 					<input disabled="disabled"
 						value="اسم الوحدة : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
+
+
 
 					<div ${view ? '' :  'hidden'  } class="mt-2">
 
@@ -140,7 +131,7 @@ function showUpdateForm(btn, id) {
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر الشراء</th>
 								<th class="col-1">اجمالي السعر</th>
-								<th ${view ? 'hidden' :  ''  } class="col-1"></th>
+								<th ${view ? 'hidden' :  ''  } class="col-1">العميلة</th>
 							</tr>
 						</thead>
 
@@ -210,7 +201,7 @@ function showUpdateForm(btn, id) {
 								class="btn btn-success mr-1 font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 								تحديث</a>
 
-							<a  href="/show-print-buy-bill?buyBillId=${billBuy.id}"
+							<a href="/show-print-buy-bill?buyBillId=${billBuy.id}"
 								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
 								class="btn btn-primary mr-1 font-weight-bold ${billBuyItems.size() eq 0 ? 'disabled' : ''} ">
 								طباعة</a>

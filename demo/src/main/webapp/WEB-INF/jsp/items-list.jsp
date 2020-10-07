@@ -83,9 +83,8 @@
 
 		<div dir="rtl" class="row mr-lg-4">
 
-			<div class=" ">
+			<div class=" mr-lg-4">
 				<div class="row" id="add-form">
-
 
 					<div
 						class="card  border-warning font-weight-bold pb-4 text-warning"
@@ -136,7 +135,7 @@
 
 				<div class="row" style="display: none" id="update-form">
 
-					<div class="card border-success font-weight-bold mb-2 text-success"
+					<div class="card border-success font-weight-bold  text-success"
 						style="max-width: 20rem;">
 						<div class="card-header   border-success ">
 							<h5>تعديل صنف</h5>
@@ -191,13 +190,13 @@
 				</div>
 			</div>
 
-			<div class="mr-4 col-9  ">
+			<div class="mr-4 col-9">
 
-				<div style="width: 100%; height: 63%; overflow: auto;"
+				<div style="width: 100%; height: 475px; overflow: auto;"
 					class=" shadow ">
 
 					<table
-						class="table  table-striped table-sm border-primary   shadow ">
+						class="table  table-striped table-sm border-primary shadow font-weight-bold">
 
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
@@ -211,7 +210,7 @@
 								<th>جملة بيع</th>
 								<th>ربح الوحدة</th>
 								<th>جملة الربح</th>
-								<th></th>
+								<th>العميلة</th>
 
 							</tr>
 						</thead>
@@ -243,7 +242,8 @@
 											maxFractionDigits="2" /></td>
 
 									<td class=" border-primary ">
-										<button type="button" class="btn btn-primary btn-sm font-weight-bold"
+										<button type="button"
+											class="btn btn-primary btn-sm font-weight-bold"
 											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
 									</td>
 								</tr>
@@ -251,8 +251,33 @@
 							</c:forEach>
 
 						</tbody>
+
 					</table>
+
+
+
 				</div>
+
+				<table class="table  table-striped table-sm border-primary shadow font-weight-bold">
+
+					<thead class="bg-primary  shadow "
+						style="position: sticky; top: 0;">
+						<tr class=" ">
+							<th>عدد الاصناف : ${itemsCount}</th>
+
+							<th>جملة شراء : <fmt:formatNumber value="${totalItemsBuys}"
+									maxFractionDigits="2" /></th>
+							<th>جملة بيع : <fmt:formatNumber value="${totalItemsSales}"
+									maxFractionDigits="2" /></th>
+
+							<th>جملة ربح : <fmt:formatNumber
+									value="${totalItemsSales - totalItemsBuys}"
+									maxFractionDigits="2" /></th>
+
+						</tr>
+					</thead>
+
+				</table>
 			</div>
 
 		</div>

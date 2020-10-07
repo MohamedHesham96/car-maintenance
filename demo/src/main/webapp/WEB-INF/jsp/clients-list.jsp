@@ -101,14 +101,13 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table
-						class="table table-striped table-sm  shadow font-weight-bold">
-
-						<thead class="bg-primary">
+					<table class="table table-striped table-sm  shadow ">
+						<thead class="bg-primary  shadow "
+							style="position: sticky; top: 0;">
 							<tr>
 								<th class="col-3">اسم الوحدة</th>
 								<th class="col-2">الدين</th>
-								<th class="col-3"></th>
+								<th class="col-3">العميلة</th>
 							</tr>
 						</thead>
 
@@ -120,10 +119,10 @@
 									<td class="border-primary pt-2">${clientTemp.name}</td>
 									<td class="border-primary pt-2">${clientTemp.drawee}</td>
 									<td class="border-primary "><a type="button"
-										class="btn btn-warning btn-sm"
+										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-collects-client?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> <a
-										type="button" class="btn btn-primary btn-sm"
+										type="button" class="btn btn-primary btn-sm font-weight-bold"
 										href="show-client-bills-list?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>
 

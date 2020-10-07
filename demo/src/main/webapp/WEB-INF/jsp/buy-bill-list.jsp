@@ -26,14 +26,15 @@
 
 	<br>
 
-	<div style="text-align: center;" class="text-center mr-lg-4">
+	<div style="text-align: center;"
+		class="text-center mr-lg-4 text-warning">
 
 		<div dir="rtl" class="row w-100">
 
-			<div class="mr-lg-4 shadow">
+			<div class="mr-lg-4 ">
 
-				<div class="card border-warning mb-3 " style="max-width: 20rem;">
-					<div class="card-header border-warning text-warning">
+				<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning  ">
 						<h5>البحث بالمورد</h5>
 					</div>
 					<div class="card-body ">
@@ -62,13 +63,13 @@
 					</div>
 				</div>
 
-				<div class="card  border-warning w-100 mt-sm-4"
-					style="max-width: 20rem;">
-					<div class="card-header border-warning text-warning">
+				<div class=" card border-warning  mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning  ">
 						<h5>البحث برقم الفاتورة</h5>
 					</div>
 
-					<div class="card-body">
+					<div class="card-body text-warning">
+
 
 						<form method="POST" action="search-buy-bill-by-id">
 
@@ -92,25 +93,24 @@
 
 
 
-
 			<div class="mr-4 col-8 ">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
 					<table
-						class="table  table-striped table-sm  font-weight-bold shadow ">
+						class="table  table-striped table-sm shadow font-weight-bold">
 
-						<thead class="table-primary ">
+						<thead class="bg-primary">
 							<tr>
 								<th class="col-2">الرقم</th>
 								<th class="col-2">المورد</th>
 								<th class="col-2">التاريخ</th>
-								<th class="col-2"></th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="shadow">
 
 							<c:forEach var="billTemp" items="${billBuyList}">
 
@@ -120,16 +120,10 @@
 									<td class="border-primary pt-2">${billTemp.company.name}</td>
 									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td class="border-primary">
-									
-									
-									<a
+									<td class="border-primary"><a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="view-buy-bill?buyBillId=${billTemp.id}" type="button"
-										class="btn btn-warning btn-sm font-weight-bold">عرض</a>
-										
-										
-										 <a
+										class="btn btn-warning btn-sm font-weight-bold">عرض</a> <a
 										${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-buy-bill-to-update?buyBillId=${billTemp.id}"
 										type="button" class="btn btn-primary btn-sm font-weight-bold">تعديل</a></td>

@@ -25,8 +25,9 @@
 
 	<br>
 
-	<div style="text-align: center;" class="">
-		<div dir="rtl" class="row">
+	<div style="width: 100%; text-align: center;" class=" ">
+
+		<div dir="rtl" class="row mr-3">
 
 			<div>
 
@@ -40,27 +41,27 @@
 						<input name="companyName" value="الخزنة : ${bank.balance}"
 							disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+						
 						<input name="companyName"
 							value="الخزنة اليوم : ${bank.balanceToday}" disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+						
 						<input name="companyName"
-							value=" اجمالي المصاريف  : ${spendTotal}" disabled="disabled"
+							value="اجمالي المصاريف : ${spendTotal}" disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+					
 						<input name="companyName"
-							value=" مصاريف اليوم : ${spendTotalToday}" disabled="disabled"
+							value="مصاريف اليوم : ${spendTotalToday}" disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
-						<input name="companyName"
-							value="التاريخ : <%=LocalDate.now().toString()%>"
-							disabled="disabled"
-							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+
 
 						<form:form method="get" action="add-spend" modelAttribute="spend">
 
-							<label class="font-weight-bold text-warning">المبلغ</label>
+							<label class="font-weight-bold text-warning pt-1">المبلغ</label>
 							<input name="amount"
 								class="form-control text-center disable bg-light font-weight-bold" />
-
-							<div class="form-group text-warning">
+	
+							<div class="form-group text-warning pt-1">
 								<label>الملاحظة</label> <input name="note"
 									class="form-control text-center disable bg-light font-weight-bold" />
 							</div>
@@ -76,19 +77,21 @@
 				<br>
 			</div>
 
-			<div class="mr-4 col-8">
+			<div class="mr-4 col-8 ">
 
 				<div style="width: 100%; height: 500px; overflow: auto;"
 					class=" shadow">
 
-					<table class="mh-50 table table-striped table-sm   shadow">
+					<table
+						class="mh-50 table table-striped table-sm shadow font-weight-bold">
 
-						<thead class="bg-primary"">
+						<thead class="bg-primary  shadow "
+							style="position: sticky; top: 0;">
 							<tr>
-								<th class=" col-2">المبلغ</th>
+								<th class="col-2">المبلغ</th>
 								<th class="col-2">الملاحظة</th>
 								<th class="col-2">التاريخ</th>
-								<th class="col-2"></th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
@@ -105,7 +108,7 @@
 										${spendTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
 										href="delete-spend?spendId=${spendTemp.id}"
 										onclick="return confirm('هل انت متأكد من الإلغاء ؟')"
-										class="btn btn-danger btn-sm "> إلغاء </a></td>
+										class="btn btn-danger btn-sm font-weight-bold"> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>

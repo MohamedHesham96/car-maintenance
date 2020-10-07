@@ -15,9 +15,11 @@ public interface BillReturnRepository extends CrudRepository<BillReturn, String>
 
 	public List<BillReturn> findAllByOrderByIdDesc();
 
-	public BillReturn findByUpdateNowTrue();
-
-	@Query("SELECT COUNT(br) FROM BillReturn br where date = CURRENT_DATE")
+	@Query("SELECT COUNT(br) FROM BillReturn br where date = CURRENT_DATE and saver = null")
 	public Integer getReturnBillCountToday();
+
+	public BillReturn getBillReturnByUpdaterId(String updaterId);
+
+	public BillReturn getBillReturnBySaverId(String saverId);
 
 }

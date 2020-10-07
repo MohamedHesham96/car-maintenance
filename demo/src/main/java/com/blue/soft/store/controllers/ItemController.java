@@ -22,6 +22,10 @@ public class ItemController {
 	@RequestMapping("/items-list")
 	public String showItems(Model theModel) {
 
+		theModel.addAttribute("itemsCount", itemService.getItemsCount());
+		theModel.addAttribute("totalItemsBuys", itemService.getTotalItemsBuys());
+		theModel.addAttribute("totalItemsSales", itemService.getTotalItemsSales());
+
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 

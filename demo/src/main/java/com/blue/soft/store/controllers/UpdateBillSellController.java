@@ -59,9 +59,7 @@ public class UpdateBillSellController {
 
 		String userId = httpSession.getAttribute("id").toString();
 
-		User theUser = userService.getUserById(userId);
-
-		BillSell sillBillToUpdate = billSellService.getBillSellByUpdaterId(theUser.getId());
+		BillSell sillBillToUpdate = billSellService.getBillSellByUpdaterId(userId);
 
 		// NEW
 		if (sillBillToUpdate != null) {
@@ -75,10 +73,12 @@ public class UpdateBillSellController {
 		if (billSell.getUpdater() != null)
 			return "redirect:/show-update-sell-bill";
 
-		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+		User theUser = userService.getUserById(userId);
 
 		billSell.setUpdater(theUser);
 
+		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
+		
 		float total = 0;
 
 		for (BillSellItem billSellItem : billSellItemsList) {

@@ -26,14 +26,14 @@
 	<br>
 
 	<div style="text-align: center;"
-		class="text-center mr-lg-4 text-warning">
+		class="text-center mr-lg-4 text-warning ">
 
 		<div dir="rtl" class="row w-100">
 
-			<div class="mr-lg-4">
+			<div class="mr-lg-4 ">
 
-				<div class="card border-warning mb-3 " style="max-width: 25rem;">
-					<div class="card-header border-warning">
+				<div class="card border-warning mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning  ">
 						<h5>البحث بالوحدة</h5>
 					</div>
 					<div class="card-body">
@@ -41,7 +41,8 @@
 
 							<div class="form-group">
 
-								<select class="form-control text-center bg-light"
+								<select
+									class="form-control text-center bg-light font-weight-bold"
 									name="clientId">
 
 									<c:forEach var="clientTemp" items="${clientsList}">
@@ -60,10 +61,8 @@
 
 					</div>
 				</div>
-
-				<div class="card  border-warning w-100 mt-sm-4"
-					style="max-width: 20rem;">
-					<div class="card-header border-warning">
+				<div class=" card border-warning  mb-3" style="max-width: 20rem;">
+					<div class="card-header  border-warning text-warning ">
 						<h5>البحث برقم الفاتورة</h5>
 					</div>
 
@@ -72,7 +71,9 @@
 						<form method="POST" action="search-return-bill-by-id">
 
 							<div class="form-group">
-								<input class="form-control text-center bg-light" name="billId">
+								<input
+									class="form-control text-center bg-light font-weight-bold"
+									name="billId">
 
 							</div>
 
@@ -89,44 +90,39 @@
 
 
 
-
 			<div class="mr-4 col-8 ">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
 					<table
-						class="table  table-striped table-sm border-primary font-weight-bold">
+						class="table  table-striped table-sm shadow font-weight-bold">
 
 						<thead class="bg-primary">
 							<tr>
-								<th class="col-1">الرقم</th>
-								<th class="col-1">الوحدة</th>
-								<th class="col-1">التاريخ</th>
-								<th class="col-1"></th>
+								<th class="col-2">الرقم</th>
+								<th class="col-2">الوحدة</th>
+								<th class="col-2">التاريخ</th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody class="shadow">
 
 							<c:forEach var="billTemp" items="${billReturnList}">
 
 								<tr>
 
-									<td class="border-primary">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.id}</td>
 									<td class="border-primary pt-2">${billTemp.client.name}</td>
 									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td class="border-primary">
-											
-									<a
-<%-- 										${ billTemp.updater != null ? 'hidden' :  '' } --%>
-										href="view-return-bill?returnBillId=${billTemp.id}" type="button"
-										class="btn btn-warning btn-sm font-weight-bold">عرض</a>
-										
-										<a
-<%-- 																				${ billTemp.updater != null ? 'hidden' :  '' } --%>
-										
+									<td class="border-primary"><a
+										${ billTemp.updater != null ? 'hidden' :  '' }
+										href="view-return-bill?returnBillId=${billTemp.id}"
+										type="button" class="btn btn-warning btn-sm font-weight-bold">عرض</a>
+
+										<a ${ billTemp.updater != null ? 'hidden' :  '' }
 										href="change-return-bill-to-update?returnBillId=${billTemp.id}"
 										type="button" class="btn btn-primary btn-sm font-weight-bold">تعديل</a></td>
 								</tr>

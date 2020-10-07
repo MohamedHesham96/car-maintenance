@@ -87,7 +87,7 @@
 
 			<div class="mr-4 col-8 shadow pb-3">
 
-				<div class="  font-weight-bold shadow"
+				<div class=" font-weight-bold shadow"
 					style="position: relative; height: 425px; overflow: auto;">
 
 					<table class="table  table-striped table-sm  shadow ">
@@ -98,7 +98,7 @@
 								<th class=" col-1">الكمية</th>
 								<th class=" col-1">سعر الشراء</th>
 								<th class=" col-1">اجمالي السعر</th>
-								<th class=" col-1"></th>
+								<th class=" col-1">العميلة</th>
 							</tr>
 						</thead>
 
@@ -133,8 +133,8 @@
 
 
 				<input
-					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"
-					value="اجمالي: <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
+					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
+					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
 
 
 

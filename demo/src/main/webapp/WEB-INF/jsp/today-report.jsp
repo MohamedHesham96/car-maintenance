@@ -26,130 +26,132 @@
 
 	<br>
 
-	<div style="text-align: center;" class="">
-		<div dir="rtl" class="row">
+	<div dir="rtl" style="width: 50%; margin: 0 auto; text-align: center;"
+		class="col-8">
 
-			<div
-				style="margin: 0; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);"
-				class="col-4 ">
+		<div style="height: 510px; overflow: auto;"
+			class=" shadow font-weight-bold ">
 
-				<div style="width: 100%; height: 500px; overflow: auto;"
-					class=" shadow">
+			<table style="font-size: 16px"
+				class="mh-50 table  table-striped table-sm   ">
 
-					<table style="font-size: 15px"
-						class="mh-50 table  table-striped table-sm   ">
+				<thead class="bg-primary shadow" style="position: sticky; top: 0;">
+					<tr>
+						<th class="col-2">المفتاح</th>
+						<th class="col-2">القيمة</th>
+					</tr>
+				</thead>
 
-						<thead class="bg-primary shadow" style="position: sticky; top: 0;">
-							<tr>
-								<th class="col-2">المفتاح</th>
-								<th class="col-2">القيمة</th>
-							</tr>
-						</thead>
+				<tbody class="shadow">
 
-						<tbody>
+					<tr>
+						<td class=" border-primary">الخزنة</td>
+						<td class="border-primary"><fmt:formatNumber
+								value="${bank.balance}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">الخزنة</td>
-								<td class="border-primary"><fmt:formatNumber
-										value="${bank.balance}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">الخزنة اليوم</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${bank.balanceToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">الخزنة اليوم</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${bank.balanceToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مبيعات</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalSalesToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">مبيعات</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalSalesToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مبيعات نقدي</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalPayedSalesToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">مبيعات نقدي</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalPayedSalesToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مبيعات آجل</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalLateSalesToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">مبيعات آجل</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalLateSalesToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مشتريات</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalBuysToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">مشتريات</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalBuysToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مرتجعات</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalReturnsToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">اجمالي الربح</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalGain}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">اجمالي الربح</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalGain}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">مصاريف</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${spendTotalToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">مصاريف</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${spendTotalToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">صافي ربح</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${totalGain - spendTotalToday}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">صافي ربح</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalGain - spendTotalToday}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">رصيد الموردين</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${companyDraweeTotal}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">رصيد الموردين</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${companyDraweeTotal}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">رصيد الوحدات</td>
-								<td class=" border-primary"><fmt:formatNumber
-										value="${clientDraweeTotal}" maxFractionDigits="2" /></td>
-							</tr>
+					<tr>
+						<td class=" border-primary">رصيد الوحدات</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${clientDraweeTotal}" maxFractionDigits="2" /></td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">فواتير البيع</td>
-								<td class=" border-primary">${sellBillCountToday}</td>
-							</tr>
+					<tr>
+						<td class=" border-primary">فواتير البيع</td>
+						<td class=" border-primary">${sellBillCountToday}</td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">فواتير النقدي</td>
-								<td class=" border-primary">${payedSellBillCountToday}</td>
-							</tr>
+					<tr>
+						<td class=" border-primary">فواتير النقدي</td>
+						<td class=" border-primary">${payedSellBillCountToday}</td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">فواتير الآجل</td>
-								<td class=" border-primary">${lateSellBillCountToday}</td>
+					<tr>
+						<td class=" border-primary">فواتير الآجل</td>
+						<td class=" border-primary">${lateSellBillCountToday}</td>
 
-							</tr>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">فواتير الشراء</td>
-								<td class=" border-primary">${buyBillCountToday}</td>
-							</tr>
+					<tr>
+						<td class=" border-primary">فواتير الشراء</td>
+						<td class=" border-primary">${buyBillCountToday}</td>
+					</tr>
 
-							<tr>
-								<td class=" border-primary">فواتير المرتجع</td>
-								<td class=" border-primary">${returnBillCountToday}</td>
-							</tr>
-
-
-						</tbody>
-					</table>
-
-				</div>
+					<tr>
+						<td class=" border-primary">فواتير المرتجع</td>
+						<td class=" border-primary">${returnBillCountToday}</td>
+					</tr>
 
 
-			</div>
+				</tbody>
+			</table>
+
 		</div>
 
+
 	</div>
+
+
+
 </body>
 </html>

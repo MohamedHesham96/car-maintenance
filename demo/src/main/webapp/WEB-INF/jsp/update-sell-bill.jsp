@@ -16,18 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>تعديل فاتورة بيع</title>
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
-	rel="stylesheet">
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
-	rel="stylesheet">
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
-	rel="stylesheet">
-
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 <script type="text/javascript">
@@ -69,11 +58,9 @@ function showUpdateForm(btn, id) {
 
 	<br>
 
-	<div
-		style="width: 100%; position: absolute; top: 56%; left: 46.5%; transform: translate(-50%, -50%); text-align: center;"
-		class=" ">
+	<div style="width: 100%; text-align: center;" class=" ">
 
-		<div dir="rtl" class="row ">
+		<div dir="rtl" class="row mr-3">
 			<div class="card border-warning " style="max-width: 20rem;">
 				<div class="card-header border-warning text-warning">${view ? '<h5>عرض للفاتور</h5>' :  '<h5>أضافة للفاتور</h5>'  }
 				</div>
@@ -141,7 +128,7 @@ function showUpdateForm(btn, id) {
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر البيع</th>
 								<th class="col-1">اجمالي السعر</th>
-								<th ${view ? 'hidden' :  ''  } class="col-1"></th>
+								<th ${view ? 'hidden' :  ''  } class="col-1">العميلة</th>
 							</tr>
 						</thead>
 
@@ -178,7 +165,6 @@ function showUpdateForm(btn, id) {
 					</table>
 
 				</div>
-
 
 				<input
 					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"

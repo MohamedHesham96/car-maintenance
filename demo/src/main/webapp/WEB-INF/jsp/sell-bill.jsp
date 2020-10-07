@@ -96,17 +96,18 @@
 
 					<table class="table  table-striped table-sm  shadow ">
 
-						<thead class="bg-primary text-white ">
+						<thead class="bg-primary  shadow">
 							<tr>
 								<th class="col-1">الصنف</th>
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر البيع</th>
 								<th class="col-1">اجمالي السعر</th>
-								<th class="col-1"></th>
+								<th class="col-1">العميلة</th>
 							</tr>
 						</thead>
 
-						<tbody class="">
+						<tbody class="shadow">
+
 							<c:forEach var="itemTemp" items="${billSell.billSellItems}">
 
 								<tr>
@@ -132,13 +133,10 @@
 				</div>
 
 				<input
-					class="btn btn-outline-success float-right mt-sm-4 font-weight-bold shadow text-white"
+					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
 					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
 
-
-
 				<div class="float-left pt-sm-4 pb-3">
-
 
 					<form:form>
 
@@ -147,16 +145,12 @@
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							حذف </a>
 
-
-
 						<c:if test="${billSell.billSellItems.size() > 0 }">
-
 
 							<a href="save-sellBill?sellBillId=${billSell.id}"
 								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
 								class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
 								حفظ</a>
-
 
 							<a href="show-printView?sellBillId=${billSell.id}"
 								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
@@ -165,39 +159,21 @@
 
 						</c:if>
 
-
-
 						<c:if test="${billSell.billSellItems.size() eq 0 }">
-
 
 							<button class="btn btn-success mr-1 shadow font-weight-bold "
 								disabled>حفظ</button>
-
 
 							<button class="btn btn-primary shadow mr-1  font-weight-bold"
 								disabled>طباعة</button>
 
 						</c:if>
 
-
-
-
-
-
-
-
-
 					</form:form>
 
 				</div>
-
-
-
 			</div>
-
-
 		</div>
-
 	</div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import com.blue.soft.store.entity.Spend;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
+import com.blue.soft.store.service.BillReturnItemsService;
 import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
@@ -55,6 +56,9 @@ public class SpendController {
 
 	@Autowired
 	BillBuyItemsService billBuyItemsService;
+
+	@Autowired
+	BillReturnItemsService billReturnItemsService;
 
 	@Autowired
 	BankService bankService;
@@ -151,6 +155,7 @@ public class SpendController {
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
 		theModel.addAttribute("totalSalesToday", billSellItemsService.getTotalSalesToday());
+		theModel.addAttribute("totalReturnsToday", billReturnItemsService.getTotalReturnsToday());
 		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
 		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
 

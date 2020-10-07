@@ -13,12 +13,16 @@ import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Pay;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.CompanyService;
+import com.blue.soft.store.service.PayService;
 
 @Controller
 public class CompanyController {
 
 	@Autowired
 	CompanyService companyService;
+
+	@Autowired
+	PayService payService;
 
 	@Autowired
 	BankService bankService;
@@ -41,6 +45,25 @@ public class CompanyController {
 		companyService.addNewCompany(theCompany);
 
 		return "redirect:/companies-list";
+	}
+
+	@RequestMapping("/delete-company-pay")
+	public String deleteCompanyPay(@RequestParam(name = "companyId") String companyId,
+			@RequestParam(name = "payId") String payId, Model theModel) throws Exception {
+
+		Company company = companyService.getCompanyById(companyId);
+
+		Pay thePay = payService.getPayById(payId);
+
+		company.setDrawee(company.getDrawee() + thePay.getAmount());
+
+		bankController.updateBankBalance("add", thePay.getAmount());
+
+		payService.deletePayById(payId);
+
+		theModel.addAttribute("company", company);
+
+		return "company-pay";
 	}
 
 	@RequestMapping("/search-for-company")

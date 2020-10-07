@@ -29,24 +29,24 @@
 
 	<div style="text-align: center;" class="text-center ">
 
-		<div dir="rtl" class="row">
+		<div dir="rtl" class="row ">
 
-			<div class="card border-primary  mr-lg-5" style="max-width: 20rem;">
-				<div class="card-header">
+			<div class="card border-warning  mr-lg-5" style="max-width: 20rem;">
+				<div class="card-header border-warning text-warning">
 					<h4>سجل فواتير</h4>
 				</div>
-				<div class="card-body">
+				<div class="card-body font-weight-bold text-warning">
 
 					<div class="form-group">
-						<label> الوحدة</label> <input name="companyName"
+						<label>الوحدة</label> <input name="companyName"
 							value="${client.name}" disabled="disabled"
-							class="form-control btn-outline-primary text-center" />
+							class="form-control btn-outline-warning text-center font-weight-bold" />
 					</div>
 
 					<div class="form-group">
 						<label>الدين</label> <input name="companyName"
 							value="${client.drawee}" disabled="disabled"
-							class="form-control btn-outline-primary text-center" />
+							class="form-control btn-outline-warning text-center font-weight-bold" />
 					</div>
 
 				</div>
@@ -58,14 +58,15 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm table-bordered ">
-
-						<thead>
+					<table
+						class="table table-striped table-sm  shadow  font-weight-bold">
+						<thead class="bg-primary  shadow "
+							style="position: sticky; top: 0;">
 							<tr>
-								<th class="col-3">الرقم</th>
-								<th class="col-3">النوع</th>
-								<th class="col-3">التاريخ</th>
-								<th class="col-2"></th>
+								<th class="col-2">الرقم</th>
+								<th class="col-2">النوع</th>
+								<th class="col-2">التاريخ</th>
+								<th class="col-2">العميلة</th>
 							</tr>
 						</thead>
 
@@ -75,14 +76,16 @@
 
 								<tr>
 
-									<td>${billTemp.id}</td>
-									<td>${billTemp.late ? "آجل" : "نقدي" }</td>
-									<td>${billTemp.date}</td>
+									<td class="border-primary pt-2">${billTemp.id}</td>
+									<td class="border-primary pt-2">${billTemp.late ? "آجل" : "نقدي" }</td>
+									<td class="border-primary pt-2">${billTemp.date}</td>
 
-									<td><a
+
+									<td class="border-primary "><a
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-priamry btn-sm"
-										${ billTemp.updater != null ? 'hidden' :  '' }> تعديل </a></td>
+										type="button" class="btn btn-primary btn-sm font-weight-bold shadow"
+										${ billTemp.updater != null ? 'hidden' :  '' }>تعديل</a></td>
+
 								</tr>
 
 							</c:forEach>

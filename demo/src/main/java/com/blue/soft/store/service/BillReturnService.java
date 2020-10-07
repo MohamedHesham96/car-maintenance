@@ -45,16 +45,21 @@ public class BillReturnService {
 		return (List<BillReturn>) billReturnRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
-	public BillReturn getBillReturnByUpdateNow() {
-
-		return (BillReturn) billReturnRepository.findByUpdateNowTrue();
-	}
-
 	public Integer getReturnBillCountToday() {
 
 		Integer rbCountToday = billReturnRepository.getReturnBillCountToday();
 
 		return rbCountToday != null ? rbCountToday : 0;
 
+	}
+
+	public BillReturn getBillReturnByUpdaterId(String updateId) {
+
+		return billReturnRepository.getBillReturnByUpdaterId(updateId);
+	}
+
+	public BillReturn getBillReturnBySaverId(String userId) {
+
+		return billReturnRepository.getBillReturnBySaverId(userId);
 	}
 }
