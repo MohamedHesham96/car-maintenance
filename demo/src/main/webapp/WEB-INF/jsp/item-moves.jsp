@@ -9,67 +9,14 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الأصناف</title>
+<title>حركة صنف</title>
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
-
-
-
-<script type="text/javascript">
-	
-	function showAddForm(btn) {
-
-		var addForm = document.getElementById("add-form");
-		var updateForm = document.getElementById("update-form");
-		
-		if (addForm.style.display === "none") {
-			addForm.style.display = "block";
-			updateForm.style.display = "none";
-
-		}
-	}
-	
-	
-	function showUpdateForm(btn, id) {
-
-		var addForm = document.getElementById("add-form");
-		var updateForm = document.getElementById("update-form");
-
-		var itemId = document.getElementById("itemId"+id).innerText;
-		var itemName = document.getElementById("itemName"+id).innerText;
-		var itemQuantity = document.getElementById("itemQuantity"+id).innerText;
-		var itemBuyPrice = document.getElementById("itemBuyPrice"+id).innerText;
-		var itemSellPrice = document.getElementById("itemIdSellPrice"+id).innerText;
-
-		var newId = document.getElementById("newId");
-		var newName = document.getElementById("newName");
-		var newQuantity = document.getElementById("newQuantity");
-		var newBuyPrice = document.getElementById("newBuyPrice");
-		var newSellPrice = document.getElementById("newSellPrice");
-
-		newId.value = itemId;
-		newName.value = itemName;
-		newQuantity.value = itemQuantity;
-		newBuyPrice.value = itemBuyPrice;
-		newSellPrice.value = itemSellPrice;
-
-		
-		
-		if (updateForm.style.display === "none")  {
-
-			addForm.style.display = "none";
-			updateForm.style.display = "block";
-		}
-
-	}
-</script>
-
 
 </head>
 <body>
@@ -84,6 +31,7 @@
 		<div dir="rtl" class="row mr-lg-4">
 
 			<div class=" mr-lg-4">
+
 				<div class="row" id="add-form">
 
 					<div
@@ -128,63 +76,6 @@
 
 							</form:form>
 
-						</div>
-					</div>
-
-				</div>
-
-				<div class="row" style="display: none" id="update-form">
-
-					<div class="card border-success font-weight-bold  text-success"
-						style="max-width: 20rem;">
-						<div class="card-header   border-success ">
-							<h5>تعديل صنف</h5>
-						</div>
-						<div class="card-body">
-
-							<form:form modelAttribute="item" method="post"
-								action="update-item">
-
-								<div hidden="" class="form-group">
-									<label>اسم الصنف</label>
-									<form:input id="newId" path="id"
-										class="form-control text-center font-weight-bold" />
-								</div>
-
-
-								<div class="form-group">
-									<label>اسم الصنف</label>
-									<form:input id="newName" path="name"
-										class="form-control text-center font-weight-bold" />
-								</div>
-
-								<div class="form-group">
-									<label>الكمية</label>
-									<form:input id="newQuantity" path="quantity"
-										class="form-control text-center font-weight-bold" />
-								</div>
-
-								<div class="form-group">
-									<label>سعر الشراء</label>
-									<form:input id="newBuyPrice" path="buyPrice"
-										class="form-control text-center font-weight-bold" />
-								</div>
-
-								<div class="form-group">
-									<label>سعر البيع</label>
-									<form:input id="newSellPrice" path="sellPrice"
-										class="form-control text-center font-weight-bold" />
-								</div>
-
-								<button type="submit"
-									class="btn btn-outline-success btn-lg w-100">تعديل
-									الصنف</button>
-
-
-								<button type="button" onclick="showAddForm(this)"
-									class="btn btn-warning btn-sm mt-sm-2 w-100">إلغاء</button>
-
-							</form:form>
 						</div>
 					</div>
 				</div>

@@ -181,6 +181,7 @@ public class BillSellController {
 
 	@RequestMapping("/show-sell-bill-list")
 	public String showSellBillList(Model theModel, RedirectAttributes attributes) {
+
 		String userId = httpSession.getAttribute("id").toString();
 
 		BillSell billSell = billSellService.getBillSellByUpdaterId(userId);
@@ -260,7 +261,7 @@ public class BillSellController {
 
 		billSellService.saveSellBill(billSell);
 
-		return "redirect:/items-list";
+		return "redirect:/show-sell-bill-list";
 
 	}
 

@@ -65,8 +65,8 @@
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select
-								class="form-control text-center bg-light font-weight-bold"
+							<form:select  autofocus="autofocus"
+								class="form-control text-center bg-light font-weight-bold "
 								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
 							</form:select>
@@ -74,7 +74,7 @@
 
 							<div class="form-group">
 								<label>الكمية</label>
-								<form:input id="quantity" path="quantity"
+								<form:input id="quantity" path="quantity" 
 									class="form-control text-center bg-light font-weight-bold" />
 							</div>
 
@@ -98,7 +98,7 @@
 
 						<thead class="bg-primary  shadow">
 							<tr>
-								<th class="col-1">الصنف</th>
+								<th  class="col-1">الصنف</th>
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر البيع</th>
 								<th class="col-1">اجمالي السعر</th>

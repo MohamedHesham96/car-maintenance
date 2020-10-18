@@ -10,19 +10,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
-	rel="stylesheet">
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
-	rel="stylesheet">
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
-	rel="stylesheet">
 
 
 </head>

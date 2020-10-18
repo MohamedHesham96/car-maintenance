@@ -14,18 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف الوحدات</title>
 
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_bootswatch.scss"
-	rel="stylesheet">
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/_variables.scss"
-	rel="stylesheet">
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
-	rel="stylesheet">
-
-
-<link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 </head>
@@ -96,7 +85,7 @@
 				</div>
 
 			</div>
-			<div class="mr-4 col-9">
+			<div class="mr-4 col-9 font-weight-bold">
 
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
@@ -118,10 +107,15 @@
 
 									<td class="border-primary pt-2">${clientTemp.name}</td>
 									<td class="border-primary pt-2">${clientTemp.drawee}</td>
-									<td class="border-primary "><a type="button"
+									<td class="border-primary ">
+									
+									
+										<a type="button"
 										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-collects-client?clientId=${clientTemp.id}"
-										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> <a
+										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> 
+										
+										<a
 										type="button" class="btn btn-primary btn-sm font-weight-bold"
 										href="show-client-bills-list?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>
