@@ -82,7 +82,7 @@
 		<!-- 				البيع</a></li> -->
 
 
-		<li dir="ltr" class=" mr-2 ">
+		<li dir="ltr" class="mr-2">
 			<div class="btn-group pt-2" role="group">
 
 				<button type="button"
@@ -165,10 +165,16 @@
 		<!-- 			style="font-size: 15px;">فواتير مرتجع</a></li> -->
 
 
-
 		<li
 			class="btn bg-dark border-warning  font-weight-bold nav-item active mr-2 shadow"><a
 			class="nav-link btnd" href="items-list">المخزن</a></li>
+
+
+
+		<li
+			class="btn bg-dark border-warning font-weight-bold nav-item active mr-2 shadow"><a
+			class="nav-link" href="item-moves">حركة صنف</a></li>
+
 
 
 		<li
@@ -176,8 +182,6 @@
 			class="nav-link" href="spend-list"> الخزنة</a></li>
 
 
-		<!-- 		<li class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href=""> الخزنة</a></li> -->
 
 
 		<li

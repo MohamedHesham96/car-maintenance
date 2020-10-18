@@ -17,11 +17,13 @@ import com.blue.soft.store.entity.BillSell;
 import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.ItemMove;
 import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
+import com.blue.soft.store.service.ItemMoveService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.UserService;
 
@@ -30,6 +32,9 @@ public class BillSellController {
 
 	@Autowired
 	ItemService itemService;
+
+	@Autowired
+	ItemMoveService ItemMoveService;
 
 	@Autowired
 	BillSellService billSellService;
@@ -243,6 +248,10 @@ public class BillSellController {
 			itemService.addNewItem(item);
 
 			total += billSellItem.getSellPrice() * billSellItem.getQuantity();
+
+			ItemMoveService.addItemMove(new ItemMove(item, "بيع", billSell.getId(), -billSellItem.getQuantity(),
+					item.getQuantity(), 0, billSellItem.getSellPrice()));
+
 		}
 
 		if (billSell.isLate()) {

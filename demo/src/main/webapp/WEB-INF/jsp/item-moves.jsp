@@ -38,41 +38,25 @@
 						class="card  border-warning font-weight-bold pb-4 text-warning"
 						style="max-width: 20rem;">
 						<div class="card-header border-warning ">
-							<h4>اضافة صنف</h4>
+							<h4>حركة صنف</h4>
 						</div>
 
 						<div class="card-body bg-dark ">
 
-							<form:form modelAttribute="item" method="post"
-								action="add-new-item">
+							<form:form modelAttribute="item" method="get" action="item-moves">
 
-								<div class="form-group ">
-									<label class="">اسم الصنف</label>
-									<form:input path="name"
-										class="form-control text-center bg-light font-weight-bold" />
-								</div>
 
-								<div class="form-group">
-									<label>الكمية</label>
-									<form:input path="quantity"
-										class="form-control text-center bg-light font-weight-bold" />
-								</div>
+								<label>اسم الصنف</label>
+								<form:select
+									class="form-control text-center bg-light font-weight-bold"
+									path="id">
+									<form:options items="${itemsList}" itemLabel="name" />
+								</form:select>
 
-								<div class="form-group">
-									<label>سعر الشراء</label>
-									<form:input path="buyPrice"
-										class="form-control text-center bg-light font-weight-bold" />
-								</div>
-
-								<div class="form-group">
-									<label>سعر البيع</label>
-									<form:input path="sellPrice"
-										class="form-control text-center bg-light font-weight-bold" />
-								</div>
 
 								<button type="submit"
-									class="btn btn-outline-warning btn-lg w-100 ">اضافة
-									الصنف</button>
+									class="btn btn-outline-warning btn-lg w-100 ">تقرير
+									حركة صنف</button>
 
 							</form:form>
 
@@ -83,7 +67,7 @@
 
 			<div class="mr-4 col-9">
 
-				<div style="width: 100%; height: 470px; overflow: auto;"
+				<div style="width: 100%; height: 465px; overflow: auto;"
 					class=" shadow ">
 
 					<table
@@ -92,51 +76,82 @@
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
 							<tr class=" ">
+
 								<th>الكود</th>
-								<th>الصنف</th>
+								<th>الحركة</th>
 								<th>الكمية</th>
-								<th>سعر الشراء</th>
-								<th>سعر البيع</th>
+								<th>الرصيد</th>
+								<th>سعر شراء</th>
 								<th>جملة شراء</th>
+								<th>سعر البيع</th>
 								<th>جملة بيع</th>
-								<th>ربح القطعة</th>
-								<th>جملة الربح</th>
-								<th>العميلة</th>
+								<th>التاريح</th>
 
 							</tr>
 						</thead>
 
 						<tbody class=" ">
-							<c:forEach var="itemTemp" items="${itemsList}">
+							<c:forEach var="itemMoveTemp" items="${item.itemMoves}">
 
-								<tr>
-									<td class="pt-2 border-warning text-warning"
-										id="itemId${itemTemp.id}">${itemTemp.id}</td>
-									<td class="pt-2 border-primary " id="itemName${itemTemp.id}">${itemTemp.name}</td>
-									<td class="pt-2 border-primary" id="itemQuantity${itemTemp.id}">${itemTemp.quantity}</td>
-									<td class="pt-2 border-primary" id="itemBuyPrice${itemTemp.id}">${itemTemp.buyPrice}</td>
-									<td class="pt-2 border-primary"
-										id="itemIdSellPrice${itemTemp.id}">${itemTemp.sellPrice}</td>
+								<tr dir="ltr"
+									class="${ itemMoveTemp.type == 'مرتجع' ? 'bg-warning' : '' } ${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">
+									<td class=" " id="itemId${itemMoveTemp.id}">${itemMoveTemp.id}</td>
 
-									<td class="pt-2 border-primary"><fmt:formatNumber
-											value="${itemTemp.buyPrice * itemTemp.quantity}"
-											maxFractionDigits="2" /></td>
-									<td class="pt-2 border-primary"><fmt:formatNumber
-											value="${itemTemp.sellPrice * itemTemp.quantity}"
-											maxFractionDigits="2" /></td>
+									<td class=" ">${itemMoveTemp.type}</td>
 
-									<td class="pt-2 border-primary"><fmt:formatNumber
-											value="${itemTemp.sellPrice - itemTemp.buyPrice}"
-											maxFractionDigits="2" /></td>
-									<td class="pt-2 border-primary"><fmt:formatNumber
-											value="${(itemTemp.sellPrice - itemTemp.buyPrice) * itemTemp.quantity}"
-											maxFractionDigits="2" /></td>
+									<td class=" " id="itemQuantity${itemMoveTemp.id}">${itemMoveTemp.quantity}</td>
 
-									<td class=" border-primary ">
-										<button type="button"
-											class="btn btn-primary btn-sm font-weight-bold"
-											onclick="showUpdateForm(this,${itemTemp.id})">تعديل</button>
-									</td>
+									<td class=" " id="itemQuantity${itemMoveTemp.id}">${itemMoveTemp.balance}</td>
+
+
+
+									<c:set var="quantity" value="${itemMoveTemp.quantity}" />
+
+									<c:set var="quantity"
+										value="${quantity < 0 ? quantity * -1 : quantity}" />
+
+									<c:set var="val" value="${itemMoveTemp.buyPrice  *  quantity}" />
+
+									<c:if test="${val != 0}">
+
+										<td class=" " id="itemBuyPrice${itemMoveTemp.id}">${itemMoveTemp.buyPrice}</td>
+
+
+										<td class=" "><fmt:formatNumber
+												value="${val < 0 ? val * -1 : val}" maxFractionDigits="2" /></td>
+
+									</c:if>
+									<c:if test="${val == 0}">
+
+										<td class=" ">-----</td>
+										<td class=" ">-----</td>
+
+									</c:if>
+
+
+
+									<c:set var="val" value="${itemMoveTemp.sellPrice  * quantity}" />
+
+
+									<c:if test="${val != 0}">
+
+										<td class=" " id="itemIdSellPrice${itemMoveTemp.id}">${itemMoveTemp.sellPrice}</td>
+										<td class=" "><fmt:formatNumber
+												value="${val < 0 ? val * -1 : val}" maxFractionDigits="2" /></td>
+
+									</c:if>
+
+
+
+									<c:if test="${val == 0}">
+
+										<td class=" ">-----</td>
+										<td class=" ">-----</td>
+
+									</c:if>
+
+
+									<td class="  ">${itemMoveTemp.date}</td>
 								</tr>
 
 							</c:forEach>
@@ -154,7 +169,7 @@
 						style="position: sticky; top: 0;">
 						<tr class=" ">
 
-							<th>عدد الاصناف : ${itemsCount}</th>
+							<th>عدد الاصناف : ${item.itemMoves.size()}</th>
 
 							<th>جملة شراء : <fmt:formatNumber value="${totalItemsBuys}"
 									maxFractionDigits="2" /></th>

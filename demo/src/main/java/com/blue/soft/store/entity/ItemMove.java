@@ -1,5 +1,7 @@
 package com.blue.soft.store.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +28,7 @@ public class ItemMove {
 	private String type;
 
 	@Column(name = "bill_id")
-	private int billId;
+	private String billId;
 
 	@Column(name = "quantity")
 	private int quantity;
@@ -40,18 +42,24 @@ public class ItemMove {
 	@Column(name = "sell_price")
 	private float sellPrice;
 
+	@Column(name = "date")
+	private String date;
+
 	public ItemMove() {
 		super();
 	}
 
-	public ItemMove(Item item, int billId, int quantity, int balance, float buyPrice, float sellPrice) {
+	public ItemMove(Item item, String type, String billId, int quantity, int balance, float buyPrice, float sellPrice) {
 		super();
 		this.item = item;
+		this.type = type;
 		this.billId = billId;
 		this.quantity = quantity;
 		this.balance = balance;
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
+		this.date = LocalDate.now().toString();
+
 	}
 
 	public String getId() {
@@ -70,20 +78,20 @@ public class ItemMove {
 		this.item = item;
 	}
 
+	public String getBillId() {
+		return billId;
+	}
+
+	public void setBillId(String billId) {
+		this.billId = billId;
+	}
+
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public int getBillId() {
-		return billId;
-	}
-
-	public void setBillId(int billId) {
-		this.billId = billId;
 	}
 
 	public int getQuantity() {
@@ -116,6 +124,14 @@ public class ItemMove {
 
 	public void setSellPrice(float sellPrice) {
 		this.sellPrice = sellPrice;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = LocalDate.now().toString();
 	}
 
 }

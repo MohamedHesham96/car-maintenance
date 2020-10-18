@@ -17,11 +17,13 @@ import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.Client;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.ItemMove;
 import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillReturnItemsService;
 import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.ClientService;
+import com.blue.soft.store.service.ItemMoveService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.UserService;
 
@@ -30,6 +32,9 @@ public class BillReturnController {
 
 	@Autowired
 	ItemService itemService;
+
+	@Autowired
+	ItemMoveService itemMoveService;
 
 	@Autowired
 	BillReturnService billReturnService;
@@ -246,6 +251,9 @@ public class BillReturnController {
 			itemService.addNewItem(item);
 
 			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
+
+			itemMoveService.addItemMove(new ItemMove(item, "مرتجع", billReturn.getId(), billReturnItem.getQuantity(),
+					item.getQuantity(), 0, billReturnItem.getReturnPrice()));
 		}
 
 		Client client = billReturn.getClient();

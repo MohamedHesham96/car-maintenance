@@ -9,9 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Item {
+
+	public List<ItemMove> getItemMoves() {
+		return itemMoves;
+	}
+
+	public void setItemMoves(List<ItemMove> itemMoves) {
+		this.itemMoves = itemMoves;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +40,8 @@ public class Item {
 
 	@OneToMany(mappedBy = "item", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<BillSellItem> billSellItem;
+	@OrderBy(value = "time_stamp asc")
+	private List<ItemMove> itemMoves;
 
 	public Item() {
 	}

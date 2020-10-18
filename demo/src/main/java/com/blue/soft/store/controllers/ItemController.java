@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.service.CompanyService;
@@ -53,6 +54,24 @@ public class ItemController {
 		itemService.addNewItem(item);
 
 		return "redirect:/items-list";
+	}
+
+	@RequestMapping("/item-moves")
+	public String showItemsMovePage(@RequestParam(name = "id", required = false) String id, Model theModel) {
+
+		if (id != null) {
+
+			theModel.addAttribute("item", itemService.getItemById(id));
+
+		} else {
+
+			theModel.addAttribute("item", new Item());
+
+		}
+
+		theModel.addAttribute("itemsList", itemService.getAllItems());
+
+		return "item-moves";
 	}
 
 //	@RequestMapping("/add-sell-bill-item")

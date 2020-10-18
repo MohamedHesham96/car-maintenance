@@ -17,11 +17,13 @@ import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.ItemMove;
 import com.blue.soft.store.entity.User;
 import com.blue.soft.store.service.BankService;
 import com.blue.soft.store.service.BillBuyItemsService;
 import com.blue.soft.store.service.BillBuyService;
 import com.blue.soft.store.service.CompanyService;
+import com.blue.soft.store.service.ItemMoveService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.UserService;
 
@@ -30,6 +32,9 @@ public class BillBuyController {
 
 	@Autowired
 	ItemService itemService;
+
+	@Autowired
+	ItemMoveService ItemMoveService;
 
 	@Autowired
 	BillBuyService billBuyService;
@@ -236,6 +241,9 @@ public class BillBuyController {
 			itemService.addNewItem(item);
 
 			total += billBuyItem.getBuyPrice() * billBuyItem.getQuantity();
+
+			ItemMoveService.addItemMove(new ItemMove(item, "شراء", billBuy.getId(), billBuyItem.getQuantity(),
+					item.getQuantity(), billBuyItem.getBuyPrice(), 0));
 		}
 
 		Company company = billBuy.getCompany();
