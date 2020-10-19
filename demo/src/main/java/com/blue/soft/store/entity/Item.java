@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,14 +14,6 @@ import javax.persistence.OrderBy;
 
 @Entity
 public class Item {
-
-	public List<ItemMove> getItemMoves() {
-		return itemMoves;
-	}
-
-	public void setItemMoves(List<ItemMove> itemMoves) {
-		this.itemMoves = itemMoves;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +31,8 @@ public class Item {
 	@Column(name = "sell_price")
 	private float sellPrice;
 
-	@OneToMany(mappedBy = "item", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
 	@OrderBy(value = "time_stamp asc")
 	private List<ItemMove> itemMoves;
 
@@ -86,4 +79,11 @@ public class Item {
 		this.sellPrice = sellPrice;
 	}
 
+	public List<ItemMove> getItemMoves() {
+		return itemMoves;
+	}
+
+	public void setItemMoves(List<ItemMove> itemMoves) {
+		this.itemMoves = itemMoves;
+	}
 }

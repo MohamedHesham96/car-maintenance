@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,16 +25,16 @@ public class Client {
 	@Column(name = "drawee")
 	private float drawee;
 
-	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
 	private List<BillSell> billSellList;
 
-	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
 	private List<BillReturn> billReturnList;
 
-	@OneToMany(mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
 	@OrderBy(value = "time_stamp DESC")
 	private List<Collect> collectList;
 

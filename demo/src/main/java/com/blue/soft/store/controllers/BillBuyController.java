@@ -153,7 +153,7 @@ public class BillBuyController {
 		BillBuyItem billBuyItem = new BillBuyItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
 			// String billId = httpSession.getAttribute("billBuyId").toString();
 			// BillBuy billBuy = billBuyService.getBillBuyById(billId);

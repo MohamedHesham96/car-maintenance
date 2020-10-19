@@ -1,5 +1,7 @@
 package com.blue.soft.store.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,14 @@ public class ItemMoveService {
 	@Autowired
 	ItemMoveRepository itemMoveRepository;
 
-//	public List<ItemMove> getAllItemMoves() {
-//
-//		return (List<ItemMove>) itemMoveRepository.findAll();
-//	}
+	public List<ItemMove> getAllItemMovesByDate(String itemId, String dateFrom, String dateTo) {
 
-	public ItemMove getItemById(String id) {
+		return itemMoveRepository.findByItemIdAndDateBetween(itemId, dateFrom, dateTo);
+	}
 
-		return itemMoveRepository.findById(id).get();
+	public List<ItemMove> getItemMovesByItemId(String itemId) {
+
+		return itemMoveRepository.findByItemId(itemId);
 	}
 
 	public void addItemMove(ItemMove theItemMove) {

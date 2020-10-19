@@ -143,7 +143,7 @@ public class BillSellController {
 		BillSellItem billSellItem = new BillSellItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
 			String userId = httpSession.getAttribute("id").toString();
 

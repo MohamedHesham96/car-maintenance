@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>المصاريف</title>
+<title>الخزنة</title>
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
@@ -41,15 +41,15 @@
 						<input name="companyName" value="الخزنة : ${bank.balance}"
 							disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
-						
+
 						<input name="companyName"
 							value="الخزنة اليوم : ${bank.balanceToday}" disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
-						
-						<input name="companyName"
-							value="اجمالي المصاريف : ${spendTotal}" disabled="disabled"
+
+						<input name="companyName" value="اجمالي المصاريف : ${spendTotal}"
+							disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
-					
+
 						<input name="companyName"
 							value="مصاريف اليوم : ${spendTotalToday}" disabled="disabled"
 							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
@@ -60,7 +60,7 @@
 							<label class="font-weight-bold text-warning pt-1">المبلغ</label>
 							<input name="amount"
 								class="form-control text-center disable bg-light font-weight-bold" />
-	
+
 							<div class="form-group text-warning pt-1">
 								<label>الملاحظة</label> <input name="note"
 									class="form-control text-center disable bg-light font-weight-bold" />

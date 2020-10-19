@@ -18,6 +18,12 @@
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
+
+<script src="webjars/jquery/3.5.1/jquery.js" type="text/javascript"></script>
+
+
+
+
 </head>
 <body>
 
@@ -30,42 +36,53 @@
 
 		<div dir="rtl" class="row mr-lg-4">
 
-			<div class=" mr-lg-4">
 
-				<div class="row" id="add-form">
+			<div class="mr-3">
 
-					<div
-						class="card  border-warning font-weight-bold pb-4 text-warning"
-						style="max-width: 20rem;">
-						<div class="card-header border-warning ">
-							<h4>حركة صنف</h4>
-						</div>
+				<div class="card border-warning font-weight-bold  text-warning "
+					style="min-width: 16rem;">
+					<div class="card-header border-warning ">
+						<h4>حركة صنف</h4>
+					</div>
 
-						<div class="card-body bg-dark ">
+					<div id="" class="card-body bg-dark ">
 
-							<form:form modelAttribute="item" method="get" action="item-moves">
+						<c:set var="today" value="<%=LocalDate.now()%>"></c:set>
+
+						<form method="post" action="item-moves">
+
+							<label>اسم الصنف</label> <select name="itemId"
+								class="form-control text-center bg-light font-weight-bold mb-2">
+								<c:forEach var="tempItem" items="${itemsList}">
+									<option
+										${tempItem.id == selectedItemId ? 'selected="selected"' : ''}
+										value="${tempItem.id}">${tempItem.name}</option>
+								</c:forEach>
+
+							</select> <label>التاريخ من</label> <input type="date" name="dateFrom"
+								value="${dateFrom eq '' ? '' : dateFrom}"
+								class="form-control text-center  bg-light font-weight-bold mb-2 datepicker">
+
+							<label>التاريخ إلى</label> <input type="date" name="dateTo"
+								value="${dateTo eq '' ? '' : dateTo}"
+								class="form-control text-center  bg-light font-weight-bold mb-3 datepicker">
 
 
-								<label>اسم الصنف</label>
-								<form:select
-									class="form-control text-center bg-light font-weight-bold"
-									path="id">
-									<form:options items="${itemsList}" itemLabel="name" />
-								</form:select>
+							<button type="submit"
+								class="btn btn-outline-warning btn-lg w-100 ">تقرير
+								حركة صنف</button>
+
+						</form>
 
 
-								<button type="submit"
-									class="btn btn-outline-warning btn-lg w-100 ">تقرير
-									حركة صنف</button>
 
-							</form:form>
 
-						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="mr-4 col-9">
+
+			<div class="mr-3 col-9">
 
 				<div style="width: 100%; height: 465px; overflow: auto;"
 					class=" shadow ">
@@ -90,8 +107,8 @@
 							</tr>
 						</thead>
 
-						<tbody class=" ">
-							<c:forEach var="itemMoveTemp" items="${item.itemMoves}">
+						<tbody class="">
+							<c:forEach var="itemMoveTemp" items="${movesList}">
 
 								<tr dir="ltr"
 									class="${ itemMoveTemp.type == 'مرتجع' ? 'bg-warning' : '' } ${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">
@@ -169,7 +186,7 @@
 						style="position: sticky; top: 0;">
 						<tr class=" ">
 
-							<th>عدد الاصناف : ${item.itemMoves.size()}</th>
+							<th>عدد الحركات : ${movesList.size()}</th>
 
 							<th>جملة شراء : <fmt:formatNumber value="${totalItemsBuys}"
 									maxFractionDigits="2" /></th>
