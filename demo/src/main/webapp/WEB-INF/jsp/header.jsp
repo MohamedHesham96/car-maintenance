@@ -37,13 +37,13 @@
 	}
 </script>
 
-<nav dir="rtl" style="align-items: flex-end;"
+<nav dir="rtl" style="align-items: flex-end"
 	class="navbar navbar-expand-lg navbar-dark bg-primary shadow ">
 
 	<ul class="navbar-nav mr-auto ">
 
-		<li dir="ltr" class=" mr-2  ">
-			<div class="btn-group pt-2 " role="group">
+		<li dir="ltr" class=" mr-2 ">
+			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
 					class="btn bg-dark border-warning font-weight-bold ">مبيعات</button>
@@ -53,11 +53,19 @@
 					<button id="btnGroupDrop2" onclick="showSellBill(this);"
 						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
 
-					<div id="sellBill" class="dropdown-menu border-warning" style=""
+
+
+
+					<div id="sellBill" class="dropdown-menu  text-center" style=""
 						onmouseleave="showSellBill(this);">
-						<a class="dropdown-item  bg-warning font-weight-bold"
-							href="show-sell-bill-info">فاتورة بيع</a> <a
-							class="dropdown-item  bg-warning font-weight-bold"
+
+
+							<a
+							class="btn dropdown-item  bg-dark text-warning font-weight-bold"
+							href="show-sell-bill-info">فاتورة بيع</a> 
+							
+							<a
+							class="dropdown-item  bg-dark text-warning font-weight-bold"
 							href="show-sell-bill-list"> فواتير البيع</a>
 					</div>
 
@@ -72,7 +80,7 @@
 
 
 		<li dir="ltr" class="mr-2">
-			<div class="btn-group pt-2" role="group">
+			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
 					class="btn bg-dark border-warning font-weight-bold">مشتريات</button>
@@ -82,12 +90,12 @@
 					<button id="btnGroupDrop2" onclick="showBuyBill(this);"
 						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
 
-					<div id="buyBill" class="dropdown-menu" style=""
+					<div id="buyBill" class="dropdown-menu text-center" style=""
 						onmouseleave="showBuyBill(this);">
 
-						<a class="dropdown-item bg-warning font-weight-bold"
+						<a class="dropdown-item bg-dark text-warning font-weight-bold"
 							href="show-buy-bill-info">فاتورة شراء</a> <a
-							class="dropdown-item font-weight-bold bg-warning"
+							class="dropdown-item font-weight-bold bg-dark text-warning"
 							href="show-buy-bill-list">فواتير الشراء</a>
 					</div>
 
@@ -104,7 +112,7 @@
 
 
 		<li dir="ltr" class=" mr-2 ">
-			<div class="btn-group pt-2" role="group">
+			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
 					class="btn bg-dark border-warning font-weight-bold ">مرتجعات</button>
@@ -114,23 +122,20 @@
 					<button id="btnGroupDrop2" onclick="showReturnBill(this);"
 						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
 
-					<div id="returnBill" class="dropdown-menu" style=""
+					<div id="returnBill" class="dropdown-menu text-center" style=""
 						onmouseleave="showReturnBill(this);">
 
 
-						<a class="dropdown-item font-weight-bold bg-warning"
-							href="show-return-bill-info" style="font-size: 15px;">فاتورة
-							مرتجع عميل</a>
-							
-							 <a class="dropdown-item font-weight-bold bg-warning "
+						<a class="dropdown-item font-weight-bold bg-dark text-warning"
+							href="show-return-bill-info" style="font-size: 15px;"> مرتجع
+							عميل</a> <a
+							class="dropdown-item font-weight-bold bg-dark text-warning"
 							href="show-return-bill-list" style="font-size: 15px;">فواتير
-							مرتجع عميل</a> 
-							
-							<a class="dropdown-item font-weight-bold bg-info "
-							href="show-company-return-bill-info" style="font-size: 15px;">فاتورة
-							مرتجع مورد </a> 
-							
-							<a class="dropdown-item font-weight-bold bg-info"
+							مرتجع عميل</a> <a
+							class="dropdown-item font-weight-bold bg-dark text-warning"
+							href="show-company-return-bill-info" style="font-size: 15px;">
+							مرتجع مورد </a> <a
+							class="dropdown-item font-weight-bold bg-dark text-warning"
 							href="show-company-return-bill-list" style="font-size: 15px;">فواتير
 							مرتجع مورد</a>
 
@@ -144,8 +149,8 @@
 
 
 		<li
-			class="btn bg-dark border-warning  font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link btnd" href="items-list">المخزن</a></li>
+			class="btn bg-dark border-warning  font-weight-bold nav-item active mr-2 shadow"
+			style="min-height: 55px"><a class="nav-link " href="items-list">المخزن</a></li>
 
 
 

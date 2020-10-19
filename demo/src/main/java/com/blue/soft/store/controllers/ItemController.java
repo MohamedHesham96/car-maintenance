@@ -65,33 +65,30 @@ public class ItemController {
 	@RequestMapping("/item-moves")
 	public String showItemsMovePage(@RequestParam(name = "itemId", required = false) String itemId,
 			@RequestParam(name = "dateFrom", required = false, defaultValue = "") String dateFrom,
-			@RequestParam(name = "dateTo", required = false, defaultValue = "") String dateTo, Model theModel) {
+			@RequestParam(name = "dateTo", required = false, defaultValue = "") String dateTo,
+			@RequestParam(name = "moveType", required = false, defaultValue = "") String moveType, Model theModel) {
 
-		if (dateFrom.equals("") && dateTo.equals("")) {
+		String tempDateFrom = dateFrom.equals("") ? "2020-01-01" : dateFrom;
+		String tempDateTo = dateTo.equals("") ? LocalDate.now().toString() : dateTo;
 
-			theModel.addAttribute("movesList", itemMoveService.getItemMovesByItemId(itemId));
-		}
+		theModel.addAttribute("movesList",
+				itemMoveService.getAllItemMovesByDateAndType(itemId, tempDateFrom, tempDateTo, moveType));
 
-		else if (!dateFrom.equals("") && !dateTo.equals("")) {
+//
+//		else if (dateFrom.equals("")) {
+//
+//			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
+//
+//		} else if (dateTo.equals("")) {
+//
+//			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
+//
+//		}
 
-			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
-
-		} else if (dateFrom.equals("")) {
-
-			dateFrom = "2020-01-01";
-			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
-
-		} else if (dateTo.equals("")) {
-
-			dateTo = LocalDate.now().toString();
-			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
-
-		}
-
+		theModel.addAttribute("moveType", moveType);
 		theModel.addAttribute("dateTo", dateTo);
 		theModel.addAttribute("dateFrom", dateFrom);
 
-		System.out.println(dateFrom + ": dateFrom" + "\n" + dateTo + ": dateTo");
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("selectedItemId", itemId);
 		theModel.addAttribute("itemsList", itemService.getAllItems());

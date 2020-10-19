@@ -14,9 +14,9 @@ public class ItemMoveService {
 	@Autowired
 	ItemMoveRepository itemMoveRepository;
 
-	public List<ItemMove> getAllItemMovesByDate(String itemId, String dateFrom, String dateTo) {
+	public List<ItemMove> getAllItemMovesByDateAndType(String itemId, String dateFrom, String dateTo, String type) {
 
-		return itemMoveRepository.findByItemIdAndDateBetween(itemId, dateFrom, dateTo);
+		return itemMoveRepository.findByItemIdAndDateBetweenAndTypeContains(itemId, dateFrom, dateTo, type);
 	}
 
 	public List<ItemMove> getItemMovesByItemId(String itemId) {

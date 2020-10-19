@@ -10,6 +10,7 @@ public interface ItemMoveRepository extends CrudRepository<ItemMove, String> {
 
 	public List<ItemMove> findByItemId(String itemId);
 
-	public List<ItemMove> findByItemIdAndDateBetween(String itemId, String dateFrom, String dateTo);
+	public List<ItemMove> findByItemIdAndDateBetweenAndTypeContains(String itemId, String dateFrom, String dateTo,
+			String type);
 
 }

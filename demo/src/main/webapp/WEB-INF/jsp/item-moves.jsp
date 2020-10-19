@@ -34,6 +34,7 @@
 	<div style="align-items: center; width: 100%; text-align: center;"
 		class="">
 
+
 		<div dir="rtl" class="row mr-lg-4">
 
 
@@ -65,8 +66,27 @@
 
 							<label>التاريخ إلى</label> <input type="date" name="dateTo"
 								value="${dateTo eq '' ? '' : dateTo}"
-								class="form-control text-center  bg-light font-weight-bold mb-3 datepicker">
+								class="form-control text-center  bg-light font-weight-bold mb-2 datepicker">
 
+							<label>نوع الحركة</label> <select name="moveType"
+								class="form-control text-center bg-light font-weight-bold mb-3 ">
+
+								<option ${moveType eq '' ? 'selected="selected"' : ''} value="">غير
+									محدد</option>
+
+								<option ${moveType eq 'بيع' ? 'selected="selected"' : ''}
+									value="بيع">بيع</option>
+
+								<option ${moveType eq 'شراء' ? 'selected="selected"' : ''}
+									value="شراء">شراء</option>
+
+								<option ${moveType eq 'مرتجع عميل' ? 'selected="selected"' : ''}
+									value="مرتجع عميل">مرتجع عميل</option>
+
+								<option ${moveType eq 'مرتجع مورد' ? 'selected="selected"' : ''}
+									value="مرتجع مورد">مرتجع مورد</option>
+
+							</select>
 
 							<button type="submit"
 								class="btn btn-outline-warning btn-lg w-100 ">تقرير
@@ -84,7 +104,7 @@
 
 			<div class="mr-3 col-9">
 
-				<div style="width: 100%; height: 465px; overflow: auto;"
+				<div style="width: 100%; height: 460px; overflow: auto;"
 					class=" shadow ">
 
 					<table
@@ -106,6 +126,7 @@
 
 							</tr>
 						</thead>
+
 
 						<tbody class="">
 							<c:forEach var="itemMoveTemp" items="${movesList}">

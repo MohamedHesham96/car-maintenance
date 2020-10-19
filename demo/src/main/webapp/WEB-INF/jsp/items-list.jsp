@@ -192,7 +192,7 @@
 
 			<div class="mr-4 col-9">
 
-				<div style="width: 100%; height: 470px; overflow: auto;"
+				<div style="width: 100%; height: 465px; overflow: auto;"
 					class=" shadow ">
 
 					<table
