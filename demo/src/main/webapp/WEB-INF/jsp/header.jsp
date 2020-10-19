@@ -70,17 +70,6 @@
 
 
 
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-sell-bill-info">فاتورة -->
-		<!-- 				بيع</a></li> -->
-
-
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-sell-bill-list">فواتير -->
-		<!-- 				البيع</a></li> -->
-
 
 		<li dir="ltr" class="mr-2">
 			<div class="btn-group pt-2" role="group">
@@ -112,15 +101,6 @@
 
 
 
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-buy-bill-info">فاتورة شراء</a></li> -->
-
-
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-buy-bill-list">فواتير الشراء</a></li> -->
-
 
 
 		<li dir="ltr" class=" mr-2 ">
@@ -140,9 +120,19 @@
 
 						<a class="dropdown-item font-weight-bold bg-warning"
 							href="show-return-bill-info" style="font-size: 15px;">فاتورة
-							مرتجع</a> <a class="dropdown-item font-weight-bold bg-warning"
+							مرتجع عميل</a>
+							
+							 <a class="dropdown-item font-weight-bold bg-warning "
 							href="show-return-bill-list" style="font-size: 15px;">فواتير
-							مرتجع</a>
+							مرتجع عميل</a> 
+							
+							<a class="dropdown-item font-weight-bold bg-info "
+							href="show-company-return-bill-info" style="font-size: 15px;">فاتورة
+							مرتجع مورد </a> 
+							
+							<a class="dropdown-item font-weight-bold bg-info"
+							href="show-company-return-bill-list" style="font-size: 15px;">فواتير
+							مرتجع مورد</a>
 
 					</div>
 
@@ -151,18 +141,6 @@
 
 		</li>
 
-
-
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-return-bill-info" -->
-		<!-- 			style="font-size: 15px;">فاتورة مرتجع</a></li> -->
-
-
-		<!-- 		<li -->
-		<!-- 			class="btn-sm btn-primary font-weight-bold nav-item active mr-2 shadow"><a -->
-		<!-- 			class="nav-link" href="show-return-bill-list" -->
-		<!-- 			style="font-size: 15px;">فواتير مرتجع</a></li> -->
 
 
 		<li

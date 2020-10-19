@@ -15,6 +15,14 @@ import javax.persistence.OrderBy;
 @Entity
 public class Company {
 
+	public List<CompanyBillReturn> getBillReturnList() {
+		return billReturnList;
+	}
+
+	public void setBillReturnList(List<CompanyBillReturn> billReturnList) {
+		this.billReturnList = billReturnList;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
@@ -33,6 +41,10 @@ public class Company {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
 			CascadeType.MERGE, CascadeType.REFRESH })
 	private List<BillBuy> billBuyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
+	private List<CompanyBillReturn> billReturnList;
 
 	public String getId() {
 		return id;
@@ -79,5 +91,7 @@ public class Company {
 	public void setBillBuyList(List<BillBuy> billBuyList) {
 		this.billBuyList = billBuyList;
 	}
+	
+	
 
 }

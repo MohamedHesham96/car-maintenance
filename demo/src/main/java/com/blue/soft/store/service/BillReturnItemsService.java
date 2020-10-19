@@ -32,7 +32,7 @@ public class BillReturnItemsService {
 
 	public Float getTotalReturnsToday() {
 
-		Float totalLateSalls = billReturnItemsRepository.getTotalLateReturnsToday();
+		Float totalLateSalls = billReturnItemsRepository.getTotalClientsReturnsToday();
 
 		return totalLateSalls != null ? totalLateSalls : 0;
 	}

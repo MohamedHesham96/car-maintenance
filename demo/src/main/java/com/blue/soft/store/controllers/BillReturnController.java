@@ -252,8 +252,8 @@ public class BillReturnController {
 
 			total += billReturnItem.getReturnPrice() * billReturnItem.getQuantity();
 
-			itemMoveService.addItemMove(new ItemMove(item, "مرتجع", billReturn.getId(), billReturnItem.getQuantity(),
-					item.getQuantity(), 0, billReturnItem.getReturnPrice()));
+			itemMoveService.addItemMove(new ItemMove(item, "مرتجع عميل", billReturn.getId(),
+					billReturnItem.getQuantity(), item.getQuantity(), 0, billReturnItem.getReturnPrice()));
 		}
 
 		Client client = billReturn.getClient();

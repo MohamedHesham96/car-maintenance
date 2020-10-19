@@ -12,6 +12,7 @@ import com.blue.soft.store.DAO.TempBillItemsRepository;
 import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.BillSellItem;
+import com.blue.soft.store.entity.CompanyBillReturnItem;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.TempBillItem;
 
@@ -73,6 +74,19 @@ public class TempBillItemsService {
 
 	}
 
+	public void addCompanyBillReturnItems(List<CompanyBillReturnItem> companyBillReturnItemsList) {
+
+		for (CompanyBillReturnItem cbrItem : companyBillReturnItemsList) {
+
+			Item theItem = cbrItem.getItem();
+
+			tempBillItemsRepository.save(new TempBillItem(theItem.getId(), cbrItem.getCompanyBillReturn().getId(),
+					"companyReturnBill", cbrItem.getQuantity(), cbrItem.getReturnPrice()));
+
+		}
+
+	}
+
 	public List<TempBillItem> getTempBillItems(String billId, String billType) {
 
 		if (billType.equals("sellBill"))
@@ -80,6 +94,9 @@ public class TempBillItemsService {
 
 		else if (billType.equals("buyBill"))
 			return tempBillItemsRepository.findByBillIdAndBillType(billId, "buyBill");
+
+		else if (billType.equals("companyReturnBill"))
+			return tempBillItemsRepository.findByBillIdAndBillType(billId, "companyReturnBill");
 
 		else
 			return tempBillItemsRepository.findByBillIdAndBillType(billId, "returnBill");

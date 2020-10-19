@@ -78,7 +78,7 @@ public class UpdateBillSellController {
 		billSell.setUpdater(theUser);
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
-		
+
 		float total = 0;
 
 		for (BillSellItem billSellItem : billSellItemsList) {

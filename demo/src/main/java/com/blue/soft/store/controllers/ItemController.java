@@ -66,7 +66,6 @@ public class ItemController {
 	public String showItemsMovePage(@RequestParam(name = "itemId", required = false) String itemId,
 			@RequestParam(name = "dateFrom", required = false, defaultValue = "") String dateFrom,
 			@RequestParam(name = "dateTo", required = false, defaultValue = "") String dateTo, Model theModel) {
-		System.out.println(dateFrom);
 
 		if (dateFrom.equals("") && dateTo.equals("")) {
 
@@ -78,13 +77,14 @@ public class ItemController {
 			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
 
 		} else if (dateFrom.equals("")) {
+
 			dateFrom = "2020-01-01";
 			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
 
 		} else if (dateTo.equals("")) {
+
 			dateTo = LocalDate.now().toString();
-			theModel.addAttribute("movesList",
-					itemMoveService.getAllItemMovesByDate(itemId, dateFrom, LocalDate.now().toString()));
+			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
 
 		}
 

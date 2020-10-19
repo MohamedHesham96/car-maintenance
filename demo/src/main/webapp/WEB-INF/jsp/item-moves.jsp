@@ -111,7 +111,9 @@
 							<c:forEach var="itemMoveTemp" items="${movesList}">
 
 								<tr dir="ltr"
-									class="${ itemMoveTemp.type == 'مرتجع' ? 'bg-warning' : '' } ${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">
+									class="${ itemMoveTemp.type == 'مرتجع مورد' ? 'bg-info' : '' }  
+									${ itemMoveTemp.type == 'مرتجع عميل' ? 'bg-warning' : '' } 
+									${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">
 									<td class=" " id="itemId${itemMoveTemp.id}">${itemMoveTemp.id}</td>
 
 									<td class=" ">${itemMoveTemp.type}</td>
