@@ -81,9 +81,15 @@
 					</tr>
 
 					<tr>
-						<td class=" border-primary">مرتجعات</td>
+						<td class=" border-primary">مرتجع عملاء</td>
 						<td class=" border-primary"><fmt:formatNumber
 								value="${totalReturnsToday}" maxFractionDigits="2" /></td>
+					</tr>
+
+					<tr>
+						<td class=" border-primary">مرتجع موردين</td>
+						<td class=" border-primary"><fmt:formatNumber
+								value="${totalCompaniesReturnsToday}" maxFractionDigits="2" /></td>
 					</tr>
 
 					<tr>
@@ -138,8 +144,14 @@
 					</tr>
 
 					<tr>
-						<td class=" border-primary">فواتير المرتجع</td>
+						<td class=" border-primary">فواتير مرتجع عميل</td>
 						<td class=" border-primary">${returnBillCountToday}</td>
+					</tr>
+
+
+					<tr>
+						<td class=" border-primary">فواتير مرتجع مورد</td>
+						<td class=" border-primary">${companyReturnCBillCountToday}</td>
 					</tr>
 
 

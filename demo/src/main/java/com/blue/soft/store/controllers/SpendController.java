@@ -19,6 +19,8 @@ import com.blue.soft.store.service.BillReturnService;
 import com.blue.soft.store.service.BillSellItemsService;
 import com.blue.soft.store.service.BillSellService;
 import com.blue.soft.store.service.ClientService;
+import com.blue.soft.store.service.CompanyBillReturnItemsService;
+import com.blue.soft.store.service.CompanyBillReturnService;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.SpendService;
@@ -47,6 +49,12 @@ public class SpendController {
 
 	@Autowired
 	BillReturnService billReturnService;
+
+	@Autowired
+	CompanyBillReturnService companyBillReturnService;
+
+	@Autowired
+	CompanyBillReturnItemsService companyBillReturnItemsService;
 
 	@Autowired
 	ClientService clientService;
@@ -160,6 +168,7 @@ public class SpendController {
 		theModel.addAttribute("totalReturnsToday", billReturnItemsService.getTotalReturnsToday());
 		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
 		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
+		theModel.addAttribute("totalCompaniesReturnsToday", companyBillReturnItemsService.getTotalReturnsToday());
 
 		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
 		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
@@ -168,6 +177,8 @@ public class SpendController {
 		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
 		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
 		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
+		theModel.addAttribute("companyReturnCBillCountToday",
+				companyBillReturnService.getCompanyReturnBillCountToday());
 
 		theModel.addAttribute("today_report", "active");
 
