@@ -72,6 +72,7 @@ public class BillSellController {
 		if (lastBillSell == null) {
 
 			theModel.addAttribute("clientsList", clientService.getAllClients());
+			theModel.addAttribute("sales", "active");
 
 			return "sell-bill-info";
 		}
@@ -132,6 +133,7 @@ public class BillSellController {
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("billSell", billSell);
+		theModel.addAttribute("sales", "active");
 
 		return "sell-bill";
 	}
@@ -180,6 +182,7 @@ public class BillSellController {
 		theModel.addAttribute("billSell", billSell);
 		theModel.addAttribute("updateItem", new BillSellItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("sales", "active");
 
 		return "update-sell-bill";
 	}
@@ -202,6 +205,7 @@ public class BillSellController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billSellList", billSellService.getAllSellBills());
+		theModel.addAttribute("sales", "active");
 
 		return "sell-bill-list";
 	}
@@ -280,6 +284,7 @@ public class BillSellController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billSellList", clientService.getClientById(clientId).getBillSellList());
+		theModel.addAttribute("sales", "active");
 
 		return "sell-bill-list";
 	}
@@ -290,6 +295,7 @@ public class BillSellController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billSellList", billSellService.getBillSellContainingId(billId));
+		theModel.addAttribute("sales", "active");
 
 		return "sell-bill-list";
 	}

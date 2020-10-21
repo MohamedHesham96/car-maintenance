@@ -69,6 +69,7 @@ public class BillBuyController {
 		if (lastBillBuy == null) {
 
 			theModel.addAttribute("companiesList", companyService.getAllCompanies());
+			theModel.addAttribute("buys", "active");
 
 			return "buy-bill-info";
 		}
@@ -96,6 +97,7 @@ public class BillBuyController {
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("billBuy", billBuy);
+		theModel.addAttribute("buys", "active");
 
 		return "buy-bill";
 	}
@@ -142,6 +144,7 @@ public class BillBuyController {
 		theModel.addAttribute("billBuy", billBuy);
 		theModel.addAttribute("updateItem", new BillBuyItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("buys", "active");
 
 		return "update-buy-bill";
 	}
@@ -194,8 +197,8 @@ public class BillBuyController {
 		}
 
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
-
 		theModel.addAttribute("billBuyList", billBuyService.getAllBuyBills());
+		theModel.addAttribute("buys", "active");
 
 		return "buy-bill-list";
 	}
@@ -262,8 +265,8 @@ public class BillBuyController {
 	public String searchForBuyBillByCompanyId(@RequestParam(name = "companyId") String companyId, Model theModel) {
 
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
-
 		theModel.addAttribute("billBuyList", companyService.getCompanyById(companyId).getBillBuyList());
+		theModel.addAttribute("buys", "active");
 
 		return "buy-bill-list";
 	}
@@ -272,8 +275,8 @@ public class BillBuyController {
 	public String searchForBuyBillById(@RequestParam(name = "billId") String billId, Model theModel) {
 
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
-
 		theModel.addAttribute("billBuyList", billBuyService.getBillBuyContainingId(billId));
+		theModel.addAttribute("buys", "active");
 
 		return "buy-bill-list";
 	}

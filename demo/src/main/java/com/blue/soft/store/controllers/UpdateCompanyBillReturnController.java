@@ -119,6 +119,7 @@ public class UpdateCompanyBillReturnController {
 		theModel.addAttribute("companyBillReturn", companyBillReturn);
 		theModel.addAttribute("updateItem", new CompanyBillReturnItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("buys", "active");
 
 		return "update-company-return-bill";
 	}

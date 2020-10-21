@@ -115,6 +115,7 @@ public class UpdateBillReturnController {
 		theModel.addAttribute("billReturn", billReturn);
 		theModel.addAttribute("updateItem", new BillReturnItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("sales", "active");
 
 		return "update-return-bill";
 	}

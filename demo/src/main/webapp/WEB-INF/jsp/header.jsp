@@ -42,31 +42,38 @@
 
 	<ul class="navbar-nav mr-auto ">
 
-		<li dir="ltr" class=" mr-2 ">
+		<li
+			class="${home} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow "
+			style="min-heitems_listight: 55px"><a class="nav-link active "
+			href="home">الرئيسية</a></li>
+
+
+		<li dir="ltr" class=" mr-2">
 			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
-					class="btn bg-dark border-warning font-weight-bold ">مبيعات</button>
+					class="${sales} btn btn-dark border-warning font-weight-bold ">مبيعات</button>
 
 				<div class="btn-group " role="group">
 
 					<button id="btnGroupDrop2" onclick="showSellBill(this);"
-						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
-
-
-
+						type="button"
+						class="${sales} btn btn-dark border-warning dropdown-toggle"></button>
 
 					<div id="sellBill" class="dropdown-menu  text-center" style=""
 						onmouseleave="showSellBill(this);">
 
-
-							<a
+						<a
 							class="btn dropdown-item  bg-dark text-warning font-weight-bold"
-							href="show-sell-bill-info">فاتورة بيع</a> 
-							
-							<a
+							href="show-sell-bill-info">فاتورة بيع</a> <a
 							class="dropdown-item  bg-dark text-warning font-weight-bold"
-							href="show-sell-bill-list"> فواتير البيع</a>
+							href="show-sell-bill-list"> فواتير بيع العملاء</a> <a
+							class="dropdown-item font-weight-bold bg-dark text-warning"
+							href="show-return-bill-info" style="font-size: 15px;"> مرتجع
+							عميل</a> <a
+							class="dropdown-item font-weight-bold bg-dark text-warning"
+							href="show-return-bill-list" style="font-size: 15px;">فواتير
+							مرتجع العملاء</a>
 					</div>
 
 
@@ -79,16 +86,17 @@
 
 
 
-		<li dir="ltr" class="mr-2">
+		<li dir="ltr" class="mr-2 ">
 			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
-					class="btn bg-dark border-warning font-weight-bold">مشتريات</button>
+					class="${buys} btn btn-dark border-warning font-weight-bold">مشتريات</button>
 
 				<div class="btn-group " role="group">
 
 					<button id="btnGroupDrop2" onclick="showBuyBill(this);"
-						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
+						type="button"
+						class="${buys} btn btn-dark border-warning dropdown-toggle"></button>
 
 					<div id="buyBill" class="dropdown-menu text-center" style=""
 						onmouseleave="showBuyBill(this);">
@@ -96,95 +104,58 @@
 						<a class="dropdown-item bg-dark text-warning font-weight-bold"
 							href="show-buy-bill-info">فاتورة شراء</a> <a
 							class="dropdown-item font-weight-bold bg-dark text-warning"
-							href="show-buy-bill-list">فواتير الشراء</a>
-					</div>
-
-
-				</div>
-			</div>
-
-
-		</li>
-
-
-
-
-
-
-		<li dir="ltr" class=" mr-2 ">
-			<div class="btn-group " role="group" style="min-height: 55px">
-
-				<button type="button"
-					class="btn bg-dark border-warning font-weight-bold ">مرتجعات</button>
-
-				<div class="btn-group " role="group">
-
-					<button id="btnGroupDrop2" onclick="showReturnBill(this);"
-						type="button" class="btn bg-dark border-warning dropdown-toggle"></button>
-
-					<div id="returnBill" class="dropdown-menu text-center" style=""
-						onmouseleave="showReturnBill(this);">
-
-
-						<a class="dropdown-item font-weight-bold bg-dark text-warning"
-							href="show-return-bill-info" style="font-size: 15px;"> مرتجع
-							عميل</a> <a
-							class="dropdown-item font-weight-bold bg-dark text-warning"
-							href="show-return-bill-list" style="font-size: 15px;">فواتير
-							مرتجع عميل</a> <a
+							href="show-buy-bill-list">فواتير شراء الموردين</a> <a
 							class="dropdown-item font-weight-bold bg-dark text-warning"
 							href="show-company-return-bill-info" style="font-size: 15px;">
-							مرتجع مورد </a> <a
+							مرتجع مورد</a> <a
 							class="dropdown-item font-weight-bold bg-dark text-warning"
 							href="show-company-return-bill-list" style="font-size: 15px;">فواتير
-							مرتجع مورد</a>
-
+							مرتجع الموردين</a>
 					</div>
+
 
 				</div>
 			</div>
 
+
 		</li>
 
 
-
 		<li
-			class="btn bg-dark border-warning  font-weight-bold nav-item active mr-2 shadow"
-			style="min-height: 55px"><a class="nav-link " href="items-list">المخزن</a></li>
-
-
-
-		<li
-			class="btn bg-dark border-warning font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link" href="item-moves">حركة صنف</a></li>
+			class="${items_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow "
+			style="min-heitems_listight: 55px"><a class="nav-link active "
+			href="items-list">المخزن</a></li>
 
 
 
 		<li
-			class="btn bg-dark border-warning font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link" href="spend-list"> الخزنة</a></li>
+			class="${item_moves} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active" href="item-moves">حركة صنف</a></li>
+
+
+
+		<li
+			class="${spend_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active" href="spend-list"> الخزنة</a></li>
 
 
 
 
 		<li
-			class="btn bg-dark border-warning font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link " href="companies-list">الموردين</a></li>
+			class="${companies_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active " href="companies-list">الموردين</a></li>
 
 		<li
-			class="btn bg-dark border-warning btn-primary font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link" href="clients-list">الوحدات</a></li>
+			class="${clients_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active" href="clients-list">الوحدات</a></li>
 
 		<li
-			class="btn bg-dark border-warning   font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link" href="show-today-report">تقرير اليوم</a></li>
-
-
-
+			class="${today_report} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active" href="show-today-report">تقرير اليوم</a></li>
 
 		<li
 			class="btn-sm btn-danger font-weight-bold nav-item active mr-2 shadow"><a
-			class="nav-link" href="logout"
+			class="nav-link active" href="logout"
 			onclick="return confirm('هل انت متأكد من الخروج ؟')"
 			style="font-size: 15px;"> <%=session.getAttribute("name")%> |
 				خروج

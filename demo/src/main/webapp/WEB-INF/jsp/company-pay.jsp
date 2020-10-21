@@ -45,7 +45,7 @@
 						</div>
 
 						<div class="form-group">
-							<label>الدين</label> <input value="${company.drawee}"
+							<label>الدين</label> <input dir="ltr" value="${company.drawee}"
 								disabled="disabled"
 								class="form-control btn-outline-warning font-weight-bold text-center" />
 						</div>
@@ -53,7 +53,7 @@
 						<form method="get" action="add-company-pay">
 							<input hidden="" name="companyId" value="${company.id}">
 							<div class="form-group">
-								<label>المبلغ</label> <input name="amount"
+								<label>المبلغ</label> <input dir="ltr" name="amount"
 									class="form-control text-center disable bg-light font-weight-bold " />
 							</div>
 
@@ -91,7 +91,7 @@
 
 								<tr>
 
-									<td class="border-primary pt-2 pb-2">${payTemp.amount}</td>
+									<td dir="ltr" class="border-primary pt-2 pb-2">${payTemp.amount}</td>
 									<td class="border-primary pt-2 pb-2">${payTemp.date}</td>
 									<td class="border-primary pt-2 pb-2">${payTemp.balanceNow}</td>
 

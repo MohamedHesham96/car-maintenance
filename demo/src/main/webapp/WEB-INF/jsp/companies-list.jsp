@@ -105,7 +105,7 @@
 								<tr>
 
 									<td class="border-primary pt-2">${companyTemp.name}</td>
-									<td class="border-primary pt-2">${companyTemp.drawee}</td>
+									<td dir="ltr"   class="border-primary pt-2">${companyTemp.drawee}</td>
 									<td class="border-primary "><a type="button"
 										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-pays-company?companyId=${companyTemp.id}">الدفع</a>

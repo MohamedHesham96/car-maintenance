@@ -35,6 +35,7 @@ public class ClientController {
 
 		theModel.addAttribute("client", new Client());
 		theModel.addAttribute("clientsList", clientService.getAllClients());
+		theModel.addAttribute("clients_list", "active");
 
 		return "clients-list";
 	}
@@ -51,7 +52,6 @@ public class ClientController {
 	public String searchForClient(@ModelAttribute(name = "clientName") String theClientName, Model theModel) {
 
 		theModel.addAttribute("client", new Client());
-		System.out.println(clientService.searchForClient(theClientName).get(0).getName());
 		theModel.addAttribute("clientsList", clientService.searchForClient(theClientName));
 
 		return "clients-list";

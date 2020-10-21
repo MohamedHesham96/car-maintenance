@@ -42,7 +42,7 @@
 					</tr>
 				</thead>
 
-				<tbody class="shadow">
+				<tbody dir="ltr" class="shadow">
 
 					<tr>
 						<td class=" border-primary">الخزنة</td>

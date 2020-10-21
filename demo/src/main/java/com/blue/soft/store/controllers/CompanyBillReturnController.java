@@ -72,6 +72,7 @@ public class CompanyBillReturnController {
 		if (lastCompanyBillReturn == null) {
 
 			theModel.addAttribute("companiesList", companyService.getAllCompanies());
+			theModel.addAttribute("buys", "active");
 
 			return "company-return-bill-info";
 		}
@@ -99,6 +100,7 @@ public class CompanyBillReturnController {
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("companyBillReturn", companyBillReturn);
+		theModel.addAttribute("buys", "active");
 
 		return "company-return-bill";
 	}
@@ -145,6 +147,7 @@ public class CompanyBillReturnController {
 		theModel.addAttribute("companyBillReturn", billReturn);
 		theModel.addAttribute("updateItem", new CompanyBillReturnItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("buys", "active");
 
 		return "update-company-return-bill";
 	}
@@ -205,8 +208,8 @@ public class CompanyBillReturnController {
 		}
 
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
-
 		theModel.addAttribute("companyBillReturnList", CompanyBillReturnService.getAllCompanyReturnBills());
+		theModel.addAttribute("buys", "active");
 
 		return "company-return-bill-list";
 	}
@@ -274,8 +277,8 @@ public class CompanyBillReturnController {
 			Model theModel) {
 
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
-
 		theModel.addAttribute("companyBillReturnList", companyService.getCompanyById(companyId).getBillReturnList());
+		theModel.addAttribute("buys", "active");
 
 		return "company-return-bill-list";
 	}
@@ -287,6 +290,7 @@ public class CompanyBillReturnController {
 
 		theModel.addAttribute("companyBillReturnList",
 				CompanyBillReturnService.getCompanyBillReturnContainingId(billId));
+		theModel.addAttribute("buys", "active");
 
 		return "company-return-bill-list";
 	}

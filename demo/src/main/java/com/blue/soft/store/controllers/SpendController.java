@@ -86,6 +86,8 @@ public class SpendController {
 		theModel.addAttribute("spendTotal", spendService.getSpendTotal());
 		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
 
+		theModel.addAttribute("spend_list", "active");
+
 		return "spend-list";
 	}
 
@@ -166,6 +168,8 @@ public class SpendController {
 		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
 		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
 		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
+
+		theModel.addAttribute("today_report", "active");
 
 		return "today-report";
 

@@ -35,6 +35,7 @@ public class ItemController {
 
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("items_list", "active");
 
 		return "items-list";
 	}
@@ -92,6 +93,8 @@ public class ItemController {
 		theModel.addAttribute("item", new Item());
 		theModel.addAttribute("selectedItemId", itemId);
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+
+		theModel.addAttribute("item_moves", "active");
 
 		return "item-moves";
 	}

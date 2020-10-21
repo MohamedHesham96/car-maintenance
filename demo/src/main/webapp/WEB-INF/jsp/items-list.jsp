@@ -87,7 +87,7 @@
 				<div class="row" id="add-form">
 
 					<div
-						class="card  border-warning font-weight-bold pb-4 text-warning"
+						class="card  border-warning font-weight-bold pb-3 text-warning"
 						style="max-width: 20rem;">
 						<div class="card-header border-warning ">
 							<h4>اضافة صنف</h4>
@@ -192,7 +192,7 @@
 
 			<div class="mr-4 col-9">
 
-				<div style="width: 100%; height: 465px; overflow: auto;"
+				<div style="width: 100%; height: 460px; overflow: auto;"
 					class=" shadow ">
 
 					<table

@@ -128,10 +128,10 @@
 						</thead>
 
 
-						<tbody class="">
+						<tbody dir="ltr" class="">
 							<c:forEach var="itemMoveTemp" items="${movesList}">
 
-								<tr dir="ltr"
+								<tr
 									class="${ itemMoveTemp.type == 'مرتجع مورد' ? 'bg-info' : '' }  
 									${ itemMoveTemp.type == 'مرتجع عميل' ? 'bg-warning' : '' } 
 									${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">

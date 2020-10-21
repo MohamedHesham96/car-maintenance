@@ -38,11 +38,11 @@
 						<div class="form-group">
 							<label>اسم الوحدة</label> <input name="companyName"
 								value="${client.name}" disabled="disabled"
-								class="form-control btn-outline-warning text-center" />
+								class="form-control btn-outline-warning font-weight-bold text-center" />
 						</div>
 
 						<div class="form-group">
-							<label>الدين</label> <input name="companyName"
+							<label>الدين</label> <input dir="ltr" name="companyName"
 								value="${client.drawee}" disabled="disabled"
 								class="form-control btn-outline-warning text-center font-weight-bold" />
 						</div>
@@ -50,7 +50,7 @@
 						<form method="get" action="add-client-collect">
 							<input hidden="" name="clientId" value="${client.id}">
 							<div class="form-group">
-								<label>المبلغ</label> <input name="amount"
+								<label>المبلغ</label> <input dir="ltr" name="amount"
 									class="form-control text-center disable bg-light font-weight-bold" />
 							</div>
 
@@ -85,10 +85,10 @@
 
 								<tr>
 
-									<td class="border-primary pt-2">${collectTemp.amount}</td>
+									<td dir="ltr" class="border-primary pt-2">${collectTemp.amount}</td>
 									<td class="border-primary pt-2">${collectTemp.date}</td>
 									<td class="border-primary pt-2">${collectTemp.balanceNow}</td>
-
+	
 									<td class="border-primary"><a
 										${collectTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
 										href="delete-client-collect?clientId=${client.id}&collectId=${collectTemp.id}"

@@ -106,7 +106,7 @@
 								<tr>
 
 									<td class="border-primary pt-2">${clientTemp.name}</td>
-									<td class="border-primary pt-2">${clientTemp.drawee}</td>
+									<td dir="ltr"   class="border-primary pt-2">${clientTemp.drawee}</td>
 									<td class="border-primary ">
 									
 									

@@ -35,6 +35,7 @@ public class CompanyController {
 
 		theModel.addAttribute("company", new Company());
 		theModel.addAttribute("companiesList", companyService.getAllCompanies());
+		theModel.addAttribute("companies_list", "active");
 
 		return "companies-list";
 	}
@@ -70,7 +71,7 @@ public class CompanyController {
 	public String searchForCompany(@ModelAttribute(name = "companyName") String theCompanyName, Model theModel) {
 
 		theModel.addAttribute("company", new Company());
-		System.out.println(companyService.searchForCompany(theCompanyName).get(0).getName());
+
 		theModel.addAttribute("companiesList", companyService.searchForCompany(theCompanyName));
 
 		return "companies-list";

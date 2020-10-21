@@ -136,6 +136,7 @@ public class UpdateBillSellController {
 		theModel.addAttribute("billSell", billSell);
 		theModel.addAttribute("updateItem", new BillSellItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("sales", "active");
 
 		return "update-sell-bill";
 	}

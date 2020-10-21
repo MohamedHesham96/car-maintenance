@@ -1,5 +1,9 @@
 package com.blue.soft.store.controllers;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +12,66 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.blue.soft.store.entity.Bank;
 import com.blue.soft.store.entity.User;
+import com.blue.soft.store.service.BankService;
+import com.blue.soft.store.service.BillBuyItemsService;
+import com.blue.soft.store.service.BillBuyService;
+import com.blue.soft.store.service.BillReturnItemsService;
+import com.blue.soft.store.service.BillReturnService;
+import com.blue.soft.store.service.BillSellItemsService;
+import com.blue.soft.store.service.BillSellService;
+import com.blue.soft.store.service.ClientService;
+import com.blue.soft.store.service.CompanyBillReturnItemsService;
+import com.blue.soft.store.service.CompanyService;
+import com.blue.soft.store.service.ItemService;
+import com.blue.soft.store.service.SpendService;
 import com.blue.soft.store.service.UserService;
 
 @Controller
 public class LoginController {
+
+	@Autowired
+	ItemService itemService;
+
+	@Autowired
+	SpendService spendService;
+
+	@Autowired
+	ClientService clientSerivce;
+
+	@Autowired
+	CompanyService companyService;
+
+	@Autowired
+	BillSellService billSellService;
+
+	@Autowired
+	BillBuyService billBuyService;
+
+	@Autowired
+	BillReturnService billReturnService;
+
+	@Autowired
+	ClientService clientService;
+
+	@Autowired
+	BillSellItemsService billSellItemsService;
+
+	@Autowired
+	BillBuyItemsService billBuyItemsService;
+
+	@Autowired
+	BillReturnItemsService billReturnItemsService;
+
+	@Autowired
+	CompanyBillReturnItemsService companyBillReturnItemsService;
+
+	@Autowired
+	BankService bankService;
+
+	@Autowired
+	BankController bankController;
 
 	@Autowired
 	UserService userService;
@@ -35,11 +94,7 @@ public class LoginController {
 
 		if (isUser) {
 
-//			httpSession.setAttribute("id", theUser.getId());
-//			httpSession.setAttribute("name", theUser.getName());
-
-			theModle.addAttribute("user", theUser);
-			return "redirect:/items-list";
+			return "redirect:/home";
 
 		} else {
 
@@ -49,14 +104,94 @@ public class LoginController {
 
 	}
 
+	@RequestMapping("/home")
+	public String gotToHome(Model theModel) {
+
+		Bank theBank = bankService.getBank();
+
+		if (!theBank.getDate().equals(LocalDate.now().toString())) {
+
+			theBank.setDate(LocalDate.now().toString());
+			theBank.setBalanceToday(0);
+			bankService.saveBank(theBank);
+		}
+
+		theModel.addAttribute("bank", theBank);
+		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
+		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
+		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
+		theModel.addAttribute("totalSalesToday", billSellItemsService.getTotalSalesToday());
+		theModel.addAttribute("totalReturnsToday", billReturnItemsService.getTotalReturnsToday());
+		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
+		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
+		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
+		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
+		theModel.addAttribute("totalCompaniesReturnsToday", companyBillReturnItemsService.getTotalReturnsToday());
+
+		// theModel.addAttribute("sellBillCountToday",
+		// billSellService.getSellBillCountToday());
+//		theModel.addAttribute("payedSellBillCountToday", billSellService.getPayedSellBillCountToday());
+//		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
+//		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
+//		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
+
+		theModel.addAttribute("home", "active");
+
+		return "home";
+
+	}
+
 	@RequestMapping("/logout")
-	public String logout(Model theModle) {
+	public String logout(Model theModle) throws ClassNotFoundException, IOException, SQLException {
+
+//		Properties properties = new Properties();
+//		properties.setProperty(com.smattme.MysqlExportService.DB_NAME, "warehouse");
+//		properties.setProperty(com.smattme.MysqlExportService.DB_USERNAME, "admin");
+//		properties.setProperty(com.smattme.MysqlExportService.DB_PASSWORD, "1234");
+//		properties.setProperty(com.smattme.MysqlExportService.TEMP_DIR, new java.io.File("external").getPath());
+//		properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
+//
+//		com.smattme.MysqlExportService mysqlExportService = new com.smattme.MysqlExportService(properties);
+//		mysqlExportService.export();
+
+//		Backupdbtosql();
 
 		httpSession.removeAttribute("name");
 		theModle.addAttribute("user", new User());
 
 		return "login";
 
+	}
+
+	public static void Backupdbtosql() {
+		try {
+
+//			String executeCmd = "‪C:\\xampp\\mysql\\bin\\mysqldump.exe --user=root --password= warehouse > c:\\warehouse_backup1.sql";
+			String executeCmd = "mysqldump --user=root --password= warehouse > c:/warehouse_backup1.sql";
+//			Process runtimeProcess = Runtime.getRuntime().exec(new String[] { "cmd.exe",
+//					"cd \"C:\\xampp\\mysql\\bin\" && mysqldump --user=root --password= warehouse > c:/warehouse_backup1.sql" });
+//
+//			Process runtimeProcess = Runtime.getRuntime().exec(
+//					"cd C:/xampp/mysql/bin/ mysqldump --user=root --password= warehouse > c:/warehouse_backup1.sql");
+
+			String commandArray[] = { "cmd", "cd C:\\xampp\\mysql\\bin\\",
+					"mysqldump --user=root --password= warehouse > warehouse_backup.sql" };
+			Process process = Runtime.getRuntime().exec(commandArray);
+			int processComplete = process.waitFor();
+
+			/*
+			 * NOTE: processComplete=0 if correctly executed, will contain other values if
+			 * not
+			 */
+			if (processComplete == 0) {
+				System.out.println("Backup Complete");
+			} else {
+				System.out.println("Backup Failure");
+			}
+
+		} catch (IOException | InterruptedException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 
 }

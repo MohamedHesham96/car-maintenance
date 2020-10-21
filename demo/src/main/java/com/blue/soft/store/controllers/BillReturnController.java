@@ -72,6 +72,7 @@ public class BillReturnController {
 		if (lastBillReturn == null) {
 
 			theModel.addAttribute("clientsList", clientService.getAllClients());
+			theModel.addAttribute("sales", "active");
 
 			return "return-bill-info";
 		}
@@ -99,6 +100,7 @@ public class BillReturnController {
 		// علشان اختار منها
 		theModel.addAttribute("itemsList", itemService.getAllItems());
 		theModel.addAttribute("billReturn", billReturn);
+		theModel.addAttribute("sales", "active");
 
 		return "return-bill";
 	}
@@ -145,6 +147,7 @@ public class BillReturnController {
 		theModel.addAttribute("billReturn", billReturn);
 		theModel.addAttribute("updateItem", new BillReturnItem());
 		theModel.addAttribute("itemsList", itemService.getAllItems());
+		theModel.addAttribute("sales", "active");
 
 		return "update-return-bill";
 	}
@@ -206,6 +209,7 @@ public class BillReturnController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billReturnList", billReturnService.getAllReturnBills());
+		theModel.addAttribute("sales", "active");
 
 		return "return-bill-list";
 	}
@@ -274,6 +278,7 @@ public class BillReturnController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billReturnList", clientService.getClientById(clientId).getBillReturnList());
+		theModel.addAttribute("sales", "active");
 
 		return "return-bill-list";
 	}
@@ -284,6 +289,7 @@ public class BillReturnController {
 		theModel.addAttribute("clientsList", clientService.getAllClients());
 
 		theModel.addAttribute("billReturnList", billReturnService.getBillReturnContainingId(billId));
+		theModel.addAttribute("sales", "active");
 
 		return "return-bill-list";
 	}
