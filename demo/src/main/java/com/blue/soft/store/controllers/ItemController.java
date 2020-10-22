@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blue.soft.store.entity.Item;
+import com.blue.soft.store.entity.ItemMove;
 import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemMoveService;
 import com.blue.soft.store.service.ItemService;
@@ -49,16 +50,45 @@ public class ItemController {
 	}
 
 	@RequestMapping("/update-item")
-	public String updateItem(@ModelAttribute(name = "item") Item item, Model theModel) {
+	public String updateItem(@ModelAttribute(name = "item") Item newItem, Model theModel) {
 
-		Item oldItem = itemService.getItemById(item.getId());
+		Item oldItem = itemService.getItemById(newItem.getId());
 
-		oldItem.setName(item.getName());
-		oldItem.setQuantity(item.getQuantity());
-		oldItem.setBuyPrice(item.getBuyPrice());
-		oldItem.setSellPrice(item.getSellPrice());
+		String moveType = "";
 
-		itemService.addNewItem(item);
+		if (!oldItem.getName().equals(newItem.getName())) {
+			moveType = "تعديل الاسم";
+
+		}
+
+		if (oldItem.getQuantity() != newItem.getQuantity()) {
+
+			moveType = "تعديل الكمية";
+
+		}
+
+		if (oldItem.getSellPrice() != newItem.getSellPrice()) {
+
+			moveType = "تعديل (س.ب)";
+
+		}
+
+		if (oldItem.getBuyPrice() != newItem.getBuyPrice())
+			moveType = "تعديل (س.ش)";
+
+		oldItem.setName(newItem.getName());
+		oldItem.setQuantity(newItem.getQuantity());
+		oldItem.setBuyPrice(newItem.getBuyPrice());
+		oldItem.setSellPrice(newItem.getSellPrice());
+
+		itemService.addNewItem(newItem);
+
+		if (!moveType.equals("")) {
+
+			itemMoveService.addItemMove(new ItemMove(oldItem, moveType, "0", oldItem.getQuantity(),
+					oldItem.getQuantity(), oldItem.getBuyPrice(), oldItem.getSellPrice()));
+
+		}
 
 		return "redirect:/items-list";
 	}

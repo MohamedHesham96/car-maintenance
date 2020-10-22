@@ -75,14 +75,14 @@ function showUpdateForm(btn, id) {
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 					<input disabled="disabled"
-						value="اسم الوحدة : ${companyBillReturn.company.name}"
+						value="اسم المورد : ${companyBillReturn.company.name}"
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 					<div ${view ? '' :  'hidden'  } class="mt-2">
 
 
 						<input disabled="disabled"
-							value="  اسم البائع : ${companyBillReturn.user.name}"
+							value="اسم البائع : ${companyBillReturn.user.name}"
 							class="form-control text-center btn-outline-warning font-weight-bold" />
 
 
@@ -129,7 +129,7 @@ function showUpdateForm(btn, id) {
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر الشراء</th>
 								<th class="col-1">اجمالي السعر</th>
-								<th ${view ? 'hidden' :  ''  } class="col-1">العميلة</th>
+								<th ${view ? 'hidden' :  ''  } class="col-1">الموردة</th>
 							</tr>
 						</thead>
 

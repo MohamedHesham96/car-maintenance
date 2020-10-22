@@ -63,6 +63,7 @@ public class CompanyController {
 		payService.deletePayById(payId);
 
 		theModel.addAttribute("company", company);
+		theModel.addAttribute("companies_list", "active");
 
 		return "company-pay";
 	}
@@ -73,6 +74,7 @@ public class CompanyController {
 		theModel.addAttribute("company", new Company());
 
 		theModel.addAttribute("companiesList", companyService.searchForCompany(theCompanyName));
+		theModel.addAttribute("companies_list", "active");
 
 		return "companies-list";
 	}
@@ -81,6 +83,7 @@ public class CompanyController {
 	public String showCompanyPays(@RequestParam(name = "companyId") String companyId, Model theModel) {
 
 		theModel.addAttribute("company", companyService.getCompanyById(companyId));
+		theModel.addAttribute("companies_list", "active");
 
 		return "company-pay";
 	}
@@ -110,6 +113,7 @@ public class CompanyController {
 		bankController.updateBankBalance("less", pay.getAmount());
 
 		theModel.addAttribute("company", company);
+		theModel.addAttribute("companies_list", "active");
 
 		return "company-pay";
 	}
@@ -118,6 +122,7 @@ public class CompanyController {
 	public String showCompanyBillsList(@RequestParam(name = "companyId") String companyId, Model theModel) {
 
 		theModel.addAttribute("company", companyService.getCompanyById(companyId));
+		theModel.addAttribute("companies_list", "active");
 
 		return "company-buy-bill-list";
 	}

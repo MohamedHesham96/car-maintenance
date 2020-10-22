@@ -88,7 +88,7 @@
 									<td dir="ltr" class="border-primary pt-2">${collectTemp.amount}</td>
 									<td class="border-primary pt-2">${collectTemp.date}</td>
 									<td class="border-primary pt-2">${collectTemp.balanceNow}</td>
-	
+
 									<td class="border-primary"><a
 										${collectTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
 										href="delete-client-collect?clientId=${client.id}&collectId=${collectTemp.id}"

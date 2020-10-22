@@ -76,7 +76,7 @@ function showUpdateForm(btn, id) {
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 					<input disabled="disabled"
-						value="اسم الوحدة : ${billBuy.company.name}"
+						value="اسم المورد : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 

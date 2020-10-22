@@ -27,17 +27,31 @@
 
 	<br>
 
-	<div dir="rtl" class="container mt-4 ">
+	<div class="container mt-4 ">
 		<div class="row w-100">
+
 
 			<div class="col-md-3">
 				<div class="card mx-sm-3 p-3 border-warning">
-					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">رصيد الخزنة</h6>
+					<div
+						class="card-header border-warning pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">رصيد الموردين</h6>
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${bank.balance}</h4>
+						<h4>${companyDraweeTotal}</h4>
+					</div>
+				</div>
+			</div>
+
+			<div dir="ltr" class="col-md-3">
+				<div class="card mx-sm-3 p-3 border-warning">
+					<div class="card-header pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">رصيد العملاء</h6>
+					</div>
+
+					<div class=" text-center mt-3">
+						<h4>${clientDraweeTotal}</h4>
 					</div>
 				</div>
 			</div>
@@ -54,57 +68,61 @@
 				</div>
 			</div>
 
-
-			<div dir="ltr" class="col-md-3">
-				<div class="card mx-sm-3 p-3 border-warning">
-					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">رصيد عملاء</h6>
-					</div>
-
-					<div class=" text-center mt-3">
-						<h4>${clientDraweeTotal}</h4>
-					</div>
-				</div>
-			</div>
-
-
 			<div class="col-md-3">
 				<div class="card mx-sm-3 p-3 border-warning">
-					<div
-						class="card-header border-warning pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">رصيد موردين</h6>
+					<div class="card-header pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">رصيد الخزنة</h6>
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${companyDraweeTotal}</h4>
+						<h4>${bank.balance}</h4>
 					</div>
 				</div>
 			</div>
+
 		</div>
+
+
 
 		<div class="row w-100 mt-4">
 
 
-			<div class="col-md-3 ">
-				<div class="card mx-sm-3 p-3 border-warning ">
-					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">مشتريات</h6>
-					</div>
-
-					<div class=" text-center mt-3">
-						<h4>${totalBuysToday}</h4>
-					</div>
-				</div>
-			</div>
 
 			<div class="col-md-3 ">
 				<div class="card mx-sm-3 p-3 border-warning ">
 					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">مرتجع موردين</h6>
+						<h6 class="font-weight-bold">مرتجع الموردين</h6>
 					</div>
 
 					<div class="text-center mt-3">
 						<h4>${totalCompaniesReturnsToday}</h4>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-3 ">
+				<div class="card mx-sm-3 p-3 border-warning ">
+					<div class="card-header pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">مرتجع العملاء</h6>
+					</div>
+
+					<div class="text-center mt-3">
+						<h4>${totalReturnsToday}</h4>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-3 ">
+				<div class="card mx-sm-3 p-3 border-warning ">
+					<div class="card-header pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">مبيعات آجل</h6>
+					</div>
+
+					<div class=" text-center mt-3">
+						<h4>${totalLateSalesToday}</h4>
 					</div>
 				</div>
 			</div>
@@ -122,35 +140,32 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 ">
-				<div class="card mx-sm-3 p-3 border-warning ">
-					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">مبيعات آجل</h6>
-					</div>
-
-					<div class=" text-center mt-3">
-						<h4>${totalLateSalesToday}</h4>
-					</div>
-				</div>
-			</div>
-
-
-
-
 		</div>
 
 
 		<div class="row w-100 mt-4">
 
-
-			<div class="col-md-3 ">
-				<div class="card mx-sm-3 p-3 border-warning ">
+			<div dir="ltr" class="col-md-3">
+				<div class="card mx-sm-3 p-3 border-warning">
 					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">مرتجع عملاء</h6>
+						<h6 class="font-weight-bold">صافي ارباح</h6>
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalReturnsToday}</h4>
+						<h4>${totalGain - spendTotalToday}</h4>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-3">
+				<div class="card mx-sm-3 p-3 border-warning">
+					<div class="card-header pt-2 border-warning p-1 text-center">
+						<h6 class="font-weight-bold">المصاريف</h6>
+					</div>
+
+					<div class="text-center mt-3">
+						<h4>${spendTotalToday}</h4>
 					</div>
 				</div>
 			</div>
@@ -168,29 +183,20 @@
 				</div>
 			</div>
 
-			<div class="col-md-3">
-				<div class="card mx-sm-3 p-3 border-warning">
-					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">المصاريف</h6>
-					</div>
 
-					<div class="text-center mt-3">
-						<h4>${spendTotalToday}</h4>
-					</div>
-				</div>
-			</div>
-
-			<div dir="ltr" class="col-md-3">
-				<div class="card mx-sm-3 p-3 border-warning">
+			<div class="col-md-3 ">
+				<div class="card mx-sm-3 p-3 border-warning ">
 					<div class="card-header pt-2 border-warning p-1 text-center">
-						<h6 class="font-weight-bold">صافي ارباح</h6>
+						<h6 class="font-weight-bold">مشتريات</h6>
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalGain - spendTotalToday}</h4>
+						<h4>${totalBuysToday}</h4>
 					</div>
 				</div>
 			</div>
+
+
 
 		</div>
 	</div>

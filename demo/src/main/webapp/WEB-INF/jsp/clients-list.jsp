@@ -42,7 +42,7 @@
 								action="add-new-client">
 
 								<div class="form-group ">
-									<label>اسم الوحدة</label>
+									<label>اسم العميل</label>
 									<form:input path="name"
 										class="form-control text-center bg-light" />
 								</div>
@@ -68,7 +68,7 @@
 							<form method="get" action="search-for-client">
 
 								<div class="form-group text-warning font-weight-bold">
-									<label>اسم الوحدة</label> <input name="clientName"
+									<label>اسم العميل</label> <input name="clientName"
 										class="form-control text-center bg-light" />
 								</div>
 
@@ -94,7 +94,7 @@
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
 							<tr>
-								<th class="col-3">اسم الوحدة</th>
+								<th class="col-3">اسم العميل</th>
 								<th class="col-2">الدين</th>
 								<th class="col-3">العميلة</th>
 							</tr>
@@ -106,16 +106,11 @@
 								<tr>
 
 									<td class="border-primary pt-2">${clientTemp.name}</td>
-									<td dir="ltr"   class="border-primary pt-2">${clientTemp.drawee}</td>
-									<td class="border-primary ">
-									
-									
-										<a type="button"
+									<td dir="ltr" class="border-primary pt-2">${clientTemp.drawee}</td>
+									<td class="border-primary "><a type="button"
 										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-collects-client?clientId=${clientTemp.id}"
-										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> 
-										
-										<a
+										onclick="showUpdateForm(this,${itemTemp.id})">التحصيل</a> <a
 										type="button" class="btn btn-primary btn-sm font-weight-bold"
 										href="show-client-bills-list?clientId=${clientTemp.id}"
 										onclick="showUpdateForm(this,${itemTemp.id})">الفواتير</a></td>

@@ -38,7 +38,7 @@
 				<div class="card-body font-weight-bold text-warning">
 
 					<div class="form-group">
-						<label>الوحدة</label> <input name="companyName"
+						<label>العميل</label> <input name="companyName"
 							value="${client.name}" disabled="disabled"
 							class="form-control btn-outline-warning text-center font-weight-bold" />
 					</div>
@@ -83,7 +83,8 @@
 
 									<td class="border-primary "><a
 										href="change-sell-bill-to-update?sellBillId=${billTemp.id}"
-										type="button" class="btn btn-primary btn-sm font-weight-bold shadow"
+										type="button"
+										class="btn btn-primary btn-sm font-weight-bold shadow"
 										${ billTemp.updater != null ? 'hidden' :  '' }>تعديل</a></td>
 
 								</tr>

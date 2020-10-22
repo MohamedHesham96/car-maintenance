@@ -42,7 +42,7 @@
 					<form method="POST" action="save-return-bill-info">
 
 						<div class="form-group text-warning">
-							<label>اسم الوحدة</label> <select
+							<label>اسم العميل</label> <select
 								class="form-control text-center bg-light font-weight-bold"
 								name="clientId">
 

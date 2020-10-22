@@ -44,7 +44,7 @@
 					<form method="POST" action="save-sell-bill-info">
 
 						<div class="form-group ">
-							<label>اسم الوحدة</label> <select
+							<label>اسم العميل</label> <select
 								class="form-control text-center  font-weight-bold bg-light"
 								name="clientId">
 

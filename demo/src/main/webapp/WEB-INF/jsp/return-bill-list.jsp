@@ -34,7 +34,7 @@
 
 				<div class="card border-warning mb-3" style="max-width: 20rem;">
 					<div class="card-header  border-warning  ">
-						<h5>البحث بالوحدة</h5>
+						<h5>البحث بالعميل</h5>
 					</div>
 					<div class="card-body">
 						<form method="POST" action="search-return-bill-by-clientId">
@@ -101,7 +101,7 @@
 						<thead class="bg-primary">
 							<tr>
 								<th class="col-2">الرقم</th>
-								<th class="col-2">الوحدة</th>
+								<th class="col-2">العميل</th>
 								<th class="col-2">التاريخ</th>
 								<th class="col-2">العميلة</th>
 							</tr>

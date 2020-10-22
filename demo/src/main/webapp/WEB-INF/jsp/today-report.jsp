@@ -148,7 +148,6 @@
 						<td class=" border-primary">${returnBillCountToday}</td>
 					</tr>
 
-
 					<tr>
 						<td class=" border-primary">فواتير مرتجع مورد</td>
 						<td class=" border-primary">${companyReturnCBillCountToday}</td>

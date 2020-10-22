@@ -35,7 +35,7 @@
 
 				<div class="card border-warning mb-3" style="max-width: 20rem;">
 					<div class="card-header  border-warning text-warning ">
-						<h5>البحث بالوحدة</h5>
+						<h5>البحث بالعميل</h5>
 					</div>
 					<div class="card-body  text-warning ">
 						<form method="POST" action="search-sell-bill-by-clientId">

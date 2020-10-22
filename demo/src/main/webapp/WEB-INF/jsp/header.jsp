@@ -147,7 +147,7 @@
 
 		<li
 			class="${clients_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="clients-list">الوحدات</a></li>
+			class="nav-link active" href="clients-list">العملاء</a></li>
 
 		<li
 			class="${today_report} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a

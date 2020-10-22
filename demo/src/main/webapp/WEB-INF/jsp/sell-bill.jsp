@@ -16,9 +16,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>كشف فواتير البيع</title>
 
-
-
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
@@ -58,14 +55,14 @@
 
 
 						<input disabled="disabled"
-							value="الوحدة : ${billSell.client.name}"
+							value="العميل : ${billSell.client.name}"
 							class="form-control text-center font-weight-bold btn-outline-warning text-warning  mb-2" />
 
 						<form:form method="get" action="add-item-to-sell-bill"
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select  autofocus="autofocus"
+							<form:select autofocus="autofocus"
 								class="form-control text-center bg-light font-weight-bold "
 								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
@@ -74,7 +71,7 @@
 
 							<div class="form-group">
 								<label>الكمية</label>
-								<form:input id="quantity" path="quantity" 
+								<form:input id="quantity" path="quantity"
 									class="form-control text-center bg-light font-weight-bold" />
 							</div>
 
@@ -98,7 +95,7 @@
 
 						<thead class="bg-primary  shadow">
 							<tr>
-								<th  class="col-1">الصنف</th>
+								<th class="col-1">الصنف</th>
 								<th class="col-1">الكمية</th>
 								<th class="col-1">سعر البيع</th>
 								<th class="col-1">اجمالي السعر</th>

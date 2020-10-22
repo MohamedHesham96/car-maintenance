@@ -75,7 +75,7 @@ function showUpdateForm(btn, id) {
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 					<input disabled="disabled"
-						value="اسم الوحدة : ${billSell.client.name}"
+						value="اسم العميل : ${billSell.client.name}"
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
 					<div ${view ? '' :  'hidden'  } class="mt-2">

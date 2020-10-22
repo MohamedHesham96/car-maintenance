@@ -53,6 +53,7 @@ public class ClientController {
 
 		theModel.addAttribute("client", new Client());
 		theModel.addAttribute("clientsList", clientService.searchForClient(theClientName));
+		theModel.addAttribute("clients_list", "active");
 
 		return "clients-list";
 	}
@@ -61,6 +62,7 @@ public class ClientController {
 	public String showCollectsClient(@RequestParam(name = "clientId") String clientId, Model theModel) {
 
 		theModel.addAttribute("client", clientService.getClientById(clientId));
+		theModel.addAttribute("clients_list", "active");
 
 		return "client-collect";
 	}
@@ -93,6 +95,7 @@ public class ClientController {
 		clientService.addNewClient(client);
 
 		theModel.addAttribute("client", client);
+		theModel.addAttribute("clients_list", "active");
 
 		return "client-collect";
 	}
@@ -111,6 +114,7 @@ public class ClientController {
 		collectService.deleteCollectById(collectId);
 
 		theModel.addAttribute("client", client);
+		theModel.addAttribute("clients_list", "active");
 
 		return "client-collect";
 	}
@@ -119,6 +123,7 @@ public class ClientController {
 	public String showClientBillsList(@RequestParam(name = "clientId") String ClientId, Model theModel) {
 
 		theModel.addAttribute("client", clientService.getClientById(ClientId));
+		theModel.addAttribute("clients_list", "active");
 
 		return "client-sell-bill-list";
 	}

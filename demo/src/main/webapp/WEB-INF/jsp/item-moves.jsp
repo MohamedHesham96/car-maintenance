@@ -80,6 +80,10 @@
 								<option ${moveType eq 'شراء' ? 'selected="selected"' : ''}
 									value="شراء">شراء</option>
 
+								<option ${moveType eq 'مرتجع مورد' ? 'selected="selected"' : ''}
+									value="تعديل ">تعديل</option>
+
+
 								<option ${moveType eq 'مرتجع عميل' ? 'selected="selected"' : ''}
 									value="مرتجع عميل">مرتجع عميل</option>
 
@@ -131,10 +135,32 @@
 						<tbody dir="ltr" class="">
 							<c:forEach var="itemMoveTemp" items="${movesList}">
 
-								<tr
-									class="${ itemMoveTemp.type == 'مرتجع مورد' ? 'bg-info' : '' }  
-									${ itemMoveTemp.type == 'مرتجع عميل' ? 'bg-warning' : '' } 
-									${ itemMoveTemp.type == 'بيع' ? 'bg-danger ' : 'bg-success' } ">
+								<c:set var="color" value="bg-light">
+								</c:set>
+
+								<c:if test="${itemMoveTemp.type == 'مرتجع مورد'} ">
+									<c:set var="color" value="bg-warning">
+									</c:set>
+								</c:if>
+
+								<c:if test="${ itemMoveTemp.type == 'مرتجع عميل'} ">
+									<c:set var="color" value="bg-info">
+									</c:set>
+								</c:if>
+
+								<c:if test="${ itemMoveTemp.type == 'بيع'}">
+									<c:set var="color" value="bg-success">
+									</c:set>
+								</c:if>
+
+								<c:if test="${ itemMoveTemp.type == 'شراء'}">
+									<c:set var="color" value="bg-danger">
+									</c:set>
+								</c:if>
+
+
+
+								<tr class="${color}">
 									<td class=" " id="itemId${itemMoveTemp.id}">${itemMoveTemp.id}</td>
 
 									<td class=" ">${itemMoveTemp.type}</td>
@@ -142,8 +168,6 @@
 									<td class=" " id="itemQuantity${itemMoveTemp.id}">${itemMoveTemp.quantity}</td>
 
 									<td class=" " id="itemQuantity${itemMoveTemp.id}">${itemMoveTemp.balance}</td>
-
-
 
 									<c:set var="quantity" value="${itemMoveTemp.quantity}" />
 
