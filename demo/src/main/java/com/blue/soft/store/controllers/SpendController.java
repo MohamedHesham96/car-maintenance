@@ -211,16 +211,16 @@ public class SpendController {
 
 		int flagVal = theOldRecord.getType().equals("مصروف") ? 1 : -1;
 
-		bank.setBalance(bank.getBalance() + theRecord.getAmount() * flagVal);
+		bank.setBalance(bank.getBalance() + theOldRecord.getAmount() * flagVal);
 
-//		if (theOldRecord.getDate().equals(LocalDate.now().toString())) {
-//
-//			bank.setBalanceToday(bank.getBalanceToday() + theOldRecord.getAmount() * flagVal);
-//			bank.setBalanceToday(bank.getBalanceToday() - theRecord.getAmount() * flagVal);
-//
-//		}
-//
-//		bank.setBalance(bank.getBalance() + theRecord.getAmount() * flagVal);
+		if (theOldRecord.getDate().equals(LocalDate.now().toString())) {
+
+			bank.setBalanceToday(bank.getBalanceToday() + theOldRecord.getAmount() * flagVal);
+			bank.setBalanceToday(bank.getBalanceToday() + theRecord.getAmount() * flagVal * -1);
+
+		}
+
+		bank.setBalance(bank.getBalance() + theRecord.getAmount() * flagVal * -1);
 
 		theOldRecord.setAmount(theRecord.getAmount());
 		theOldRecord.setNote(theRecord.getNote());

@@ -130,9 +130,6 @@ public class UpdateBillReturnController {
 
 		if (item.getQuantity() > 0) {
 
-			// String billId = httpSession.getAttribute("billReturnId").toString();
-			// BillReturn billReturn = billReturnService.getBillReturnById(billId);
-
 			String userId = httpSession.getAttribute("id").toString();
 
 			BillReturn billReturn = billReturnService.getBillReturnByUpdaterId(userId);
