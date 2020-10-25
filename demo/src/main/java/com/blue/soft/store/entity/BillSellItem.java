@@ -50,7 +50,7 @@ public class BillSellItem {
 		this.item = item;
 		this.quantity = quantity;
 		this.sellPrice = sellPrice;
-		this.date = billSell.getDate();
+		this.date = LocalDate.now().toString();
 	}
 
 	public float getSellPrice() {

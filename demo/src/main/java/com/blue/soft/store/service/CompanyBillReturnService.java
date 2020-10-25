@@ -45,9 +45,9 @@ public class CompanyBillReturnService {
 		return (List<CompanyBillReturn>) companyBillReturnRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
-	public Integer getCompanyReturnBillCountToday() {
+	public Integer getCompanyBillReturnCountByDate(String dateFrom, String dateTo) {
 
-		Integer crbCountToday = companyBillReturnRepository.getCompanyBillReturnCountToday();
+		Integer crbCountToday = companyBillReturnRepository.getCompanyBillReturnCountByDate(dateFrom, dateTo);
 
 		return crbCountToday != null ? crbCountToday : 0;
 

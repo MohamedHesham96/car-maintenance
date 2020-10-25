@@ -12,6 +12,6 @@ public interface CompanyRepository extends CrudRepository<Company, String> {
 	List<Company> findByNameContaining(String theCompanyName);
 
 	@Query("SELECT SUM(c.drawee) FROM Company c")
-	public float getDraweeTotal();
+	public Float getDraweeTotal();
 
 }

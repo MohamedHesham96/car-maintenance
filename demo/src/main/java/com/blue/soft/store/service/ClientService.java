@@ -36,7 +36,10 @@ public class ClientService {
 
 	}
 
-	public float getDraweeTotal() {
-		return clientRepository.getDraweeTotal();
+	public Float getDraweeTotal() {
+
+		Float draweeTotal = clientRepository.getDraweeTotal();
+
+		return draweeTotal != null ? draweeTotal : 0;
 	}
 }

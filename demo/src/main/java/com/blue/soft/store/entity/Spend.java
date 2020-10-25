@@ -19,6 +19,9 @@ public class Spend {
 	@Column(name = "note")
 	private String note;
 
+	@Column(name = "type")
+	private String type;
+
 	@Column(name = "date")
 	private String date;
 
@@ -47,6 +50,14 @@ public class Spend {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDate() {

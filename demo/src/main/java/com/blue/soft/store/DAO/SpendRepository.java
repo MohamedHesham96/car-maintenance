@@ -9,12 +9,17 @@ import com.blue.soft.store.entity.Spend;
 
 public interface SpendRepository extends CrudRepository<Spend, String> {
 
-	public List<Spend> findAllByOrderByIdDesc();
+	public List<Spend> findByTypeOrderByIdDesc(String type);
 
-	@Query("SELECT SUM(s.amount) FROM Spend s")
+	@Query("SELECT SUM(s.amount) FROM Spend s where s.type = 'مصروف'")
 	public Float getSpendTotal();
 
-	@Query("SELECT SUM(s.amount) FROM Spend s where date = CURRENT_DATE")
-	public Float getSpendTotalToday();
+	@Query("SELECT SUM(s.amount) FROM Spend s where s.type = 'مصروف' and date between ?1 and ?2")
+	public Float getSpendTotalByDate(String dateFrom, String dateTo);
 
+	@Query("SELECT SUM(s.amount) FROM Spend s where s.type = 'رصيد'")
+	public Float getBalancesTotal();
+
+	@Query("SELECT SUM(s.amount) FROM Spend s where s.type = 'رصيد' and date between ?1 and ?2")
+	public Float getBalancesTotalByDate(String dateFrom, String dateTo);
 }

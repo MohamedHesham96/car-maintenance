@@ -12,14 +12,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>الخزنة</title>
+<title>إدارة الخزنة</title>
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -34,47 +35,47 @@
 				<div class="card border-warning mr-lg-5" style="max-width: 20rem;">
 					<div
 						class="card-header border-warning text-warning font-weight-bold">
-						<h5>المصاريف</h5>
+						<h5>إدارة الخزنة</h5>
 					</div>
 					<div class="card-body font-weight-bold">
 
-						<input name="companyName" value="الخزنة : ${bank.balance}"
-							disabled="disabled"
-							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+						<input value="الخزنة : ${theBank.balance}" disabled="disabled"
+							class="form-control btn-outline-warning text-center mb-1 font-weight-bold" />
 
-						<input name="companyName"
-							value="الخزنة اليوم : ${bank.balanceToday}" disabled="disabled"
-							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+						<input dir="ltr" value="الخزنة اليوم : ${theBank.balanceToday}"
+							disabled="disabled"
+							class="form-control btn-outline-warning text-center mb-1 font-weight-bold" />
 
 						<input name="companyName" value="اجمالي المصاريف : ${spendTotal}"
 							disabled="disabled"
-							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+							class="form-control btn-outline-warning text-center mb-1 font-weight-bold" />
 
 						<input name="companyName"
-							value="مصاريف اليوم : ${spendTotalToday}" disabled="disabled"
-							class="form-control btn-outline-warning text-center mb-2 font-weight-bold" />
+							value="مصاريف اليوم : ${spendTotalByDate}" disabled="disabled"
+							class="form-control btn-outline-warning text-center mb-1 font-weight-bold" />
 
 
-						<form:form method="get" action="add-spend" modelAttribute="spend">
+						<form:form method="post" action="add-spend" modelAttribute="spend">
 
 							<label class="font-weight-bold text-warning pt-1">المبلغ</label>
-							<input name="amount"
+							<input dir="ltr" name="amount"
 								class="form-control text-center disable bg-light font-weight-bold" />
 
 							<div class="form-group text-warning pt-1">
 								<label>الملاحظة</label> <input name="note"
-									class="form-control text-center disable bg-light font-weight-bold" />
+									class="form-control text-center bg-light font-weight-bold" />
 							</div>
 
-
 							<input type="submit"
-								class="btn btn-danger font-weight-bold  w-100"
-								value="سحب المبلغ" />
+								class="btn btn-danger font-weight-bold w-100" value="سحب مبلغ" />
+
+
 
 						</form:form>
 					</div>
 				</div>
-				<br>
+
+
 			</div>
 
 			<div class="mr-4 col-8 ">
@@ -83,11 +84,12 @@
 					class=" shadow">
 
 					<table
-						class="mh-50 table table-striped table-sm shadow font-weight-bold">
+						class=" table table-dark table-striped table-sm shadow font-weight-bold">
 
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
 							<tr>
+								<th class="col-2">نوع المبلغ</th>
 								<th class="col-2">المبلغ</th>
 								<th class="col-2">الملاحظة</th>
 								<th class="col-2">التاريخ</th>
@@ -98,15 +100,17 @@
 						<tbody>
 							<c:forEach var="spendTemp" items="${spendsList}">
 
-								<tr>
+								<tr class="">
 
+									<td
+										class=" p-2 ${spendTemp.type eq 'رصيد' ? 'bg-success' : 'bg-danger'}">${spendTemp.type}</td>
 									<td class="border-primary p-2">${spendTemp.amount}</td>
 									<td class="border-primary p-2">${spendTemp.note}</td>
 									<td class="border-primary p-2">${spendTemp.date}</td>
 
 									<td class="border-primary"><a
 										${spendTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
-										href="delete-spend?spendId=${spendTemp.id}"
+										href="delete-record?spendId=${spendTemp.id}"
 										onclick="return confirm('هل انت متأكد من الإلغاء ؟')"
 										class="btn btn-danger btn-sm font-weight-bold"> إلغاء </a></td>
 								</tr>

@@ -17,14 +17,14 @@ public interface BillSellRepository extends CrudRepository<BillSell, String> {
 
 //	(bs.id)
 
-	@Query("SELECT COUNT(bs) FROM BillSell bs where date = CURRENT_DATE and saver = null")
-	public Integer getSellBillCountToday();
+	@Query("SELECT COUNT(bs) FROM BillSell bs where date between ?1 and ?2 and saver = null")
+	public Integer getSellBillCountByDate(String dateFrom, String dateTo);
 
-	@Query("SELECT COUNT(bs) FROM BillSell bs where date = CURRENT_DATE and late = 1 and saver = null")
-	public Integer getLateSellBillCountToday();
+	@Query("SELECT COUNT(bs) FROM BillSell bs where date between ?1 and ?2 and late = 1 and saver = null")
+	public Integer getLateSellBillCountByDate(String dateFrom, String dateTo);
 
-	@Query("SELECT COUNT(bs) FROM BillSell bs where date = CURRENT_DATE and late = 0 and saver = null")
-	public Integer getPayedSellBillCountToday();
+	@Query("SELECT COUNT(bs) FROM BillSell bs where date between ?1 and ?2 and late = 0 and saver = null")
+	public Integer getPayedSellBillCountByDate(String dateFrom, String dateTo);
 
 	public BillSell getBillSellByUpdaterId(String updaterId);
 

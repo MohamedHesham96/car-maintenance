@@ -14,8 +14,8 @@
 	rel="stylesheet">
 
 </head>
-<body>
-
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 	<div style="width: 100%; height: 100%; margin-top: 200px"
 		align="center" class="alert alert-primary">
 

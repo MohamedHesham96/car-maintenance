@@ -44,25 +44,25 @@ public class BillSellService {
 		return (List<BillSell>) billSellRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
-	public Integer getSellBillCountToday() {
+	public Integer getSellBillCountByDate(String dateFrom, String dateTo) {
 
-		Integer sbCountToday = billSellRepository.getSellBillCountToday();
+		Integer sbCountToday = billSellRepository.getSellBillCountByDate(dateFrom, dateTo);
 
 		return sbCountToday != null ? sbCountToday : 0;
 
 	}
 
-	public Integer getLateSellBillCountToday() {
+	public Integer getLateSellBillCountByDate(String dateFrom, String dateTo) {
 
-		Integer lsbCountToday = billSellRepository.getLateSellBillCountToday();
+		Integer lsbCountToday = billSellRepository.getLateSellBillCountByDate(dateFrom, dateTo);
 
 		return lsbCountToday != null ? lsbCountToday : 0;
 
 	}
 
-	public Object getPayedSellBillCountToday() {
+	public Object getPayedSellBillCountByDate(String dateFrom, String dateTo) {
 
-		Integer lsbCountToday = billSellRepository.getPayedSellBillCountToday();
+		Integer lsbCountToday = billSellRepository.getPayedSellBillCountByDate(dateFrom, dateTo);
 
 		return lsbCountToday != null ? lsbCountToday : 0;
 	}

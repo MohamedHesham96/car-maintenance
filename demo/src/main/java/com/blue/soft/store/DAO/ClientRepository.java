@@ -12,5 +12,5 @@ public interface ClientRepository extends CrudRepository<Client, String> {
 	List<Client> findByNameContaining(String theClientName);
 
 	@Query("SELECT SUM(c.drawee) FROM Client c")
-	public float getDraweeTotal();
+	public Float getDraweeTotal();
 }

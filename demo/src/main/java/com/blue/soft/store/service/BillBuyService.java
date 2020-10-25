@@ -45,9 +45,9 @@ public class BillBuyService {
 		return (List<BillBuy>) billBuyRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
-	public Integer getBuyBillCountToday() {
+	public Integer getBuyBillCountByDate(String dateFrom, String dateTo) {
 
-		Integer bbCountToday = billBuyRepository.getBuyBillCountToday();
+		Integer bbCountToday = billBuyRepository.getBuyBillCountByDate(dateFrom, dateTo);
 
 		return bbCountToday != null ? bbCountToday : 0;
 

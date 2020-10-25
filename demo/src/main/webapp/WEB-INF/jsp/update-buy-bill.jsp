@@ -1,3 +1,4 @@
+
 <%@page import="net.bytebuddy.asm.Advice.Local"%>
 <%@page import="org.apache.taglibs.standard.tag.common.xml.IfTag"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
@@ -52,7 +53,8 @@ function showUpdateForm(btn, id) {
 	
 	</script>
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -79,19 +81,16 @@ function showUpdateForm(btn, id) {
 						value="اسم المورد : ${billBuy.company.name}"
 						class="form-control text-center btn-outline-warning mt-2 font-weight-bold" />
 
-
-
 					<div ${view ? '' :  'hidden'  } class="mt-2">
-
 
 						<input disabled="disabled"
 							value="  اسم البائع : ${billBuy.user.name}"
 							class="form-control text-center btn-outline-warning font-weight-bold" />
 
-
 					</div>
 
 					<div ${view ? 'hidden' :  ''  } class="mt-2 ">
+
 						<form:form method="get" action="add-item-to-update-buy-bill"
 							modelAttribute="item">
 
@@ -123,7 +122,7 @@ function showUpdateForm(btn, id) {
 				<div class="shadow "
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm  ">
+					<table class="table table-dark table-striped table-sm  ">
 
 						<thead class="bg-primary">
 							<tr>

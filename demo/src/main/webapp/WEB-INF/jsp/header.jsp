@@ -37,7 +37,7 @@
 	}
 </script>
 
-<nav dir="rtl" style="align-items: flex-end"
+<nav dir="rtl" style="align-items: flex-end; background-color: gray;"
 	class="navbar navbar-expand-lg navbar-dark bg-primary shadow ">
 
 	<ul class="navbar-nav mr-auto ">
@@ -135,8 +135,8 @@
 
 
 		<li
-			class="${spend_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="spend-list"> الخزنة</a></li>
+			class="${bank} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active" href="bank-menu"> إدارة الخزنة </a></li>
 
 
 
@@ -151,7 +151,7 @@
 
 		<li
 			class="${today_report} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="show-today-report">تقرير اليوم</a></li>
+			class="nav-link active" href="show-report">إدارة التقارير</a></li>
 
 		<li
 			class="btn-sm btn-danger font-weight-bold nav-item active mr-2 shadow"><a

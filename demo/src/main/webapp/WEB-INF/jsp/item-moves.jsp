@@ -18,25 +18,19 @@
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
-
 <script src="webjars/jquery/3.5.1/jquery.js" type="text/javascript"></script>
 
-
-
-
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
 	<br>
 
-	<div style="align-items: center; width: 100%; text-align: center;"
-		class="">
-
+	<div style="align-items: center; width: 100%; text-align: center;">
 
 		<div dir="rtl" class="row mr-lg-4">
-
 
 			<div class="mr-3">
 
@@ -112,7 +106,7 @@
 					class=" shadow ">
 
 					<table
-						class="table  table-striped table-sm border-primary shadow font-weight-bold">
+						class="table table-dark table-striped table-sm border-primary shadow font-weight-bold">
 
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
@@ -132,33 +126,35 @@
 						</thead>
 
 
+
 						<tbody dir="ltr" class="">
 							<c:forEach var="itemMoveTemp" items="${movesList}">
 
-								<c:set var="color" value="bg-light">
-								</c:set>
 
-								<c:if test="${itemMoveTemp.type == 'مرتجع مورد'} ">
-									<c:set var="color" value="bg-warning">
-									</c:set>
-								</c:if>
-
-								<c:if test="${ itemMoveTemp.type == 'مرتجع عميل'} ">
-									<c:set var="color" value="bg-info">
-									</c:set>
-								</c:if>
-
-								<c:if test="${ itemMoveTemp.type == 'بيع'}">
-									<c:set var="color" value="bg-success">
-									</c:set>
-								</c:if>
-
-								<c:if test="${ itemMoveTemp.type == 'شراء'}">
+								<c:if test="${itemMoveTemp.type eq 'شراء'}">
 									<c:set var="color" value="bg-danger">
 									</c:set>
 								</c:if>
 
+								<c:if test="${itemMoveTemp.type eq 'بيع'}">
+									<c:set var="color" value="bg-success">
+									</c:set>
+								</c:if>
 
+								<c:if test="${itemMoveTemp.type eq 'مرتجع مورد'}">
+									<c:set var="color" value="bg-info">
+									</c:set>
+								</c:if>
+
+								<c:if test="${itemMoveTemp.type eq 'مرتجع عميل'}">
+									<c:set var="color" value="bg-warning">
+									</c:set>
+								</c:if>
+
+								<c:if test="${fn:contains(itemMoveTemp.type, 'تعديل')}">
+									<c:set var="color" value="bg-light">
+									</c:set>
+								</c:if>
 
 								<tr class="${color}">
 									<td class=" " id="itemId${itemMoveTemp.id}">${itemMoveTemp.id}</td>

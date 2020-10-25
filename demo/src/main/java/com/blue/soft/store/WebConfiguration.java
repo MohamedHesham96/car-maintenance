@@ -12,7 +12,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/images/")
+		registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/")
 				.setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 	}
 }

@@ -16,8 +16,8 @@
 
 
 </head>
-<body>
-
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<div style="text-align: center;" class="container shadow mt-4">
 

@@ -158,9 +158,6 @@ public class BillBuyController {
 
 		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
-			// String billId = httpSession.getAttribute("billBuyId").toString();
-			// BillBuy billBuy = billBuyService.getBillBuyById(billId);
-
 			BillBuy billBuy = billBuyService.getLast();
 
 			billBuyItem.setItem(theItem);
@@ -170,7 +167,8 @@ public class BillBuyController {
 
 			billBuyItem.setBuyPrice(item.getBuyPrice());
 			billBuyItem.setQuantity(item.getQuantity());
-
+			billBuyItem.setDate(LocalDate.now().toString());
+			
 			billBuyItemsService.addBillBuyItem(billBuyItem);
 
 		} else {

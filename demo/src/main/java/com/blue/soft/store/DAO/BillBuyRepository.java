@@ -15,8 +15,8 @@ public interface BillBuyRepository extends CrudRepository<BillBuy, String> {
 
 	public List<BillBuy> findAllBySaverIdIsNullOrderByIdDesc();
 
-	@Query("SELECT COUNT(bb) FROM BillBuy bb where date = CURRENT_DATE  and saver = null")
-	public Integer getBuyBillCountToday();
+	@Query("SELECT COUNT(bb) FROM BillBuy bb where date between ?1 and ?2  and saver = null")
+	public Integer getBuyBillCountByDate(String dateFrom, String dateTo);
 
 	public BillBuy getBillBuyByUpdaterId(String updaterId);
 

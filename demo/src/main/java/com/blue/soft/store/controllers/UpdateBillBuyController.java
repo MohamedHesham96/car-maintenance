@@ -1,5 +1,6 @@
 package com.blue.soft.store.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -124,14 +125,14 @@ public class UpdateBillBuyController {
 
 	// بيضيف صنف للفاتورة اللي بتتعدل
 	@RequestMapping("/add-item-to-update-buy-bill")
-	public String addToUpdateBuyBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
+	public String addToUpdateBuyBill(@ModelAttribute(name = "item") Item item) throws Exception {
 
 		String userId = httpSession.getAttribute("id").toString();
 
 		BillBuyItem billBuyItem = new BillBuyItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
 			BillBuy billBuy = billBuyService.getBillBuyByUpdaterId(userId);
 
@@ -139,6 +140,7 @@ public class UpdateBillBuyController {
 			billBuyItem.setBillBuy(billBuy);
 			billBuyItem.setBuyPrice(theItem.getBuyPrice());
 			billBuyItem.setQuantity(item.getQuantity());
+			billBuyItem.setDate(LocalDate.now().toString());
 
 			billBuyItemsService.addBillBuyItem(billBuyItem);
 

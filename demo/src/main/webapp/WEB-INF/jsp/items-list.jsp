@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الأصناف</title>
+<title>المخزن</title>
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
@@ -72,9 +72,11 @@
 
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
+
 
 	<br>
 
@@ -142,7 +144,7 @@
 						</div>
 						<div class="card-body">
 
-							<form:form modelAttribute="item" method="post"
+							<form:form modelAttribute="item" method="post" id="update-form"
 								action="update-item">
 
 								<div hidden="" class="form-group">
@@ -196,7 +198,7 @@
 					class=" shadow ">
 
 					<table
-						class="table  table-striped table-sm border-primary shadow font-weight-bold">
+						class="table table-dark table-striped table-sm border-primary shadow font-weight-bold">
 
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">

@@ -21,7 +21,7 @@
 
 
 </head>
-<body>
+<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -63,7 +63,7 @@
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${bank.balanceToday}</h4>
+						<h4>${bank.balance}</h4>
 					</div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 					</div>
 
 					<div class="text-center mt-3">
-						<h4>${totalCompaniesReturnsToday}</h4>
+						<h4>${totalCompaniesReturns}</h4>
 					</div>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
 					</div>
 
 					<div class="text-center mt-3">
-						<h4>${totalReturnsToday}</h4>
+						<h4>${totalReturns}</h4>
 					</div>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalLateSalesToday}</h4>
+						<h4>${totalLateSales}</h4>
 					</div>
 				</div>
 			</div>
@@ -135,7 +135,7 @@
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalPayedSalesToday}</h4>
+						<h4>${totalPayedSales}</h4>
 					</div>
 				</div>
 			</div>
@@ -152,7 +152,7 @@
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalGain - spendTotalToday}</h4>
+						<h4>${totalGain - spendTotal}</h4>
 					</div>
 				</div>
 			</div>
@@ -165,7 +165,7 @@
 					</div>
 
 					<div class="text-center mt-3">
-						<h4>${spendTotalToday}</h4>
+						<h4>${spendTotal}</h4>
 					</div>
 				</div>
 			</div>
@@ -191,7 +191,7 @@
 					</div>
 
 					<div class=" text-center mt-3">
-						<h4>${totalBuysToday}</h4>
+						<h4>${totalBuys}</h4>
 					</div>
 				</div>
 			</div>

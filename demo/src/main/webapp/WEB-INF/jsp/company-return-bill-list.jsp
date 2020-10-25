@@ -19,7 +19,8 @@
 	rel="stylesheet">
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -37,7 +38,6 @@
 						<h5>البحث بالوحدة</h5>
 					</div>
 					<div class="card-body">
-
 						<form method="POST"
 							action="search-company-return-bill-by-companyId">
 
@@ -97,7 +97,8 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm shadow font-weight-bold">
+					<table
+						class="table table-dark table-striped table-sm shadow font-weight-bold">
 
 						<thead class="bg-primary">
 							<tr>

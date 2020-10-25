@@ -30,32 +30,39 @@ public class BillSellItemsService {
 
 	}
 
-	public float getTotalSalesToday() {
+	public float getTotalSalesByDate(String dateFrom, String dateTo) {
 
-		Float totalSalls = billSellItemsRepository.getTotalSalesToday();
+		Float totalSalls = billSellItemsRepository.getTotalSalesByDate(dateFrom, dateTo);
 
 		return totalSalls != null ? totalSalls : 0;
 
 	}
 
-	public Float getTotalGains() {
+	public Float getTotalGainsByDate(String dateFrom, String dateTo) {
 
-		Float totalGains = billSellItemsRepository.getTotalGains();
+		Float totalGains = billSellItemsRepository.getTotalGainsByDate(dateFrom, dateTo);
 
 		return totalGains != null ? totalGains : 0;
 
 	}
 
-	public Float getTotalPayedSalesToday() {
+	public Float getTotalPayedSalesByDate(String dateFrom, String dateTo) {
 
-		Float totalPayedSalls = billSellItemsRepository.getTotalPayedSalesToday();
+		Float totalPayedSalls = billSellItemsRepository.getTotalPayedSalesByDate(dateFrom, dateTo);
 
 		return totalPayedSalls != null ? totalPayedSalls : 0;
 	}
 
-	public Float getTotalLateSalesToday() {
+	public Float getTotalLateSalesByDate(String dateFrom, String dateTo) {
 
-		Float totalLateSalls = billSellItemsRepository.getTotalLateSalesToday();
+		Float totalLateSalls = billSellItemsRepository.getTotalLateSalesByDate(dateFrom, dateTo);
+
+		return totalLateSalls != null ? totalLateSalls : 0;
+	}
+
+	public Float getTotalSalesBetweenDates(String dateFrom, String dateTo) {
+
+		Float totalLateSalls = billSellItemsRepository.getTotalLateSalesByDate(dateFrom, dateTo);
 
 		return totalLateSalls != null ? totalLateSalls : 0;
 	}

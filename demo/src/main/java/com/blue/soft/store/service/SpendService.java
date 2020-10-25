@@ -18,7 +18,12 @@ public class SpendService {
 
 	public List<Spend> getAllSpends() {
 
-		return (List<Spend>) spendRepository.findAllByOrderByIdDesc();
+		return (List<Spend>) spendRepository.findByTypeOrderByIdDesc("مصروف");
+	}
+
+	public List<Spend> getAllBalancess() {
+
+		return (List<Spend>) spendRepository.findByTypeOrderByIdDesc("رصيد");
 	}
 
 	public void saveSpend(Spend theSpend) {
@@ -44,10 +49,25 @@ public class SpendService {
 		return spendTotal != null ? spendTotal : 0;
 	}
 
-	public Float getSpendTotalToday() {
+	public Float getSpendTotalByDate(String dateFrom, String dateTo) {
 
-		Float spendTotalToday = spendRepository.getSpendTotalToday();
+		Float spendTotalToday = spendRepository.getSpendTotalByDate(dateFrom, dateTo);
 
 		return spendTotalToday != null ? spendTotalToday : 0;
 	}
+
+	public Float getBalancesTotal() {
+
+		Float balancesTotal = spendRepository.getBalancesTotal();
+
+		return balancesTotal != null ? balancesTotal : 0;
+	}
+
+	public Float getBalancesTotalByDate(String dateFrom, String dateTo) {
+
+		Float balancesTotalToday = spendRepository.getBalancesTotalByDate(dateFrom, dateTo);
+
+		return balancesTotalToday != null ? balancesTotalToday : 0;
+	}
+
 }

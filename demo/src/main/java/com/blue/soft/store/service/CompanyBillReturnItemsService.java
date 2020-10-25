@@ -30,9 +30,9 @@ public class CompanyBillReturnItemsService {
 
 	}
 
-	public Float getTotalReturnsToday() {
+	public Float getTotalCompaniesReturnsByDate(String dateFrom, String dateTo) {
 
-		Float totalReturns = companyBillReturnItemsRepository.getTotalCompaniesReturnsToday();
+		Float totalReturns = companyBillReturnItemsRepository.getTotalCompaniesReturnsByDate(dateFrom, dateTo);
 
 		return totalReturns != null ? totalReturns : 0;
 	}

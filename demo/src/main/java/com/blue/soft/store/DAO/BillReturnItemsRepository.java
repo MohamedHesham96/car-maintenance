@@ -7,7 +7,7 @@ import com.blue.soft.store.entity.BillReturnItem;
 
 public interface BillReturnItemsRepository extends CrudRepository<BillReturnItem, String> {
 
-	@Query("SELECT SUM(bri.quantity * (bri.returnPrice)) FROM BillReturnItem bri where date = CURRENT_DATE")
-	public Float getTotalClientsReturnsToday();
+	@Query("SELECT SUM(bri.quantity * (bri.returnPrice)) FROM BillReturnItem bri where date between ?1 and ?2")
+	public Float getTotalClientsReturnsByDate(String dateFrom, String dateTo);
 
 }

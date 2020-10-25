@@ -167,14 +167,14 @@ public class CompanyBillReturnController {
 			CompanyBillReturn billReturn = CompanyBillReturnService.getCompanyBillReturnBySaverId(userId);
 
 			billReturnItem.setItem(theItem);
-			billReturnItem.setReturnPrice(item.getSellPrice());
 
-			System.out.println("billReturnItem >> Return Price >> " + billReturnItem.getReturnPrice());
+			billReturnItem.setReturnPrice(item.getSellPrice());
 
 			billReturnItem.setQuantity(item.getQuantity());
 
 			billReturnItem.setCompanyBillReturn(billReturn);
 
+			billReturnItem.setDate(LocalDate.now().toString());
 			billReturnItemsService.addCompanyBillReturnItem(billReturnItem);
 
 		}

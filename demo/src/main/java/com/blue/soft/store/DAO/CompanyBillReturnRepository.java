@@ -15,8 +15,8 @@ public interface CompanyBillReturnRepository extends CrudRepository<CompanyBillR
 
 	public List<CompanyBillReturn> findAllByOrderByIdDesc();
 
-	@Query("SELECT COUNT(cbr) FROM CompanyBillReturn cbr where date = CURRENT_DATE and saver = null")
-	public Integer getCompanyBillReturnCountToday();
+	@Query("SELECT COUNT(cbr) FROM CompanyBillReturn cbr where date between ?1 and ?2 and saver = null")
+	public Integer getCompanyBillReturnCountByDate(String dateFrom, String dateTo);
 
 	public CompanyBillReturn getCompanyBillReturnByUpdaterId(String updaterId);
 

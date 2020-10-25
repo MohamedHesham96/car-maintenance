@@ -14,13 +14,13 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>فاتورة شراء</title>
 
-
-
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+
 
 	<%@ include file="header.jsp"%>
 
@@ -99,7 +99,7 @@
 					style="position: relative; height: 500px; overflow: auto;">
 
 					<table
-						class="table  table-striped table-sm shadow font-weight-bold">
+						class="table table-dark  table-striped table-sm shadow font-weight-bold">
 
 						<thead class="bg-primary">
 							<tr>

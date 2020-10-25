@@ -18,7 +18,8 @@
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.css"
 	rel="stylesheet">
 </head>
-<body class="">
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 	<br>
@@ -73,11 +74,9 @@
 									class="form-control text-center font-weight-bold bg-light" />
 							</div>
 
-
 							<button type="submit"
 								class="btn btn-outline-warning btn-lg w-100 ">اضافة
 								للفاتورة</button>
-
 
 						</form:form>
 
@@ -87,10 +86,10 @@
 
 			<div class="mr-4 col-8 shadow pb-3">
 
-				<div class=" font-weight-bold shadow"
+				<div class=" font-weight-bold  shadow"
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table  table-striped table-sm  shadow ">
+					<table class="table table-dark  table-striped table-sm shadow">
 
 						<thead class="bg-primary text-white border-primary">
 							<tr>

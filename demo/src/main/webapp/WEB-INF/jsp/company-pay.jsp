@@ -20,7 +20,7 @@
 
 
 </head>
-<body>
+<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -74,7 +74,7 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm  ">
+					<table class="table table-dark table-striped table-sm  ">
 
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">

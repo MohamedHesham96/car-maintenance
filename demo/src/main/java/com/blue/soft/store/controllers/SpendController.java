@@ -85,44 +85,92 @@ public class SpendController {
 		if (!theBank.getDate().equals(LocalDate.now().toString())) {
 
 			theBank.setDate(LocalDate.now().toString());
-			theBank.setBalanceToday(0);
+			theBank.setBalance(0);
 			bankService.saveBank(theBank);
 		}
 
-		theModel.addAttribute("spendsList", spendService.getAllSpends());
-		theModel.addAttribute("bank", bankService.getBank());
-		theModel.addAttribute("spendTotal", spendService.getSpendTotal());
-		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
+		theModel.addAttribute("theBank", bankService.getBank());
 
-		theModel.addAttribute("spend_list", "active");
+		theModel.addAttribute("spendsList", spendService.getAllSpends());
+
+		theModel.addAttribute("spendTotal", spendService.getSpendTotal());
+
+		theModel.addAttribute("spendTotalByDate",
+				spendService.getSpendTotalByDate(LocalDate.now().toString(), LocalDate.now().toString()));
+
+		theModel.addAttribute("bank", "active");
 
 		return "spend-list";
+	}
+
+	@RequestMapping("/balances-list")
+	public String showBalancesList(Model theModel) {
+
+		theModel.addAttribute("theBank", bankService.getBank());
+		theModel.addAttribute("balancesList", spendService.getAllBalancess());
+
+		theModel.addAttribute("balancesTotal", spendService.getBalancesTotal());
+
+		theModel.addAttribute("balancesTotalByDate",
+				spendService.getBalancesTotalByDate(LocalDate.now().toString(), LocalDate.now().toString()));
+
+		theModel.addAttribute("bank", "active");
+
+		return "balances-list";
 	}
 
 	@RequestMapping("/add-spend")
 	public String addSpend(@ModelAttribute("spend") Spend theSpend, Model theModel) throws Exception {
 
-		if (theSpend.getAmount() > 0) {
+		Bank bank = bankService.getBank();
+
+		if (theSpend.getAmount() > 0 && theSpend.getAmount() < bank.getBalance()) {
 
 			theSpend.setDate(LocalDate.now().toString());
 
-			spendService.saveSpend(theSpend);
-
-			theModel.addAttribute("spendsList", spendService.getAllSpends());
-
-			Bank bank = bankService.getBank();
-
-			bank.setBalance(bank.getBalance() - theSpend.getAmount());
-			bank.setBalanceToday(bank.getBalanceToday() - theSpend.getAmount());
-
-			bankService.saveBank(bank);
-
-			return "redirect:/spend-list";
+			theSpend.setType("مصروف");
 
 		} else {
 
-			throw new Exception("المبلغ اصغر او اكبر من قيمة الخزنة");
+			throw new Exception("المبلغ  اكبر من قيمة الخزنة او اقل من صفر");
 		}
+
+		spendService.saveSpend(theSpend);
+
+		bank.setBalance(bank.getBalance() - theSpend.getAmount());
+		bank.setBalanceToday(bank.getBalance() - theSpend.getAmount());
+
+		bankService.saveBank(bank);
+
+		return "redirect:/spend-list";
+
+	}
+
+	@RequestMapping("/add-balance")
+	public String addBalance(@ModelAttribute("spend") Spend theBalance, Model theModel) throws Exception {
+
+		Bank bank = bankService.getBank();
+
+		if (theBalance.getAmount() > 0) {
+
+			theBalance.setDate(LocalDate.now().toString());
+
+			theBalance.setType("رصيد");
+
+		} else {
+
+			throw new Exception("المبلغ  اقل من صفر");
+		}
+
+		spendService.saveSpend(theBalance);
+
+		bank.setBalance(bank.getBalance() + theBalance.getAmount());
+		bank.setBalanceToday(bank.getBalance() + theBalance.getAmount());
+
+		bankService.saveBank(bank);
+
+		return "redirect:/balances-list";
+
 	}
 
 //	@RequestMapping("/update-spend")
@@ -130,60 +178,155 @@ public class SpendController {
 //
 //	}
 
-	@RequestMapping("/delete-spend")
+	@RequestMapping("/delete-record")
 	public String deleteSpend(@RequestParam(name = "spendId") String spendId) {
 
 		Spend theSpend = spendService.getSpendById(spendId);
 
 		Bank bank = bankService.getBank();
 
-		bank.setBalance(bank.getBalance() + theSpend.getAmount());
-		bank.setBalanceToday(bank.getBalanceToday() + theSpend.getAmount());
+		int flagVal = theSpend.getType().equals("مصروف") ? 1 : -1;
+
+		bank.setBalance(bank.getBalance() + theSpend.getAmount() * flagVal);
+		bank.setBalanceToday(bank.getBalance() + theSpend.getAmount() * flagVal);
 
 		bankService.saveBank(bank);
 
 		spendService.deleteSpendById(spendId);
 
-		return "redirect:/spend-list";
+		if (flagVal == 1)
+			return "redirect:/spend-list";
+
+		else
+			return "redirect:/balances-list";
 
 	}
 
-	@RequestMapping("/show-today-report")
-	public String showTodayReport(Model theModel) {
+	@RequestMapping("/update-record")
+	public String updateSpend(@ModelAttribute("spend") Spend theRecord) {
+
+		Spend theOldRecord = spendService.getSpendById(theRecord.getId());
+
+		Bank bank = bankService.getBank();
+
+		int flagVal = theOldRecord.getType().equals("مصروف") ? 1 : -1;
+
+		bank.setBalance(bank.getBalance() + theRecord.getAmount() * flagVal);
+
+//		if (theOldRecord.getDate().equals(LocalDate.now().toString())) {
+//
+//			bank.setBalanceToday(bank.getBalanceToday() + theOldRecord.getAmount() * flagVal);
+//			bank.setBalanceToday(bank.getBalanceToday() - theRecord.getAmount() * flagVal);
+//
+//		}
+//
+//		bank.setBalance(bank.getBalance() + theRecord.getAmount() * flagVal);
+
+		theOldRecord.setAmount(theRecord.getAmount());
+		theOldRecord.setNote(theRecord.getNote());
+
+		spendService.saveSpend(theOldRecord);
+		bankService.saveBank(bank);
+
+		if (flagVal == 1)
+			return "redirect:/spend-list";
+
+		else
+			return "redirect:/balances-list";
+
+	}
+
+	@RequestMapping("/show-report")
+	public String showReport(@RequestParam(name = "date", defaultValue = "") String date,
+			@RequestParam(name = "dateFrom", defaultValue = "") String dateFrom,
+			@RequestParam(name = "dateTo", defaultValue = "") String dateTo,
+			@RequestParam(name = "action", defaultValue = "") String action, Model theModel) {
+
+		theModel.addAttribute("dateFrom", dateFrom);
+		theModel.addAttribute("dateTo", dateTo);
 
 		Bank theBank = bankService.getBank();
 
 		if (!theBank.getDate().equals(LocalDate.now().toString())) {
 
 			theBank.setDate(LocalDate.now().toString());
-			theBank.setBalanceToday(0);
+			theBank.setBalance(0);
 			bankService.saveBank(theBank);
 		}
 
+		if (action.equals("date")) {
+
+			if (date.equals("")) {
+
+				dateFrom = LocalDate.now().toString();
+				dateTo = LocalDate.now().toString();
+
+			} else {
+
+				dateFrom = date;
+				dateTo = date;
+			}
+
+		} else if (action.equals("dateFromDateTo")) {
+
+			if (dateFrom.equals(""))
+				dateFrom = "2020-01-01";
+
+			if (dateTo.equals(""))
+				dateTo = LocalDate.now().toString();
+		} else {
+
+			dateFrom = LocalDate.now().toString();
+			dateTo = LocalDate.now().toString();
+
+		}
+
 		theModel.addAttribute("bank", theBank);
-		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
+
+		theModel.addAttribute("spendTotal", spendService.getSpendTotalByDate(dateFrom, dateTo));
+
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
-		theModel.addAttribute("totalSalesToday", billSellItemsService.getTotalSalesToday());
-		theModel.addAttribute("totalReturnsToday", billReturnItemsService.getTotalReturnsToday());
-		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
-		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
-		theModel.addAttribute("totalCompaniesReturnsToday", companyBillReturnItemsService.getTotalReturnsToday());
 
-		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
-		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
-		theModel.addAttribute("sellBillCountToday", billSellService.getSellBillCountToday());
-		theModel.addAttribute("payedSellBillCountToday", billSellService.getPayedSellBillCountToday());
-		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
-		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
-		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
-		theModel.addAttribute("companyReturnCBillCountToday",
-				companyBillReturnService.getCompanyReturnBillCountToday());
+		theModel.addAttribute("totalSales", billSellItemsService.getTotalSalesByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalPayedSales", billSellItemsService.getTotalPayedSalesByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalLateSales", billSellItemsService.getTotalLateSalesByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalReturns", billReturnItemsService.getTotalClientsReturnsByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalCompaniesReturns",
+				companyBillReturnItemsService.getTotalCompaniesReturnsByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalBuys", billBuyItemsService.getTotalBuysByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("totalGain", billSellItemsService.getTotalGainsByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("sellBillCount", billSellService.getSellBillCountByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("payedSellBillCount", billSellService.getPayedSellBillCountByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("lateSellBillCount", billSellService.getLateSellBillCountByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("buyBillCount", billBuyService.getBuyBillCountByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("returnBillCount", billReturnService.getReturnBillCountByDate(dateFrom, dateTo));
+		theModel.addAttribute("companyReturnBillCount",
+				companyBillReturnService.getCompanyBillReturnCountByDate(dateFrom, dateTo));
 
 		theModel.addAttribute("today_report", "active");
+		theModel.addAttribute("date", date);
 
-		return "today-report";
+		return "report";
 
+	}
+
+	@RequestMapping("/bank-menu")
+	public String showBankMenu(Model theModel) {
+		theModel.addAttribute("bank", "active");
+
+		return "bank-menu";
 	}
 
 }

@@ -52,7 +52,7 @@ function showUpdateForm(btn, id) {
 	
 	</script>
 </head>
-<body>
+<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -120,7 +120,7 @@ function showUpdateForm(btn, id) {
 				<div class="shadow "
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table table-striped table-sm  ">
+					<table class="table table-dark table-striped table-sm  ">
 
 						<thead class="bg-primary">
 							<tr>

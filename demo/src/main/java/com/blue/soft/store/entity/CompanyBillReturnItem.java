@@ -1,5 +1,7 @@
 package com.blue.soft.store.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +26,9 @@ public class CompanyBillReturnItem {
 	@Column(name = "return_price")
 	private float returnPrice;
 
+	@Column(name = "date")
+	private String date;
+
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "item_id")
 	private Item item;
@@ -42,6 +47,7 @@ public class CompanyBillReturnItem {
 		this.item = item;
 		this.quantity = quantity;
 		this.returnPrice = returnPrice;
+		this.date = LocalDate.now().toString();
 	}
 
 	public float getReturnPrice() {
@@ -66,6 +72,14 @@ public class CompanyBillReturnItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public Item getItem() {

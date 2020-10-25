@@ -45,9 +45,9 @@ public class BillReturnService {
 		return (List<BillReturn>) billReturnRepository.findByIdContainingOrderByIdDesc(id);
 	}
 
-	public Integer getReturnBillCountToday() {
+	public Integer getReturnBillCountByDate(String dateFrom, String dateTo) {
 
-		Integer rbCountToday = billReturnRepository.getReturnBillCountToday();
+		Integer rbCountToday = billReturnRepository.getReturnBillCountByDate(dateFrom, dateTo);
 
 		return rbCountToday != null ? rbCountToday : 0;
 

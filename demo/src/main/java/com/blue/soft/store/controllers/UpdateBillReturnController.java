@@ -1,5 +1,6 @@
 package com.blue.soft.store.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -127,7 +128,7 @@ public class UpdateBillReturnController {
 		BillReturnItem billReturnItem = new BillReturnItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() > 0) {
 
 			// String billId = httpSession.getAttribute("billReturnId").toString();
 			// BillReturn billReturn = billReturnService.getBillReturnById(billId);
@@ -140,6 +141,7 @@ public class UpdateBillReturnController {
 			billReturnItem.setBillReturn(billReturn);
 			billReturnItem.setReturnPrice(theItem.getSellPrice());
 			billReturnItem.setQuantity(item.getQuantity());
+			billReturnItem.setDate(LocalDate.now().toString());
 
 			billReturnItemsService.addBillReturnItem(billReturnItem);
 

@@ -174,6 +174,8 @@ public class BillReturnController {
 
 			billReturnItem.setBillReturn(billReturn);
 
+			billReturnItem.setDate(LocalDate.now().toString());
+
 			billReturnItemsService.addBillReturnItem(billReturnItem);
 
 		}

@@ -20,7 +20,7 @@
 	rel="stylesheet">
 
 </head>
-<body>
+<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 	<br>
@@ -91,7 +91,7 @@
 				<div class="  font-weight-bold shadow"
 					style="position: relative; height: 425px; overflow: auto;">
 
-					<table class="table  table-striped table-sm  shadow ">
+					<table class="table table-dark table-striped table-sm  shadow ">
 
 						<thead class="bg-primary  shadow">
 							<tr>

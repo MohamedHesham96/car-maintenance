@@ -30,9 +30,9 @@ public class BillBuyItemsService {
 
 	}
 
-	public Float getTotalBuysToday() {
+	public Float getTotalBuysByDate(String dateFrom, String dateTo) {
 
-		Float totalBuys = billBuyItemsRepository.getTotalBuysToday();
+		Float totalBuys = billBuyItemsRepository.getTotalBuysByDate(dateFrom, dateTo);
 
 		return totalBuys != null ? totalBuys : 0;
 	}

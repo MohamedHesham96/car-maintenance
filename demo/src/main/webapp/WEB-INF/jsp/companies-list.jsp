@@ -21,7 +21,9 @@
 
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+
 
 	<%@ include file="header.jsp"%>
 
@@ -87,7 +89,7 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm  shadow ">
+					<table class="table table-dark table-striped table-sm  shadow ">
 
 
 						<thead class="bg-primary  shadow "
@@ -105,7 +107,7 @@
 								<tr>
 
 									<td class="border-primary pt-2">${companyTemp.name}</td>
-									<td dir="ltr"   class="border-primary pt-2">${companyTemp.drawee}</td>
+									<td dir="ltr" class="border-primary pt-2">${companyTemp.drawee}</td>
 									<td class="border-primary "><a type="button"
 										class="btn btn-warning btn-sm font-weight-bold"
 										href="show-pays-company?companyId=${companyTemp.id}">الدفع</a>

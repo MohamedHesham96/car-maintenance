@@ -1,5 +1,7 @@
 package com.blue.soft.store.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "bill_buy_items")
@@ -32,6 +36,9 @@ public class BillBuyItem {
 	@Column(name = "buy_price")
 	private float buyPrice;
 
+	@Column(name = "date")
+	private String date;
+
 	public BillBuyItem() {
 		super();
 	}
@@ -42,6 +49,7 @@ public class BillBuyItem {
 		this.item = item;
 		this.quantity = quantity;
 		this.buyPrice = buyPrice;
+		this.date = LocalDate.now().toString();
 
 	}
 
@@ -83,6 +91,14 @@ public class BillBuyItem {
 
 	public void setBillBuy(BillBuy billBuy) {
 		this.billBuy = billBuy;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

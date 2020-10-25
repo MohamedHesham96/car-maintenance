@@ -36,8 +36,11 @@ public class CompanyService {
 		return companyRepository.findById(id).get();
 	}
 
-	public float getDraweeTotal() {
-		return companyRepository.getDraweeTotal();
+	public Float getDraweeTotal() {
+
+		Float draweeTotal = companyRepository.getDraweeTotal();
+
+		return draweeTotal != null ? draweeTotal : 0;
 	}
 
 }

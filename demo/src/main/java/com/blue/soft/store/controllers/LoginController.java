@@ -3,6 +3,7 @@ package com.blue.soft.store.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Properties;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,7 @@ import com.blue.soft.store.service.CompanyService;
 import com.blue.soft.store.service.ItemService;
 import com.blue.soft.store.service.SpendService;
 import com.blue.soft.store.service.UserService;
+import com.smattme.MysqlExportService;
 
 @Controller
 public class LoginController {
@@ -107,33 +109,34 @@ public class LoginController {
 	@RequestMapping("/home")
 	public String gotToHome(Model theModel) {
 
+		String date = LocalDate.now().toString();
+
 		Bank theBank = bankService.getBank();
 
 		if (!theBank.getDate().equals(LocalDate.now().toString())) {
 
 			theBank.setDate(LocalDate.now().toString());
-			theBank.setBalanceToday(0);
+			theBank.setBalance(0);
 			bankService.saveBank(theBank);
 		}
 
 		theModel.addAttribute("bank", theBank);
-		theModel.addAttribute("spendTotalToday", spendService.getSpendTotalToday());
+
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());
-		theModel.addAttribute("totalSalesToday", billSellItemsService.getTotalSalesToday());
-		theModel.addAttribute("totalReturnsToday", billReturnItemsService.getTotalReturnsToday());
-		theModel.addAttribute("totalPayedSalesToday", billSellItemsService.getTotalPayedSalesToday());
-		theModel.addAttribute("totalLateSalesToday", billSellItemsService.getTotalLateSalesToday());
-		theModel.addAttribute("totalBuysToday", billBuyItemsService.getTotalBuysToday());
-		theModel.addAttribute("totalGain", billSellItemsService.getTotalGains());
-		theModel.addAttribute("totalCompaniesReturnsToday", companyBillReturnItemsService.getTotalReturnsToday());
 
-		// theModel.addAttribute("sellBillCountToday",
-		// billSellService.getSellBillCountToday());
-//		theModel.addAttribute("payedSellBillCountToday", billSellService.getPayedSellBillCountToday());
-//		theModel.addAttribute("lateSellBillCountToday", billSellService.getLateSellBillCountToday());
-//		theModel.addAttribute("buyBillCountToday", billBuyService.getBuyBillCountToday());
-//		theModel.addAttribute("returnBillCountToday", billReturnService.getReturnBillCountToday());
+		theModel.addAttribute("totalPayedSales", billSellItemsService.getTotalPayedSalesByDate(date, date));
+		theModel.addAttribute("totalLateSales", billSellItemsService.getTotalLateSalesByDate(date, date));
+
+		theModel.addAttribute("totalReturns", billReturnItemsService.getTotalClientsReturnsByDate(date, date));
+		theModel.addAttribute("totalCompaniesReturns",
+				companyBillReturnItemsService.getTotalCompaniesReturnsByDate(date, date));
+
+		theModel.addAttribute("totalBuys", billBuyItemsService.getTotalBuysByDate(date, date));
+
+		theModel.addAttribute("totalGain", billSellItemsService.getTotalGainsByDate(date, date));
+
+		theModel.addAttribute("spendTotal", spendService.getSpendTotalByDate(date, date));
 
 		theModel.addAttribute("home", "active");
 
@@ -144,15 +147,15 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(Model theModle) throws ClassNotFoundException, IOException, SQLException {
 
-//		Properties properties = new Properties();
-//		properties.setProperty(com.smattme.MysqlExportService.DB_NAME, "warehouse");
-//		properties.setProperty(com.smattme.MysqlExportService.DB_USERNAME, "admin");
-//		properties.setProperty(com.smattme.MysqlExportService.DB_PASSWORD, "1234");
-//		properties.setProperty(com.smattme.MysqlExportService.TEMP_DIR, new java.io.File("external").getPath());
-//		properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
-//
-//		com.smattme.MysqlExportService mysqlExportService = new com.smattme.MysqlExportService(properties);
-//		mysqlExportService.export();
+		Properties properties = new Properties();
+		properties.setProperty(com.smattme.MysqlExportService.DB_NAME, "warehouse");
+		properties.setProperty(com.smattme.MysqlExportService.DB_USERNAME, "admin");
+		properties.setProperty(com.smattme.MysqlExportService.DB_PASSWORD, "1234");
+		properties.setProperty(com.smattme.MysqlExportService.TEMP_DIR, new java.io.File("D:/external/").getPath());
+		properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
+
+		com.smattme.MysqlExportService mysqlExportService = new com.smattme.MysqlExportService(properties);
+		mysqlExportService.export();
 
 //		Backupdbtosql();
 

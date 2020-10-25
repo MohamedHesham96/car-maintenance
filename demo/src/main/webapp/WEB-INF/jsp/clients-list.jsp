@@ -12,13 +12,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>كشف الوحدات</title>
+<title>كشف العملاء</title>
 
 <link href="webjars/bootswatch/4.5.2/dist/darkly/bootstrap.min.css"
 	rel="stylesheet">
 
 </head>
-<body>
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 
@@ -33,7 +34,7 @@
 
 					<div class="card border-warning mb-3" style="max-width: 20rem;">
 						<div class="card-header border-warning text-warning">
-							<h5>أضافة وحدة</h5>
+							<h5>أضافة عميل</h5>
 						</div>
 						<div class="card-body text-warning font-weight-bold">
 
@@ -50,7 +51,7 @@
 
 								<button type="submit"
 									class="btn btn-outline-warning btn-lg w-100">اضافة
-									وحدة</button>
+									عميل</button>
 
 							</form:form>
 
@@ -61,7 +62,7 @@
 
 					<div class="card border-warning mb-3" style="max-width: 20rem;">
 						<div class="card-header border-warning text-warning">
-							<h5>بحث عن وحدة</h5>
+							<h5>بحث عن عميل</h5>
 						</div>
 						<div class="card-body">
 
@@ -75,7 +76,7 @@
 
 								<button type="submit"
 									class="btn btn-outline-warning btn-lg w-100">بحث عن
-									وحدة</button>
+									عميل</button>
 
 							</form>
 
@@ -90,7 +91,7 @@
 				<div class="shadow"
 					style="position: relative; height: 500px; overflow: auto;">
 
-					<table class="table table-striped table-sm  shadow ">
+					<table class="table table-dark table-striped table-sm  shadow ">
 						<thead class="bg-primary  shadow "
 							style="position: sticky; top: 0;">
 							<tr>
