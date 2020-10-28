@@ -7,5 +7,5 @@ import com.blue.soft.store.entity.User;
 public interface UserRepository extends CrudRepository<User, String> {
 
 	public User findByNameAndPassword(String name, String password);
-	
+
 }

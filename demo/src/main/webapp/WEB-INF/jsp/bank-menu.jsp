@@ -34,7 +34,7 @@
 			<div class="card border-warning text-warning w-50  shadow"
 				style="margin: 0; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); max-width: 24rem;">
 
-				<div class="card-header   border-warning  ">
+				<div class="card-header border-warning  ">
 					<h4>إدارة الخزنة</h4>
 				</div>
 

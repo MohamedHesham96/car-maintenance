@@ -38,25 +38,27 @@
 </script>
 
 <nav dir="rtl" style="align-items: flex-end; background-color: gray;"
-	class="navbar navbar-expand-lg navbar-dark bg-primary shadow ">
+	class="navbar navbar-expand-lg navbar-dark bg-dark  shadow ">
 
 	<ul class="navbar-nav mr-auto ">
 
 		<li
 			class="${home} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow "
 			style="min-heitems_listight: 55px"><a class="nav-link active "
-			href="home">الرئيسية</a></li>
-
+			${sessionScope.isHasMain ?  'href="home"' : ''}>الرئيسية </a></li>
 
 		<li dir="ltr" class=" mr-2">
 			<div class="btn-group " role="group" style="min-height: 55px">
 
 				<button type="button"
-					class="${sales} btn btn-dark border-warning font-weight-bold ">مبيعات</button>
+					class="${sales}
+			btn btn-dark border-warning font-weight-bold ">مبيعات
+				</button>
 
 				<div class="btn-group " role="group">
 
-					<button id="btnGroupDrop2" onclick="showSellBill(this);"
+					<button id="btnGroupDrop2"
+						${sessionScope.isHasSales ?  'onclick="showSellBill(this);"' : ''}
 						type="button"
 						class="${sales} btn btn-dark border-warning dropdown-toggle"></button>
 
@@ -76,15 +78,9 @@
 							مرتجع العملاء</a>
 					</div>
 
-
 				</div>
 			</div>
-
-
 		</li>
-
-
-
 
 		<li dir="ltr" class="mr-2 ">
 			<div class="btn-group " role="group" style="min-height: 55px">
@@ -94,7 +90,8 @@
 
 				<div class="btn-group " role="group">
 
-					<button id="btnGroupDrop2" onclick="showBuyBill(this);"
+					<button id="btnGroupDrop2"
+						${sessionScope.isHasBuys ?  'onclick="showBuyBill(this);"' : ''}
 						type="button"
 						class="${buys} btn btn-dark border-warning dropdown-toggle"></button>
 
@@ -112,56 +109,53 @@
 							href="show-company-return-bill-list" style="font-size: 15px;">فواتير
 							مرتجع الموردين</a>
 					</div>
-
-
 				</div>
 			</div>
 
-
 		</li>
-
 
 		<li
 			class="${items_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow "
 			style="min-heitems_listight: 55px"><a class="nav-link active "
-			href="items-list">المخزن</a></li>
-
-
+			${sessionScope.isHasStore ?  'href="items-list"' : ''}>المخزن</a></li>
 
 		<li
 			class="${item_moves} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="item-moves">حركة صنف</a></li>
-
-
+			class="nav-link active"
+			${sessionScope.isHasItemMove ?  'href="item-moves"' : ''}>حركة
+				صنف</a></li>
 
 		<li
 			class="${bank} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="bank-menu"> إدارة الخزنة </a></li>
-
-
-
-
-		<li
-			class="${companies_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active " href="companies-list">الموردين</a></li>
+			class="nav-link active"
+			${sessionScope.isHasBank ?  'href="bank-menu"' : ''}> إدارة
+				الخزنة </a></li>
 
 		<li
 			class="${clients_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="clients-list">العملاء</a></li>
+			class="nav-link active"
+			${sessionScope.isHasClients ?  'href="clients-list"' : ''}>العملاء</a></li>
+
+		<li
+			class="${companies_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active"
+			${sessionScope.isHasCompanies ?  'href="companies-list"' : ''}>الموردين</a></li>
 
 		<li
 			class="${today_report} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
-			class="nav-link active" href="show-report">إدارة التقارير</a></li>
+			class="nav-link active"
+			${sessionScope.isHasReports ?  'href="show-report"' : ''}>إدارة
+				التقارير</a></li>
+		<li
+			class="${users_list} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow"><a
+			class="nav-link active"
+			${sessionScope.isHasMain ?  'href="users-list"' : ''}>الاعدادات</a></li>
 
 		<li
 			class="btn-sm btn-danger font-weight-bold nav-item active mr-2 shadow"><a
 			class="nav-link active" href="logout"
 			onclick="return confirm('هل انت متأكد من الخروج ؟')"
-			style="font-size: 15px;"> <%=session.getAttribute("name")%> |
-				خروج
-		</a></li>
-
-
+			style="font-size: 15px;"> ${sessionScope.name} | خروج </a></li>
 
 	</ul>
 

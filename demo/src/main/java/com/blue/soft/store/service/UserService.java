@@ -1,5 +1,7 @@
 package com.blue.soft.store.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,16 @@ public class UserService {
 			httpSession.setAttribute("id", theUser.getId());
 			httpSession.setAttribute("name", theUser.getName());
 
+			httpSession.setAttribute("isHasBank", theUser.isHasBank());
+			httpSession.setAttribute("isHasBuys", theUser.isHasBuys());
+			httpSession.setAttribute("isHasClients", theUser.isHasClients());
+			httpSession.setAttribute("isHasCompanies", theUser.isHasCompanies());
+			httpSession.setAttribute("isHasItemMove", theUser.isHasItemMove());
+			httpSession.setAttribute("isHasMain", theUser.isHasMain());
+			httpSession.setAttribute("isHasReports", theUser.isHasReports());
+			httpSession.setAttribute("isHasSales", theUser.isHasSales());
+			httpSession.setAttribute("isHasStore", theUser.isHasStore());
+
 			httpSession.setMaxInactiveInterval(10000000);
 			return true;
 
@@ -42,6 +54,12 @@ public class UserService {
 	public void saveUser(User theUser) {
 
 		UserRepository.save(theUser);
+
+	}
+
+	public List<User> getAllUsers() {
+
+		return (List<User>) UserRepository.findAll();
 
 	}
 }

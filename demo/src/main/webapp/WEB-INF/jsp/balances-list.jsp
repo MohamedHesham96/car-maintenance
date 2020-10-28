@@ -116,7 +116,7 @@
 								</div>
 
 								<input type="submit"
-									class="btn btn-success font-weight-bold  w-100 mt-2"
+									class="btn btn-success font-weight-bold  w-100 "
 									value="اضافة كرصيد" />
 
 							</form:form>
@@ -143,7 +143,7 @@
 
 
 								<input type="submit"
-									class="btn btn-success font-weight-bold  w-100 mt-2"
+									class="btn btn-success font-weight-bold  w-100 "
 									value="تعديل الرصيد" />
 
 
@@ -203,8 +203,7 @@
 										${spendTemp.date == LocalDate.now().toString() ? '' :  'hidden'  }
 										href="delete-record?spendId=${spendTemp.id}"
 										onclick="return confirm('هل انت متأكد من الإلغاء ؟')"
-										class="btn btn-danger btn-sm font-weight-bold mr-1"> إلغاء
-									</a>
+										class="btn btn-danger btn-sm font-weight-bold "> إلغاء </a>
 									</td>
 
 								</tr>

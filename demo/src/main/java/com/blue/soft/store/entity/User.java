@@ -24,8 +24,32 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "type")
-	private String type;
+	@Column(name = "main")
+	private boolean hasMain;
+
+	@Column(name = "sales")
+	private boolean hasSales;
+
+	@Column(name = "buys")
+	private boolean hasBuys;
+
+	@Column(name = "store")
+	private boolean hasStore;
+
+	@Column(name = "item_move")
+	private boolean hasItemMove;
+
+	@Column(name = "clients")
+	private boolean hasClients;
+
+	@Column(name = "companies")
+	private boolean hasCompanies;
+
+	@Column(name = "reports")
+	private boolean hasReports;
+
+	@Column(name = "bank ")
+	private boolean hasBank;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
 			CascadeType.MERGE, CascadeType.REFRESH })
@@ -63,14 +87,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	@Override
 	public String toString() {
 		return name;
@@ -98,6 +114,78 @@ public class User {
 
 	public void setBillReturnList(List<BillReturn> billReturnList) {
 		this.billReturnList = billReturnList;
+	}
+
+	public boolean isHasMain() {
+		return hasMain;
+	}
+
+	public void setHasMain(boolean hasMain) {
+		this.hasMain = hasMain;
+	}
+
+	public boolean isHasSales() {
+		return hasSales;
+	}
+
+	public void setHasSales(boolean hasSales) {
+		this.hasSales = hasSales;
+	}
+
+	public boolean isHasBuys() {
+		return hasBuys;
+	}
+
+	public void setHasBuys(boolean hasBuys) {
+		this.hasBuys = hasBuys;
+	}
+
+	public boolean isHasStore() {
+		return hasStore;
+	}
+
+	public void setHasStore(boolean hasStore) {
+		this.hasStore = hasStore;
+	}
+
+	public boolean isHasItemMove() {
+		return hasItemMove;
+	}
+
+	public void setHasItemMove(boolean hasItemMove) {
+		this.hasItemMove = hasItemMove;
+	}
+
+	public boolean isHasClients() {
+		return hasClients;
+	}
+
+	public void setHasClients(boolean hasClients) {
+		this.hasClients = hasClients;
+	}
+
+	public boolean isHasCompanies() {
+		return hasCompanies;
+	}
+
+	public void setHasCompanies(boolean hasCompanies) {
+		this.hasCompanies = hasCompanies;
+	}
+
+	public boolean isHasReports() {
+		return hasReports;
+	}
+
+	public void setHasReports(boolean hasReports) {
+		this.hasReports = hasReports;
+	}
+
+	public boolean isHasBank() {
+		return hasBank;
+	}
+
+	public void setHasBank(boolean hasBank) {
+		this.hasBank = hasBank;
 	}
 
 }
