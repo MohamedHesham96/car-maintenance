@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.blue.soft.store.entity.BillBuyItem;
 import com.blue.soft.store.entity.BillReturn;
 import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.Client;
@@ -157,6 +158,7 @@ public class BillReturnController {
 	public String addItemToReturnBill(@ModelAttribute(name = "item") Item item, Model theModel) throws Exception {
 
 		BillReturnItem billReturnItem = new BillReturnItem();
+
 		Item theItem = itemService.getItemById(item.getId());
 
 		if (item.getQuantity() > 0 && item.getSellPrice() > 0) {
@@ -165,15 +167,25 @@ public class BillReturnController {
 
 			BillReturn billReturn = billReturnService.getBillReturnBySaverId(userId);
 
+			List<BillReturnItem> buyItemsList = billReturn.getBillReturnItems();
+
+			for (BillReturnItem billItemTemp : buyItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billReturnItemsService.addBillReturnItem(billReturnItem);
+
+					return "redirect:/show-add-to-return-bill";
+
+				}
+			}
+
 			billReturnItem.setItem(theItem);
 			billReturnItem.setReturnPrice(item.getSellPrice());
-
-			System.out.println("billReturnItem >> Return Price >> " + billReturnItem.getReturnPrice());
-
 			billReturnItem.setQuantity(item.getQuantity());
-
 			billReturnItem.setBillReturn(billReturn);
-
 			billReturnItem.setDate(LocalDate.now().toString());
 
 			billReturnItemsService.addBillReturnItem(billReturnItem);
@@ -263,7 +275,7 @@ public class BillReturnController {
 		}
 
 		Client client = billReturn.getClient();
-		client.setDrawee(client.getDrawee() + total);
+		client.setDrawee(client.getDrawee() - total);
 		billReturn.setClient(client);
 
 		billReturn.setSaver(null);

@@ -20,7 +20,8 @@
 	rel="stylesheet">
 
 </head>
-<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 	<br>
@@ -50,22 +51,19 @@
 							value="الوحدة : ${billReturn.client.name}"
 							class="form-control text-center btn-outline-warning  mb-2 font-weight-bold" />
 
-
 						<form:form method="get" action="add-item-to-return-bill"
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select
+							<form:select autofocus="autofocus"
 								class="form-control text-center bg-light font-weight-bold"
 								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
 							</form:select>
 
-
 							<label>الكمية</label>
 							<form:input id="quantity" path="quantity"
 								class="form-control text-center bg-light font-weight-bold" />
-
 
 							<div class="form-group">
 								<label>سعر المرتجع</label>
@@ -73,12 +71,9 @@
 									class="form-control text-center bg-light font-weight-bold" />
 							</div>
 
-
-
 							<button type="submit"
 								class="btn btn-outline-warning btn-lg w-100 ">اضافة
 								للفاتورة</button>
-
 
 						</form:form>
 
@@ -131,9 +126,12 @@
 
 				</div>
 
-				<input
-					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
-					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
+				<span
+					class=" btn bg-light text-dark float-right mt-sm-4 shadow font-weight-bold">
+					اجمالي الفاتورة : <fmt:formatNumber value="${total}"
+						maxFractionDigits="2" />
+				</span>
+
 
 				<div class="float-left pt-sm-4">
 

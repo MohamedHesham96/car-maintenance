@@ -105,8 +105,8 @@ public class BillSellItem {
 		return date;
 	}
 
-	public void setDate() {
-		this.date = LocalDate.now().toString();
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

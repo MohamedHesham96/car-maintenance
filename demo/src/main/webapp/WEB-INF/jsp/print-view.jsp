@@ -107,7 +107,7 @@
 
 							<td>التاريخ : <%=LocalDate.now().toString()%></td>
 
-							<td>الوحدة : ${billSell.client.name}</td>
+							<td>العميل : ${billSell.client.name}</td>
 
 						</tr>
 
@@ -193,7 +193,7 @@
 
 							<td colspan="2">الرصيد الحالي : ${billSell.client.drawee}</td>
 
-							<td>البائع : ${billSell.user.name}</td>
+							<td>المسئول : ${billSell.user.name}</td>
 
 
 

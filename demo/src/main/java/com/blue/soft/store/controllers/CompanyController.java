@@ -94,7 +94,7 @@ public class CompanyController {
 
 		Company company = companyService.getCompanyById(companyId);
 
-		if (amount > company.getDrawee())
+		if (amount > company.getDrawee() & company.getDrawee() > 0)
 			throw new Exception("مبلغ الدفع اكبر من الدين");
 
 		Pay pay = new Pay();

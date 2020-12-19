@@ -16,9 +16,6 @@ public class Bank {
 	@Column(name = "balance")
 	private float balance;
 
-	@Column(name = "drawee")
-	private float drawee;
-
 	@Column(name = "balance_today")
 	private float balanceToday;
 
@@ -39,14 +36,6 @@ public class Bank {
 
 	public void setBalance(float balance) {
 		this.balance = balance;
-	}
-
-	public float getDrawee() {
-		return drawee;
-	}
-
-	public void setDrawee(float drawee) {
-		this.drawee = drawee;
 	}
 
 	public float getBalanceToday() {

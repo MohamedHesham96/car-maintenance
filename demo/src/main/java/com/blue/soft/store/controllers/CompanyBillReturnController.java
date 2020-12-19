@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.CompanyBillReturn;
 import com.blue.soft.store.entity.CompanyBillReturnItem;
+import com.blue.soft.store.entity.BillReturnItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.ItemMove;
@@ -166,15 +167,27 @@ public class CompanyBillReturnController {
 
 			CompanyBillReturn billReturn = CompanyBillReturnService.getCompanyBillReturnBySaverId(userId);
 
+			List<CompanyBillReturnItem> compnayBillReturnList = billReturn.getCompanyBillReturnItems();
+
+			for (CompanyBillReturnItem billItemTemp : compnayBillReturnList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billReturnItemsService.addCompanyBillReturnItem(billItemTemp);
+
+					return "redirect:/show-add-to-company-return-bill";
+
+				}
+			}
+
 			billReturnItem.setItem(theItem);
-
 			billReturnItem.setReturnPrice(item.getSellPrice());
-
 			billReturnItem.setQuantity(item.getQuantity());
-
 			billReturnItem.setCompanyBillReturn(billReturn);
-
 			billReturnItem.setDate(LocalDate.now().toString());
+
 			billReturnItemsService.addCompanyBillReturnItem(billReturnItem);
 
 		}
@@ -261,7 +274,7 @@ public class CompanyBillReturnController {
 		}
 
 		Company company = companyBillReturn.getCompany();
-		company.setDrawee(company.getDrawee() + total);
+		company.setDrawee(company.getDrawee() - total);
 		companyBillReturn.setCompany(company);
 
 		companyBillReturn.setSaver(null);

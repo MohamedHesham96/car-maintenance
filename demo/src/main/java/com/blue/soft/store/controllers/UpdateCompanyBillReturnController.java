@@ -139,6 +139,21 @@ public class UpdateCompanyBillReturnController {
 
 			CompanyBillReturn companyBillReturn = companyBillReturnService.getCompanyBillReturnByUpdaterId(userId);
 
+			List<CompanyBillReturnItem> compnayBillReturnList = companyBillReturn.getCompanyBillReturnItems();
+
+			for (CompanyBillReturnItem billItemTemp : compnayBillReturnList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					companyBillReturnItemsService.addCompanyBillReturnItem(billItemTemp);
+
+					return "redirect:/show-update-company-return-bill";
+
+				}
+			}
+
 			companyBillReturnItem.setItem(theItem);
 			companyBillReturnItem.setCompanyBillReturn(companyBillReturn);
 			companyBillReturnItem.setReturnPrice(theItem.getSellPrice());

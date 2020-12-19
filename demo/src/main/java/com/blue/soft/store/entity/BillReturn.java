@@ -43,8 +43,8 @@ public class BillReturn {
 	@JoinColumn(name = "saver_id")
 	private User saver;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "billReturn", cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "billReturn", cascade = { CascadeType.DETACH, CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH })
 	private List<BillReturnItem> billReturnItems;
 
 	public void addBillReturnItem(BillReturnItem billReturnItem) {

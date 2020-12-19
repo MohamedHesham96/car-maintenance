@@ -134,6 +134,21 @@ public class UpdateBillReturnController {
 
 			BillReturn billReturn = billReturnService.getBillReturnByUpdaterId(userId);
 
+			List<BillReturnItem> buyItemsList = billReturn.getBillReturnItems();
+
+			for (BillReturnItem billItemTemp : buyItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billReturnItemsService.addBillReturnItem(billItemTemp);
+
+					return "redirect:/show-update-return-bill";
+
+				}
+			}
+
 			billReturnItem.setItem(theItem);
 			billReturnItem.setBillReturn(billReturn);
 			billReturnItem.setReturnPrice(theItem.getSellPrice());
@@ -193,7 +208,7 @@ public class UpdateBillReturnController {
 
 	// بيجيب الداتا من الفورم بتاعت التعديل علشان يعدل على الاصناف
 	@RequestMapping("/update-returnBillItem")
-	public String deleteReturnBillItemUpdate(@ModelAttribute(name = "updateItem") BillReturnItem returnBillItem) {
+	public String updateReturnBillItemUpdate(@ModelAttribute(name = "updateItem") BillReturnItem returnBillItem) {
 
 		BillReturnItem oldBRItem = billReturnItemsService.getBillReturnItem(returnBillItem.getId());
 

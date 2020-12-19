@@ -42,9 +42,12 @@
 
 	<ul class="navbar-nav mr-auto ">
 
+
+
+
 		<li
 			class="${home} btn btn-dark border-warning font-weight-bold nav-item  mr-2 shadow "
-			style="min-heitems_listight: 55px"><a class="nav-link active "
+			style="min-height: 55px"><a class="nav-link active "
 			${sessionScope.isHasMain ?  'href="home"' : ''}>الرئيسية </a></li>
 
 		<li dir="ltr" class=" mr-2">

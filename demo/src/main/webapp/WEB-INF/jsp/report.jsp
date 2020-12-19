@@ -90,13 +90,13 @@
 							<tr>
 								<td class=" border-primary">الخزنة</td>
 								<td class="border-primary"><fmt:formatNumber
-										value="${bank.balance}" maxFractionDigits="2" /></td>
+										value="${balance}" maxFractionDigits="2" /></td>
 							</tr>
 
 							<tr>
 								<td class=" border-primary">الخزنة اليوم</td>
 								<td class=" border-primary"><fmt:formatNumber
-										value="${bank.balance}" maxFractionDigits="2" /></td>
+										value="${balanceToday}" maxFractionDigits="2" /></ ttd>
 							</tr>
 
 							<tr>

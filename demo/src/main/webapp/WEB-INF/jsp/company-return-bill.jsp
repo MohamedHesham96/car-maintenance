@@ -20,7 +20,8 @@
 	rel="stylesheet">
 
 </head>
-<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 	<br>
@@ -55,7 +56,7 @@
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select
+							<form:select autofocus="autofocus"
 								class="form-control text-center bg-light font-weight-bold"
 								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
@@ -132,9 +133,13 @@
 
 				</div>
 
-				<input
-					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
-					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
+
+				<span
+					class=" btn bg-light text-dark float-right mt-sm-4 shadow font-weight-bold">
+					اجمالي الفاتورة : <fmt:formatNumber value="${total}"
+						maxFractionDigits="2" />
+				</span>
+
 
 				<div class="float-left pt-sm-4">
 

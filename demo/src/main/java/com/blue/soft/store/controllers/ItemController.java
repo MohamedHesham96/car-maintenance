@@ -105,17 +105,6 @@ public class ItemController {
 		theModel.addAttribute("movesList",
 				itemMoveService.getAllItemMovesByDateAndType(itemId, tempDateFrom, tempDateTo, moveType));
 
-//
-//		else if (dateFrom.equals("")) {
-//
-//			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
-//
-//		} else if (dateTo.equals("")) {
-//
-//			theModel.addAttribute("movesList", itemMoveService.getAllItemMovesByDate(itemId, dateFrom, dateTo));
-//
-//		}
-
 		theModel.addAttribute("moveType", moveType);
 		theModel.addAttribute("dateTo", dateTo);
 		theModel.addAttribute("dateFrom", dateFrom);

@@ -55,7 +55,7 @@
 							modelAttribute="item">
 
 							<label>اسم الصنف</label>
-							<form:select
+							<form:select autofocus="autofocus"
 								class="form-control text-center font-weight-bold bg-light"
 								path="id">
 								<form:options items="${itemsList}" itemLabel="name" />
@@ -118,7 +118,7 @@
 
 									<td class="border-primary "><a
 										href="delete-buyBillItem?buyBillItemId=${itemTemp.id}"
-										class="btn btn-danger btn-sm "> إلغاء </a></td>
+										class="btn btn-danger btn-sm font-weight-bold"> إلغاء </a></td>
 								</tr>
 
 							</c:forEach>
@@ -128,17 +128,13 @@
 
 				</div>
 
-
-
-
-				<input
-					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
-					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
-
-
+				<span
+					class=" btn bg-light text-dark float-right mt-sm-4 shadow font-weight-bold">
+					اجمالي الفاتورة : <fmt:formatNumber value="${total}"
+						maxFractionDigits="2" />
+				</span>
 
 				<div class="float-left pt-sm-4">
-
 
 					<form:form>
 
@@ -150,7 +146,6 @@
 
 						<c:if test="${billBuy.billBuyItems.size() > 0 }">
 
-
 							<a href="save-buyBill?buyBillId=${billBuy.id}"
 								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
 								class="btn btn-success mr-1 shadow font-weight-bold "> حفظ</a>
@@ -161,7 +156,6 @@
 								طباعة</a>
 
 						</c:if>
-
 
 
 						<c:if test="${billBuy.billBuyItems.size() eq 0 }">

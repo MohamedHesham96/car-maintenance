@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blue.soft.store.entity.BillBuy;
 import com.blue.soft.store.entity.BillBuyItem;
+import com.blue.soft.store.entity.BillSellItem;
 import com.blue.soft.store.entity.Company;
 import com.blue.soft.store.entity.Item;
 import com.blue.soft.store.entity.ItemMove;
@@ -156,19 +157,33 @@ public class BillBuyController {
 		BillBuyItem billBuyItem = new BillBuyItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0 && item.getBuyPrice() > 0) {
 
-			BillBuy billBuy = billBuyService.getLast();
+			String userId = httpSession.getAttribute("id").toString();
+
+			BillBuy billBuy = billBuyService.getBillBuyBySaverId(userId);
+
+			List<BillBuyItem> buyItemsList = billBuy.getBillBuyItems();
+
+			for (BillBuyItem billItemTemp : buyItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billBuyItemsService.addBillBuyItem(billItemTemp);
+
+					return "redirect:/show-add-to-buy-bill";
+
+				}
+			}
 
 			billBuyItem.setItem(theItem);
 			billBuyItem.setBillBuy(billBuy);
-
-//			float avgBuyPrice = (item.getBuyPrice() + theItem.getBuyPrice()) / 2;
-
 			billBuyItem.setBuyPrice(item.getBuyPrice());
 			billBuyItem.setQuantity(item.getQuantity());
 			billBuyItem.setDate(LocalDate.now().toString());
-			
+
 			billBuyItemsService.addBillBuyItem(billBuyItem);
 
 		} else {

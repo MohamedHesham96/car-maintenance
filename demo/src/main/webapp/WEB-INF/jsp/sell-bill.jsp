@@ -20,7 +20,8 @@
 	rel="stylesheet">
 
 </head>
-<body background="images/background.jpg" style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+<body background="images/background.jpg"
+	style="background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
 
 	<%@ include file="header.jsp"%>
 	<br>
@@ -88,7 +89,7 @@
 
 			<div class="mr-4 col-8 shadow">
 
-				<div class="  font-weight-bold shadow"
+				<div class="  font-weight-bold shadow "
 					style="position: relative; height: 425px; overflow: auto;">
 
 					<table class="table table-dark table-striped table-sm  shadow ">
@@ -129,25 +130,41 @@
 
 				</div>
 
-				<input
-					class="btn btn-outline-success float-right mt-sm-4 shadow font-weight-bold"
-					value="اجمالي : <fmt:formatNumber value="${total}" maxFractionDigits="2" />">
+				<span
+					class=" btn bg-light text-dark  float-right mt-sm-4 shadow font-weight-bold">
+					اجمالي الفاتورة : <fmt:formatNumber value="${total}"
+						maxFractionDigits="2" />
+				</span>
 
+				<c:if test="${billSell.late}">
+					<span
+						class="btn bg-light text-dark float-right mt-sm-4 shadow font-weight-bold mr-2">
+						المدفوع :</span>
+					<input name="payed" form="form"
+						class="form-control w-25 bg-light text-dark float-right mt-sm-4 shadow font-weight-bold mr-2 text-center" />
+
+				</c:if>
 				<div class="float-left pt-sm-4 pb-3">
 
-					<form:form>
+					<div class="row">
 
 						<a href="delete-sellBill?sellBillId=${billSell.id}"
 							class="btn btn-danger shadow font-weight-bold"
 							onclick="return confirm('هل انت متأكد من إلغاء الفاتورة ؟')">
 							حذف </a>
 
+
 						<c:if test="${billSell.billSellItems.size() > 0 }">
 
-							<a href="save-sellBill?sellBillId=${billSell.id}"
-								onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
-								class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
-								حفظ</a>
+							<form id="form" method="get" action="save-sellBill">
+
+								<input name="sellBillId" value="${billSell.id}" form="form"
+									hidden="" /> <input type="submit"
+									onclick="return confirm('هل انت متأكد من حفظ الفاتورة ؟')"
+									value="حفظ"
+									class="btn btn-success shadow mr-1 font-weight-bold ${billSellItems.size() eq 0 ? 'disabled' : ''} ">
+
+							</form>
 
 							<a href="show-printView?sellBillId=${billSell.id}"
 								onclick="return confirm('هل انت متأكد من طباعة الفاتورة ؟')"
@@ -165,9 +182,7 @@
 								disabled>طباعة</button>
 
 						</c:if>
-
-					</form:form>
-
+					</div>
 				</div>
 			</div>
 		</div>

@@ -86,7 +86,7 @@ public class BillSellController {
 
 	// حفظ ببيانات الفاتورة
 	@RequestMapping("/save-sell-bill-info")
-	public String saveSellBillInfo(@RequestParam(name = "late", defaultValue = "off") String late,
+	public String saveSellBillInfo(@RequestParam(name = "type") String late,
 			@RequestParam(name = "clientId") String clientid) {
 
 		String userId = httpSession.getAttribute("id").toString();
@@ -105,7 +105,7 @@ public class BillSellController {
 
 			billSell.setUser(theUser);
 
-			billSell.setLate("on".equals(late) ? true : false);
+			billSell.setLate("آجـل".equals(late) ? true : false);
 
 			billSell.setSaver(theUser);
 
@@ -151,12 +151,27 @@ public class BillSellController {
 
 			BillSell billSell = billSellService.getBillSellBySaverId(userId);
 
+			List<BillSellItem> sellItemsList = billSell.getBillSellItems();
+
+			for (BillSellItem billItemTemp : sellItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billSellItemsService.addBillSellItem(billItemTemp);
+
+					return "redirect:/show-add-to-sell-bill";
+
+				}
+			}
+
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
 			billSellItem.setSellPrice(theItem.getSellPrice());
 			billSellItem.setBuyPrice(theItem.getBuyPrice());
 			billSellItem.setQuantity(item.getQuantity());
-			billSellItem.setDate();
+			billSellItem.setDate(LocalDate.now().toString());
 
 			billSellItemsService.addBillSellItem(billSellItem);
 
@@ -229,9 +244,12 @@ public class BillSellController {
 	}
 
 	@RequestMapping("/save-sellBill")
-	public String saveSellBillItem(@RequestParam(name = "sellBillId") String sellBillId) {
+	public String saveSellBillItem(@RequestParam(name = "payed", defaultValue = "0", required = false) float payed,
+			@RequestParam(name = "sellBillId") String sellBillId) {
 
 		BillSell billSell = billSellService.getBillSellById(sellBillId);
+
+		billSell.setPayed(payed);
 
 		List<BillSellItem> billSellItemsList = billSell.getBillSellItems();
 

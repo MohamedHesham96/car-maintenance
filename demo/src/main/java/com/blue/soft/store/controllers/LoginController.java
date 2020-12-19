@@ -111,16 +111,7 @@ public class LoginController {
 
 		String date = LocalDate.now().toString();
 
-		Bank theBank = bankService.getBank();
-
-		if (!theBank.getDate().equals(LocalDate.now().toString())) {
-
-			theBank.setDate(LocalDate.now().toString());
-			theBank.setBalance(0);
-			bankService.saveBank(theBank);
-		}
-
-		theModel.addAttribute("bank", theBank);
+		theModel.addAttribute("bank", bankController.getTheBank());
 
 		theModel.addAttribute("clientDraweeTotal", clientSerivce.getDraweeTotal());
 		theModel.addAttribute("companyDraweeTotal", companyService.getDraweeTotal());

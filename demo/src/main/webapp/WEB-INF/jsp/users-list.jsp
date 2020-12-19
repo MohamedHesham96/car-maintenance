@@ -106,8 +106,8 @@
 								<form:input path="password"
 									class="form-control text-center  bg-light font-weight-bold" />
 
-								<h6 class="mt-2 font-weight-bold">-----------{ الصلحيات
-									}-----------</h6>
+								<h6 class="mt-2 font-weight-bold">--------------[ الصلحيات
+									]--------------</h6>
 
 								<label class="btn btn-primary btn-sm active font-weight-bold">
 									<form:checkbox class="" path="hasMain" /> الرئيسية

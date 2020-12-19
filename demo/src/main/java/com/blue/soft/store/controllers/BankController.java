@@ -1,5 +1,7 @@
 package com.blue.soft.store.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +16,7 @@ public class BankController {
 
 	public void updateBankBalance(String operationType, float theAmount) {
 
-		Bank bank = bankService.getBank();
+		Bank bank = bankService.getBankToDay();
 
 		if (operationType == "add") {
 
@@ -31,4 +33,25 @@ public class BankController {
 		bankService.saveBank(bank);
 
 	}
+
+	public Bank getTheBank() {
+
+		Bank theBank = bankService.getBankToDay();
+
+		if (theBank == null) {
+
+			theBank = new Bank();
+
+			Bank lastBank = bankService.getLast();
+
+			theBank.setDate(LocalDate.now().toString());
+
+			theBank.setBalance(lastBank.getBalance());
+
+			bankService.saveBank(theBank);
+		}
+
+		return theBank;
+	}
+
 }

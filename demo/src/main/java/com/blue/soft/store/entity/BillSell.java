@@ -154,6 +154,7 @@ public class BillSell {
 	}
 
 	public float getTotal() {
+
 		float total = 0;
 
 		for (BillSellItem billSellItem : billSellItems) {

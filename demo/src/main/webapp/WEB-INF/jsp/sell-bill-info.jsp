@@ -34,13 +34,13 @@
 			style="width: 800px; margin: 0auto;">
 
 			<div class="card border-warning w-50 font-weight-bold shadow"
-				style="margin: 0; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); max-width: 24rem;">
+				style="margin: 0; height: 240px; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); max-width: 24rem;">
 
-				<div class="card-header  border-warning text-warning">
+				<div class="card-header border-warning text-warning">
 					<h4>فاتورة بيع</h4>
 				</div>
 
-				<div class="card-body bg-dark text-warning">
+				<div class="card-body bg-dark text-warning ">
 
 					<form method="POST" action="save-sell-bill-info">
 
@@ -58,12 +58,15 @@
 							</select>
 						</div>
 
-						<label>آجل</label> <input type="checkbox" name="late">
+						<div class="row mt-2">
 
-						<button type="submit"
-							class="btn btn-outline-warning btn-lg w-100 ">فاتورة
-							جديدة</button>
+							<input type="submit" style="background-color: blue;"
+								class="btn font-weight-bold btn-lg col-lg-5 mr-3" name="type"
+								value="نقدي"> <input type="submit"
+								class="btn  btn-danger font-weight-bold btn-lg col-lg-5 mr-3"
+								name="type" value="آجـل">
 
+						</div>
 					</form>
 				</div>
 

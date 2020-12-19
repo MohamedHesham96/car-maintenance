@@ -1,5 +1,6 @@
 package com.blue.soft.store.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -148,19 +149,32 @@ public class UpdateBillSellController {
 		BillSellItem billSellItem = new BillSellItem();
 		Item theItem = itemService.getItemById(item.getId());
 
-		if (item.getQuantity() < theItem.getQuantity() && item.getQuantity() > 0) {
+		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
-			// String billId = httpSession.getAttribute("billSellId").toString();
-			// BillSell billSell = billSellService.getBillSellById(billId);
 			String userId = httpSession.getAttribute("id").toString();
 
 			BillSell billSell = billSellService.getBillSellByUpdaterId(userId);
+
+			List<BillSellItem> sellItemsList = billSell.getBillSellItems();
+
+			for (BillSellItem billItemTemp : sellItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billSellItemsService.addBillSellItem(billItemTemp);
+
+					return "redirect:/show-update-sell-bill";
+
+				}
+			}
 
 			billSellItem.setItem(theItem);
 			billSellItem.setBillSell(billSell);
 			billSellItem.setSellPrice(theItem.getSellPrice());
 			billSellItem.setQuantity(item.getQuantity());
-			billSellItem.setDate();
+			billSellItem.setDate(LocalDate.now().toString());
 
 			billSellItemsService.addBillSellItem(billSellItem);
 

@@ -80,7 +80,7 @@ public class SpendController {
 	@RequestMapping("/spend-list")
 	public String showSpendList(Model theModel) {
 
-		Bank theBank = bankService.getBank();
+		Bank theBank = bankService.getBankToDay();
 
 		if (!theBank.getDate().equals(LocalDate.now().toString())) {
 
@@ -89,7 +89,7 @@ public class SpendController {
 			bankService.saveBank(theBank);
 		}
 
-		theModel.addAttribute("theBank", bankService.getBank());
+		theModel.addAttribute("theBank", bankService.getBankToDay());
 
 		theModel.addAttribute("spendsList", spendService.getAllSpends());
 
@@ -106,7 +106,7 @@ public class SpendController {
 	@RequestMapping("/balances-list")
 	public String showBalancesList(Model theModel) {
 
-		theModel.addAttribute("theBank", bankService.getBank());
+		theModel.addAttribute("theBank", bankService.getBankToDay());
 		theModel.addAttribute("balancesList", spendService.getAllBalancess());
 
 		theModel.addAttribute("balancesTotal", spendService.getBalancesTotal());
@@ -122,7 +122,7 @@ public class SpendController {
 	@RequestMapping("/add-spend")
 	public String addSpend(@ModelAttribute("spend") Spend theSpend, Model theModel) throws Exception {
 
-		Bank bank = bankService.getBank();
+		Bank bank = bankService.getBankToDay();
 
 		if (theSpend.getAmount() > 0 && theSpend.getAmount() < bank.getBalance()) {
 
@@ -149,7 +149,7 @@ public class SpendController {
 	@RequestMapping("/add-balance")
 	public String addBalance(@ModelAttribute("spend") Spend theBalance, Model theModel) throws Exception {
 
-		Bank bank = bankService.getBank();
+		Bank bank = bankService.getBankToDay();
 
 		if (theBalance.getAmount() > 0) {
 
@@ -183,7 +183,7 @@ public class SpendController {
 
 		Spend theSpend = spendService.getSpendById(spendId);
 
-		Bank bank = bankService.getBank();
+		Bank bank = bankService.getBankToDay();
 
 		int flagVal = theSpend.getType().equals("مصروف") ? 1 : -1;
 
@@ -207,7 +207,7 @@ public class SpendController {
 
 		Spend theOldRecord = spendService.getSpendById(theRecord.getId());
 
-		Bank bank = bankService.getBank();
+		Bank bank = bankService.getBankToDay();
 
 		int flagVal = theOldRecord.getType().equals("مصروف") ? 1 : -1;
 
@@ -245,15 +245,6 @@ public class SpendController {
 		theModel.addAttribute("dateFrom", dateFrom);
 		theModel.addAttribute("dateTo", dateTo);
 
-		Bank theBank = bankService.getBank();
-
-		if (!theBank.getDate().equals(LocalDate.now().toString())) {
-
-			theBank.setDate(LocalDate.now().toString());
-			theBank.setBalance(0);
-			bankService.saveBank(theBank);
-		}
-
 		if (action.equals("date")) {
 
 			if (date.equals("")) {
@@ -281,7 +272,9 @@ public class SpendController {
 
 		}
 
-		theModel.addAttribute("bank", theBank);
+		theModel.addAttribute("balance", bankService.getBankBalanceByDate(dateFrom, dateTo));
+
+		theModel.addAttribute("balanceToday", bankService.getBankBalanceTodayByDate(dateFrom, dateTo));
 
 		theModel.addAttribute("spendTotal", spendService.getSpendTotalByDate(dateFrom, dateTo));
 

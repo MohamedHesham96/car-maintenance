@@ -127,14 +127,29 @@ public class UpdateBillBuyController {
 	@RequestMapping("/add-item-to-update-buy-bill")
 	public String addToUpdateBuyBill(@ModelAttribute(name = "item") Item item) throws Exception {
 
-		String userId = httpSession.getAttribute("id").toString();
-
 		BillBuyItem billBuyItem = new BillBuyItem();
 		Item theItem = itemService.getItemById(item.getId());
 
 		if (item.getQuantity() <= theItem.getQuantity() && item.getQuantity() > 0) {
 
+			String userId = httpSession.getAttribute("id").toString();
+
 			BillBuy billBuy = billBuyService.getBillBuyByUpdaterId(userId);
+
+			List<BillBuyItem> buyItemsList = billBuy.getBillBuyItems();
+
+			for (BillBuyItem billItemTemp : buyItemsList) {
+
+				if (billItemTemp.getItem().getId().equals(item.getId())) {
+
+					billItemTemp.setQuantity(billItemTemp.getQuantity() + item.getQuantity());
+
+					billBuyItemsService.addBillBuyItem(billItemTemp);
+
+					return "redirect:/show-update-buy-bill";
+
+				}
+			}
 
 			billBuyItem.setItem(theItem);
 			billBuyItem.setBillBuy(billBuy);
